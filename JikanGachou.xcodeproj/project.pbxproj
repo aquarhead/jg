@@ -118,12 +118,9 @@
 		4F2FEEFB184B1A4A001A7AFE /* JikanGachou */ = {
 			isa = PBXGroup;
 			children = (
-				4F2FEF04184B1A4A001A7AFE /* JGAppDelegate.h */,
-				4F2FEF05184B1A4A001A7AFE /* JGAppDelegate.m */,
-				4F2FEF07184B1A4A001A7AFE /* Main.storyboard */,
-				4F3CF06A184ED10B00B43634 /* JGStartPageViewController.h */,
-				4F3CF06B184ED10B00B43634 /* JGStartPageViewController.m */,
 				4F2FEF0D184B1A4A001A7AFE /* Images.xcassets */,
+				4F2FEF07184B1A4A001A7AFE /* Main.storyboard */,
+				4F3CF06E184F068100B43634 /* Start Page */,
 				4F2FEEFC184B1A4A001A7AFE /* Supporting Files */,
 			);
 			path = JikanGachou;
@@ -132,6 +129,8 @@
 		4F2FEEFC184B1A4A001A7AFE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4F2FEF04184B1A4A001A7AFE /* JGAppDelegate.h */,
+				4F2FEF05184B1A4A001A7AFE /* JGAppDelegate.m */,
 				4F2FEEFD184B1A4A001A7AFE /* JikanGachou-Info.plist */,
 				4F2FEEFE184B1A4A001A7AFE /* InfoPlist.strings */,
 				4F2FEF01184B1A4A001A7AFE /* main.m */,
@@ -156,6 +155,15 @@
 				4F2FEF1D184B1A4B001A7AFE /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4F3CF06E184F068100B43634 /* Start Page */ = {
+			isa = PBXGroup;
+			children = (
+				4F3CF06A184ED10B00B43634 /* JGStartPageViewController.h */,
+				4F3CF06B184ED10B00B43634 /* JGStartPageViewController.m */,
+			);
+			name = "Start Page";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
