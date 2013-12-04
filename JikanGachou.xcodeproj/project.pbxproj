@@ -208,6 +208,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = TeaWhen;
 				TargetAttributes = {
+					4F2FEEF1184B1A4A001A7AFE = {
+						DevelopmentTeam = 7676B49VAW;
+					};
 					4F2FEF12184B1A4B001A7AFE = {
 						TestTargetID = 4F2FEEF1184B1A4A001A7AFE;
 					};
@@ -421,6 +424,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JikanGachou/JikanGachou-Prefix.pch";
 				INFOPLIST_FILE = "JikanGachou/JikanGachou-Info.plist";
@@ -435,6 +439,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JikanGachou/JikanGachou-Prefix.pch";
 				INFOPLIST_FILE = "JikanGachou/JikanGachou-Info.plist";
