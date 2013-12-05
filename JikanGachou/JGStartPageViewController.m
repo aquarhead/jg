@@ -7,12 +7,11 @@
 //
 
 #import "JGStartPageViewController.h"
-#import <iCarousel.h>
+#import <KIImagePager.h>
 
-@interface JGStartPageViewController () <iCarouselDataSource, iCarouselDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface JGStartPageViewController () <KIImagePagerDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet iCarousel *carousel;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet KIImagePager *imagePager;
 @property (nonatomic) UIImagePickerController *imagePickerController;
 
 @end
@@ -22,27 +21,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.carousel.dataSource = self;
-    self.carousel.delegate = self;
-    self.carousel.type = iCarouselTypeLinear;
-    self.carousel.bounces = NO;
-    self.carousel.scrollEnabled = YES;
-    self.carousel.pagingEnabled = YES;
-    [self.carousel reloadData];
+    self.imagePager.dataSource = self;
+    self.imagePager.pageControl.currentPageIndicatorTintColor = [UIColor lightGrayColor];
+    self.imagePager.pageControl.pageIndicatorTintColor = [UIColor blackColor];
+    self.imagePager.indicatorDisabled = YES;
+    self.imagePager.slideshowTimeInterval = 4.0;
 }
 
-- (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel
+- (NSArray *)arrayWithImages
 {
-    return 2;
+    return @[[UIImage imageNamed:@"start1"],
+             [UIImage imageNamed:@"start2"]];
 }
 
-- (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view
+- (UIViewContentMode)contentModeForImage:(NSUInteger)image
 {
-    NSString *imageName = [NSString stringWithFormat:@"start%u", index+1];
-    NSLog(@"%@", imageName);
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.carousel.frame];
-    imageView.image = [UIImage imageNamed:imageName];
-    return imageView;
+    return UIViewContentModeScaleAspectFill;
 }
 
 - (IBAction)buttonClicked:(id)sender

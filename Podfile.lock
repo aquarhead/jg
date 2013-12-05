@@ -17,21 +17,17 @@ PODS:
   - AFNetworking/Serialization (2.0.3)
   - AFNetworking/UIKit (2.0.3):
     - AFNetworking/NSURLConnection
-  - iCarousel (1.7.6)
+  - KIImagePager (1.2.0)
   - TestFlightSDK (2.1.3-noadid-beta)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
-  - iCarousel (from `git@github.com:TeaWhen/iCarousel.git`)
+  - KIImagePager
   - TestFlightSDK
-
-EXTERNAL SOURCES:
-  iCarousel:
-    :git: git@github.com:TeaWhen/iCarousel.git
 
 SPEC CHECKSUMS:
   AFNetworking: e499052cbf3d743e9bb727bb37adb9dc2547ba15
-  iCarousel: 390c2aa0d9509200f7e96ded24c268011c778c72
+  KIImagePager: 56196580937e7c7301e3ff47e65466f3408739b2
   TestFlightSDK: 8f8941d0dd990508e127480b06cc6c36379c1b49
 
 COCOAPODS: 0.28.0
