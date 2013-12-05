@@ -27,6 +27,7 @@
     self.carousel.type = iCarouselTypeLinear;
     self.carousel.bounces = NO;
     self.carousel.scrollEnabled = YES;
+    self.carousel.pagingEnabled = YES;
     [self.carousel reloadData];
 }
 
