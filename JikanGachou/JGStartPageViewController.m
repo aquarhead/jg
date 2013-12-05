@@ -25,6 +25,7 @@
     self.carousel.dataSource = self;
     self.carousel.delegate = self;
     self.carousel.type = iCarouselTypeLinear;
+    self.carousel.bounces = NO;
     self.carousel.scrollEnabled = YES;
     [self.carousel reloadData];
 }
@@ -38,7 +39,7 @@
 {
     NSString *imageName = [NSString stringWithFormat:@"start%u", index+1];
     NSLog(@"%@", imageName);
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:carousel.frame];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.carousel.frame];
     imageView.image = [UIImage imageNamed:imageName];
     return imageView;
 }
