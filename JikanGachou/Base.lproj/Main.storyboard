@@ -16,13 +16,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KIj-62-2Co" customClass="KIImagePager">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KIj-62-2Co" customClass="KIImagePager">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="424"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VaM-3K-TLc">
-                                <rect key="frame" x="0.0" y="422" width="320" height="58"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VaM-3K-TLc">
+                                <rect key="frame" x="0.0" y="420" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZL-BK-ORG">
@@ -40,9 +40,17 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="A5u-mr-QDq"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KIj-62-2Co" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="Kdj-zX-iEw"/>
+                            <constraint firstAttribute="bottom" secondItem="VaM-3K-TLc" secondAttribute="bottom" id="NRC-Vb-qMR"/>
+                            <constraint firstAttribute="bottom" secondItem="KIj-62-2Co" secondAttribute="bottom" constant="60" id="Nhe-R7-1uX"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="画" id="jQ6-1C-fmd"/>
                     <connections>
