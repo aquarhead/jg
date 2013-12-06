@@ -43,7 +43,7 @@
 
     ((UIImageView *)[cell viewWithTag:0]).image = [groupInfo objectForKey:@"posterImage"];
     ((UILabel *)[cell viewWithTag:1]).text = [groupInfo objectForKey:@"name"];
-    ((UILabel *)[cell viewWithTag:2]).text = [NSString stringWithFormat:@"%@ 项", [groupInfo objectForKey:@"numberOfAssets"]];
+    ((UILabel *)[cell viewWithTag:2]).text = [NSString stringWithFormat:@"%@ 张照片", [groupInfo objectForKey:@"numberOfAssets"]];
 
     return cell;
 }
@@ -56,6 +56,7 @@
     [lib enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
         if (group) {
             NSMutableDictionary *groupInfo = [NSMutableDictionary new];
+            [group setAssetsFilter:[ALAssetsFilter allPhotos]];
             [groupInfo setObject:[group valueForProperty:ALAssetsGroupPropertyURL] forKey:@"url"];
             [groupInfo setObject:[UIImage imageWithCGImage:[group posterImage]] forKey:@"posterImage"];
             [groupInfo setObject:[group valueForProperty:ALAssetsGroupPropertyName] forKey:@"name"];
