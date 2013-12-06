@@ -6,17 +6,17 @@
 //  Copyright (c) 2013 TeaWhen. All rights reserved.
 //
 
-#import "JGImagePickerViewController.h"
+#import "JGImageAlbumViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
-@interface JGImagePickerViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface JGImageAlbumViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic) NSArray *albums;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
-@implementation JGImagePickerViewController
+@implementation JGImageAlbumViewController
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -28,11 +28,11 @@
     return self.albums.count;
 }
 
-//typedef NS_ENUM(NSUInteger, JGImagePickerCellTag) {
-//    JGImagePickerCellTagImageView = 0,
-//    JGImagePickerCellTagAlbumName,
-//    JGImagePickerCellTagAlbumCount
-//};
+typedef NS_ENUM(NSUInteger, JGImagePickerCellTag) {
+    JGImagePickerCellTagImageView = 100,
+    JGImagePickerCellTagAlbumName,
+    JGImagePickerCellTagAlbumCount
+};
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -41,9 +41,9 @@
 
     NSDictionary *groupInfo = [self.albums objectAtIndex:indexPath.row];
 
-    ((UIImageView *)[cell viewWithTag:0]).image = [groupInfo objectForKey:@"posterImage"];
-    ((UILabel *)[cell viewWithTag:1]).text = [groupInfo objectForKey:@"name"];
-    ((UILabel *)[cell viewWithTag:2]).text = [NSString stringWithFormat:@"%@ 张照片", [groupInfo objectForKey:@"numberOfAssets"]];
+    ((UIImageView *)[cell viewWithTag:JGImagePickerCellTagImageView]).image = [groupInfo objectForKey:@"posterImage"];
+    ((UILabel *)[cell viewWithTag:JGImagePickerCellTagAlbumName]).text = [groupInfo objectForKey:@"name"];
+    ((UILabel *)[cell viewWithTag:JGImagePickerCellTagAlbumCount]).text = [NSString stringWithFormat:@"%@ 张照片", [groupInfo objectForKey:@"numberOfAssets"]];
 
     return cell;
 }

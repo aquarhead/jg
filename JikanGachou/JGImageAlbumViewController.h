@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JGImagePickerViewController : UIViewController
+@interface JGImageAlbumViewController : UIViewController
 
 @end
