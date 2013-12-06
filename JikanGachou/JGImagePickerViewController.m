@@ -11,6 +11,9 @@
 
 @interface JGImagePickerViewController () <UITableViewDataSource, UITableViewDelegate>
 
+@property (nonatomic) NSArray *albums;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @end
 
 @implementation JGImagePickerViewController
@@ -22,17 +25,51 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return self.albums.count;
 }
+
+//typedef NS_ENUM(NSUInteger, JGImagePickerCellTag) {
+//    JGImagePickerCellTagImageView = 0,
+//    JGImagePickerCellTagAlbumName,
+//    JGImagePickerCellTagAlbumCount
+//};
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+
+    NSDictionary *groupInfo = [self.albums objectAtIndex:indexPath.row];
+
+    ((UIImageView *)[cell viewWithTag:0]).image = [groupInfo objectForKey:@"posterImage"];
+    ((UILabel *)[cell viewWithTag:1]).text = [groupInfo objectForKey:@"name"];
+    ((UILabel *)[cell viewWithTag:2]).text = [NSString stringWithFormat:@"%@ 张照片", [groupInfo objectForKey:@"numberOfAssets"]];
+
+    return cell;
 }
 
-- (void)viewDidLoad
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
+    [super viewWillAppear:animated];
+    ALAssetsLibrary *lib = [ALAssetsLibrary new];
+    NSMutableArray *albums = [NSMutableArray new];
+    [lib enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+        if (group) {
+            NSMutableDictionary *groupInfo = [NSMutableDictionary new];
+            [groupInfo setObject:[group valueForProperty:ALAssetsGroupPropertyURL] forKey:@"url"];
+            [groupInfo setObject:[UIImage imageWithCGImage:[group posterImage]] forKey:@"posterImage"];
+            [groupInfo setObject:[group valueForProperty:ALAssetsGroupPropertyName] forKey:@"name"];
+            [groupInfo setObject:[NSString stringWithFormat:@"%d", [group numberOfAssets]] forKey:@"numberOfAssets"];
+            [albums addObject:[groupInfo copy]];
+        } else {
+            *stop = YES;
+            self.albums = [albums copy];
+            [self.tableView reloadData];
+        }
+    } failureBlock:^(NSError *error) {
+        NSLog(@"error");
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
 }
 
 @end
