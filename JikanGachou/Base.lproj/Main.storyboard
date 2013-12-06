@@ -82,7 +82,7 @@
                                 <rect key="frame" x="0.0" y="368" width="320" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选取 20-40 张照片" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCr-Xm-LRK">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择 20-40 张照片" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCr-Xm-LRK">
                                         <rect key="frame" x="14" y="6" width="153" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
@@ -174,7 +174,7 @@
             </objects>
             <point key="canvasLocation" x="1079" y="-143"/>
         </scene>
-        <!--Image Album View Controller-->
+        <!--Image Album View Controller - 选择照片-->
         <scene sceneID="I8r-ly-EHA">
             <objects>
                 <viewController id="axQ-qA-fWi" customClass="JGImageAlbumViewController" sceneMemberID="viewController">
@@ -253,7 +253,13 @@
                             <constraint firstItem="2jJ-BQ-4VB" firstAttribute="leading" secondItem="hPb-fK-5WY" secondAttribute="leading" id="zkl-s6-S3L"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Udh-pW-SVw"/>
+                    <navigationItem key="navigationItem" title="选择照片" id="Udh-pW-SVw">
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="5f6-xq-YRR">
+                            <connections>
+                                <action selector="cancel:" destination="axQ-qA-fWi" id="Z5l-UO-lap"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="2jJ-BQ-4VB" id="dTp-E6-zgQ"/>
                     </connections>

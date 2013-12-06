@@ -82,4 +82,8 @@ typedef NS_ENUM(NSUInteger, JGImagePickerCellTag) {
     }
 }
 
+- (IBAction)cancel:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 @end

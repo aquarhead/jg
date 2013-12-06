@@ -40,6 +40,7 @@
     } failureBlock:^(NSError *error) {
         NSLog(@"%@", error);
     }];
+    self.navigationItem.title = [self.groupInfo objectForKey:@"name"];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
