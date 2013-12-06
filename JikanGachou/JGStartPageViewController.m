@@ -21,12 +21,17 @@
 {
     [super viewDidLoad];
     
-    self.navigationController.navigationBarHidden = YES;
-    
     self.imagePager.dataSource = self;
     self.imagePager.pageControl.currentPageIndicatorTintColor = [UIColor lightGrayColor];
     self.imagePager.pageControl.pageIndicatorTintColor = [UIColor blackColor];
     self.imagePager.slideshowTimeInterval = 7.0;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (NSArray *)arrayWithImages
