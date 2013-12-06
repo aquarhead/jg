@@ -7,10 +7,9 @@
 //
 
 #import "JGImagePickerViewController.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
-@interface JGImagePickerViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-
-@property (nonatomic) UIImagePickerController *imagePickerController;
+@interface JGImagePickerViewController ()
 
 @end
 
@@ -19,19 +18,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self showImagePicker];
-}
-
-- (void)showImagePicker
-{
-    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-    imagePickerController.modalPresentationStyle = UIModalPresentationCurrentContext;
-    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    imagePickerController.showsCameraControls = NO;
-    imagePickerController.delegate = self;
-
-    self.imagePickerController = imagePickerController;
-    [self presentViewController:self.imagePickerController animated:YES completion:nil];
 }
 
 @end
