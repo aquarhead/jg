@@ -16,40 +16,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KIj-62-2Co" customClass="KIImagePager">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="424"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KIj-62-2Co" customClass="KIImagePager">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VaM-3K-TLc">
-                                <rect key="frame" x="0.0" y="420" width="320" height="60"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZL-BK-ORG">
+                                <rect key="frame" x="68" y="419" width="184" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZL-BK-ORG">
-                                        <rect key="frame" x="68" y="14" width="184" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.74901960784313726" green="0.55686274509803924" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="创建新相册">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="axQ-qA-fWi" kind="push" id="8v6-rl-PKE"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.74901960784313726" green="0.55686274509803924" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="A5u-mr-QDq"/>
+                                    <constraint firstAttribute="height" constant="30" id="pm9-sj-IM6"/>
                                 </constraints>
-                            </view>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="创建新相册">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="axQ-qA-fWi" kind="push" id="8v6-rl-PKE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="KIj-62-2Co" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="Kdj-zX-iEw"/>
-                            <constraint firstAttribute="bottom" secondItem="VaM-3K-TLc" secondAttribute="bottom" id="NRC-Vb-qMR"/>
-                            <constraint firstAttribute="bottom" secondItem="KIj-62-2Co" secondAttribute="bottom" constant="60" id="Nhe-R7-1uX"/>
+                            <constraint firstItem="KIj-62-2Co" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Lwu-FV-GU0"/>
+                            <constraint firstAttribute="trailing" secondItem="KIj-62-2Co" secondAttribute="trailing" id="NeH-Kc-fat"/>
+                            <constraint firstItem="8UU-TN-jES" firstAttribute="top" secondItem="cZL-BK-ORG" secondAttribute="bottom" constant="31" id="PE9-8R-ttS"/>
+                            <constraint firstItem="KIj-62-2Co" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="a2E-6N-Lb9"/>
+                            <constraint firstItem="cZL-BK-ORG" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="68" id="bjp-xu-nMq"/>
+                            <constraint firstAttribute="trailing" secondItem="cZL-BK-ORG" secondAttribute="trailing" constant="68" id="ryu-Vx-IOg"/>
+                            <constraint firstItem="8UU-TN-jES" firstAttribute="top" secondItem="KIj-62-2Co" secondAttribute="bottom" id="zuA-zB-5mM"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jQ6-1C-fmd"/>
