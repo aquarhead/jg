@@ -21,6 +21,7 @@
 		4F2FEF1F184B1A4B001A7AFE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F2FEF1D184B1A4B001A7AFE /* InfoPlist.strings */; };
 		4F2FEF21184B1A4B001A7AFE /* JikanGachouTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FEF20184B1A4B001A7AFE /* JikanGachouTests.m */; };
 		4F3CF06C184ED10B00B43634 /* JGStartPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3CF06B184ED10B00B43634 /* JGStartPageViewController.m */; };
+		4FD73EE718518A3C00C9F568 /* JGImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD73EE618518A3C00C9F568 /* JGImagePickerViewController.m */; };
 		8AA1C3E6CA8049539A6A4D63 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 669841D2BBA24747B670999C /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,8 @@
 		4F2FEF20184B1A4B001A7AFE /* JikanGachouTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JikanGachouTests.m; sourceTree = "<group>"; };
 		4F3CF06A184ED10B00B43634 /* JGStartPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGStartPageViewController.h; sourceTree = "<group>"; };
 		4F3CF06B184ED10B00B43634 /* JGStartPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGStartPageViewController.m; sourceTree = "<group>"; };
+		4FD73EE518518A3C00C9F568 /* JGImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGImagePickerViewController.h; sourceTree = "<group>"; };
+		4FD73EE618518A3C00C9F568 /* JGImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGImagePickerViewController.m; sourceTree = "<group>"; };
 		669841D2BBA24747B670999C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -121,6 +124,7 @@
 				4F2FEF0D184B1A4A001A7AFE /* Images.xcassets */,
 				4F2FEF07184B1A4A001A7AFE /* Main.storyboard */,
 				4F3CF06E184F068100B43634 /* Start Page */,
+				4FD73EE4185189F000C9F568 /* Image Picker */,
 				4F2FEEFC184B1A4A001A7AFE /* Supporting Files */,
 			);
 			path = JikanGachou;
@@ -164,6 +168,15 @@
 				4F3CF06B184ED10B00B43634 /* JGStartPageViewController.m */,
 			);
 			name = "Start Page";
+			sourceTree = "<group>";
+		};
+		4FD73EE4185189F000C9F568 /* Image Picker */ = {
+			isa = PBXGroup;
+			children = (
+				4FD73EE518518A3C00C9F568 /* JGImagePickerViewController.h */,
+				4FD73EE618518A3C00C9F568 /* JGImagePickerViewController.m */,
+			);
+			name = "Image Picker";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F2FEF02184B1A4A001A7AFE /* main.m in Sources */,
+				4FD73EE718518A3C00C9F568 /* JGImagePickerViewController.m in Sources */,
 				4F3CF06C184ED10B00B43634 /* JGStartPageViewController.m in Sources */,
 				4F2FEF06184B1A4A001A7AFE /* JGAppDelegate.m in Sources */,
 			);

@@ -9,10 +9,9 @@
 #import "JGStartPageViewController.h"
 #import <KIImagePager.h>
 
-@interface JGStartPageViewController () <KIImagePagerDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface JGStartPageViewController () <KIImagePagerDataSource>
 
 @property (weak, nonatomic) IBOutlet KIImagePager *imagePager;
-@property (nonatomic) UIImagePickerController *imagePickerController;
 
 @end
 
@@ -39,22 +38,6 @@
 - (UIViewContentMode)contentModeForImage:(NSUInteger)image
 {
     return UIViewContentModeScaleAspectFill;
-}
-
-- (IBAction)buttonClicked:(id)sender
-{
-    [self showImagePicker];
-}
-
-- (void)showImagePicker
-{
-    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-    imagePickerController.modalPresentationStyle = UIModalPresentationCurrentContext;
-    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    imagePickerController.delegate = self;
-    
-    self.imagePickerController = imagePickerController;
-    [self presentViewController:self.imagePickerController animated:YES completion:nil];
 }
 
 @end

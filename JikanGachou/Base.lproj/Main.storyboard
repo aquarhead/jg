@@ -36,6 +36,7 @@
                                         </state>
                                         <connections>
                                             <action selector="buttonClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="q1N-0x-Vgq"/>
+                                            <segue destination="axQ-qA-fWi" kind="push" id="8v6-rl-PKE"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -60,6 +61,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="606" y="-143"/>
+        </scene>
+        <!--Image Picker View Controller-->
+        <scene sceneID="I8r-ly-EHA">
+            <objects>
+                <viewController id="axQ-qA-fWi" customClass="JGImagePickerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tai-xn-Nmu"/>
+                        <viewControllerLayoutGuide type="bottom" id="fjU-GR-B29"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hPb-fK-5WY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Udh-pW-SVw"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eJU-s8-Pt0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1020" y="-143"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="guS-sg-9lj">
