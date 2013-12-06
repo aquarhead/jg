@@ -31,7 +31,8 @@
                 [photoInfo setObject:[result valueForProperty:ALAssetPropertyAssetURL] forKey:@"url"];
                 [photoInfo setObject:[UIImage imageWithCGImage:[result thumbnail]] forKey:@"image"];
                 [photos addObject:[photoInfo copy]];
-            } else {
+            }
+            else {
                 *stop = YES;
                 self.photos = [photos copy];
                 [self.gridView reloadData];
@@ -53,15 +54,30 @@
     return self.photos.count;
 }
 
+typedef NS_ENUM(NSUInteger, JGImageGridCellTag) {
+    JGImageGridCellTagImageView = 100,
+    JGImageGridCellTagMaskView,
+    JGImageGridCellTagCheckView,
+};
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
 
     NSDictionary *photoInfo = [self.photos objectAtIndex:indexPath.row];
 
-    ((UIImageView *)[cell viewWithTag:4]).image = [photoInfo objectForKey:@"image"];
+    ((UIImageView *)[cell viewWithTag:JGImageGridCellTagImageView]).image = [photoInfo objectForKey:@"image"];
+    ((UIView *)[cell viewWithTag:JGImageGridCellTagMaskView]).hidden = YES;
+    ((UIImageView *)[cell viewWithTag:JGImageGridCellTagCheckView]).hidden = YES;
 
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    ((UIView *)[cell viewWithTag:JGImageGridCellTagMaskView]).hidden = !((UIView *)[cell viewWithTag:JGImageGridCellTagMaskView]).hidden;
+    ((UIImageView *)[cell viewWithTag:JGImageGridCellTagCheckView]).hidden = !((UIView *)[cell viewWithTag:JGImageGridCellTagCheckView]).hidden;
 }
 
 @end
