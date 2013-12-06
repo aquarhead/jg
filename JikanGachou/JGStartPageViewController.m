@@ -27,13 +27,6 @@
     self.imagePager.slideshowTimeInterval = 7.0;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    self.navigationController.navigationBarHidden = YES;
-}
-
 - (NSArray *)arrayWithImages
 {
     return @[[UIImage imageNamed:@"start1"],
