@@ -60,9 +60,10 @@ typedef NS_ENUM(NSUInteger, JGImagePickerCellTag) {
             [groupInfo setObject:[group valueForProperty:ALAssetsGroupPropertyURL] forKey:@"url"];
             [groupInfo setObject:[UIImage imageWithCGImage:[group posterImage]] forKey:@"posterImage"];
             [groupInfo setObject:[group valueForProperty:ALAssetsGroupPropertyName] forKey:@"name"];
-            [groupInfo setObject:[NSString stringWithFormat:@"%d", [group numberOfAssets]] forKey:@"numberOfAssets"];
+            [groupInfo setObject:[NSString stringWithFormat:@"%ld", (long)[group numberOfAssets]] forKey:@"numberOfAssets"];
             [albums addObject:[groupInfo copy]];
-        } else {
+        }
+        else {
             *stop = YES;
             self.albums = [albums copy];
             [self.tableView reloadData];
