@@ -7,6 +7,7 @@
 //
 
 #import "JGImageAlbumViewController.h"
+#import "JGImageGridViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
 @interface JGImageAlbumViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -36,8 +37,7 @@ typedef NS_ENUM(NSUInteger, JGImagePickerCellTag) {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
     NSDictionary *groupInfo = [self.albums objectAtIndex:indexPath.row];
 
@@ -72,6 +72,14 @@ typedef NS_ENUM(NSUInteger, JGImagePickerCellTag) {
         NSLog(@"error");
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"AlbumToGridSegue"]) {
+        JGImageGridViewController *vc = segue.destinationViewController;
+        vc.groupInfo = [self.albums objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+    }
 }
 
 @end

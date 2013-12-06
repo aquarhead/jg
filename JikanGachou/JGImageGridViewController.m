@@ -7,32 +7,60 @@
 //
 
 #import "JGImageGridViewController.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
-@interface JGImageGridViewController ()
+@interface JGImageGridViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UICollectionView *gridView;
+
+@property (nonatomic) NSArray *photos;
 
 @end
 
 @implementation JGImageGridViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)viewWillAppear:(BOOL)animated
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    [super viewWillAppear:animated];
+    ALAssetsLibrary *lib = [ALAssetsLibrary new];
+    [lib groupForURL:[self.groupInfo objectForKey:@"url"] resultBlock:^(ALAssetsGroup *group) {
+        NSMutableArray *photos = [NSMutableArray new];
+        [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+            if (result) {
+                NSMutableDictionary *photoInfo = [NSMutableDictionary new];
+                [photoInfo setObject:[result valueForProperty:ALAssetPropertyAssetURL] forKey:@"url"];
+                [photoInfo setObject:[UIImage imageWithCGImage:[result thumbnail]] forKey:@"image"];
+                [photos addObject:[photoInfo copy]];
+            } else {
+                *stop = YES;
+                self.photos = [photos copy];
+                [self.gridView reloadData];
+            }
+        }];
+    } failureBlock:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
 }
 
-- (void)viewDidLoad
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    return 1;
 }
 
-- (void)didReceiveMemoryWarning
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    return self.photos.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell *cell = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+
+    NSDictionary *photoInfo = [self.photos objectAtIndex:indexPath.row];
+
+    ((UIImageView *)[cell viewWithTag:4]).image = [photoInfo objectForKey:@"image"];
+
+    return cell;
 }
 
 @end

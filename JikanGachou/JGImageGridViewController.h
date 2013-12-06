@@ -10,4 +10,6 @@
 
 @interface JGImageGridViewController : UIViewController
 
+@property (nonatomic) NSDictionary *groupInfo;
+
 @end
