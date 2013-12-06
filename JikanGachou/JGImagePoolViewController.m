@@ -8,7 +8,7 @@
 
 #import "JGImagePoolViewController.h"
 
-@interface JGImagePoolViewController ()
+@interface JGImagePoolViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @end
 
@@ -21,6 +21,24 @@
         // Custom initialization
     }
     return self;
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 5;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    return cell;
 }
 
 - (void)viewDidLoad
