@@ -24,7 +24,6 @@
     self.imagePager.dataSource = self;
     self.imagePager.pageControl.currentPageIndicatorTintColor = [UIColor lightGrayColor];
     self.imagePager.pageControl.pageIndicatorTintColor = [UIColor blackColor];
-    self.imagePager.indicatorDisabled = YES;
     self.imagePager.slideshowTimeInterval = 7.0;
 }
 
@@ -36,7 +35,7 @@
 
 - (UIViewContentMode)contentModeForImage:(NSUInteger)image
 {
-    return UIViewContentModeScaleToFill;
+    return UIViewContentModeScaleAspectFill;
 }
 
 - (IBAction)buttonClicked:(id)sender

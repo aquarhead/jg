@@ -22,12 +22,16 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
-  - KIImagePager
+  - KIImagePager (from `git@github.com:TeaWhen/KIImagePager.git`)
   - TestFlightSDK
+
+EXTERNAL SOURCES:
+  KIImagePager:
+    :git: git@github.com:TeaWhen/KIImagePager.git
 
 SPEC CHECKSUMS:
   AFNetworking: e499052cbf3d743e9bb727bb37adb9dc2547ba15
-  KIImagePager: 56196580937e7c7301e3ff47e65466f3408739b2
+  KIImagePager: f95e1d231879675843a9a7a1e94a7e13a8e72ef6
   TestFlightSDK: 8f8941d0dd990508e127480b06cc6c36379c1b49
 
 COCOAPODS: 0.28.0
