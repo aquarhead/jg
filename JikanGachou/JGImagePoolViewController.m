@@ -11,6 +11,7 @@
 @interface JGImagePoolViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UILabel *selectedCountLabel;
 
 @property (nonatomic) NSMutableArray *selectedPhotoInfos;
 
@@ -47,11 +48,17 @@
     return cell;
 }
 
+- (void)reload
+{
+    [self.collectionView reloadData];
+    self.selectedCountLabel.text = [NSString stringWithFormat:@"已选 %u 张", self.selectedPhotoInfos.count];
+}
+
 - (void)addPhotoInfo:(NSDictionary *)photoInfo
 {
     [self.selectedPhotoInfos addObject:photoInfo];
     
-    [self.collectionView reloadData];
+    [self reload];
     [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.selectedPhotoInfos.count - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionRight animated:YES];
 }
 
@@ -59,7 +66,7 @@
 {
     [self.selectedPhotoInfos removeObject:photoInfo];
     
-    [self.collectionView reloadData];
+    [self reload];
 }
 
 @end
