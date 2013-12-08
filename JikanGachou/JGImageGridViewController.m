@@ -7,6 +7,7 @@
 //
 
 #import "JGImageGridViewController.h"
+#import "JGImagePoolViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
 @interface JGImageGridViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
@@ -14,10 +15,18 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *gridView;
 
 @property (nonatomic) NSArray *photos;
+@property (weak, nonatomic) JGImagePoolViewController *poolViewController;
 
 @end
 
 @implementation JGImageGridViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.poolViewController = (JGImagePoolViewController *)((UINavigationController*)self.navigationController).parentViewController;
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -64,9 +73,9 @@ typedef NS_ENUM(NSUInteger, JGImageGridCellTag) {
 {
     UICollectionViewCell *cell = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
 
-    NSDictionary *photoInfo = [self.photos objectAtIndex:indexPath.row];
+    NSDictionary *photoInfo = self.photos[indexPath.row];
 
-    ((UIImageView *)[cell viewWithTag:JGImageGridCellTagImageView]).image = [photoInfo objectForKey:@"image"];
+    ((UIImageView *)[cell viewWithTag:JGImageGridCellTagImageView]).image = photoInfo[@"image"];
     ((UIView *)[cell viewWithTag:JGImageGridCellTagMaskView]).hidden = YES;
     ((UIImageView *)[cell viewWithTag:JGImageGridCellTagCheckView]).hidden = YES;
 
@@ -76,8 +85,26 @@ typedef NS_ENUM(NSUInteger, JGImageGridCellTag) {
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-    ((UIView *)[cell viewWithTag:JGImageGridCellTagMaskView]).hidden = !((UIView *)[cell viewWithTag:JGImageGridCellTagMaskView]).hidden;
-    ((UIImageView *)[cell viewWithTag:JGImageGridCellTagCheckView]).hidden = !((UIView *)[cell viewWithTag:JGImageGridCellTagCheckView]).hidden;
+    
+    UIView *maskView = (UIView *)[cell viewWithTag:JGImageGridCellTagMaskView];
+    UIImageView *checkView = (UIImageView *)[cell viewWithTag:JGImageGridCellTagCheckView];
+    
+    NSDictionary *photoInfo = self.photos[indexPath.row];
+    
+    if (maskView.hidden) {
+        // not selected
+        [self.poolViewController addPhotoInfo:photoInfo];
+        
+        maskView.hidden = NO;
+        checkView.hidden = NO;
+    }
+    else {
+        // selected
+        [self.poolViewController removePhotoInfo:photoInfo];
+        
+        maskView.hidden = YES;
+        checkView.hidden = YES;
+    }
 }
 
 @end

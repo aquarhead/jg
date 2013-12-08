@@ -10,4 +10,7 @@
 
 @interface JGImagePoolViewController : UIViewController
 
+- (void)addPhotoInfo:(NSDictionary *)photoInfo;
+- (void)removePhotoInfo:(NSDictionary *)photoInfo;
+
 @end

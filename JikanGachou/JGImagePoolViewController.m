@@ -10,17 +10,19 @@
 
 @interface JGImagePoolViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
+@property (nonatomic) NSMutableArray *selectedPhotoInfos;
+
 @end
 
 @implementation JGImagePoolViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)viewDidLoad
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    [super viewDidLoad];
+    
+    self.selectedPhotoInfos = [@[] mutableCopy];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -30,7 +32,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 5;
+    return self.selectedPhotoInfos.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -38,19 +40,26 @@
     static NSString *CellIdentifier = @"Cell";
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     
+    NSDictionary *photoInfo = self.selectedPhotoInfos[indexPath.row];
+    UIImageView *imageView = (UIImageView *)[cell viewWithTag:100];
+    imageView.image = photoInfo[@"image"];
+    
     return cell;
 }
 
-- (void)viewDidLoad
+- (void)addPhotoInfo:(NSDictionary *)photoInfo
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    [self.selectedPhotoInfos addObject:photoInfo];
+    
+    [self.collectionView reloadData];
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.selectedPhotoInfos.count - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionRight animated:YES];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)removePhotoInfo:(NSDictionary *)photoInfo
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self.selectedPhotoInfos removeObject:photoInfo];
+    
+    [self.collectionView reloadData];
 }
 
 @end

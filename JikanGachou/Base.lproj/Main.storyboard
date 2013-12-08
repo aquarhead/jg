@@ -134,6 +134,12 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="64" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AT7-Fc-aRg">
+                                                    <rect key="frame" x="0.0" y="0.0" width="64" height="65"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -169,6 +175,9 @@
                             <constraint firstItem="2rD-El-bLV" firstAttribute="top" secondItem="4iA-gY-iAV" secondAttribute="bottom" constant="112" id="nxI-yM-cg6"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="biB-rn-vgL" id="k7y-Yf-BoG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7HM-1h-hl2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
