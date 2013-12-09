@@ -114,7 +114,7 @@
                                     <constraint firstItem="cCr-Xm-LRK" firstAttribute="top" secondItem="SEb-QN-rfm" secondAttribute="top" id="uMG-GU-G9Q"/>
                                 </constraints>
                             </view>
-                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="biB-rn-vgL">
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="biB-rn-vgL">
                                 <rect key="frame" x="0.0" y="402" width="320" height="78"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -160,10 +160,19 @@
                                     <outlet property="delegate" destination="JLH-3v-K42" id="m2k-2w-PCq"/>
                                 </connections>
                             </collectionView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no-photo" translatesAutoresizingMaskIntoConstraints="NO" id="HjM-EC-W4k">
+                                <rect key="frame" x="10" y="407" width="127" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="127" id="RLM-C2-5dM"/>
+                                    <constraint firstAttribute="height" constant="70" id="TSl-lA-qnT"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="4iA-gY-iAV" firstAttribute="top" secondItem="rP7-Cb-wm3" secondAttribute="top" id="4xY-l4-NGU"/>
+                            <constraint firstItem="2rD-El-bLV" firstAttribute="top" secondItem="HjM-EC-W4k" secondAttribute="bottom" constant="3" id="6ar-52-Blo"/>
                             <constraint firstItem="zVJ-di-7Bi" firstAttribute="leading" secondItem="rP7-Cb-wm3" secondAttribute="leading" id="8Kw-a5-hti"/>
                             <constraint firstItem="4iA-gY-iAV" firstAttribute="leading" secondItem="rP7-Cb-wm3" secondAttribute="leading" id="KU9-8v-W5M"/>
                             <constraint firstItem="biB-rn-vgL" firstAttribute="top" secondItem="zVJ-di-7Bi" secondAttribute="bottom" id="Ldt-Id-15I"/>
@@ -171,12 +180,14 @@
                             <constraint firstAttribute="trailing" secondItem="biB-rn-vgL" secondAttribute="trailing" id="VuV-n3-8JY"/>
                             <constraint firstAttribute="trailing" secondItem="4iA-gY-iAV" secondAttribute="trailing" id="Wu5-oP-aPX"/>
                             <constraint firstItem="2rD-El-bLV" firstAttribute="top" secondItem="biB-rn-vgL" secondAttribute="bottom" id="fPH-rZ-64R"/>
+                            <constraint firstItem="HjM-EC-W4k" firstAttribute="leading" secondItem="rP7-Cb-wm3" secondAttribute="leading" constant="10" id="mjr-ly-ACe"/>
                             <constraint firstItem="biB-rn-vgL" firstAttribute="leading" secondItem="rP7-Cb-wm3" secondAttribute="leading" id="nUB-5a-4Lp"/>
                             <constraint firstItem="2rD-El-bLV" firstAttribute="top" secondItem="4iA-gY-iAV" secondAttribute="bottom" constant="112" id="nxI-yM-cg6"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="biB-rn-vgL" id="k7y-Yf-BoG"/>
+                        <outlet property="placeholderView" destination="HjM-EC-W4k" id="8iz-ra-EQr"/>
                         <outlet property="selectedCountLabel" destination="SEb-QN-rfm" id="pUL-fv-CYc"/>
                     </connections>
                 </viewController>
@@ -387,6 +398,7 @@
     </scenes>
     <resources>
         <image name="check" width="22" height="22"/>
+        <image name="no-photo" width="127" height="70"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

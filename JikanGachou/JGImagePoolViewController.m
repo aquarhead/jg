@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UILabel *selectedCountLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *placeholderView;
 
 @property (nonatomic) NSMutableArray *selectedPhotoInfos;
 
@@ -51,7 +52,14 @@
 - (void)reload
 {
     [self.collectionView reloadData];
-    self.selectedCountLabel.text = [NSString stringWithFormat:@"已选 %u 张", self.selectedPhotoInfos.count];
+    self.selectedCountLabel.text = [NSString stringWithFormat:@"已选 %u 张", (unsigned)self.selectedPhotoInfos.count];
+    
+    if (self.selectedPhotoInfos.count > 0) {
+        self.placeholderView.hidden = YES;
+    }
+    else {
+        self.placeholderView.hidden = NO;
+    }
 }
 
 - (void)addPhotoInfo:(NSDictionary *)photoInfo
