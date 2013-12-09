@@ -68,11 +68,14 @@
 
 - (void)removePhotoInfo:(NSDictionary *)photoInfo
 {
+    NSDictionary *infoToRemove;
     for (NSDictionary *info in self.selectedPhotoInfos) {
         if ([info[@"url"] isEqual:photoInfo[@"url"]]) {
-            [self.selectedPhotoInfos removeObject:info];
+            infoToRemove = info;
+            break;
         }
     }
+    [self.selectedPhotoInfos removeObject:infoToRemove];
     
     [self reload];
 }
