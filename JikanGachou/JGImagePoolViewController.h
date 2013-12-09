@@ -12,5 +12,6 @@
 
 - (void)addPhotoInfo:(NSDictionary *)photoInfo;
 - (void)removePhotoInfo:(NSDictionary *)photoInfo;
+- (BOOL)hasPhotoInfo:(NSDictionary *)photoInfo;
 
 @end

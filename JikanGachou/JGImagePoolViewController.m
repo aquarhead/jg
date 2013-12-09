@@ -13,7 +13,6 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UILabel *selectedCountLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *placeholderView;
-
 @property (nonatomic) NSMutableArray *selectedPhotoInfos;
 
 @end
@@ -23,8 +22,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.selectedPhotoInfos = [@[] mutableCopy];
+    self.selectedPhotoInfos = [NSMutableArray new];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -41,11 +39,9 @@
 {
     static NSString *CellIdentifier = @"Cell";
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    NSDictionary *photoInfo = self.selectedPhotoInfos[indexPath.row];
-    UIImageView *imageView = (UIImageView *)[cell viewWithTag:100];
-    imageView.image = photoInfo[@"image"];
-    
+
+    ((UIImageView *)[cell viewWithTag:100]).image = self.selectedPhotoInfos[indexPath.row][@"image"];
+
     return cell;
 }
 
@@ -75,6 +71,16 @@
     [self.selectedPhotoInfos removeObject:photoInfo];
     
     [self reload];
+}
+
+- (BOOL)hasPhotoInfo:(NSDictionary *)photoInfo
+{
+    for (NSDictionary *info in self.selectedPhotoInfos) {
+        if ([info[@"url"] isEqual:photoInfo[@"url"]]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 @end

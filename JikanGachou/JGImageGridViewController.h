@@ -11,5 +11,6 @@
 @interface JGImageGridViewController : UIViewController
 
 @property (nonatomic) NSDictionary *groupInfo;
+@property (nonatomic) NSArray *photos;
 
 @end

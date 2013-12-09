@@ -14,7 +14,6 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *gridView;
 
-@property (nonatomic) NSArray *photos;
 @property (weak, nonatomic) JGImagePoolViewController *poolViewController;
 
 @end
@@ -26,31 +25,8 @@
     [super viewDidLoad];
     
     self.poolViewController = (JGImagePoolViewController *)((UINavigationController*)self.navigationController).parentViewController;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    ALAssetsLibrary *lib = [ALAssetsLibrary new];
-    [lib groupForURL:[self.groupInfo objectForKey:@"url"] resultBlock:^(ALAssetsGroup *group) {
-        NSMutableArray *photos = [NSMutableArray new];
-        [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
-            if (result) {
-                NSMutableDictionary *photoInfo = [NSMutableDictionary new];
-                [photoInfo setObject:[result valueForProperty:ALAssetPropertyAssetURL] forKey:@"url"];
-                [photoInfo setObject:[UIImage imageWithCGImage:[result thumbnail]] forKey:@"image"];
-                [photos addObject:[photoInfo copy]];
-            }
-            else {
-                *stop = YES;
-                self.photos = [photos copy];
-                [self.gridView reloadData];
-            }
-        }];
-    } failureBlock:^(NSError *error) {
-        NSLog(@"%@", error);
-    }];
     self.navigationItem.title = [self.groupInfo objectForKey:@"name"];
+
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -76,8 +52,7 @@ typedef NS_ENUM(NSUInteger, JGImageGridCellTag) {
     NSDictionary *photoInfo = self.photos[indexPath.row];
 
     ((UIImageView *)[cell viewWithTag:JGImageGridCellTagImageView]).image = photoInfo[@"image"];
-    ((UIView *)[cell viewWithTag:JGImageGridCellTagMaskView]).hidden = YES;
-    ((UIImageView *)[cell viewWithTag:JGImageGridCellTagCheckView]).hidden = YES;
+    [self updateMaskAndCheckViewForCell:cell forPhoto:photoInfo];
 
     return cell;
 }
@@ -85,23 +60,27 @@ typedef NS_ENUM(NSUInteger, JGImageGridCellTag) {
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    NSMutableDictionary *photoInfo = self.photos[indexPath.row];
+
+    if ([self.poolViewController hasPhotoInfo:photoInfo]) {
+        [self.poolViewController removePhotoInfo:photoInfo];
+    } else {
+        [self.poolViewController addPhotoInfo:photoInfo];
+    }
     
+    [self updateMaskAndCheckViewForCell:cell forPhoto:photoInfo];
+}
+
+- (void)updateMaskAndCheckViewForCell:(UICollectionViewCell *)cell forPhoto:(NSDictionary *)photoInfo
+{
     UIView *maskView = (UIView *)[cell viewWithTag:JGImageGridCellTagMaskView];
     UIImageView *checkView = (UIImageView *)[cell viewWithTag:JGImageGridCellTagCheckView];
-    
-    NSDictionary *photoInfo = self.photos[indexPath.row];
-    
-    if (maskView.hidden) {
-        // not selected
-        [self.poolViewController addPhotoInfo:photoInfo];
-        
+
+    if ([self.poolViewController hasPhotoInfo:photoInfo]) {
         maskView.hidden = NO;
         checkView.hidden = NO;
     }
     else {
-        // selected
-        [self.poolViewController removePhotoInfo:photoInfo];
-        
         maskView.hidden = YES;
         checkView.hidden = YES;
     }

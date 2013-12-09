@@ -12,8 +12,9 @@
 
 @interface JGImageAlbumViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic) NSArray *albums;
+@property (nonatomic) NSArray *groups;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic) NSArray *selectedGroupPhotos;
 
 @end
 
@@ -26,7 +27,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.albums.count;
+    return self.groups.count;
 }
 
 typedef NS_ENUM(NSUInteger, JGImagePickerCellTag) {
@@ -39,7 +40,7 @@ typedef NS_ENUM(NSUInteger, JGImagePickerCellTag) {
 {
     UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-    NSDictionary *groupInfo = [self.albums objectAtIndex:indexPath.row];
+    NSDictionary *groupInfo = [self.groups objectAtIndex:indexPath.row];
 
     ((UIImageView *)[cell viewWithTag:JGImagePickerCellTagImageView]).image = [groupInfo objectForKey:@"posterImage"];
     ((UILabel *)[cell viewWithTag:JGImagePickerCellTagAlbumName]).text = [groupInfo objectForKey:@"name"];
@@ -57,15 +58,16 @@ typedef NS_ENUM(NSUInteger, JGImagePickerCellTag) {
         if (group) {
             NSMutableDictionary *groupInfo = [NSMutableDictionary new];
             [group setAssetsFilter:[ALAssetsFilter allPhotos]];
-            [groupInfo setObject:[group valueForProperty:ALAssetsGroupPropertyURL] forKey:@"url"];
-            [groupInfo setObject:[UIImage imageWithCGImage:[group posterImage]] forKey:@"posterImage"];
-            [groupInfo setObject:[group valueForProperty:ALAssetsGroupPropertyName] forKey:@"name"];
-            [groupInfo setObject:[NSString stringWithFormat:@"%ld", (long)[group numberOfAssets]] forKey:@"numberOfAssets"];
+            groupInfo[@"url"] = [group valueForProperty:ALAssetsGroupPropertyURL];
+            groupInfo[@"posterImage"] = [UIImage imageWithCGImage:[group posterImage]];
+            groupInfo[@"name"] = [group valueForProperty:ALAssetsGroupPropertyName];
+            groupInfo[@"numberOfAssets"] = [NSString stringWithFormat:@"%ld", (long)[group numberOfAssets]];
+
             [albums addObject:[groupInfo copy]];
         }
         else {
             *stop = YES;
-            self.albums = [albums copy];
+            self.groups = [albums copy];
             [self.tableView reloadData];
         }
     } failureBlock:^(NSError *error) {
@@ -78,8 +80,32 @@ typedef NS_ENUM(NSUInteger, JGImagePickerCellTag) {
 {
     if ([segue.identifier isEqualToString:@"AlbumToGridSegue"]) {
         JGImageGridViewController *vc = segue.destinationViewController;
-        vc.groupInfo = [self.albums objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+        vc.groupInfo = self.groups[self.tableView.indexPathForSelectedRow.row];
+        vc.photos = self.selectedGroupPhotos;
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ALAssetsLibrary *lib = [ALAssetsLibrary new];
+    [lib groupForURL:self.groups[indexPath.row][@"url"] resultBlock:^(ALAssetsGroup *group) {
+        NSMutableArray *photos = [NSMutableArray new];
+        [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+            if (result) {
+                NSMutableDictionary *photoInfo = [NSMutableDictionary new];
+                photoInfo[@"url"] = [result valueForProperty:ALAssetPropertyAssetURL];
+                photoInfo[@"image"] = [UIImage imageWithCGImage:[result thumbnail]];
+                [photos addObject:photoInfo];
+            }
+            else {
+                *stop = YES;
+                self.selectedGroupPhotos = [photos copy];
+                [self performSegueWithIdentifier:@"AlbumToGridSegue" sender:self];
+            }
+        }];
+    } failureBlock:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
 }
 
 - (IBAction)cancel:(id)sender {

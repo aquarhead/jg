@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A598" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -255,9 +255,6 @@
                                                 <constraint firstItem="fFZ-qX-Mz9" firstAttribute="top" secondItem="IbY-Of-NKF" secondAttribute="top" constant="7" id="ywK-4y-Jml"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="hAH-Ry-jVp" kind="push" identifier="AlbumToGridSegue" id="cms-xB-yUk"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -283,6 +280,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="2jJ-BQ-4VB" id="dTp-E6-zgQ"/>
+                        <segue destination="hAH-Ry-jVp" kind="push" identifier="AlbumToGridSegue" id="YXt-oZ-h1o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eJU-s8-Pt0" userLabel="First Responder" sceneMemberID="firstResponder"/>
