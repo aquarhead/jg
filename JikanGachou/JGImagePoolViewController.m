@@ -13,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UILabel *selectedCountLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *placeholderView;
-@property (nonatomic) NSMutableArray *selectedPhotoInfos;
+@property (nonatomic) NSMutableArray *selectedPhotos;
 
 @end
 
@@ -22,7 +22,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.selectedPhotoInfos = [NSMutableArray new];
+    self.selectedPhotos = [NSMutableArray new];
+    self.lib = [ALAssetsLibrary new];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -32,7 +33,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.selectedPhotoInfos.count;
+    return self.selectedPhotos.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -40,7 +41,7 @@
     static NSString *CellIdentifier = @"Cell";
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
 
-    ((UIImageView *)[cell viewWithTag:100]).image = self.selectedPhotoInfos[indexPath.row][@"image"];
+    ((UIImageView *)[cell viewWithTag:100]).image = [UIImage imageWithCGImage:[self.selectedPhotos[indexPath.row] thumbnail]];
 
     return cell;
 }
@@ -48,9 +49,9 @@
 - (void)reload
 {
     [self.collectionView reloadData];
-    self.selectedCountLabel.text = [NSString stringWithFormat:@"已选 %u 张", (unsigned)self.selectedPhotoInfos.count];
+    self.selectedCountLabel.text = [NSString stringWithFormat:@"已选 %u 张", (unsigned)self.selectedPhotos.count];
     
-    if (self.selectedPhotoInfos.count > 0) {
+    if (self.selectedPhotos.count > 0) {
         self.placeholderView.hidden = YES;
     }
     else {
@@ -58,36 +59,32 @@
     }
 }
 
-- (void)addPhotoInfo:(NSDictionary *)photoInfo
+- (void)addPhoto:(ALAsset *)photo
 {
-    [self.selectedPhotoInfos addObject:photoInfo];
-    
+    [self.selectedPhotos addObject:photo];
     [self reload];
-    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.selectedPhotoInfos.count - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionRight animated:YES];
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.selectedPhotos.count - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionRight animated:YES];
 }
 
-- (void)removePhotoInfo:(NSDictionary *)photoInfo
+- (void)removePhoto:(ALAsset *)photo
 {
-    NSDictionary *infoToRemove;
-    for (NSDictionary *info in self.selectedPhotoInfos) {
-        if ([info[@"url"] isEqual:photoInfo[@"url"]]) {
-            infoToRemove = info;
-            break;
+    [self.selectedPhotos removeObject:photo];
+    [self.selectedPhotos enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(ALAsset *p, NSUInteger index, BOOL *stop) {
+        if ([[p valueForProperty:ALAssetPropertyAssetURL] isEqual:[photo valueForProperty:ALAssetPropertyAssetURL]]) {
+            [self.selectedPhotos removeObjectAtIndex:index];
         }
-    }
-    [self.selectedPhotoInfos removeObject:infoToRemove];
-    
+    }];
     [self reload];
 }
 
-- (BOOL)hasPhotoInfo:(NSDictionary *)photoInfo
+- (BOOL)hasPhoto:(ALAsset *)photo
 {
-    for (NSDictionary *info in self.selectedPhotoInfos) {
-        if ([info[@"url"] isEqual:photoInfo[@"url"]]) {
-            return YES;
+    for (ALAsset *p in self.selectedPhotos) {
+        if ([[p valueForProperty:ALAssetPropertyAssetURL] isEqual:[photo valueForProperty:ALAssetPropertyAssetURL]]) {
+            return true;
         }
     }
-    return NO;
+    return false;
 }
 
 @end

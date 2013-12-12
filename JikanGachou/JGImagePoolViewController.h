@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface JGImagePoolViewController : UIViewController
 
-- (void)addPhotoInfo:(NSDictionary *)photoInfo;
-- (void)removePhotoInfo:(NSDictionary *)photoInfo;
-- (BOOL)hasPhotoInfo:(NSDictionary *)photoInfo;
+@property (nonatomic) ALAssetsLibrary *lib;
+
+- (void)addPhoto:(ALAsset *)photoInfo;
+- (void)removePhoto:(ALAsset *)photoInfo;
+- (BOOL)hasPhoto:(ALAsset *)photoInfo;
 
 @end

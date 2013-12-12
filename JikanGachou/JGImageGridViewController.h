@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface JGImageGridViewController : UIViewController
 
-@property (nonatomic) NSDictionary *groupInfo;
+@property (nonatomic) ALAssetsGroup *group;
 @property (nonatomic) NSArray *photos;
 
 @end

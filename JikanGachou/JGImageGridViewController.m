@@ -8,7 +8,6 @@
 
 #import "JGImageGridViewController.h"
 #import "JGImagePoolViewController.h"
-#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface JGImageGridViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -25,7 +24,7 @@
     [super viewDidLoad];
     
     self.poolViewController = (JGImagePoolViewController *)((UINavigationController*)self.navigationController).parentViewController;
-    self.navigationItem.title = [self.groupInfo objectForKey:@"name"];
+    self.navigationItem.title = [self.group valueForProperty:ALAssetsGroupPropertyName];
 
 }
 
@@ -49,10 +48,10 @@ typedef NS_ENUM(NSUInteger, JGImageGridCellTag) {
 {
     UICollectionViewCell *cell = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
 
-    NSDictionary *photoInfo = self.photos[indexPath.row];
+    ALAsset *photo = self.photos[indexPath.row];
 
-    ((UIImageView *)[cell viewWithTag:JGImageGridCellTagImageView]).image = photoInfo[@"image"];
-    [self updateMaskAndCheckViewForCell:cell forPhoto:photoInfo];
+    ((UIImageView *)[cell viewWithTag:JGImageGridCellTagImageView]).image = [UIImage imageWithCGImage:photo.thumbnail];
+    [self updateMaskAndCheckViewForCell:cell forPhoto:photo];
 
     return cell;
 }
@@ -60,23 +59,23 @@ typedef NS_ENUM(NSUInteger, JGImageGridCellTag) {
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-    NSMutableDictionary *photoInfo = self.photos[indexPath.row];
+    ALAsset *photo = self.photos[indexPath.row];
 
-    if ([self.poolViewController hasPhotoInfo:photoInfo]) {
-        [self.poolViewController removePhotoInfo:photoInfo];
+    if ([self.poolViewController hasPhoto:photo]) {
+        [self.poolViewController removePhoto:photo];
     } else {
-        [self.poolViewController addPhotoInfo:photoInfo];
+        [self.poolViewController addPhoto:photo];
     }
     
-    [self updateMaskAndCheckViewForCell:cell forPhoto:photoInfo];
+    [self updateMaskAndCheckViewForCell:cell forPhoto:photo];
 }
 
-- (void)updateMaskAndCheckViewForCell:(UICollectionViewCell *)cell forPhoto:(NSDictionary *)photoInfo
+- (void)updateMaskAndCheckViewForCell:(UICollectionViewCell *)cell forPhoto:(ALAsset *)photo
 {
     UIView *maskView = (UIView *)[cell viewWithTag:JGImageGridCellTagMaskView];
     UIImageView *checkView = (UIImageView *)[cell viewWithTag:JGImageGridCellTagCheckView];
 
-    if ([self.poolViewController hasPhotoInfo:photoInfo]) {
+    if ([self.poolViewController hasPhoto:photo]) {
         maskView.hidden = NO;
         checkView.hidden = NO;
     }
