@@ -266,6 +266,11 @@
                                 <action selector="cancel:" destination="axQ-qA-fWi" id="Z5l-UO-lap"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="下一步" id="S8S-wW-k1J">
+                            <connections>
+                                <segue destination="3dW-pO-oxH" kind="push" id="yhe-lp-2g5"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="2jJ-BQ-4VB" id="dTp-E6-zgQ"/>
@@ -358,7 +363,14 @@
                             <constraint firstAttribute="trailing" secondItem="GOM-Km-JN2" secondAttribute="trailing" id="qkF-nE-G2W"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="sOb-Pf-PQx"/>
+                    <navigationItem key="navigationItem" id="sOb-Pf-PQx">
+                        <barButtonItem key="backBarButtonItem" title="返回" id="jfq-AH-gC7"/>
+                        <barButtonItem key="rightBarButtonItem" title="下一步" id="dkd-5p-Tb8">
+                            <connections>
+                                <segue destination="3dW-pO-oxH" kind="push" id="yvU-bO-kQ9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="gridView" destination="GOM-Km-JN2" id="Fgf-Vt-epQ"/>
                     </connections>
@@ -366,6 +378,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bJD-MR-BkW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2005" y="-696"/>
+        </scene>
+        <!--Edit Page View Controller - 选择封面-->
+        <scene sceneID="oqw-0w-B0B">
+            <objects>
+                <viewController id="3dW-pO-oxH" customClass="JGEditPageViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="m2y-Qp-uj4"/>
+                        <viewControllerLayoutGuide type="bottom" id="J3v-9t-aew"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1Vl-jK-mKx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="368"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7T9-Jv-TeF">
+                                <rect key="frame" x="10" y="58" width="300" height="300"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="选择封面" id="dFy-Ak-WmE">
+                        <barButtonItem key="rightBarButtonItem" title="提交" id="IKU-61-Ccm"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Y9-ci-xTS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2425" y="-696"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aEK-Wx-sJD">
@@ -392,4 +432,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="yvU-bO-kQ9"/>
+    </inferredMetricsTieBreakers>
 </document>

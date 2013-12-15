@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1A7E24FF1851FD9500113959 /* JGImagePoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E24FE1851FD9500113959 /* JGImagePoolViewController.m */; };
 		1A7E25021851FDCF00113959 /* JGImageGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E25011851FDCF00113959 /* JGImageGridViewController.m */; };
+		1AD436E9185DFE7F003B5D19 /* JGEditPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD436E8185DFE7F003B5D19 /* JGEditPageViewController.m */; };
 		4F2FEEF6184B1A4A001A7AFE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2FEEF5184B1A4A001A7AFE /* Foundation.framework */; };
 		4F2FEEF8184B1A4A001A7AFE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2FEEF7184B1A4A001A7AFE /* CoreGraphics.framework */; };
 		4F2FEEFA184B1A4A001A7AFE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2FEEF9184B1A4A001A7AFE /* UIKit.framework */; };
@@ -43,6 +44,8 @@
 		1A7E24FE1851FD9500113959 /* JGImagePoolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGImagePoolViewController.m; sourceTree = "<group>"; };
 		1A7E25001851FDCF00113959 /* JGImageGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGImageGridViewController.h; sourceTree = "<group>"; };
 		1A7E25011851FDCF00113959 /* JGImageGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGImageGridViewController.m; sourceTree = "<group>"; };
+		1AD436E7185DFE7F003B5D19 /* JGEditPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGEditPageViewController.h; sourceTree = "<group>"; };
+		1AD436E8185DFE7F003B5D19 /* JGEditPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGEditPageViewController.m; sourceTree = "<group>"; };
 		49761CB1CE0A4A59944B727D /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		4F2FEEF2184B1A4A001A7AFE /* JikanGachou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JikanGachou.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F2FEEF5184B1A4A001A7AFE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -95,6 +98,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1AD436EA185DFE82003B5D19 /* Edit Page */ = {
+			isa = PBXGroup;
+			children = (
+				1AD436E7185DFE7F003B5D19 /* JGEditPageViewController.h */,
+				1AD436E8185DFE7F003B5D19 /* JGEditPageViewController.m */,
+			);
+			name = "Edit Page";
+			sourceTree = "<group>";
+		};
 		4F2FEEE9184B1A4A001A7AFE = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +147,7 @@
 				4F2FEF07184B1A4A001A7AFE /* Main.storyboard */,
 				4F3CF06E184F068100B43634 /* Start Page */,
 				4FD73EE4185189F000C9F568 /* Image Picker */,
+				1AD436EA185DFE82003B5D19 /* Edit Page */,
 				4F2FEEFC184B1A4A001A7AFE /* Supporting Files */,
 			);
 			path = JikanGachou;
@@ -334,6 +347,7 @@
 				4F3CF06C184ED10B00B43634 /* JGStartPageViewController.m in Sources */,
 				1A7E25021851FDCF00113959 /* JGImageGridViewController.m in Sources */,
 				4F2FEF06184B1A4A001A7AFE /* JGAppDelegate.m in Sources */,
+				1AD436E9185DFE7F003B5D19 /* JGEditPageViewController.m in Sources */,
 				1A7E24FF1851FD9500113959 /* JGImagePoolViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
