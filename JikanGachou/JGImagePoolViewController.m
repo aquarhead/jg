@@ -42,7 +42,7 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
 
     ALAsset *asset = self.selectedPhotos[indexPath.row];
-    ((UIImageView *)[cell viewWithTag:100]).image = [UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
+    ((UIImageView *)[cell viewWithTag:100]).image = [UIImage imageWithCGImage:[asset aspectRatioThumbnail]];
 
     return cell;
 }
