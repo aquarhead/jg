@@ -41,7 +41,8 @@
     static NSString *CellIdentifier = @"Cell";
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
 
-    ((UIImageView *)[cell viewWithTag:100]).image = [UIImage imageWithCGImage:[self.selectedPhotos[indexPath.row] thumbnail]];
+    ALAsset *asset = self.selectedPhotos[indexPath.row];
+    ((UIImageView *)[cell viewWithTag:100]).image = [UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
 
     return cell;
 }
