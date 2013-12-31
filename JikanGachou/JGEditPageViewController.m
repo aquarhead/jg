@@ -10,6 +10,8 @@
 
 @interface JGEditPageViewController ()
 
+@property (weak, nonatomic) IBOutlet UIView *pageView;
+
 @end
 
 @implementation JGEditPageViewController
@@ -26,7 +28,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	
+    [self.pageView addSubview:[[[NSBundle mainBundle] loadNibNamed:@"EditPageCover" owner:self options:nil] firstObject]];
 }
 
 - (void)didReceiveMemoryWarning
