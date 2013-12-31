@@ -9,8 +9,17 @@
 /* Begin PBXBuildFile section */
 		1A7E24FF1851FD9500113959 /* JGImagePoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E24FE1851FD9500113959 /* JGImagePoolViewController.m */; };
 		1A7E25021851FDCF00113959 /* JGImageGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E25011851FDCF00113959 /* JGImageGridViewController.m */; };
-		1A838CE818726F390012CD5B /* EditPageCover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A838CE718726F390012CD5B /* EditPageCover.xib */; };
 		1AD436E9185DFE7F003B5D19 /* JGEditPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD436E8185DFE7F003B5D19 /* JGEditPageViewController.m */; };
+		4F1FB97918729FB6000FCFDB /* EditPageCoverTypeLogo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB97818729FB6000FCFDB /* EditPageCoverTypeLogo.xib */; };
+		4F1FB97B1872A049000FCFDB /* EditPageCoverTypePhoto.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB97A1872A049000FCFDB /* EditPageCoverTypePhoto.xib */; };
+		4F1FB9831872A7A1000FCFDB /* EditPageTypeOneLandscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB9821872A7A1000FCFDB /* EditPageTypeOneLandscape.xib */; };
+		4F1FB9851872A7BB000FCFDB /* EditPageTypeOnePortrait.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB9841872A7BB000FCFDB /* EditPageTypeOnePortrait.xib */; };
+		4F1FB9871872A85B000FCFDB /* EditPageTypeTwoLandscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB9861872A85B000FCFDB /* EditPageTypeTwoLandscape.xib */; };
+		4F1FB9891872A872000FCFDB /* EditPageTypeTwoPortrait.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB9881872A872000FCFDB /* EditPageTypeTwoPortrait.xib */; };
+		4F1FB98B1872A8A3000FCFDB /* EditPageTypeMixedLeftLandscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB98A1872A8A3000FCFDB /* EditPageTypeMixedLeftLandscape.xib */; };
+		4F1FB98D1872A8B0000FCFDB /* EditPageTypeMixedLeftPortrait.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB98C1872A8B0000FCFDB /* EditPageTypeMixedLeftPortrait.xib */; };
+		4F1FB98F1872A980000FCFDB /* EditPageBackCover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB98E1872A980000FCFDB /* EditPageBackCover.xib */; };
+		4F1FB9911872A992000FCFDB /* EditPageTitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB9901872A992000FCFDB /* EditPageTitle.xib */; };
 		4F2FEEF6184B1A4A001A7AFE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2FEEF5184B1A4A001A7AFE /* Foundation.framework */; };
 		4F2FEEF8184B1A4A001A7AFE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2FEEF7184B1A4A001A7AFE /* CoreGraphics.framework */; };
 		4F2FEEFA184B1A4A001A7AFE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2FEEF9184B1A4A001A7AFE /* UIKit.framework */; };
@@ -45,10 +54,19 @@
 		1A7E24FE1851FD9500113959 /* JGImagePoolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGImagePoolViewController.m; sourceTree = "<group>"; };
 		1A7E25001851FDCF00113959 /* JGImageGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGImageGridViewController.h; sourceTree = "<group>"; };
 		1A7E25011851FDCF00113959 /* JGImageGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGImageGridViewController.m; sourceTree = "<group>"; };
-		1A838CE718726F390012CD5B /* EditPageCover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPageCover.xib; sourceTree = "<group>"; };
 		1AD436E7185DFE7F003B5D19 /* JGEditPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGEditPageViewController.h; sourceTree = "<group>"; };
 		1AD436E8185DFE7F003B5D19 /* JGEditPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGEditPageViewController.m; sourceTree = "<group>"; };
 		49761CB1CE0A4A59944B727D /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		4F1FB97818729FB6000FCFDB /* EditPageCoverTypeLogo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPageCoverTypeLogo.xib; sourceTree = "<group>"; };
+		4F1FB97A1872A049000FCFDB /* EditPageCoverTypePhoto.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPageCoverTypePhoto.xib; sourceTree = "<group>"; };
+		4F1FB9821872A7A1000FCFDB /* EditPageTypeOneLandscape.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPageTypeOneLandscape.xib; sourceTree = "<group>"; };
+		4F1FB9841872A7BB000FCFDB /* EditPageTypeOnePortrait.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPageTypeOnePortrait.xib; sourceTree = "<group>"; };
+		4F1FB9861872A85B000FCFDB /* EditPageTypeTwoLandscape.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPageTypeTwoLandscape.xib; sourceTree = "<group>"; };
+		4F1FB9881872A872000FCFDB /* EditPageTypeTwoPortrait.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPageTypeTwoPortrait.xib; sourceTree = "<group>"; };
+		4F1FB98A1872A8A3000FCFDB /* EditPageTypeMixedLeftLandscape.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPageTypeMixedLeftLandscape.xib; sourceTree = "<group>"; };
+		4F1FB98C1872A8B0000FCFDB /* EditPageTypeMixedLeftPortrait.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPageTypeMixedLeftPortrait.xib; sourceTree = "<group>"; };
+		4F1FB98E1872A980000FCFDB /* EditPageBackCover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPageBackCover.xib; sourceTree = "<group>"; };
+		4F1FB9901872A992000FCFDB /* EditPageTitle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPageTitle.xib; sourceTree = "<group>"; };
 		4F2FEEF2184B1A4A001A7AFE /* JikanGachou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JikanGachou.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F2FEEF5184B1A4A001A7AFE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4F2FEEF7184B1A4A001A7AFE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -105,9 +123,42 @@
 			children = (
 				1AD436E7185DFE7F003B5D19 /* JGEditPageViewController.h */,
 				1AD436E8185DFE7F003B5D19 /* JGEditPageViewController.m */,
-				1A838CE718726F390012CD5B /* EditPageCover.xib */,
+				4F1FB9921872A99B000FCFDB /* Cover */,
+				4F1FB9931872A9AA000FCFDB /* Pages */,
+				4F1FB9941872A9BE000FCFDB /* Back */,
 			);
 			name = "Edit Page";
+			sourceTree = "<group>";
+		};
+		4F1FB9921872A99B000FCFDB /* Cover */ = {
+			isa = PBXGroup;
+			children = (
+				4F1FB97818729FB6000FCFDB /* EditPageCoverTypeLogo.xib */,
+				4F1FB97A1872A049000FCFDB /* EditPageCoverTypePhoto.xib */,
+				4F1FB9901872A992000FCFDB /* EditPageTitle.xib */,
+			);
+			name = Cover;
+			sourceTree = "<group>";
+		};
+		4F1FB9931872A9AA000FCFDB /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				4F1FB9821872A7A1000FCFDB /* EditPageTypeOneLandscape.xib */,
+				4F1FB98C1872A8B0000FCFDB /* EditPageTypeMixedLeftPortrait.xib */,
+				4F1FB98A1872A8A3000FCFDB /* EditPageTypeMixedLeftLandscape.xib */,
+				4F1FB9881872A872000FCFDB /* EditPageTypeTwoPortrait.xib */,
+				4F1FB9861872A85B000FCFDB /* EditPageTypeTwoLandscape.xib */,
+				4F1FB9841872A7BB000FCFDB /* EditPageTypeOnePortrait.xib */,
+			);
+			name = Pages;
+			sourceTree = "<group>";
+		};
+		4F1FB9941872A9BE000FCFDB /* Back */ = {
+			isa = PBXGroup;
+			children = (
+				4F1FB98E1872A980000FCFDB /* EditPageBackCover.xib */,
+			);
+			name = Back;
 			sourceTree = "<group>";
 		};
 		4F2FEEE9184B1A4A001A7AFE = {
@@ -291,10 +342,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A838CE818726F390012CD5B /* EditPageCover.xib in Resources */,
+				4F1FB98B1872A8A3000FCFDB /* EditPageTypeMixedLeftLandscape.xib in Resources */,
+				4F1FB9851872A7BB000FCFDB /* EditPageTypeOnePortrait.xib in Resources */,
+				4F1FB9911872A992000FCFDB /* EditPageTitle.xib in Resources */,
+				4F1FB98F1872A980000FCFDB /* EditPageBackCover.xib in Resources */,
+				4F1FB97918729FB6000FCFDB /* EditPageCoverTypeLogo.xib in Resources */,
+				4F1FB9831872A7A1000FCFDB /* EditPageTypeOneLandscape.xib in Resources */,
 				4F2FEF0E184B1A4A001A7AFE /* Images.xcassets in Resources */,
+				4F1FB98D1872A8B0000FCFDB /* EditPageTypeMixedLeftPortrait.xib in Resources */,
 				4F2FEF00184B1A4A001A7AFE /* InfoPlist.strings in Resources */,
+				4F1FB9891872A872000FCFDB /* EditPageTypeTwoPortrait.xib in Resources */,
 				4F2FEF09184B1A4A001A7AFE /* Main.storyboard in Resources */,
+				4F1FB9871872A85B000FCFDB /* EditPageTypeTwoLandscape.xib in Resources */,
+				4F1FB97B1872A049000FCFDB /* EditPageCoverTypePhoto.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
