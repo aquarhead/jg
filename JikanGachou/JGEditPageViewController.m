@@ -8,7 +8,7 @@
 
 #import "JGEditPageViewController.h"
 
-@interface JGEditPageViewController ()
+@interface JGEditPageViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *pagesCollectionView;
 
@@ -28,48 +28,40 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-//    [self.pageView addSubview:[[[NSBundle mainBundle] loadNibNamed:@"EditPageCover" owner:self options:nil] firstObject]];
 }
 
 - (IBAction)pageChanged:(UIPageControl *)sender
 {
-    CGPoint scrollTo = CGPointMake(kCategoryPageWidth * sender.currentPage, 0);
-    [self.categoryView setContentOffset:scrollTo animated:YES];
+    CGPoint scrollTo = CGPointMake(CGRectGetWidth(self.pagesCollectionView.bounds) * sender.currentPage, 0);
+    [self.pagesCollectionView setContentOffset:scrollTo animated:YES];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    self.pageControl.currentPage = self.categoryView.contentOffset.x / kCategoryPageWidth;
+//    self.pageControl.currentPage = self.categoryView.contentOffset.x / kCategoryPageWidth;
 }
 
 #pragma mark Collection View
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.numberOfPages * self.numberOfIconsInPage;
+    return 5;
 }
 
-- (void)configureCell:(TYKCategoryCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    TYKCategory *category;
-    if (indexPath.row < self.categories.count) {
-        category = self.categories[indexPath.row];
+    for (UIView *subview in cell.subviews) {
+        [subview removeFromSuperview];
     }
-
-    cell.category = category;
-    if ([self.selectedCategory isEqual:category]) {
-        cell.pressed = YES;
+    
+    if (indexPath.row == 0) {
+        [cell addSubview:[[[NSBundle mainBundle] loadNibNamed:@"EditPageCoverTypeLogo" owner:self options:nil] firstObject]];
     }
-    else {
-        cell.pressed = NO;
-    }
-    cell.label.text = category.name;
-    if (category.icon) {
-        cell.icon.image = [UIImage imageNamed:category.icon];
+    else if (indexPath.row == 1) {
+        [cell addSubview:[[[NSBundle mainBundle] loadNibNamed:@"EditPageTitle" owner:self options:nil] firstObject]];
     }
     else {
-        cell.icon.image = nil;
+        [cell addSubview:[[[NSBundle mainBundle] loadNibNamed:@"EditPageTypeOneLandscape" owner:self options:nil] firstObject]];
     }
 }
 
@@ -78,17 +70,9 @@
     static NSString *CellIdentifier = @"Cell";
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
 
-    [self configureCell:(TYKCategoryCell *)cell atIndexPath:indexPath];
+    [self configureCell:cell atIndexPath:indexPath];
 
     return cell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-
-    self.selectedCategory = ((TYKCategoryCell *)cell).category;
-    [self.categoryView reloadData];
 }
 
 @end
