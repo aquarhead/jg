@@ -8,6 +8,13 @@
 
 #import "JGImagePoolViewController.h"
 
+#ifdef DEBUG
+const NSUInteger kJGPoolLeastPhotos = 2;
+#else
+const NSUInteger kJGPoolLeastPhotos = 20;
+#endif
+const NSUInteger kJGPoolMostPhotos  = 40;
+
 @interface JGImagePoolViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -90,7 +97,7 @@
 
 - (BOOL)isValidNumberOfPhotos
 {
-    return (self.selectedPhotos.count >= 20) && (self.selectedPhotos.count <= 40);
+    return (self.selectedPhotos.count >= kJGPoolLeastPhotos) && (self.selectedPhotos.count <= kJGPoolMostPhotos);
 }
 
 @end

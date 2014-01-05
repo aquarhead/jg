@@ -393,10 +393,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="368"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rUN-Vc-etx">
-                                <rect key="frame" x="10" y="56" width="300" height="300"/>
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rUN-Vc-etx">
+                                <rect key="frame" x="10" y="57" width="300" height="300"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="guy-MW-Xrq"/>
+                                    <constraint firstAttribute="height" constant="300" id="zBr-uY-Rnj"/>
+                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Mb7-9d-hA8">
                                     <size key="itemSize" width="300" height="298"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -421,6 +425,10 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="rUN-Vc-etx" secondAttribute="centerY" constant="-23" id="A27-SE-C7L"/>
+                            <constraint firstAttribute="centerX" secondItem="rUN-Vc-etx" secondAttribute="centerX" id="h8Y-m9-PYr"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="选择封面" id="dFy-Ak-WmE">
                         <barButtonItem key="rightBarButtonItem" title="提交" id="IKU-61-Ccm"/>
