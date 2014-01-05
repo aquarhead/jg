@@ -20,7 +20,6 @@ const NSUInteger kJGPoolMostPhotos  = 40;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UILabel *selectedCountLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *placeholderView;
-@property (nonatomic) NSMutableArray *selectedPhotos;
 
 @end
 

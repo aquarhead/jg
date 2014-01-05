@@ -7,10 +7,13 @@
 //
 
 #import "JGEditPageViewController.h"
+#import "JGImagePoolViewController.h"
 
 @interface JGEditPageViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *pagesCollectionView;
+
+@property (weak, nonatomic) JGImagePoolViewController *poolViewController;
 
 @end
 
@@ -28,6 +31,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.poolViewController = (JGImagePoolViewController *)((UINavigationController*)self.navigationController).parentViewController;
 }
 
 - (IBAction)pageChanged:(UIPageControl *)sender
@@ -45,7 +50,8 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 5;
+    // cover, flyleaf, and photos
+    return 1 + 1 + self.poolViewController.selectedPhotos.count;
 }
 
 - (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath

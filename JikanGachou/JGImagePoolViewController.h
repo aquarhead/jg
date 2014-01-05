@@ -12,6 +12,7 @@
 @interface JGImagePoolViewController : UIViewController
 
 @property (nonatomic) ALAssetsLibrary *lib;
+@property (nonatomic) NSMutableArray *selectedPhotos;
 
 - (void)addPhoto:(ALAsset *)photoInfo;
 - (void)removePhoto:(ALAsset *)photoInfo;
