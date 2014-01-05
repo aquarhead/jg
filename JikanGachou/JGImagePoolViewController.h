@@ -16,5 +16,6 @@
 - (void)addPhoto:(ALAsset *)photoInfo;
 - (void)removePhoto:(ALAsset *)photoInfo;
 - (BOOL)hasPhoto:(ALAsset *)photoInfo;
+- (BOOL)isValidNumberOfPhotos;
 
 @end

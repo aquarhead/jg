@@ -88,4 +88,9 @@
     return false;
 }
 
+- (BOOL)isValidNumberOfPhotos
+{
+    return (self.selectedPhotos.count >= 20) && (self.selectedPhotos.count <= 40);
+}
+
 @end

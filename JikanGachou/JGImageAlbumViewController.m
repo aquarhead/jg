@@ -13,10 +13,11 @@
 
 @interface JGImageAlbumViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic) NSMutableArray *groups;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic) NSArray *selectedGroupPhotos;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *nextButton;
 
+@property (nonatomic) NSMutableArray *groups;
+@property (nonatomic) NSArray *selectedGroupPhotos;
 @property (weak, nonatomic) JGImagePoolViewController *poolViewController;
 
 @end
@@ -42,6 +43,13 @@
         NSLog(@"error");
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.nextButton.enabled = [self.poolViewController isValidNumberOfPhotos];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

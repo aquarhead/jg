@@ -12,6 +12,7 @@
 @interface JGImageGridViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *gridView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *nextButton;
 
 @property (weak, nonatomic) JGImagePoolViewController *poolViewController;
 
@@ -25,7 +26,13 @@
     
     self.poolViewController = (JGImagePoolViewController *)((UINavigationController*)self.navigationController).parentViewController;
     self.navigationItem.title = [self.group valueForProperty:ALAssetsGroupPropertyName];
+}
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.nextButton.enabled = [self.poolViewController isValidNumberOfPhotos];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -66,6 +73,8 @@ typedef NS_ENUM(NSUInteger, JGImageGridCellTag) {
     } else {
         [self.poolViewController addPhoto:photo];
     }
+    
+    self.nextButton.enabled = [self.poolViewController isValidNumberOfPhotos];
     
     [self updateMaskAndCheckViewForCell:cell forPhoto:photo];
 }

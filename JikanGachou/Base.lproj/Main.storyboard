@@ -273,6 +273,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="nextButton" destination="S8S-wW-k1J" id="hrI-9U-XwJ"/>
                         <outlet property="tableView" destination="2jJ-BQ-4VB" id="dTp-E6-zgQ"/>
                         <segue destination="hAH-Ry-jVp" kind="push" identifier="AlbumToGridSegue" id="YXt-oZ-h1o"/>
                     </connections>
@@ -373,6 +374,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="gridView" destination="GOM-Km-JN2" id="Fgf-Vt-epQ"/>
+                        <outlet property="nextButton" destination="dkd-5p-Tb8" id="x0J-z5-KeM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bJD-MR-BkW" userLabel="First Responder" sceneMemberID="firstResponder"/>
