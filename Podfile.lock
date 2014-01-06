@@ -17,12 +17,14 @@ PODS:
   - AFNetworking/Serialization (2.0.3)
   - AFNetworking/UIKit (2.0.3):
     - AFNetworking/NSURLConnection
+  - DLAlertView (1.0)
   - KIImagePager (1.2.0)
   - NanoStore (2.7.7)
   - TestFlightSDK (2.2.0-noadid-beta)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
+  - DLAlertView
   - KIImagePager (from `git@github.com:TeaWhen/KIImagePager.git`)
   - NanoStore
   - TestFlightSDK
@@ -33,6 +35,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: e499052cbf3d743e9bb727bb37adb9dc2547ba15
+  DLAlertView: d60c796e8bff9f8f013b6b601fb860d1a858b6a8
   KIImagePager: f95e1d231879675843a9a7a1e94a7e13a8e72ef6
   NanoStore: 879a131b4f9b968f936187bb927cd5f8887cb202
   TestFlightSDK: 64f333f91ab9d11985e6c4c188a71b22cc528097

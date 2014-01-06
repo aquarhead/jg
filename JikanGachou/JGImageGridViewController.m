@@ -8,6 +8,7 @@
 
 #import "JGImageGridViewController.h"
 #import "JGImagePoolViewController.h"
+#import <DLAVAlertView.h>
 
 @interface JGImageGridViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -71,7 +72,12 @@ typedef NS_ENUM(NSUInteger, JGImageGridCellTag) {
     if ([self.poolViewController hasPhoto:photo]) {
         [self.poolViewController removePhoto:photo];
     } else {
-        [self.poolViewController addPhoto:photo];
+        if (![self.poolViewController poolFull]) {
+            [self.poolViewController addPhoto:photo];
+        } else {
+            DLAVAlertView *alertView = [[DLAVAlertView alloc] initWithTitle:@"相册放不下更多照片了..." message:@"先撤销几张再试试" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alertView show];
+        }
     }
     
     self.nextButton.enabled = [self.poolViewController isValidNumberOfPhotos];

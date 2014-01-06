@@ -99,4 +99,9 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     return (self.selectedPhotos.count >= kJGPoolLeastPhotos) && (self.selectedPhotos.count <= kJGPoolMostPhotos);
 }
 
+- (BOOL)poolFull
+{
+    return (self.selectedPhotos.count == kJGPoolMostPhotos);
+}
+
 @end
