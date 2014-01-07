@@ -7,6 +7,7 @@
 //
 
 #import "JGImagePoolViewController.h"
+#import <NanoStore.h>
 
 #ifdef DEBUG
 const NSUInteger kJGPoolLeastPhotos = 2;
@@ -22,6 +23,9 @@ const NSUInteger kJGPoolMostPhotos  = 40;
 @property (weak, nonatomic) IBOutlet UILabel *selectedCountLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *placeholderView;
 
+@property (nonatomic) NSFNanoStore *store;
+@property (nonatomic) NSFNanoObject *book;
+
 @end
 
 @implementation JGImagePoolViewController
@@ -31,6 +35,13 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     [super viewDidLoad];
     self.selectedPhotos = [NSMutableArray new];
     self.lib = [ALAssetsLibrary new];
+
+    NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *path = [doc stringByAppendingPathComponent:@"store.sqlite"];
+    NSError *outError = nil;
+    self.store = [NSFNanoStore createAndOpenStoreWithType:NSFPersistentStoreType path:path error:&outError];
+    self.book = [NSFNanoObject new];
+    [self.book setObject:@"logo" forKey:@"cover_type"];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
