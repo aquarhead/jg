@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A2F6456187F634400BC4D06 /* JGEditPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F6455187F634400BC4D06 /* JGEditPageCell.m */; };
+		1A2F6459187F63AA00BC4D06 /* JGEditPageMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F6458187F63AA00BC4D06 /* JGEditPageMainView.m */; };
 		1A7E24FF1851FD9500113959 /* JGImagePoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E24FE1851FD9500113959 /* JGImagePoolViewController.m */; };
 		1A7E25021851FDCF00113959 /* JGImageGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E25011851FDCF00113959 /* JGImageGridViewController.m */; };
 		1AD436E9185DFE7F003B5D19 /* JGEditPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD436E8185DFE7F003B5D19 /* JGEditPageViewController.m */; };
@@ -50,6 +52,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A2F6454187F634400BC4D06 /* JGEditPageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGEditPageCell.h; sourceTree = "<group>"; };
+		1A2F6455187F634400BC4D06 /* JGEditPageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGEditPageCell.m; sourceTree = "<group>"; };
+		1A2F6457187F63AA00BC4D06 /* JGEditPageMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGEditPageMainView.h; sourceTree = "<group>"; };
+		1A2F6458187F63AA00BC4D06 /* JGEditPageMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGEditPageMainView.m; sourceTree = "<group>"; };
 		1A7E24FD1851FD9500113959 /* JGImagePoolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGImagePoolViewController.h; sourceTree = "<group>"; };
 		1A7E24FE1851FD9500113959 /* JGImagePoolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGImagePoolViewController.m; sourceTree = "<group>"; };
 		1A7E25001851FDCF00113959 /* JGImageGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGImageGridViewController.h; sourceTree = "<group>"; };
@@ -123,6 +129,10 @@
 			children = (
 				1AD436E7185DFE7F003B5D19 /* JGEditPageViewController.h */,
 				1AD436E8185DFE7F003B5D19 /* JGEditPageViewController.m */,
+				1A2F6454187F634400BC4D06 /* JGEditPageCell.h */,
+				1A2F6455187F634400BC4D06 /* JGEditPageCell.m */,
+				1A2F6457187F63AA00BC4D06 /* JGEditPageMainView.h */,
+				1A2F6458187F63AA00BC4D06 /* JGEditPageMainView.m */,
 				4F1FB9921872A99B000FCFDB /* Cover */,
 				4F1FB9931872A9AA000FCFDB /* Pages */,
 				4F1FB9941872A9BE000FCFDB /* Back */,
@@ -413,6 +423,8 @@
 				4F2FEF06184B1A4A001A7AFE /* JGAppDelegate.m in Sources */,
 				1AD436E9185DFE7F003B5D19 /* JGEditPageViewController.m in Sources */,
 				1A7E24FF1851FD9500113959 /* JGImagePoolViewController.m in Sources */,
+				1A2F6459187F63AA00BC4D06 /* JGEditPageMainView.m in Sources */,
+				1A2F6456187F634400BC4D06 /* JGEditPageCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

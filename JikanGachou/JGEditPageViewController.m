@@ -8,8 +8,9 @@
 
 #import "JGEditPageViewController.h"
 #import "JGImagePoolViewController.h"
+#import "JGEditPageCell.h"
 
-@interface JGEditPageViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface JGEditPageViewController () <UICollectionViewDelegate, UICollectionViewDataSource, JGImagePoolDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *pagesCollectionView;
 
@@ -33,6 +34,7 @@
     [super viewDidLoad];
     
     self.poolViewController = (JGImagePoolViewController *)((UINavigationController*)self.navigationController).parentViewController;
+    self.poolViewController.delegate = self;
 }
 
 - (IBAction)pageChanged:(UIPageControl *)sender
@@ -46,6 +48,11 @@
 //    self.pageControl.currentPage = self.categoryView.contentOffset.x / kCategoryPageWidth;
 }
 
+- (void)didSelectPhoto:(ALAsset *)photoInfo
+{
+    [self.pagesCollectionView.visibleCells firstObject];
+}
+
 #pragma mark Collection View
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -54,27 +61,27 @@
     return 1 + 1 + self.poolViewController.selectedPhotos.count;
 }
 
-- (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)configureCell:(JGEditPageCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     for (UIView *subview in cell.subviews) {
         [subview removeFromSuperview];
     }
     
     if (indexPath.row == 0) {
-        [cell addSubview:[[[NSBundle mainBundle] loadNibNamed:@"EditPageCoverTypeLogo" owner:self options:nil] firstObject]];
+        [cell addViewNamed:@"EditPageCoverTypeLogo"];
     }
     else if (indexPath.row == 1) {
-        [cell addSubview:[[[NSBundle mainBundle] loadNibNamed:@"EditPageTitle" owner:self options:nil] firstObject]];
+        [cell addViewNamed:@"EditPageTitle"];
     }
     else {
-        [cell addSubview:[[[NSBundle mainBundle] loadNibNamed:@"EditPageTypeOneLandscape" owner:self options:nil] firstObject]];
+        [cell addViewNamed:@"EditPageTypeOneLandscape"];
     }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+    JGEditPageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
 
     [self configureCell:cell atIndexPath:indexPath];
 

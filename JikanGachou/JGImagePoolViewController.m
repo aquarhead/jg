@@ -10,8 +10,8 @@
 #import <NanoStore.h>
 
 #ifdef DEBUG
-const NSUInteger kJGPoolLeastPhotos = 3;
-const NSUInteger kJGPoolMostPhotos  = 3;
+const NSUInteger kJGPoolLeastPhotos = 2;
+const NSUInteger kJGPoolMostPhotos  = 2;
 #else
 const NSUInteger kJGPoolLeastPhotos = 20;
 const NSUInteger kJGPoolMostPhotos  = 20;
@@ -63,6 +63,13 @@ const NSUInteger kJGPoolMostPhotos  = 20;
     ((UIImageView *)[cell viewWithTag:100]).image = [UIImage imageWithCGImage:[asset aspectRatioThumbnail]];
 
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self.delegate respondsToSelector:@selector(didSelectPhoto:)]) {
+        [self.delegate didSelectPhoto:self.selectedPhotos[indexPath.row]];
+    }
 }
 
 - (void)reload
