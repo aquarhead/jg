@@ -10,11 +10,11 @@
 #import <NanoStore.h>
 
 #ifdef DEBUG
-const NSUInteger kJGPoolLeastPhotos = 2;
-const NSUInteger kJGPoolMostPhotos  = 4;
+const NSUInteger kJGPoolLeastPhotos = 3;
+const NSUInteger kJGPoolMostPhotos  = 3;
 #else
 const NSUInteger kJGPoolLeastPhotos = 20;
-const NSUInteger kJGPoolMostPhotos  = 40;
+const NSUInteger kJGPoolMostPhotos  = 20;
 #endif
 
 @interface JGImagePoolViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
