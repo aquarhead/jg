@@ -10,4 +10,7 @@
 
 @interface JGEditPageMainView : UIView
 
+@property (weak, nonatomic) IBOutlet UIImageView *firstImageView;
+@property (weak, nonatomic) IBOutlet UILabel *firstDateLabel;
+
 @end

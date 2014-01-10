@@ -10,6 +10,8 @@
 #import "JGImagePoolViewController.h"
 #import "JGEditPageCell.h"
 
+static const NSInteger kJGPhotoPageNumberStart = 2; // cover, flyleaf, photos; start from zero.
+
 @interface JGEditPageViewController () <UICollectionViewDelegate, UICollectionViewDataSource, JGImagePoolDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *pagesCollectionView;
@@ -50,7 +52,18 @@
 
 - (void)didSelectPhoto:(ALAsset *)photoInfo
 {
-    [self.pagesCollectionView.visibleCells firstObject];
+    JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
+    if ([self.pagesCollectionView indexPathForCell:cell].row >= kJGPhotoPageNumberStart) {
+        cell.mainView.firstImageView.image = [UIImage imageWithCGImage:photoInfo.aspectRatioThumbnail];
+        
+        NSDate *date = [photoInfo valueForProperty:ALAssetPropertyDate];
+        static NSDateFormatter *formatter;
+        if (!formatter) {
+            formatter = [NSDateFormatter new];
+            formatter.dateStyle = NSDateFormatterMediumStyle;
+        }
+        cell.mainView.firstDateLabel.text = [formatter stringFromDate:date];
+    }
 }
 
 #pragma mark Collection View

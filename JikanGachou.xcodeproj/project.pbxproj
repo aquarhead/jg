@@ -124,6 +124,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A2F645A187F66EE00BC4D06 /* Main View */ = {
+			isa = PBXGroup;
+			children = (
+				1A2F6457187F63AA00BC4D06 /* JGEditPageMainView.h */,
+				1A2F6458187F63AA00BC4D06 /* JGEditPageMainView.m */,
+				4F1FB9921872A99B000FCFDB /* Cover */,
+				4F1FB9931872A9AA000FCFDB /* Pages */,
+				4F1FB9941872A9BE000FCFDB /* Back */,
+			);
+			name = "Main View";
+			sourceTree = "<group>";
+		};
 		1AD436EA185DFE82003B5D19 /* Edit Page */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,11 +143,7 @@
 				1AD436E8185DFE7F003B5D19 /* JGEditPageViewController.m */,
 				1A2F6454187F634400BC4D06 /* JGEditPageCell.h */,
 				1A2F6455187F634400BC4D06 /* JGEditPageCell.m */,
-				1A2F6457187F63AA00BC4D06 /* JGEditPageMainView.h */,
-				1A2F6458187F63AA00BC4D06 /* JGEditPageMainView.m */,
-				4F1FB9921872A99B000FCFDB /* Cover */,
-				4F1FB9931872A9AA000FCFDB /* Pages */,
-				4F1FB9941872A9BE000FCFDB /* Back */,
+				1A2F645A187F66EE00BC4D06 /* Main View */,
 			);
 			name = "Edit Page";
 			sourceTree = "<group>";
