@@ -10,7 +10,8 @@
 #import "JGImagePoolViewController.h"
 #import "JGEditPageCell.h"
 
-static const NSInteger kJGPhotoPageNumberStart = 2; // cover, flyleaf, photos; start from zero.
+static const NSInteger kJGCoverPageIndex = 0;
+static const NSInteger kJGPhotoPageIndexStart = 2; // cover, flyleaf, photos; start from zero.
 
 @interface JGEditPageViewController () <UICollectionViewDelegate, UICollectionViewDataSource, JGImagePoolDelegate>
 
@@ -53,7 +54,11 @@ static const NSInteger kJGPhotoPageNumberStart = 2; // cover, flyleaf, photos; s
 - (void)didSelectPhoto:(ALAsset *)photoInfo
 {
     JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
-    if ([self.pagesCollectionView indexPathForCell:cell].row >= kJGPhotoPageNumberStart) {
+    NSInteger pageIndex = [self.pagesCollectionView indexPathForCell:cell].row;
+    if (pageIndex == kJGCoverPageIndex) {
+        cell.mainView.firstImageView.image = [UIImage imageWithCGImage:photoInfo.aspectRatioThumbnail];
+    }
+    else if (pageIndex >= kJGPhotoPageIndexStart) {
         cell.mainView.firstImageView.image = [UIImage imageWithCGImage:photoInfo.aspectRatioThumbnail];
         
         NSDate *date = [photoInfo valueForProperty:ALAssetPropertyDate];
@@ -81,7 +86,7 @@ static const NSInteger kJGPhotoPageNumberStart = 2; // cover, flyleaf, photos; s
     }
     
     if (indexPath.row == 0) {
-        [cell addViewNamed:@"EditPageCoverTypeLogo"];
+        [cell addViewNamed:@"EditPageCoverTypePhoto"];
     }
     else if (indexPath.row == 1) {
         [cell addViewNamed:@"EditPageTitle"];
