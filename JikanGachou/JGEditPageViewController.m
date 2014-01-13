@@ -57,6 +57,7 @@ static const NSInteger kJGPhotoPageIndexStart = 2; // cover, flyleaf, photos; st
     NSInteger pageIndex = [self.pagesCollectionView indexPathForCell:cell].row;
     if (pageIndex == kJGCoverPageIndex) {
         cell.mainView.firstImageView.image = [UIImage imageWithCGImage:photoInfo.aspectRatioThumbnail];
+        [self.poolViewController.book setObject:[[photoInfo defaultRepresentation].url query] forKey:@"cover_photo"];
     }
     else if (pageIndex >= kJGPhotoPageIndexStart) {
         cell.mainView.firstImageView.image = [UIImage imageWithCGImage:photoInfo.aspectRatioThumbnail];
@@ -87,6 +88,10 @@ static const NSInteger kJGPhotoPageIndexStart = 2; // cover, flyleaf, photos; st
     
     if (indexPath.row == 0) {
         [cell addViewNamed:@"EditPageCoverTypePhoto"];
+        if ([self.poolViewController.book objectForKey:@"cover_photo"]) {
+            ALAsset *p = [self.poolViewController photoWithQuery:[self.poolViewController.book objectForKey:@"cover_photo"]];
+            cell.mainView.firstImageView.image = [UIImage imageWithCGImage:p.aspectRatioThumbnail];
+        }
     }
     else if (indexPath.row == 1) {
         [cell addViewNamed:@"EditPageTitle"];

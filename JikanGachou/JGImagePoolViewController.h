@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <NanoStore.h>
 
 @protocol JGImagePoolDelegate <NSObject>
 
@@ -23,9 +24,12 @@
 @property (nonatomic) NSMutableArray *selectedPhotos;
 @property (nonatomic, weak) id <JGImagePoolDelegate> delegate;
 
+@property (nonatomic) NSFNanoObject *book;
+
 - (void)addPhoto:(ALAsset *)photoInfo;
 - (void)removePhoto:(ALAsset *)photoInfo;
 - (BOOL)hasPhoto:(ALAsset *)photoInfo;
+- (ALAsset *)photoWithQuery:(NSString *)query;
 - (BOOL)isValidNumberOfPhotos;
 - (BOOL)poolFull;
 

@@ -7,7 +7,6 @@
 //
 
 #import "JGImagePoolViewController.h"
-#import <NanoStore.h>
 
 #ifdef DEBUG
 const NSUInteger kJGPoolLeastPhotos = 2;
@@ -24,7 +23,6 @@ const NSUInteger kJGPoolMostPhotos  = 20;
 @property (weak, nonatomic) IBOutlet UIImageView *placeholderView;
 
 @property (nonatomic) NSFNanoStore *store;
-@property (nonatomic) NSFNanoObject *book;
 
 @end
 
@@ -111,6 +109,16 @@ const NSUInteger kJGPoolMostPhotos  = 20;
         }
     }
     return false;
+}
+
+- (ALAsset *)photoWithQuery:(NSString *)query
+{
+    for (ALAsset *p in self.selectedPhotos) {
+        if ([[[p defaultRepresentation].url query] isEqualToString:query]) {
+            return p;
+        }
+    }
+    return nil;
 }
 
 - (BOOL)isValidNumberOfPhotos
