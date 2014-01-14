@@ -9,6 +9,7 @@
 #import "JGEditPageViewController.h"
 #import "JGImagePoolViewController.h"
 #import "JGEditPageCell.h"
+#import <NanoStore.h>
 
 static const NSInteger kJGCoverPageIndex = 0;
 static const NSInteger kJGPhotoPageIndexStart = 2; // cover, flyleaf, photos; start from zero.
@@ -18,6 +19,7 @@ static const NSInteger kJGPhotoPageIndexStart = 2; // cover, flyleaf, photos; st
 @property (weak, nonatomic) IBOutlet UICollectionView *pagesCollectionView;
 
 @property (weak, nonatomic) JGImagePoolViewController *poolViewController;
+@property (weak, nonatomic) NSFNanoObject *book;
 
 @end
 
@@ -36,8 +38,9 @@ static const NSInteger kJGPhotoPageIndexStart = 2; // cover, flyleaf, photos; st
 {
     [super viewDidLoad];
     
-    self.poolViewController = (JGImagePoolViewController *)((UINavigationController*)self.navigationController).parentViewController;
+    self.poolViewController = (JGImagePoolViewController *)((UINavigationController *)self.navigationController).parentViewController;
     self.poolViewController.delegate = self;
+    self.book = self.poolViewController.book;
 }
 
 - (IBAction)pageChanged:(UIPageControl *)sender
@@ -57,7 +60,8 @@ static const NSInteger kJGPhotoPageIndexStart = 2; // cover, flyleaf, photos; st
     NSInteger pageIndex = [self.pagesCollectionView indexPathForCell:cell].row;
     if (pageIndex == kJGCoverPageIndex) {
         cell.mainView.firstImageView.image = [UIImage imageWithCGImage:photoInfo.aspectRatioThumbnail];
-        [self.poolViewController.book setObject:[[photoInfo defaultRepresentation].url query] forKey:@"cover_photo"];
+        
+        [self.book setObject:[[photoInfo defaultRepresentation].url query] forKey:@"cover_photo"];
     }
     else if (pageIndex >= kJGPhotoPageIndexStart) {
         cell.mainView.firstImageView.image = [UIImage imageWithCGImage:photoInfo.aspectRatioThumbnail];
@@ -88,7 +92,8 @@ static const NSInteger kJGPhotoPageIndexStart = 2; // cover, flyleaf, photos; st
     
     if (indexPath.row == 0) {
         [cell addViewNamed:@"EditPageCoverTypePhoto"];
-        if ([self.poolViewController.book objectForKey:@"cover_photo"]) {
+        
+        if ([self.book objectForKey:@"cover_photo"]) {
             ALAsset *p = [self.poolViewController photoWithQuery:[self.poolViewController.book objectForKey:@"cover_photo"]];
             cell.mainView.firstImageView.image = [UIImage imageWithCGImage:p.aspectRatioThumbnail];
         }
