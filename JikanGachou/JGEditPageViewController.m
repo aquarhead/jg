@@ -80,8 +80,8 @@ static const NSInteger kJGPhotoPageIndexStart = 2; // cover, flyleaf, photos; st
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    // cover, flyleaf, and photos
-    return 1 + 1 + self.poolViewController.selectedPhotos.count;
+    // cover, flyleaf, photos and backcover
+    return 23;
 }
 
 - (void)configureCell:(JGEditPageCell *)cell atIndexPath:(NSIndexPath *)indexPath
@@ -100,9 +100,21 @@ static const NSInteger kJGPhotoPageIndexStart = 2; // cover, flyleaf, photos; st
     }
     else if (indexPath.row == 1) {
         [cell addViewNamed:@"EditPageTitle"];
+        if ([self.poolViewController.book objectForKey:@"title"]) {
+            // set title
+        }
+        if ([self.poolViewController.book objectForKey:@"author"]) {
+            // set author
+        }
+    }
+    else if (indexPath.row == 22) {
+        [cell addViewNamed:@"EditPageBackCover"];
     }
     else {
-        [cell addViewNamed:@"EditPageTypeOneLandscape"];
+        NSFNanoObject *pages = [self.poolViewController.book objectForKey:@"pages"];
+        if (pages) {
+            // for specific page set type / photos etc.
+        }
     }
 }
 

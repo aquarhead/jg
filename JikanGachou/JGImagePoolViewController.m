@@ -13,7 +13,7 @@ const NSUInteger kJGPoolLeastPhotos = 2;
 const NSUInteger kJGPoolMostPhotos  = 2;
 #else
 const NSUInteger kJGPoolLeastPhotos = 20;
-const NSUInteger kJGPoolMostPhotos  = 20;
+const NSUInteger kJGPoolMostPhotos  = 40;
 #endif
 
 @interface JGImagePoolViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
