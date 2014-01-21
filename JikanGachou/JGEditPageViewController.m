@@ -11,8 +11,10 @@
 #import "JGEditPageCell.h"
 #import <NanoStore.h>
 
-static const NSInteger kJGCoverPageIndex = 0;
-static const NSInteger kJGPhotoPageIndexStart = 2; // cover, flyleaf, photos; start from zero.
+static const NSInteger kJGIndexCoverPage = 0;
+static const NSInteger kJGIndexFlyleafPage = 1;
+static const NSInteger kJGIndexPhotoPageStart = 2; // cover, flyleaf, photos; start from zero.
+static const NSInteger kJGIndexBackcoverPage = 22;
 
 @interface JGEditPageViewController () <UICollectionViewDelegate, UICollectionViewDataSource, JGImagePoolDelegate>
 
@@ -58,12 +60,12 @@ static const NSInteger kJGPhotoPageIndexStart = 2; // cover, flyleaf, photos; st
 {
     JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
     NSInteger pageIndex = [self.pagesCollectionView indexPathForCell:cell].row;
-    if (pageIndex == kJGCoverPageIndex) {
+    if (pageIndex == kJGIndexCoverPage) {
         cell.mainView.firstImageView.image = [UIImage imageWithCGImage:photoInfo.aspectRatioThumbnail];
         
         [self.book setObject:[[photoInfo defaultRepresentation].url query] forKey:@"cover_photo"];
     }
-    else if (pageIndex >= kJGPhotoPageIndexStart) {
+    else if (pageIndex >= kJGIndexPhotoPageStart) {
         cell.mainView.firstImageView.image = [UIImage imageWithCGImage:photoInfo.aspectRatioThumbnail];
         
         NSDate *date = [photoInfo valueForProperty:ALAssetPropertyDate];
@@ -73,6 +75,8 @@ static const NSInteger kJGPhotoPageIndexStart = 2; // cover, flyleaf, photos; st
             formatter.dateStyle = NSDateFormatterMediumStyle;
         }
         cell.mainView.firstDateLabel.text = [formatter stringFromDate:date];
+        
+        // save to self.book.pages[blahblah]
     }
 }
 
@@ -80,7 +84,7 @@ static const NSInteger kJGPhotoPageIndexStart = 2; // cover, flyleaf, photos; st
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    // cover, flyleaf, photos and backcover
+    // cover, flyleaf, 20 photos, and backcover
     return 23;
 }
 
@@ -90,28 +94,29 @@ static const NSInteger kJGPhotoPageIndexStart = 2; // cover, flyleaf, photos; st
         [subview removeFromSuperview];
     }
     
-    if (indexPath.row == 0) {
+    if (indexPath.row == kJGIndexCoverPage) {
         [cell addViewNamed:@"EditPageCoverTypePhoto"];
         
         if ([self.book objectForKey:@"cover_photo"]) {
-            ALAsset *p = [self.poolViewController photoWithQuery:[self.poolViewController.book objectForKey:@"cover_photo"]];
+            ALAsset *p = [self.poolViewController photoWithQuery:[self.book objectForKey:@"cover_photo"]];
             cell.mainView.firstImageView.image = [UIImage imageWithCGImage:p.aspectRatioThumbnail];
         }
     }
-    else if (indexPath.row == 1) {
+    else if (indexPath.row == kJGIndexFlyleafPage) {
         [cell addViewNamed:@"EditPageTitle"];
-        if ([self.poolViewController.book objectForKey:@"title"]) {
+        if ([self.book objectForKey:@"title"]) {
             // set title
         }
-        if ([self.poolViewController.book objectForKey:@"author"]) {
+        if ([self.book objectForKey:@"author"]) {
             // set author
         }
     }
-    else if (indexPath.row == 22) {
+    else if (indexPath.row == kJGIndexBackcoverPage) {
         [cell addViewNamed:@"EditPageBackCover"];
     }
     else {
-        NSFNanoObject *pages = [self.poolViewController.book objectForKey:@"pages"];
+        [cell addViewNamed:@"EditPageTypeOneLandscape"];
+        NSFNanoObject *pages = [self.book objectForKey:@"pages"];
         if (pages) {
             // for specific page set type / photos etc.
         }
