@@ -10,15 +10,6 @@
 
 @implementation JGEditPageCell
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
 - (void)addViewNamed:(NSString *)name
 {
     self.mainView = [[[NSBundle mainBundle] loadNibNamed:name owner:self options:nil] firstObject];

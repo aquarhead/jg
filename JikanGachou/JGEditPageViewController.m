@@ -66,25 +66,32 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         [self.book setObject:[[photoInfo defaultRepresentation].url query] forKey:@"cover_photo"];
     }
     else if (pageIndex >= kJGIndexPhotoPageStart) {
-        cell.mainView.firstImageView.image = [UIImage imageWithCGImage:photoInfo.aspectRatioThumbnail];
-        
-        NSDate *date = [photoInfo valueForProperty:ALAssetPropertyDate];
-        static NSDateFormatter *formatter;
-        if (!formatter) {
-            formatter = [NSDateFormatter new];
-            formatter.dateStyle = NSDateFormatterMediumStyle;
-        }
-        cell.mainView.firstDateLabel.text = [formatter stringFromDate:date];
-        
-        // save to self.book.pages[blahblah]
+        [self configureOneLandscape:cell withPhoto:photoInfo];
+
+        NSDictionary *payload = @{@"photo": [[photoInfo defaultRepresentation].url query]};
+        [self.book setObject:@{@"payload" : payload, @"type": @"one_landscape"} forKey:[NSString stringWithFormat:@"page%d", pageIndex-2]
+         ];
     }
+}
+
+- (void)configureOneLandscape:(JGEditPageCell *)cell withPhoto:(ALAsset *)photoInfo
+{
+    cell.mainView.firstImageView.image = [UIImage imageWithCGImage:photoInfo.aspectRatioThumbnail];
+
+    NSDate *date = [photoInfo valueForProperty:ALAssetPropertyDate];
+    static NSDateFormatter *formatter;
+    if (!formatter) {
+        formatter = [NSDateFormatter new];
+        formatter.dateStyle = NSDateFormatterMediumStyle;
+    }
+    cell.mainView.firstDateLabel.text = [formatter stringFromDate:date];
 }
 
 #pragma mark Collection View
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    // cover, flyleaf, 20 photos, and backcover
+    // cover, flyleaf, 20 pages, and backcover
     return 23;
 }
 
@@ -93,8 +100,10 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     for (UIView *subview in cell.subviews) {
         [subview removeFromSuperview];
     }
+
+    NSInteger pageIndex = indexPath.row;
     
-    if (indexPath.row == kJGIndexCoverPage) {
+    if (pageIndex == kJGIndexCoverPage) {
         [cell addViewNamed:@"EditPageCoverTypePhoto"];
         
         if ([self.book objectForKey:@"cover_photo"]) {
@@ -102,7 +111,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
             cell.mainView.firstImageView.image = [UIImage imageWithCGImage:p.aspectRatioThumbnail];
         }
     }
-    else if (indexPath.row == kJGIndexFlyleafPage) {
+    else if (pageIndex == kJGIndexFlyleafPage) {
         [cell addViewNamed:@"EditPageTitle"];
         if ([self.book objectForKey:@"title"]) {
             // set title
@@ -111,14 +120,15 @@ static const NSInteger kJGIndexBackcoverPage = 22;
             // set author
         }
     }
-    else if (indexPath.row == kJGIndexBackcoverPage) {
+    else if (pageIndex == kJGIndexBackcoverPage) {
         [cell addViewNamed:@"EditPageBackCover"];
     }
     else {
         [cell addViewNamed:@"EditPageTypeOneLandscape"];
-        NSFNanoObject *pages = [self.book objectForKey:@"pages"];
-        if (pages) {
-            // for specific page set type / photos etc.
+        NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%d", pageIndex-2]];
+        if (page) {
+            ALAsset *p = [self.poolViewController photoWithQuery:page[@"payload"][@"photo"]];
+            [self configureOneLandscape:cell withPhoto:p];
         }
     }
 }
