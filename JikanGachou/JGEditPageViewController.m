@@ -19,6 +19,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 @interface JGEditPageViewController () <UICollectionViewDelegate, UICollectionViewDataSource, JGImagePoolDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *pagesCollectionView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *collectionViewYConstraint;
 
 @property (weak, nonatomic) JGImagePoolViewController *poolViewController;
 @property (weak, nonatomic) NSFNanoObject *book;
@@ -43,12 +44,55 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     self.poolViewController = (JGImagePoolViewController *)((UINavigationController *)self.navigationController).parentViewController;
     self.poolViewController.delegate = self;
     self.book = self.poolViewController.book;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
+
+#pragma mark - Keyboard related
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    NSDictionary *userInfo = notification.userInfo;
+    NSTimeInterval duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    
+    [UIView animateWithDuration:duration animations:^{
+        self.collectionViewYConstraint.constant += 36;
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    NSDictionary *userInfo = notification.userInfo;
+    NSTimeInterval duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    
+    [UIView animateWithDuration:duration animations:^{
+        self.collectionViewYConstraint.constant -= 36;
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (IBAction)collectionViewTouched:(UITapGestureRecognizer *)sender
+{
+    JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
+    [cell.mainView.titleTextField resignFirstResponder];
+    [cell.mainView.authorTextField resignFirstResponder];
+}
+
+#pragma mark -
 
 - (IBAction)pageChanged:(UIPageControl *)sender
 {
     CGPoint scrollTo = CGPointMake(CGRectGetWidth(self.pagesCollectionView.bounds) * sender.currentPage, 0);
     [self.pagesCollectionView setContentOffset:scrollTo animated:YES];
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
+    [cell.mainView.titleTextField resignFirstResponder];
+    [cell.mainView.authorTextField resignFirstResponder];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView

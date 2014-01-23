@@ -397,6 +397,7 @@
                                 <rect key="frame" x="10" y="57" width="300" height="300"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="guy-MW-Xrq"/>
                                     <constraint firstAttribute="height" constant="300" id="zBr-uY-Rnj"/>
@@ -416,11 +417,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <gestureRecognizers/>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="3dW-pO-oxH" id="wPI-hp-5Wv"/>
                                     <outlet property="delegate" destination="3dW-pO-oxH" id="1se-8T-TqJ"/>
+                                    <outletCollection property="gestureRecognizers" destination="Cza-wV-zny" appends="YES" id="Hab-OI-3W9"/>
                                 </connections>
                             </collectionView>
                         </subviews>
@@ -434,10 +437,16 @@
                         <barButtonItem key="rightBarButtonItem" title="提交" id="IKU-61-Ccm"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="collectionViewYConstraint" destination="A27-SE-C7L" id="Uun-4V-5WU"/>
                         <outlet property="pagesCollectionView" destination="rUN-Vc-etx" id="wP3-Sa-VQ7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Y9-ci-xTS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Cza-wV-zny">
+                    <connections>
+                        <action selector="collectionViewTouched:" destination="3dW-pO-oxH" id="69w-Sj-z3M"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2425" y="-696"/>
         </scene>
