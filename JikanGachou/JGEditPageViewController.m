@@ -16,7 +16,7 @@ static const NSInteger kJGIndexFlyleafPage = 1;
 static const NSInteger kJGIndexPhotoPageStart = 2; // cover, flyleaf, photos; start from zero.
 static const NSInteger kJGIndexBackcoverPage = 22;
 
-@interface JGEditPageViewController () <UICollectionViewDelegate, UICollectionViewDataSource, JGImagePoolDelegate>
+@interface JGEditPageViewController () <UICollectionViewDelegate, UICollectionViewDataSource, JGImagePoolDelegate, JGEditPageDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *pagesCollectionView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *collectionViewYConstraint;
@@ -87,7 +87,17 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     [cell.mainView.authorTextField resignFirstResponder];
 }
 
-#pragma mark -
+- (void)saveTitle:(NSString *)title
+{
+    [self.book setObject:title forKey:@"title"];
+}
+
+- (void)saveAuthor:(NSString *)author
+{
+    [self.book setObject:author forKey:@"author"];
+}
+
+#pragma mark - Scroll View
 
 - (IBAction)pageChanged:(UIPageControl *)sender
 {
@@ -164,11 +174,12 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     }
     else if (pageIndex == kJGIndexFlyleafPage) {
         [cell addViewNamed:@"EditPageTitle"];
+        cell.mainView.delegate = self;
         if ([self.book objectForKey:@"title"]) {
-            // set title
+            cell.mainView.titleTextField.text = [self.book objectForKey:@"title"];
         }
         if ([self.book objectForKey:@"author"]) {
-            // set author
+            cell.mainView.authorTextField.text = [self.book objectForKey:@"author"];
         }
     }
     else if (pageIndex == kJGIndexBackcoverPage) {

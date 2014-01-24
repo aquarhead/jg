@@ -34,4 +34,13 @@
     return YES;
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if ([textField isEqual:self.titleTextField]) {
+        [self.delegate saveTitle:textField.text];
+    } else if ([textField isEqual:self.authorTextField]) {
+        [self.delegate saveAuthor:textField.text];
+    }
+}
+
 @end
