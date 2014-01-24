@@ -69,12 +69,17 @@ typedef NS_ENUM(NSUInteger, JGImageGridCellTag) {
     ALAsset *photo = self.photos[indexPath.row];
 
     if ([self.poolViewController hasPhoto:photo]) {
-        [self.poolViewController removePhoto:photo];
+        if (![self.poolViewController isUsedPhoto:photo]) {
+            [self.poolViewController removePhoto:photo];
+        } else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"这张照片已被使用" message:@"只能撤销未使用的照片" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alertView show];
+        }
     } else {
         if (![self.poolViewController poolFull]) {
             [self.poolViewController addPhoto:photo];
         } else {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"相册放不下更多照片了…" message:@"先撤销几张再试试？" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"相册放不下更多照片了" message:@"先撤销几张再试试？" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alertView show];
         }
     }

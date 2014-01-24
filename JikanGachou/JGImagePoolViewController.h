@@ -28,8 +28,10 @@
 - (void)addPhoto:(ALAsset *)photo;
 - (void)removePhoto:(ALAsset *)photo;
 - (BOOL)hasPhoto:(ALAsset *)photo;
+
 - (void)usePhoto:(ALAsset *)photo;
 - (void)dropPhoto:(ALAsset *)photo;
+- (BOOL)isUsedPhoto:(ALAsset *)photo;
 
 - (ALAsset *)photoWithQuery:(NSString *)query;
 

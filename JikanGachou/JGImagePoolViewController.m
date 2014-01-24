@@ -106,7 +106,7 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     [photos addObjectsFromArray:self.selectedPhotos];
     [photos addObjectsFromArray:self.usedPhotos];
     for (ALAsset *p in photos) {
-        if ([[p valueForProperty:ALAssetPropertyAssetURL] isEqual:[photo valueForProperty:ALAssetPropertyAssetURL]]) {
+        if ([p isEqual:photo]) {
             return true;
         }
     }
@@ -125,6 +125,16 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     [self.usedPhotos removeObject:photo];
     [self.selectedPhotos addObject:photo];
     [self reload];
+}
+
+- (BOOL)isUsedPhoto:(ALAsset *)photo
+{
+    for (ALAsset *p in self.usedPhotos) {
+        if ([p isEqual:photo]) {
+            return true;
+        }
+    }
+    return false;
 }
 
 - (ALAsset *)photoWithQuery:(NSString *)query
