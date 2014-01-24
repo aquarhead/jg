@@ -57,7 +57,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     NSTimeInterval duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     
     [UIView animateWithDuration:duration animations:^{
-        self.collectionViewYConstraint.constant += 48;
+        self.collectionViewYConstraint.constant += (IS_R4 ? 56 : 92);
         [self.view layoutIfNeeded];
     }];
 }
@@ -68,7 +68,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     NSTimeInterval duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     
     [UIView animateWithDuration:duration animations:^{
-        self.collectionViewYConstraint.constant -= 48;
+        self.collectionViewYConstraint.constant -= (IS_R4 ? 56 : 92);
         [self.view layoutIfNeeded];
     }];
 }
@@ -113,7 +113,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         [self configureOneLandscape:cell withPhoto:photoInfo];
 
         NSDictionary *payload = @{@"photo": [[photoInfo defaultRepresentation].url query]};
-        [self.book setObject:@{@"payload" : payload, @"type": @"one_landscape"} forKey:[NSString stringWithFormat:@"page%ld", pageIndex-2]
+        [self.book setObject:@{@"payload" : payload, @"type": @"one_landscape"} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]
          ];
     }
 }
@@ -169,7 +169,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     }
     else {
         [cell addViewNamed:@"EditPageTypeOneLandscape"];
-        NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", pageIndex-2]];
+        NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
         if (page) {
             ALAsset *p = [self.poolViewController photoWithQuery:page[@"payload"][@"photo"]];
             [self configureOneLandscape:cell withPhoto:p];
