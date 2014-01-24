@@ -9,12 +9,11 @@
 #import "JGImagePoolViewController.h"
 
 #ifdef DEBUG
-const NSUInteger kJGPoolLeastPhotos = 2;
-const NSUInteger kJGPoolMostPhotos  = 2;
+const NSUInteger kJGPoolLeastPhotos = 1;
 #else
 const NSUInteger kJGPoolLeastPhotos = 20;
-const NSUInteger kJGPoolMostPhotos  = 40;
 #endif
+const NSUInteger kJGPoolMostPhotos  = 40;
 
 @interface JGImagePoolViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
