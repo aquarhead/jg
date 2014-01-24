@@ -14,22 +14,25 @@
 
 @required
 
-- (void)didSelectPhoto:(ALAsset *)photoInfo;
+- (void)didSelectPhoto:(ALAsset *)photo;
 
 @end
 
 @interface JGImagePoolViewController : UIViewController
 
 @property (nonatomic) ALAssetsLibrary *lib;
-@property (nonatomic) NSMutableArray *selectedPhotos;
 @property (nonatomic, weak) id <JGImagePoolDelegate> delegate;
 
 @property (nonatomic) NSFNanoObject *book;
 
-- (void)addPhoto:(ALAsset *)photoInfo;
-- (void)removePhoto:(ALAsset *)photoInfo;
-- (BOOL)hasPhoto:(ALAsset *)photoInfo;
+- (void)addPhoto:(ALAsset *)photo;
+- (void)removePhoto:(ALAsset *)photo;
+- (BOOL)hasPhoto:(ALAsset *)photo;
+- (void)usePhoto:(ALAsset *)photo;
+- (void)dropPhoto:(ALAsset *)photo;
+
 - (ALAsset *)photoWithQuery:(NSString *)query;
+
 - (BOOL)isValidNumberOfPhotos;
 - (BOOL)poolFull;
 

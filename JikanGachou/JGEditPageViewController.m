@@ -117,38 +117,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 //    self.pageControl.currentPage = self.categoryView.contentOffset.x / kCategoryPageWidth;
 }
 
-- (void)didSelectPhoto:(ALAsset *)photoInfo
-{
-    JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
-    NSInteger pageIndex = [self.pagesCollectionView indexPathForCell:cell].row;
-    if (pageIndex == kJGIndexCoverPage) {
-        cell.mainView.firstImageView.image = [UIImage imageWithCGImage:photoInfo.aspectRatioThumbnail];
-        
-        [self.book setObject:[[photoInfo defaultRepresentation].url query] forKey:@"cover_photo"];
-    }
-    else if (pageIndex >= kJGIndexPhotoPageStart) {
-        [self configureOneLandscape:cell withPhoto:photoInfo];
-
-        NSDictionary *payload = @{@"photo": [[photoInfo defaultRepresentation].url query]};
-        [self.book setObject:@{@"payload" : payload, @"type": @"one_landscape"} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]
-         ];
-    }
-}
-
-- (void)configureOneLandscape:(JGEditPageCell *)cell withPhoto:(ALAsset *)photoInfo
-{
-    cell.mainView.firstImageView.image = [UIImage imageWithCGImage:photoInfo.aspectRatioThumbnail];
-
-    NSDate *date = [photoInfo valueForProperty:ALAssetPropertyDate];
-    static NSDateFormatter *formatter;
-    if (!formatter) {
-        formatter = [NSDateFormatter new];
-        formatter.dateStyle = NSDateFormatterMediumStyle;
-    }
-    cell.mainView.firstDateLabel.text = [formatter stringFromDate:date];
-}
-
-#pragma mark Collection View
+#pragma mark - Collection View
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -203,6 +172,40 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     [self configureCell:cell atIndexPath:indexPath];
 
     return cell;
+}
+
+#pragma mark - poolView delegate
+
+- (void)didSelectPhoto:(ALAsset *)photo
+{
+    JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
+    NSInteger pageIndex = [self.pagesCollectionView indexPathForCell:cell].row;
+    if (pageIndex == kJGIndexCoverPage) {
+        cell.mainView.firstImageView.image = [UIImage imageWithCGImage:photo.aspectRatioThumbnail];
+
+        [self.book setObject:[[photo defaultRepresentation].url query] forKey:@"cover_photo"];
+    }
+    else if (pageIndex >= kJGIndexPhotoPageStart) {
+        [self configureOneLandscape:cell withPhoto:photo];
+        [self.poolViewController usePhoto:photo];
+
+        NSDictionary *payload = @{@"photo": [[photo defaultRepresentation].url query]};
+        [self.book setObject:@{@"payload" : payload, @"type": @"one_landscape"} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]
+         ];
+    }
+}
+
+- (void)configureOneLandscape:(JGEditPageCell *)cell withPhoto:(ALAsset *)photoInfo
+{
+    cell.mainView.firstImageView.image = [UIImage imageWithCGImage:photoInfo.aspectRatioThumbnail];
+
+    NSDate *date = [photoInfo valueForProperty:ALAssetPropertyDate];
+    static NSDateFormatter *formatter;
+    if (!formatter) {
+        formatter = [NSDateFormatter new];
+        formatter.dateStyle = NSDateFormatterMediumStyle;
+    }
+    cell.mainView.firstDateLabel.text = [formatter stringFromDate:date];
 }
 
 @end

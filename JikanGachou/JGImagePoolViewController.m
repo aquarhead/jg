@@ -21,6 +21,9 @@ const NSUInteger kJGPoolMostPhotos  = 40;
 @property (weak, nonatomic) IBOutlet UILabel *selectedCountLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *placeholderView;
 
+@property (nonatomic) NSMutableArray *selectedPhotos;
+@property (nonatomic) NSMutableArray *usedPhotos;
+
 @property (nonatomic) NSFNanoStore *store;
 
 @end
@@ -31,6 +34,7 @@ const NSUInteger kJGPoolMostPhotos  = 40;
 {
     [super viewDidLoad];
     self.selectedPhotos = [NSMutableArray new];
+    self.usedPhotos = [NSMutableArray new];
     self.lib = [ALAssetsLibrary new];
 
     NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -38,7 +42,7 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     NSError *outError = nil;
     self.store = [NSFNanoStore createAndOpenStoreWithType:NSFPersistentStoreType path:path error:&outError];
     self.book = [NSFNanoObject new];
-    [self.book setObject:@"logo" forKey:@"cover_type"];
+    [self.book setObject:@"photo" forKey:@"cover_type"];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -72,7 +76,8 @@ const NSUInteger kJGPoolMostPhotos  = 40;
 - (void)reload
 {
     [self.collectionView reloadData];
-    self.selectedCountLabel.text = [NSString stringWithFormat:@"已选 %u 张", (unsigned)self.selectedPhotos.count];
+    NSUInteger count = self.selectedPhotos.count + self.usedPhotos.count;
+    self.selectedCountLabel.text = [NSString stringWithFormat:@"已选 %u 张", (unsigned)count];
     
     if (self.selectedPhotos.count > 0) {
         self.placeholderView.hidden = YES;
@@ -92,17 +97,15 @@ const NSUInteger kJGPoolMostPhotos  = 40;
 - (void)removePhoto:(ALAsset *)photo
 {
     [self.selectedPhotos removeObject:photo];
-    [self.selectedPhotos enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(ALAsset *p, NSUInteger index, BOOL *stop) {
-        if ([[p valueForProperty:ALAssetPropertyAssetURL] isEqual:[photo valueForProperty:ALAssetPropertyAssetURL]]) {
-            [self.selectedPhotos removeObjectAtIndex:index];
-        }
-    }];
     [self reload];
 }
 
 - (BOOL)hasPhoto:(ALAsset *)photo
 {
-    for (ALAsset *p in self.selectedPhotos) {
+    NSMutableArray *photos = [NSMutableArray new];
+    [photos addObjectsFromArray:self.selectedPhotos];
+    [photos addObjectsFromArray:self.usedPhotos];
+    for (ALAsset *p in photos) {
         if ([[p valueForProperty:ALAssetPropertyAssetURL] isEqual:[photo valueForProperty:ALAssetPropertyAssetURL]]) {
             return true;
         }
@@ -110,9 +113,26 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     return false;
 }
 
+- (void)usePhoto:(ALAsset *)photo
+{
+    [self.selectedPhotos removeObject:photo];
+    [self.usedPhotos addObject:photo];
+    [self reload];
+}
+
+- (void)dropPhoto:(ALAsset *)photo
+{
+    [self.usedPhotos removeObject:photo];
+    [self.selectedPhotos addObject:photo];
+    [self reload];
+}
+
 - (ALAsset *)photoWithQuery:(NSString *)query
 {
-    for (ALAsset *p in self.selectedPhotos) {
+    NSMutableArray *photos = [NSMutableArray new];
+    [photos addObjectsFromArray:self.selectedPhotos];
+    [photos addObjectsFromArray:self.usedPhotos];
+    for (ALAsset *p in photos) {
         if ([[[p defaultRepresentation].url query] isEqualToString:query]) {
             return p;
         }
@@ -122,12 +142,14 @@ const NSUInteger kJGPoolMostPhotos  = 40;
 
 - (BOOL)isValidNumberOfPhotos
 {
-    return (self.selectedPhotos.count >= kJGPoolLeastPhotos) && (self.selectedPhotos.count <= kJGPoolMostPhotos);
+    NSUInteger count = self.selectedPhotos.count + self.usedPhotos.count;
+    return (count >= kJGPoolLeastPhotos) && (count <= kJGPoolMostPhotos);
 }
 
 - (BOOL)poolFull
 {
-    return (self.selectedPhotos.count == kJGPoolMostPhotos);
+    NSUInteger count = self.selectedPhotos.count + self.usedPhotos.count;
+    return (count == kJGPoolMostPhotos);
 }
 
 @end
