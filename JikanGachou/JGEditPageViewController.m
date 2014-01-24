@@ -138,7 +138,8 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         
         if ([self.book objectForKey:@"cover_photo"]) {
             ALAsset *p = [self.poolViewController photoWithQuery:[self.book objectForKey:@"cover_photo"]];
-            cell.mainView.firstImageView.image = [UIImage imageWithCGImage:p.aspectRatioThumbnail];
+            ALAssetRepresentation *defaultRepresentation = p.defaultRepresentation;
+            cell.mainView.firstImageView.image = [UIImage imageWithCGImage:defaultRepresentation.fullScreenImage];
         }
     }
     else if (pageIndex == kJGIndexFlyleafPage) {
@@ -176,20 +177,21 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 
 #pragma mark - poolView delegate
 
-- (void)didSelectPhoto:(ALAsset *)photo
+- (void)didSelectPhoto:(ALAsset *)photoInfo
 {
     JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
     NSInteger pageIndex = [self.pagesCollectionView indexPathForCell:cell].row;
     if (pageIndex == kJGIndexCoverPage) {
-        cell.mainView.firstImageView.image = [UIImage imageWithCGImage:photo.aspectRatioThumbnail];
+        ALAssetRepresentation *defaultRepresentation = photoInfo.defaultRepresentation;
+        cell.mainView.firstImageView.image = [UIImage imageWithCGImage:defaultRepresentation.fullScreenImage];
 
-        [self.book setObject:[[photo defaultRepresentation].url query] forKey:@"cover_photo"];
+        [self.book setObject:[photoInfo.defaultRepresentation.url query] forKey:@"cover_photo"];
     }
     else if (pageIndex >= kJGIndexPhotoPageStart) {
-        [self configureOneLandscape:cell withPhoto:photo];
-        [self.poolViewController usePhoto:photo];
+        [self configureOneLandscape:cell withPhoto:photoInfo];
+        [self.poolViewController usePhoto:photoInfo];
 
-        NSDictionary *payload = @{@"photo": [[photo defaultRepresentation].url query]};
+        NSDictionary *payload = @{@"photo": [photoInfo.defaultRepresentation.url query]};
         [self.book setObject:@{@"payload" : payload, @"type": @"one_landscape"} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]
          ];
     }
@@ -197,7 +199,8 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 
 - (void)configureOneLandscape:(JGEditPageCell *)cell withPhoto:(ALAsset *)photoInfo
 {
-    cell.mainView.firstImageView.image = [UIImage imageWithCGImage:photoInfo.aspectRatioThumbnail];
+    ALAssetRepresentation *defaultRepresentation = photoInfo.defaultRepresentation;
+    cell.mainView.firstImageView.image = [UIImage imageWithCGImage:defaultRepresentation.fullScreenImage];
 
     NSDate *date = [photoInfo valueForProperty:ALAssetPropertyDate];
     static NSDateFormatter *formatter;
