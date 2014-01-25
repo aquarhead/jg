@@ -38,6 +38,7 @@
 		4F3CF06C184ED10B00B43634 /* JGStartPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3CF06B184ED10B00B43634 /* JGStartPageViewController.m */; };
 		4FD73EE718518A3C00C9F568 /* JGImageAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD73EE618518A3C00C9F568 /* JGImageAlbumViewController.m */; };
 		4FD73EE91851AEA700C9F568 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FD73EE81851AEA700C9F568 /* AssetsLibrary.framework */; };
+		4FF482381893655500E26003 /* JGSubmitPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF482371893655500E26003 /* JGSubmitPageViewController.m */; };
 		8AA1C3E6CA8049539A6A4D63 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 669841D2BBA24747B670999C /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +96,8 @@
 		4FD73EE518518A3C00C9F568 /* JGImageAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGImageAlbumViewController.h; sourceTree = "<group>"; };
 		4FD73EE618518A3C00C9F568 /* JGImageAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGImageAlbumViewController.m; sourceTree = "<group>"; };
 		4FD73EE81851AEA700C9F568 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		4FF482361893655500E26003 /* JGSubmitPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSubmitPageViewController.h; sourceTree = "<group>"; };
+		4FF482371893655500E26003 /* JGSubmitPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSubmitPageViewController.m; sourceTree = "<group>"; };
 		669841D2BBA24747B670999C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -282,6 +285,8 @@
 		4FF4823518928B7400E26003 /* Submit Page */ = {
 			isa = PBXGroup;
 			children = (
+				4FF482361893655500E26003 /* JGSubmitPageViewController.h */,
+				4FF482371893655500E26003 /* JGSubmitPageViewController.m */,
 			);
 			name = "Submit Page";
 			sourceTree = "<group>";
@@ -436,6 +441,7 @@
 				4FD73EE718518A3C00C9F568 /* JGImageAlbumViewController.m in Sources */,
 				4F3CF06C184ED10B00B43634 /* JGStartPageViewController.m in Sources */,
 				1A7E25021851FDCF00113959 /* JGImageGridViewController.m in Sources */,
+				4FF482381893655500E26003 /* JGSubmitPageViewController.m in Sources */,
 				4F2FEF06184B1A4A001A7AFE /* JGAppDelegate.m in Sources */,
 				1AD436E9185DFE7F003B5D19 /* JGEditPageViewController.m in Sources */,
 				1A7E24FF1851FD9500113959 /* JGImagePoolViewController.m in Sources */,
