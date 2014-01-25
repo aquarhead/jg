@@ -40,6 +40,10 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
+- (IBAction)submitClicked:(id)sender {
+    [self.poolViewController performSegueWithIdentifier:@"toSubmit" sender:self.poolViewController];
+}
+
 #pragma mark - Keyboard related
 
 - (void)keyboardWillShow:(NSNotification *)notification
