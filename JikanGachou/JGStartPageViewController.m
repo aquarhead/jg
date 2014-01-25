@@ -25,6 +25,7 @@
     self.imagePager.pageControl.currentPageIndicatorTintColor = [UIColor lightGrayColor];
     self.imagePager.pageControl.pageIndicatorTintColor = [UIColor blackColor];
     self.imagePager.slideshowTimeInterval = 7.0;
+    self.imagePager.imageCounterDisabled = YES;
 }
 
 - (NSArray *)arrayWithImages
