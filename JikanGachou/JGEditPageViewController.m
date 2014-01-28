@@ -23,6 +23,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 
 @property (weak, nonatomic) JGImagePoolViewController *poolViewController;
 @property (weak, nonatomic) NSFNanoObject *book;
+@property (nonatomic) UISegmentedControl *pageTypeControl;
 
 @end
 
@@ -38,6 +39,15 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.pageTypeControl = [[UISegmentedControl alloc] initWithItems:@[@"图标", @"照片"]];
+    self.navigationItem.titleView = self.pageTypeControl;
+    
+    self.pageTypeControl.frame = CGRectMake(0, 0, 130, 30);
+    [self.pageTypeControl addTarget:self action:@selector(pageTypeChanged:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (IBAction)submitClicked:(id)sender {
@@ -103,8 +113,8 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
-    NSIndexPath *indexPath = [self.pagesCollectionView indexPathForCell:cell];
-    if (indexPath.item == kJGIndexFlyleafPage) {
+    
+    if ([self pageIndex] == kJGIndexFlyleafPage) {
         [cell.mainView.titleTextField resignFirstResponder];
         [cell.mainView.authorTextField resignFirstResponder];
     }
@@ -117,6 +127,13 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 
 #pragma mark - Collection View
 
+- (NSUInteger)pageIndex
+{
+    JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
+    NSIndexPath *indexPath = [self.pagesCollectionView indexPathForCell:cell];
+    return indexPath.item;
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     // cover, flyleaf, 20 pages, and backcover
@@ -125,7 +142,18 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 
 - (void)pageTypeChanged:(UISegmentedControl *)sender
 {
-    [self.book setObject:(sender.selectedSegmentIndex == 0 ? @"cover_logo" : @"cover_photo") forKey:@"cover_type"];
+    NSUInteger pageIndex = [self pageIndex];
+    if (pageIndex == kJGIndexCoverPage) {
+        [self.book setObject:(sender.selectedSegmentIndex == 0 ? @"cover_logo" : @"cover_photo") forKey:@"cover_type"];
+    }
+    else {
+        NSString *type = (sender.selectedSegmentIndex == 0 ? @"one_landscape" : @"two_landscape");
+        NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
+        NSDictionary *payload = (page ? page[@"payload"] : @{});
+        [self.book setObject:@{@"payload": payload, @"type": type} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]
+         ];
+    }
+    
     [self.pagesCollectionView reloadData];
 }
 
@@ -138,14 +166,11 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     NSInteger pageIndex = indexPath.item;
     
     if (pageIndex == kJGIndexCoverPage) {
-        UISegmentedControl *coverSelect = [[UISegmentedControl alloc] initWithItems:@[@"图标", @"照片"]];
-        self.navigationItem.titleView = coverSelect;
-        
-        coverSelect.frame = CGRectMake(0, 0, 130, 30);
-        [coverSelect addTarget:self action:@selector(pageTypeChanged:) forControlEvents:UIControlEventValueChanged];
+        [self.pageTypeControl setTitle:@"图标" forSegmentAtIndex:0];
+        [self.pageTypeControl setTitle:@"照片" forSegmentAtIndex:1];
         
         if ([[self.book objectForKey:@"cover_type"] isEqualToString:@"cover_photo"]) {
-            coverSelect.selectedSegmentIndex = 1;
+            self.pageTypeControl.selectedSegmentIndex = 1;
             
             [cell addViewNamed:@"EditPageCoverTypePhoto"];
             
@@ -156,7 +181,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
             }
         }
         else {
-            coverSelect.selectedSegmentIndex = 0;
+            self.pageTypeControl.selectedSegmentIndex = 0;
             
             [cell addViewNamed:@"EditPageCoverTypeLogo"];
         }
@@ -175,8 +200,22 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         [cell addViewNamed:@"EditPageBackCover"];
     }
     else {
-        [cell addViewNamed:@"EditPageTypeOneLandscape"];
+        [self.pageTypeControl setTitle:@"单图" forSegmentAtIndex:0];
+        [self.pageTypeControl setTitle:@"双图" forSegmentAtIndex:1];
+        
         NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
+        
+        if (!page || [page[@"type"] isEqualToString:@"one_landscape"]) {
+            self.pageTypeControl.selectedSegmentIndex = 0;
+            
+            [cell addViewNamed:@"EditPageTypeOneLandscape"];
+        }
+        else {
+            self.pageTypeControl.selectedSegmentIndex = 1;
+            
+            [cell addViewNamed:@"EditPageTypeTwoLandscape"];
+        }
+        
         if (page) {
             ALAsset *p = [self.poolViewController photoWithQuery:page[@"payload"][@"photo"]];
             [self configureOneLandscape:cell withPhoto:p];
@@ -211,7 +250,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         [self.poolViewController usePhoto:photoInfo];
 
         NSDictionary *payload = @{@"photo": [photoInfo.defaultRepresentation.url query]};
-        [self.book setObject:@{@"payload" : payload, @"type": @"one_landscape"} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]
+        [self.book setObject:@{@"payload": payload, @"type": @"one_landscape"} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]
          ];
     }
 }
