@@ -166,6 +166,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     NSInteger pageIndex = indexPath.item;
     
     if (pageIndex == kJGIndexCoverPage) {
+        self.pageTypeControl.hidden = NO;
         [self.pageTypeControl setTitle:@"图标" forSegmentAtIndex:0];
         [self.pageTypeControl setTitle:@"照片" forSegmentAtIndex:1];
         
@@ -187,6 +188,8 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         }
     }
     else if (pageIndex == kJGIndexFlyleafPage) {
+        self.pageTypeControl.hidden = YES;
+        
         [cell addViewNamed:@"EditPageTitle"];
         cell.mainView.delegate = self;
         if ([self.book objectForKey:@"title"]) {
@@ -200,6 +203,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         [cell addViewNamed:@"EditPageBackCover"];
     }
     else {
+        self.pageTypeControl.hidden = NO;
         [self.pageTypeControl setTitle:@"单图" forSegmentAtIndex:0];
         [self.pageTypeControl setTitle:@"双图" forSegmentAtIndex:1];
         
