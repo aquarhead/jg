@@ -21,6 +21,8 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 @property (weak, nonatomic) IBOutlet UICollectionView *pagesCollectionView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *collectionViewYConstraint;
 
+@property (nonatomic) UITapGestureRecognizer *tapRecog;
+
 @property (weak, nonatomic) JGImagePoolViewController *poolViewController;
 @property (weak, nonatomic) NSFNanoObject *book;
 @property (nonatomic) UISegmentedControl *pageTypeControl;
@@ -39,6 +41,11 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+
+    self.tapRecog = [UITapGestureRecognizer new];
+    [self.tapRecog addTarget:self action:@selector(handleTap:)];
+    self.tapRecog.numberOfTapsRequired = 1;
+    self.tapRecog.numberOfTouchesRequired = 1;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -49,6 +56,8 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     self.pageTypeControl.frame = CGRectMake(0, 0, 130, 30);
     [self.pageTypeControl addTarget:self action:@selector(pageTypeChanged:) forControlEvents:UIControlEventValueChanged];
 }
+
+#pragma mark - Segue
 
 - (IBAction)submitClicked:(id)sender {
     [self.poolViewController performSegueWithIdentifier:@"toSubmit" sender:self.poolViewController];
@@ -213,17 +222,52 @@ static const NSInteger kJGIndexBackcoverPage = 22;
             self.pageTypeControl.selectedSegmentIndex = 0;
             
             [cell addViewNamed:@"EditPageTypeOneLandscape"];
+            [cell.mainView.firstImageView addGestureRecognizer:self.tapRecog];
         }
         else {
             self.pageTypeControl.selectedSegmentIndex = 1;
             
             [cell addViewNamed:@"EditPageTypeTwoLandscape"];
+            [cell.mainView.firstImageView addGestureRecognizer:self.tapRecog];
+            [cell.mainView.secondImageView addGestureRecognizer:self.tapRecog];
         }
         
         if (page) {
             ALAsset *p = [self.poolViewController photoWithQuery:page[@"payload"][@"photo"]];
             [self configureOneLandscape:cell withPhoto:p];
         }
+    }
+}
+
+- (void)handleTap:(UITapGestureRecognizer *)sender
+{
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
+        NSIndexPath *indexPath = [self.pagesCollectionView indexPathForCell:cell];
+        NSInteger pageIndex = indexPath.item;
+        NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
+        ALAsset *p = [self.poolViewController photoWithQuery:page[@"payload"][@"photo"]];
+        [self.poolViewController dropPhoto:p];
+        [self.book setObject:@"" forKey:page[@"payload"][@"photo"]];
+        [self configureOneLandscape:cell withPhoto:nil];
+    }
+}
+
+- (void)configureOneLandscape:(JGEditPageCell *)cell withPhoto:(ALAsset *)photoInfo
+{
+    if (photoInfo) {
+        ALAssetRepresentation *defaultRepresentation = photoInfo.defaultRepresentation;
+        cell.mainView.firstImageView.image = [UIImage imageWithCGImage:defaultRepresentation.fullScreenImage];
+
+        NSDate *date = [photoInfo valueForProperty:ALAssetPropertyDate];
+        static NSDateFormatter *formatter;
+        if (!formatter) {
+            formatter = [NSDateFormatter new];
+            formatter.dateStyle = NSDateFormatterMediumStyle;
+        }
+        cell.mainView.firstDateLabel.text = [formatter stringFromDate:date];
+    } else {
+        cell.mainView.firstImageView.image = nil;
     }
 }
 
@@ -257,20 +301,6 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         [self.book setObject:@{@"payload": payload, @"type": @"one_landscape"} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]
          ];
     }
-}
-
-- (void)configureOneLandscape:(JGEditPageCell *)cell withPhoto:(ALAsset *)photoInfo
-{
-    ALAssetRepresentation *defaultRepresentation = photoInfo.defaultRepresentation;
-    cell.mainView.firstImageView.image = [UIImage imageWithCGImage:defaultRepresentation.fullScreenImage];
-
-    NSDate *date = [photoInfo valueForProperty:ALAssetPropertyDate];
-    static NSDateFormatter *formatter;
-    if (!formatter) {
-        formatter = [NSDateFormatter new];
-        formatter.dateStyle = NSDateFormatterMediumStyle;
-    }
-    cell.mainView.firstDateLabel.text = [formatter stringFromDate:date];
 }
 
 @end

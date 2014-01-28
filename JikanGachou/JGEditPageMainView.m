@@ -20,6 +20,9 @@
     
     self.titleTextField.delegate = self;
     self.authorTextField.delegate = self;
+
+    self.firstImageView.userInteractionEnabled = YES;
+    self.secondImageView.userInteractionEnabled = YES;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
