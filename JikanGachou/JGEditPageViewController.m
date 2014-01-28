@@ -103,8 +103,11 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
-    [cell.mainView.titleTextField resignFirstResponder];
-    [cell.mainView.authorTextField resignFirstResponder];
+    NSIndexPath *indexPath = [self.pagesCollectionView indexPathForCell:cell];
+    if (indexPath.item == kJGIndexFlyleafPage) {
+        [cell.mainView.titleTextField resignFirstResponder];
+        [cell.mainView.authorTextField resignFirstResponder];
+    }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
@@ -120,21 +123,42 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     return 23;
 }
 
+- (void)pageTypeChanged:(UISegmentedControl *)sender
+{
+    [self.book setObject:(sender.selectedSegmentIndex == 0 ? @"cover_logo" : @"cover_photo") forKey:@"cover_type"];
+    [self.pagesCollectionView reloadData];
+}
+
 - (void)configureCell:(JGEditPageCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     for (UIView *subview in cell.subviews) {
         [subview removeFromSuperview];
     }
 
-    NSInteger pageIndex = indexPath.row;
+    NSInteger pageIndex = indexPath.item;
     
     if (pageIndex == kJGIndexCoverPage) {
-        [cell addViewNamed:@"EditPageCoverTypePhoto"];
+        UISegmentedControl *coverSelect = [[UISegmentedControl alloc] initWithItems:@[@"图标", @"照片"]];
+        self.navigationItem.titleView = coverSelect;
         
-        if ([self.book objectForKey:@"cover_photo"]) {
-            ALAsset *p = [self.poolViewController photoWithQuery:[self.book objectForKey:@"cover_photo"]];
-            ALAssetRepresentation *defaultRepresentation = p.defaultRepresentation;
-            cell.mainView.firstImageView.image = [UIImage imageWithCGImage:defaultRepresentation.fullScreenImage];
+        coverSelect.frame = CGRectMake(0, 0, 130, 30);
+        [coverSelect addTarget:self action:@selector(pageTypeChanged:) forControlEvents:UIControlEventValueChanged];
+        
+        if ([[self.book objectForKey:@"cover_type"] isEqualToString:@"cover_photo"]) {
+            coverSelect.selectedSegmentIndex = 1;
+            
+            [cell addViewNamed:@"EditPageCoverTypePhoto"];
+            
+            if ([self.book objectForKey:@"cover_photo"]) {
+                ALAsset *p = [self.poolViewController photoWithQuery:[self.book objectForKey:@"cover_photo"]];
+                ALAssetRepresentation *defaultRepresentation = p.defaultRepresentation;
+                cell.mainView.firstImageView.image = [UIImage imageWithCGImage:defaultRepresentation.fullScreenImage];
+            }
+        }
+        else {
+            coverSelect.selectedSegmentIndex = 0;
+            
+            [cell addViewNamed:@"EditPageCoverTypeLogo"];
         }
     }
     else if (pageIndex == kJGIndexFlyleafPage) {
