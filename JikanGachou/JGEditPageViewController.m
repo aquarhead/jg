@@ -288,10 +288,12 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
     NSInteger pageIndex = [self.pagesCollectionView indexPathForCell:cell].row;
     if (pageIndex == kJGIndexCoverPage) {
-        ALAssetRepresentation *defaultRepresentation = photoInfo.defaultRepresentation;
-        cell.mainView.firstImageView.image = [UIImage imageWithCGImage:defaultRepresentation.fullScreenImage];
-
-        [self.book setObject:[photoInfo.defaultRepresentation.url query] forKey:@"cover_photo"];
+        if (self.pageTypeControl.selectedSegmentIndex == 1) {
+            ALAssetRepresentation *defaultRepresentation = photoInfo.defaultRepresentation;
+            cell.mainView.firstImageView.image = [UIImage imageWithCGImage:defaultRepresentation.fullScreenImage];
+            
+            [self.book setObject:[photoInfo.defaultRepresentation.url query] forKey:@"cover_photo"];
+        }
     }
     else if (pageIndex >= kJGIndexPhotoPageStart) {
         [self configureOneLandscape:cell withPhoto:photoInfo];
