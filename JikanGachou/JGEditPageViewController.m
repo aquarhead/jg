@@ -159,8 +159,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         NSString *type = (sender.selectedSegmentIndex == 0 ? @"one_landscape" : @"two_landscape");
         NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
         NSDictionary *payload = (page ? page[@"payload"] : @{});
-        [self.book setObject:@{@"payload": payload, @"type": type} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]
-         ];
+        [self.book setObject:@{@"payload": payload, @"type": type} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
     }
     
     [self.pagesCollectionView reloadData];
@@ -248,7 +247,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
         ALAsset *p = [self.poolViewController photoWithQuery:page[@"payload"][@"photo"]];
         [self.poolViewController dropPhoto:p];
-        [self.book setObject:@"" forKey:page[@"payload"][@"photo"]];
+        [self.book setObject:@{@"payload": @{@"photo": @""}, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
         [self configureOneLandscape:cell withPhoto:nil];
     }
 }
