@@ -175,7 +175,6 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     NSInteger pageIndex = indexPath.item;
     
     if (pageIndex == kJGIndexCoverPage) {
-        self.pageTypeControl.hidden = NO;
         [self.pageTypeControl setTitle:@"图标" forSegmentAtIndex:0];
         [self.pageTypeControl setTitle:@"照片" forSegmentAtIndex:1];
         
@@ -209,10 +208,11 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         }
     }
     else if (pageIndex == kJGIndexBackcoverPage) {
+        self.pageTypeControl.hidden = YES;
+        
         [cell addViewNamed:@"EditPageBackCover"];
     }
     else {
-        self.pageTypeControl.hidden = NO;
         [self.pageTypeControl setTitle:@"单图" forSegmentAtIndex:0];
         [self.pageTypeControl setTitle:@"双图" forSegmentAtIndex:1];
         
@@ -279,6 +279,18 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     [self configureCell:cell atIndexPath:indexPath];
 
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger pageIndex = indexPath.item;
+    
+    if (pageIndex == kJGIndexFlyleafPage) {
+        self.pageTypeControl.hidden = NO;
+    }
+    else if (pageIndex == kJGIndexBackcoverPage) {
+        self.pageTypeControl.hidden = NO;
+    }
 }
 
 #pragma mark - poolView delegate
