@@ -245,10 +245,14 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         NSIndexPath *indexPath = [self.pagesCollectionView indexPathForCell:cell];
         NSInteger pageIndex = indexPath.item;
         NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
-        ALAsset *p = [self.poolViewController photoWithQuery:page[@"payload"][@"photo"]];
-        [self.poolViewController dropPhoto:p];
-        [self.book setObject:@{@"payload": @{@"photo": @""}, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
-        [self configureOneLandscape:cell withPhoto:nil];
+        if (page) {
+            ALAsset *p = [self.poolViewController photoWithQuery:page[@"payload"][@"photo"]];
+            if (p) {
+                [self.poolViewController dropPhoto:p];
+            }
+            [self.book setObject:@{@"payload": @{@"photo": @""}, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
+            [self configureOneLandscape:cell withPhoto:nil];
+        }
     }
 }
 
