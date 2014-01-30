@@ -7,6 +7,7 @@
 //
 
 #import "JGImagePoolViewController.h"
+#import "JGSubmitPageViewController.h"
 
 #ifdef DEBUG
 const NSUInteger kJGPoolLeastPhotos = 1;
@@ -160,6 +161,16 @@ const NSUInteger kJGPoolMostPhotos  = 40;
 {
     NSUInteger count = self.selectedPhotos.count + self.usedPhotos.count;
     return (count == kJGPoolMostPhotos);
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"toSubmit"]) {
+        JGSubmitPageViewController *vc = segue.destinationViewController;
+        vc.photos = [self.usedPhotos copy];
+        vc.poolViewController = self;
+        [self.store saveStoreAndReturnError:nil];
+    }
 }
 
 @end

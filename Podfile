@@ -4,3 +4,4 @@ pod 'AFNetworking', '~> 2.0'
 pod 'TestFlightSDK'
 pod 'KIImagePager', :head
 pod 'NanoStore'
+pod 'MD5Digest'

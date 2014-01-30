@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JGImagePoolViewController.h"
 
 @interface JGSubmitPageViewController : UIViewController
+
+@property (nonatomic) NSArray *photos;
+@property (weak, nonatomic) JGImagePoolViewController *poolViewController;
 
 @end
