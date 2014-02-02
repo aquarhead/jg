@@ -13,6 +13,6 @@
 
 @property (nonatomic) JGEditPageMainView *mainView;
 
-- (void)useMainViewNamed:(NSString *)name withGestureRecognizer:(UIGestureRecognizer *)recog;
+- (void)useMainViewNamed:(NSString *)name withGestureRecognizers:(NSArray *)recogs;
 
 @end
