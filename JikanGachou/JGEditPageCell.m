@@ -10,8 +10,12 @@
 
 @implementation JGEditPageCell
 
-- (void)addViewNamed:(NSString *)name
+- (void)useMainViewNamed:(NSString *)name
 {
+    for (UIView *subview in self.subviews) {
+        [subview removeFromSuperview];
+    }
+    
     self.mainView = [[[NSBundle mainBundle] loadNibNamed:name owner:self options:nil] firstObject];
     [self addSubview:self.mainView];
 }

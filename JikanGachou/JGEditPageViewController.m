@@ -153,10 +153,10 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 {
     NSUInteger pageIndex = [self pageIndex];
     if (pageIndex == kJGIndexCoverPage) {
-        [self.book setObject:(sender.selectedSegmentIndex == 0 ? @"cover_logo" : @"cover_photo") forKey:@"cover_type"];
+        [self.book setObject:(sender.selectedSegmentIndex == 0 ? @"EditPageCoverTypeLogo" : @"EditPageCoverTypePhoto") forKey:@"cover_type"];
     }
     else {
-        NSString *type = (sender.selectedSegmentIndex == 0 ? @"one_landscape" : @"two_landscape");
+        NSString *type = (sender.selectedSegmentIndex == 0 ? @"EditPageTypeOneLandscape" : @"EditPageTypeTwoLandscape");
         NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
         NSDictionary *payload = (page ? page[@"payload"] : @{});
         [self.book setObject:@{@"payload": payload, @"type": type} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
@@ -167,20 +167,16 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 
 - (void)configureCell:(JGEditPageCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    for (UIView *subview in cell.subviews) {
-        [subview removeFromSuperview];
-    }
-
     NSInteger pageIndex = indexPath.item;
     
     if (pageIndex == kJGIndexCoverPage) {
         [self.pageTypeControl setTitle:@"图标" forSegmentAtIndex:0];
         [self.pageTypeControl setTitle:@"照片" forSegmentAtIndex:1];
         
-        if ([[self.book objectForKey:@"cover_type"] isEqualToString:@"cover_photo"]) {
+        if ([[self.book objectForKey:@"cover_type"] isEqualToString:@"EditPageCoverTypePhoto"]) {
             self.pageTypeControl.selectedSegmentIndex = 1;
             
-            [cell addViewNamed:@"EditPageCoverTypePhoto"];
+            [cell useMainViewNamed:@"EditPageCoverTypePhoto"];
             
             if ([self.book objectForKey:@"cover_photo"]) {
                 ALAsset *p = [self.poolViewController photoWithQuery:[self.book objectForKey:@"cover_photo"]];
@@ -191,13 +187,13 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         else {
             self.pageTypeControl.selectedSegmentIndex = 0;
             
-            [cell addViewNamed:@"EditPageCoverTypeLogo"];
+            [cell useMainViewNamed:@"EditPageCoverTypeLogo"];
         }
     }
     else if (pageIndex == kJGIndexFlyleafPage) {
         self.pageTypeControl.hidden = YES;
         
-        [cell addViewNamed:@"EditPageTitle"];
+        [cell useMainViewNamed:@"EditPageTitle"];
         cell.mainView.delegate = self;
         if ([self.book objectForKey:@"title"]) {
             cell.mainView.titleTextField.text = [self.book objectForKey:@"title"];
@@ -209,31 +205,35 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     else if (pageIndex == kJGIndexBackcoverPage) {
         self.pageTypeControl.hidden = YES;
         
-        [cell addViewNamed:@"EditPageBackCover"];
+        [cell useMainViewNamed:@"EditPageBackCover"];
     }
     else {
         [self.pageTypeControl setTitle:@"单图" forSegmentAtIndex:0];
         [self.pageTypeControl setTitle:@"双图" forSegmentAtIndex:1];
         
         NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
+        if (!page) {
+            page = @{@"payload": @{}, @"type": @"EditPageTypeOneLandscape"};
+            [self.book setObject:page forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
+        }
         
-        if (!page || [page[@"type"] isEqualToString:@"one_landscape"]) {
+        if ([page[@"type"] hasPrefix:@"EditPageTypeOne"]) {
             self.pageTypeControl.selectedSegmentIndex = 0;
             
-            [cell addViewNamed:@"EditPageTypeOneLandscape"];
+            [cell useMainViewNamed:page[@"type"]];
             [cell.mainView.firstImageView addGestureRecognizer:self.tapRecog];
         }
         else {
             self.pageTypeControl.selectedSegmentIndex = 1;
             
-            [cell addViewNamed:@"EditPageTypeTwoLandscape"];
+            [cell useMainViewNamed:page[@"type"]];
             [cell.mainView.firstImageView addGestureRecognizer:self.tapRecog];
             [cell.mainView.secondImageView addGestureRecognizer:self.tapRecog];
         }
         
         if (page) {
             ALAsset *p = [self.poolViewController photoWithQuery:page[@"payload"][@"photo"]];
-            [self configureOneLandscape:cell withPhoto:p];
+            [self configureCell:cell withPhoto:p type:page[@"type"]];
         }
     }
 }
@@ -251,15 +251,41 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                 [self.poolViewController dropPhoto:p];
             }
             [self.book setObject:@{@"payload": @{@"photo": @""}, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
-            [self configureOneLandscape:cell withPhoto:nil];
+            [self configureCell:cell withPhoto:nil type:nil];
         }
     }
 }
 
-- (void)configureOneLandscape:(JGEditPageCell *)cell withPhoto:(ALAsset *)photoInfo
+- (void)configureCell:(JGEditPageCell *)cell withPhoto:(ALAsset *)photoInfo type:(NSString *)type
 {
     if (photoInfo) {
         ALAssetRepresentation *defaultRepresentation = photoInfo.defaultRepresentation;
+        
+        UIImageOrientation orientation = UIImageOrientationUp;
+        NSNumber* orientationValue = [photoInfo valueForProperty:@"ALAssetPropertyOrientation"];
+        if (orientationValue != nil) {
+            orientation = [orientationValue intValue];
+        }
+        if (orientation == UIImageOrientationUp ||
+            orientation == UIImageOrientationDown ||
+            orientation == UIImageOrientationUpMirrored ||
+            orientation == UIImageOrientationDown) {
+            if ([type hasPrefix:@"EditPageTypeOne"]) {
+                [cell useMainViewNamed:@"EditPageTypeOneLandscape"];
+            }
+            else {
+                [cell useMainViewNamed:@"EditPageTypeMixedLeftLandscape"];
+            }
+        }
+        else {
+            if ([type hasPrefix:@"EditPageTypeOne"]) {
+                [cell useMainViewNamed:@"EditPageTypeOnePortrait"];
+            }
+            else {
+                [cell useMainViewNamed:@"EditPageTypeMixedLeftPortrait"];
+            }
+        }
+        
         cell.mainView.firstImageView.image = [UIImage imageWithCGImage:defaultRepresentation.fullScreenImage];
 
         NSDate *date = [photoInfo valueForProperty:ALAssetPropertyDate];
@@ -311,11 +337,13 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         }
     }
     else if (pageIndex >= kJGIndexPhotoPageStart) {
-        [self configureOneLandscape:cell withPhoto:photoInfo];
+        NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
+        
+        [self configureCell:cell withPhoto:photoInfo type:page[@"type"]];
         [self.poolViewController usePhoto:photoInfo];
 
         NSDictionary *payload = @{@"photo": [photoInfo.defaultRepresentation.url query]};
-        [self.book setObject:@{@"payload": payload, @"type": @"one_landscape"} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]
+        [self.book setObject:@{@"payload": payload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]
          ];
     }
 }

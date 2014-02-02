@@ -42,6 +42,6 @@
         </view>
     </objects>
     <resources>
-        <image name="SmallIcon" width="24" height="24"/>
+        <image name="SmallIcon" width="48" height="48"/>
     </resources>
 </document>

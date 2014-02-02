@@ -13,6 +13,6 @@
 
 @property (nonatomic) JGEditPageMainView *mainView;
 
-- (void)addViewNamed:(NSString *)name;
+- (void)useMainViewNamed:(NSString *)name;
 
 @end
