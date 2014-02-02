@@ -36,6 +36,7 @@
 		4F2FEF1F184B1A4B001A7AFE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F2FEF1D184B1A4B001A7AFE /* InfoPlist.strings */; };
 		4F2FEF21184B1A4B001A7AFE /* JikanGachouTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FEF20184B1A4B001A7AFE /* JikanGachouTests.m */; };
 		4F3CF06C184ED10B00B43634 /* JGStartPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3CF06B184ED10B00B43634 /* JGStartPageViewController.m */; };
+		4FBB080F189E25340094B1E4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4FBB080E189E25340094B1E4 /* README.md */; };
 		4FD73EE718518A3C00C9F568 /* JGImageAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD73EE618518A3C00C9F568 /* JGImageAlbumViewController.m */; };
 		4FD73EE91851AEA700C9F568 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FD73EE81851AEA700C9F568 /* AssetsLibrary.framework */; };
 		4FF482381893655500E26003 /* JGSubmitPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF482371893655500E26003 /* JGSubmitPageViewController.m */; };
@@ -93,6 +94,7 @@
 		4F2FEF20184B1A4B001A7AFE /* JikanGachouTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JikanGachouTests.m; sourceTree = "<group>"; };
 		4F3CF06A184ED10B00B43634 /* JGStartPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGStartPageViewController.h; sourceTree = "<group>"; };
 		4F3CF06B184ED10B00B43634 /* JGStartPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGStartPageViewController.m; sourceTree = "<group>"; };
+		4FBB080E189E25340094B1E4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
 		4FD73EE518518A3C00C9F568 /* JGImageAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGImageAlbumViewController.h; sourceTree = "<group>"; };
 		4FD73EE618518A3C00C9F568 /* JGImageAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGImageAlbumViewController.m; sourceTree = "<group>"; };
 		4FD73EE81851AEA700C9F568 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -232,6 +234,7 @@
 		4F2FEEFC184B1A4A001A7AFE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4FBB080E189E25340094B1E4 /* README.md */,
 				4F2FEF04184B1A4A001A7AFE /* JGAppDelegate.h */,
 				4F2FEF05184B1A4A001A7AFE /* JGAppDelegate.m */,
 				4F2FEEFD184B1A4A001A7AFE /* JikanGachou-Info.plist */,
@@ -383,6 +386,7 @@
 				4F1FB98D1872A8B0000FCFDB /* EditPageTypeMixedLeftPortrait.xib in Resources */,
 				4F2FEF00184B1A4A001A7AFE /* InfoPlist.strings in Resources */,
 				4F1FB9891872A872000FCFDB /* EditPageTypeTwoPortrait.xib in Resources */,
+				4FBB080F189E25340094B1E4 /* README.md in Resources */,
 				4F2FEF09184B1A4A001A7AFE /* Main.storyboard in Resources */,
 				4F1FB9871872A85B000FCFDB /* EditPageTypeTwoLandscape.xib in Resources */,
 				4F1FB97B1872A049000FCFDB /* EditPageCoverTypePhoto.xib in Resources */,

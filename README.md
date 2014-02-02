@@ -12,20 +12,12 @@ Book:
 
 Page:
 
-- type:
-  - one_landscape
-  - one_portriat
-  - two_landscape
-  - two_portrait
-  - mixed_left_landscape
-  - mixed_left_portrait
+- type: as xib name
 - payload:
   - text
-  - photo: if one pic
-  - up, down: if two_landscape
-  - left, right: others
+  - photo, photo2:
 
 Photo:
 
-- uri?
+- query
 - date: may could be changed
