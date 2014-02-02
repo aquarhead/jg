@@ -96,9 +96,11 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 
 - (IBAction)collectionViewTouched:(UITapGestureRecognizer *)sender
 {
-    JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
-    [cell.mainView.titleTextField resignFirstResponder];
-    [cell.mainView.authorTextField resignFirstResponder];
+    if ([self pageIndex] == kJGIndexFlyleafPage) {
+        JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
+        [cell.mainView.titleTextField resignFirstResponder];
+        [cell.mainView.authorTextField resignFirstResponder];
+    }
 }
 
 - (void)saveTitle:(NSString *)title
