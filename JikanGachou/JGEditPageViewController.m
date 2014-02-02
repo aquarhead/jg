@@ -145,6 +145,13 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     return indexPath.item;
 }
 
+- (NSIndexPath *)pageIndexPath
+{
+    JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
+    NSIndexPath *indexPath = [self.pagesCollectionView indexPathForCell:cell];
+    return indexPath;
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     // cover, flyleaf, 20 pages, and backcover
@@ -160,6 +167,9 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     else {
         NSString *type = (sender.selectedSegmentIndex == 0 ? @"EditPageTypeOneLandscape" : @"EditPageTypeTwoLandscape");
         NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
+        if ([page[@"type"] hasPrefix:@"EditPageTypeTwo"] || [page[@"type"] hasPrefix:@"EditPageTypeMixed"]) {
+            // drop photo2
+        }
         NSDictionary *payload = (page ? page[@"payload"] : @{});
         [self.book setObject:@{@"payload": payload, @"type": type} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
     }
@@ -218,21 +228,96 @@ static const NSInteger kJGIndexBackcoverPage = 22;
             page = @{@"payload": @{}, @"type": @"EditPageTypeOneLandscape"};
             [self.book setObject:page forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
         }
-        
+
         if ([page[@"type"] hasPrefix:@"EditPageTypeOne"]) {
             self.pageTypeControl.selectedSegmentIndex = 0;
-            
-            [cell useMainViewNamed:page[@"type"] withGestureRecognizer:self.tapRecog];
-        }
-        else {
-            self.pageTypeControl.selectedSegmentIndex = 1;
-            
-            [cell useMainViewNamed:page[@"type"] withGestureRecognizer:self.tapRecog];
-        }
-        
-        if (page) {
             ALAsset *p = [self.poolViewController photoWithQuery:page[@"payload"][@"photo"]];
-            [self setPhoto:p andType:page[@"type"] forCell:cell];
+            if (p) {
+                UIImage *img = [UIImage imageWithCGImage:p.defaultRepresentation.fullScreenImage];
+                CGSize size = img.size;
+                if (size.width >= size.height) {
+                    [cell useMainViewNamed:@"EditPageTypeOneLandscape" withGestureRecognizer:self.tapRecog];
+                }
+                else {
+                    [cell useMainViewNamed:@"EditPageTypeOnePortrait" withGestureRecognizer:self.tapRecog];
+                }
+
+                cell.mainView.firstImageView.image = img;
+
+                NSDate *date = [p valueForProperty:ALAssetPropertyDate];
+                static NSDateFormatter *formatter;
+                if (!formatter) {
+                    formatter = [NSDateFormatter new];
+                    formatter.dateStyle = NSDateFormatterMediumStyle;
+                }
+                cell.mainView.firstDateLabel.text = [formatter stringFromDate:date];
+            } else {
+                [cell useMainViewNamed:@"EditPageTypeOneLandscape" withGestureRecognizer:self.tapRecog];
+                cell.mainView.firstImageView.image = nil;
+            }
+        } else {
+            // two photos
+            self.pageTypeControl.selectedSegmentIndex = 1;
+            ALAsset *p1 = [self.poolViewController photoWithQuery:page[@"payload"][@"photo"]];
+            ALAsset *p2 = [self.poolViewController photoWithQuery:page[@"payload"][@"photo2"]];
+            UIImage *img1 = nil, *img2 = nil;
+            NSString *date1 = @"", *date2 = @"";
+            bool p1_landscape = NO, p2_landscape = NO;
+
+            // check landscape, set UIImage
+            if (p1) {
+                img1 = [UIImage imageWithCGImage:p1.defaultRepresentation.fullScreenImage];
+                CGSize size = img1.size;
+                if (size.width >= size.height) {
+                    p1_landscape = YES;
+                }
+                NSDate *date = [p1 valueForProperty:ALAssetPropertyDate];
+                static NSDateFormatter *formatter;
+                if (!formatter) {
+                    formatter = [NSDateFormatter new];
+                    formatter.dateStyle = NSDateFormatterMediumStyle;
+                }
+                date1 = [formatter stringFromDate:date];
+            }
+            if (p2) {
+                img2 = [UIImage imageWithCGImage:p2.defaultRepresentation.fullScreenImage];
+                CGSize size = img2.size;
+                if (size.width >= size.height) {
+                    p2_landscape = YES;
+                }
+                NSDate *date = [p2 valueForProperty:ALAssetPropertyDate];
+                static NSDateFormatter *formatter;
+                if (!formatter) {
+                    formatter = [NSDateFormatter new];
+                    formatter.dateStyle = NSDateFormatterMediumStyle;
+                }
+                date2 = [formatter stringFromDate:date];
+            }
+
+            // setup mainView
+            if (p1_landscape) {
+                if (p2_landscape) {
+                    // two landscape
+                    [cell useMainViewNamed:@"EditPageTypeTwoLandscape" withGestureRecognizer:self.tapRecog];
+                } else {
+                    // mixed left landscape
+                    [cell useMainViewNamed:@"EditPageTypeMixedLeftLandscape" withGestureRecognizer:self.tapRecog];
+                }
+            } else {
+                if (p2_landscape) {
+                    // mixed left portrait
+                    [cell useMainViewNamed:@"EditPageTypeMixedLeftPortrait" withGestureRecognizer:self.tapRecog];
+                } else {
+                    // two portrait
+                    [cell useMainViewNamed:@"EditPageTypeTwoPortrait" withGestureRecognizer:self.tapRecog];
+                }
+            }
+
+            // fill mainView
+            cell.mainView.firstImageView.image = img1;
+            cell.mainView.firstDateLabel.text = date1;
+            cell.mainView.secondImageView.image = img2;
+            cell.mainView.secondDateLabel.text = date2;
         }
     }
 }
@@ -241,8 +326,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 {
     if (sender.state == UIGestureRecognizerStateEnded) {
         JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
-        NSIndexPath *indexPath = [self.pagesCollectionView indexPathForCell:cell];
-        NSInteger pageIndex = indexPath.item;
+        NSInteger pageIndex = [self pageIndex];
         NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
         if (page) {
             ALAsset *p = [self.poolViewController photoWithQuery:page[@"payload"][@"photo"]];
@@ -250,45 +334,8 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                 [self.poolViewController dropPhoto:p];
             }
             [self.book setObject:@{@"payload": @{@"photo": @""}, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
-            [self setPhoto:nil andType:nil forCell:cell];
+            [self setupCell:cell atIndexPath:[self pageIndexPath]];
         }
-    }
-}
-
-- (void)setPhoto:(ALAsset *)photoInfo andType:(NSString *)type forCell:(JGEditPageCell *)cell
-{
-    if (photoInfo) {
-        ALAssetRepresentation *defaultRepresentation = photoInfo.defaultRepresentation;
-        UIImage *img = [UIImage imageWithCGImage:defaultRepresentation.fullScreenImage];
-        CGSize size = img.size;
-        if (size.width >= size.height) {
-            if ([type hasPrefix:@"EditPageTypeOne"]) {
-                [cell useMainViewNamed:@"EditPageTypeOneLandscape" withGestureRecognizer:self.tapRecog];
-            }
-            else {
-                [cell useMainViewNamed:@"EditPageTypeMixedLeftLandscape" withGestureRecognizer:self.tapRecog];
-            }
-        }
-        else {
-            if ([type hasPrefix:@"EditPageTypeOne"]) {
-                [cell useMainViewNamed:@"EditPageTypeOnePortrait" withGestureRecognizer:self.tapRecog];
-            }
-            else {
-                [cell useMainViewNamed:@"EditPageTypeMixedLeftPortrait" withGestureRecognizer:self.tapRecog];
-            }
-        }
-        
-        cell.mainView.firstImageView.image = img;
-
-        NSDate *date = [photoInfo valueForProperty:ALAssetPropertyDate];
-        static NSDateFormatter *formatter;
-        if (!formatter) {
-            formatter = [NSDateFormatter new];
-            formatter.dateStyle = NSDateFormatterMediumStyle;
-        }
-        cell.mainView.firstDateLabel.text = [formatter stringFromDate:date];
-    } else {
-        cell.mainView.firstImageView.image = nil;
     }
 }
 
@@ -336,14 +383,37 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"这一页放不下更多照片了" message:@"试试点击书中的照片来撤销" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [alertView show];
             } else {
-                [self setPhoto:photoInfo andType:page[@"type"] forCell:cell];
                 [self.poolViewController usePhoto:photoInfo];
                 NSDictionary *payload = @{@"photo": [photoInfo.defaultRepresentation.url query]};
                 [self.book setObject:@{@"payload": payload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]
                  ];
+                [self setupCell:cell atIndexPath:[self pageIndexPath]];
+            }
+        } else {
+            bool p1 = page[@"payload"][@"photo"] && ![page[@"payload"][@"photo"] isEqualToString:@""];
+            bool p2 = page[@"payload"][@"photo2"] && ![page[@"payload"][@"photo2"] isEqualToString:@""];
+            if (p1 && p2) {
+                // full
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"这一页放不下更多照片了" message:@"试试点击书中的照片来撤销" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alertView show];
+            } else if (p1) {
+                // has p1, set p2
+                [self.poolViewController usePhoto:photoInfo];
+                NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:page[@"payload"]];
+                newpayload[@"photo2"] = [photoInfo.defaultRepresentation.url query];
+                [self.book setObject:@{@"payload": newpayload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]
+                 ];
+                [self setupCell:cell atIndexPath:[self pageIndexPath]];
+            } else {
+                // no photo or has p2, set p1
+                [self.poolViewController usePhoto:photoInfo];
+                NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:page[@"payload"]];
+                newpayload[@"photo"] = [photoInfo.defaultRepresentation.url query];
+                [self.book setObject:@{@"payload": newpayload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]
+                 ];
+                [self setupCell:cell atIndexPath:[self pageIndexPath]];
             }
         }
-
     }
 }
 

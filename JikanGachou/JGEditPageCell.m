@@ -20,7 +20,7 @@
     [self addSubview:self.mainView];
     if ([name hasPrefix:@"EditPageTypeOne"]) {
         [self.mainView.firstImageView addGestureRecognizer:recog];
-    } else if ([name hasPrefix:@"EditPageTypeTwo"]) {
+    } else if ([name hasPrefix:@"EditPageTypeTwo"] || [name hasPrefix:@"EditPageTypeMixed"]) {
         [self.mainView.firstImageView addGestureRecognizer:recog];
         [self.mainView.secondImageView addGestureRecognizer:recog];
     }
