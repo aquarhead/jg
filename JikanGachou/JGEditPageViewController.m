@@ -167,7 +167,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     [self.pagesCollectionView reloadData];
 }
 
-- (void)configureCell:(JGEditPageCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)setupCell:(JGEditPageCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger pageIndex = indexPath.item;
     
@@ -232,7 +232,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         
         if (page) {
             ALAsset *p = [self.poolViewController photoWithQuery:page[@"payload"][@"photo"]];
-            [self configureCell:cell withPhoto:p type:page[@"type"]];
+            [self setPhoto:p andType:page[@"type"] forCell:cell];
         }
     }
 }
@@ -250,12 +250,12 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                 [self.poolViewController dropPhoto:p];
             }
             [self.book setObject:@{@"payload": @{@"photo": @""}, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
-            [self configureCell:cell withPhoto:nil type:nil];
+            [self setPhoto:nil andType:nil forCell:cell];
         }
     }
 }
 
-- (void)configureCell:(JGEditPageCell *)cell withPhoto:(ALAsset *)photoInfo type:(NSString *)type
+- (void)setPhoto:(ALAsset *)photoInfo andType:(NSString *)type forCell:(JGEditPageCell *)cell
 {
     if (photoInfo) {
         ALAssetRepresentation *defaultRepresentation = photoInfo.defaultRepresentation;
@@ -297,7 +297,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     static NSString *CellIdentifier = @"Cell";
     JGEditPageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
 
-    [self configureCell:cell atIndexPath:indexPath];
+    [self setupCell:cell atIndexPath:indexPath];
 
     return cell;
 }
@@ -331,7 +331,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     else if (pageIndex >= kJGIndexPhotoPageStart) {
         NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
         
-        [self configureCell:cell withPhoto:photoInfo type:page[@"type"]];
+        [self setPhoto:photoInfo andType:page[@"type"] forCell:cell];
         [self.poolViewController usePhoto:photoInfo];
 
         NSDictionary *payload = @{@"photo": [photoInfo.defaultRepresentation.url query]};
