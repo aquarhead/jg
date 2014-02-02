@@ -330,13 +330,20 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     }
     else if (pageIndex >= kJGIndexPhotoPageStart) {
         NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
-        
-        [self setPhoto:photoInfo andType:page[@"type"] forCell:cell];
-        [self.poolViewController usePhoto:photoInfo];
 
-        NSDictionary *payload = @{@"photo": [photoInfo.defaultRepresentation.url query]};
-        [self.book setObject:@{@"payload": payload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]
-         ];
+        if ([page[@"type"] hasPrefix:@"EditPageTypeOne"]) {
+            if (page[@"payload"][@"photo"] && ![page[@"payload"][@"photo"] isEqualToString:@""]) {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"这一页放不下更多照片了" message:@"试试点击书中的照片来撤销" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alertView show];
+            } else {
+                [self setPhoto:photoInfo andType:page[@"type"] forCell:cell];
+                [self.poolViewController usePhoto:photoInfo];
+                NSDictionary *payload = @{@"photo": [photoInfo.defaultRepresentation.url query]};
+                [self.book setObject:@{@"payload": payload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]
+                 ];
+            }
+        }
+
     }
 }
 
