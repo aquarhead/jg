@@ -13,10 +13,18 @@
 @interface JGSubmitPageViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
+@property (weak, nonatomic) NSFNanoObject *book;
 
 @end
 
 @implementation JGSubmitPageViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    self.book = self.poolViewController.book;
+}
 
 - (IBAction)submit:(id)sender {
     self.submitButton.enabled = NO;
@@ -29,7 +37,7 @@
     NSMutableDictionary *options = [NSMutableDictionary new];
     options[@"bucket"] = @"jikangachou";
     options[@"expiration"] = [NSString stringWithFormat:@"%.0f",[[NSDate date] timeIntervalSince1970] + 600];
-    options[@"save-key"] = [NSString stringWithFormat:@"/%@.JPG", [data_url query]];
+    options[@"save-key"] = [NSString stringWithFormat:@"/%@/%@.JPG", self.book.key, [data_url query]];
     NSString *policy = [[NSJSONSerialization dataWithJSONObject:[options copy] options:0 error:nil] base64EncodedStringWithOptions:0];
     NSString *sig = [[NSString stringWithFormat:@"%@&DWAPWXDv2cLI7MuZmJRWq63r0T8=", policy] MD5Digest];
 
