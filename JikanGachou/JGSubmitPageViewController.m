@@ -11,7 +11,7 @@
 #import <NSString+MD5.h>
 #import <YLProgressBar.h>
 
-@interface JGSubmitPageViewController ()
+@interface JGSubmitPageViewController () <UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet YLProgressBar *progressBar;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
@@ -38,6 +38,17 @@
 }
 
 - (IBAction)submit:(id)sender {
+    if ([[AFNetworkReachabilityManager sharedManager] isReachableViaWiFi]) {
+        [self doSubmit];
+    } else {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"没有无线网络连接" message:@"上传照片会消耗很多流量，继续使用蜂窝数据网络上传吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"上传", nil];
+        [alertView show];
+    }
+
+}
+
+- (void)doSubmit
+{
     self.submitButton.enabled = NO;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer new];
@@ -75,6 +86,13 @@
     if (self.finished == self.photos.count) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"照片上传完成" message:@"我们会立刻付印您的相册" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alertView show];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [self doSubmit];
     }
 }
 
