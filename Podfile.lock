@@ -21,6 +21,7 @@ PODS:
   - MD5Digest (0.1.0)
   - NanoStore (2.7.7)
   - TestFlightSDK (2.2.1-beta)
+  - YLProgressBar (3.1.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
@@ -28,6 +29,7 @@ DEPENDENCIES:
   - MD5Digest
   - NanoStore
   - TestFlightSDK
+  - YLProgressBar (~> 3.1.1)
 
 SPEC CHECKSUMS:
   AFNetworking: c7d7901a83f631414c7eda1737261f696101a5cd
@@ -35,5 +37,6 @@ SPEC CHECKSUMS:
   MD5Digest: 355c8733ab522cc516a4047e2d93e2b842947b18
   NanoStore: 879a131b4f9b968f936187bb927cd5f8887cb202
   TestFlightSDK: 4249c2f70e621bcfbdebf019073169c8fe36be13
+  YLProgressBar: eccf180aa935dc591371f1df49ce5fa5178365da
 
 COCOAPODS: 0.29.0
