@@ -144,7 +144,7 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     [photos addObjectsFromArray:self.selectedPhotos];
     [photos addObjectsFromArray:self.usedPhotos];
     for (ALAsset *p in photos) {
-        if ([[[p defaultRepresentation].url query] isEqualToString:query]) {
+        if ([[p.defaultRepresentation.url query] isEqualToString:query]) {
             return p;
         }
     }
@@ -167,6 +167,12 @@ const NSUInteger kJGPoolMostPhotos  = 40;
 {
     if ([segue.identifier isEqualToString:@"toSubmit"]) {
         JGSubmitPageViewController *vc = segue.destinationViewController;
+        if ([[self.book objectForKey:@"cover_type"] isEqualToString:@"EditPageCoverTypePhoto"]) {
+            NSString *coverPhotoQuery = [self.book objectForKey:@"cover_photo"];
+            if (coverPhotoQuery && ![self isUsedPhoto:[self photoWithQuery:coverPhotoQuery]]) {
+                [self usePhoto:[self photoWithQuery:coverPhotoQuery]];
+            }
+        }
         vc.photos = [self.usedPhotos copy];
         vc.poolViewController = self;
         [self.store saveStoreAndReturnError:nil];
