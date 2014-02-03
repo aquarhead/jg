@@ -35,16 +35,20 @@
     self.progressBar.hideStripes = YES;
     self.progressBar.progressTintColor = [UIColor colorWithRed:232/255.0f green:132/255.0f blue:12/255.0f alpha:1.0f];
     self.finished = 0;
+
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
 }
 
 - (IBAction)submit:(id)sender {
-    if ([[AFNetworkReachabilityManager sharedManager] isReachableViaWiFi]) {
+    if ([AFNetworkReachabilityManager sharedManager].reachableViaWiFi) {
         [self doSubmit];
-    } else {
+    } else if ([AFNetworkReachabilityManager sharedManager].reachableViaWWAN) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"没有无线网络连接" message:@"上传照片会消耗很多流量，继续使用蜂窝数据网络上传吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"上传", nil];
         [alertView show];
+    } else {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"没有网络连接" message:@"请连接网络以上传照片" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alertView show];
     }
-
 }
 
 - (void)doSubmit
