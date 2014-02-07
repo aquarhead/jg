@@ -43,7 +43,7 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     NSError *outError = nil;
     self.store = [NSFNanoStore createAndOpenStoreWithType:NSFPersistentStoreType path:path error:&outError];
     self.book = [NSFNanoObject new];
-    [self.book setObject:@"photo" forKey:@"cover_type"];
+    [self.book setObject:@"logo" forKey:@"cover_type"];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView

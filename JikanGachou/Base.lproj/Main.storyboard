@@ -484,11 +484,22 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZgI-VS-ZLi">
+                                <rect key="frame" x="137" y="225" width="45" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="去付款">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="createPayment:" destination="900-VG-HZa" eventType="touchUpInside" id="Wyd-gY-NvJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="y0Q-ED-KXP"/>
                     <connections>
+                        <outlet property="paymentButton" destination="ZgI-VS-ZLi" id="wjW-IL-Fix"/>
                         <outlet property="progressBar" destination="iRw-YE-Fzv" id="4bh-Pa-kW4"/>
                         <outlet property="submitButton" destination="nRU-jT-FSm" id="NWb-3n-aQr"/>
                     </connections>

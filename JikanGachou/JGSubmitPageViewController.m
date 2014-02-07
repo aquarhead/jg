@@ -14,6 +14,7 @@
 @interface JGSubmitPageViewController () <UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet YLProgressBar *progressBar;
+@property (weak, nonatomic) IBOutlet UIButton *paymentButton;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (weak, nonatomic) NSFNanoObject *book;
 
@@ -39,9 +40,24 @@
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
 }
 
+- (IBAction)createPayment:(id)sender {
+    self.paymentButton.enabled = NO;
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    NSDictionary *parameters = @{@"info": self.book.info};
+    NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/", self.book.key];
+    [manager POST:addr parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+        self.paymentButton.enabled = YES;
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        self.paymentButton.enabled = YES;
+    }];
+}
+
 - (IBAction)submit:(id)sender {
     if ([AFNetworkReachabilityManager sharedManager].reachableViaWiFi) {
-        [self doSubmit];
+        [self checkStatus];
     } else if ([AFNetworkReachabilityManager sharedManager].reachableViaWWAN) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"没有无线网络连接" message:@"上传照片会消耗很多流量，继续使用蜂窝数据网络上传吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"上传", nil];
         [alertView show];
@@ -51,12 +67,31 @@
     }
 }
 
-- (void)doSubmit
+- (void)checkStatus
 {
     self.submitButton.enabled = NO;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFHTTPRequestSerializer new];
-    manager.responseSerializer = [AFHTTPResponseSerializer new];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/", self.book.key];
+    [manager GET:addr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject[@"status"] isEqualToString:@"toprint"]) {
+            [self doSubmit];
+        } else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"您还未付款" message:@"请先付款，如有其他问题请联系客服" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alertView show];
+            self.submitButton.enabled = YES;
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        self.submitButton.enabled = YES;
+    }];
+}
+
+- (void)doSubmit
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.operationQueue.maxConcurrentOperationCount = 1;
 
     for (ALAsset *p in self.photos) {
@@ -96,7 +131,7 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
-        [self doSubmit];
+        [self checkStatus];
     }
 }
 
