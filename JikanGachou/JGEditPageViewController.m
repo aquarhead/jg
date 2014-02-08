@@ -212,7 +212,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
             if ([self.book objectForKey:@"cover_photo"]) {
                 ALAsset *p = [self.poolViewController photoWithQuery:[self.book objectForKey:@"cover_photo"]];
                 ALAssetRepresentation *defaultRepresentation = p.defaultRepresentation;
-                cell.mainView.firstImageView.image = [UIImage imageWithCGImage:defaultRepresentation.fullScreenImage];
+                [cell.mainView putFirstImage:[UIImage imageWithCGImage:defaultRepresentation.fullScreenImage]];
             }
         }
         else {
@@ -261,7 +261,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                     [cell useMainViewNamed:@"EditPageTypeOnePortrait" withGestureRecognizers:self.tapRecogs];
                 }
 
-                cell.mainView.firstImageView.image = img;
+                [cell.mainView putFirstImage:img];
 
                 NSDate *date = [p valueForProperty:ALAssetPropertyDate];
                 static NSDateFormatter *formatter;
@@ -270,11 +270,13 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                     formatter.dateStyle = NSDateFormatterMediumStyle;
                 }
                 cell.mainView.firstDateLabel.text = [formatter stringFromDate:date];
-            } else {
-                [cell useMainViewNamed:@"EditPageTypeOneLandscape" withGestureRecognizers:self.tapRecogs];
-                cell.mainView.firstImageView.image = nil;
             }
-        } else {
+            else {
+                [cell useMainViewNamed:@"EditPageTypeOneLandscape" withGestureRecognizers:self.tapRecogs];
+                [cell.mainView putFirstImage:nil];
+            }
+        }
+        else {
             // two photos
             self.pageTypeControl.selectedSegmentIndex = 1;
             ALAsset *p1 = [self.poolViewController photoWithQuery:page[@"payload"][@"photo"]];
@@ -333,9 +335,9 @@ static const NSInteger kJGIndexBackcoverPage = 22;
             }
 
             // fill mainView
-            cell.mainView.firstImageView.image = img1;
+            [cell.mainView putFirstImage:img1];
             cell.mainView.firstDateLabel.text = date1;
-            cell.mainView.secondImageView.image = img2;
+            [cell.mainView putSecondImage:img2];
             cell.mainView.secondDateLabel.text = date2;
         }
     }
@@ -411,7 +413,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     if (pageIndex == kJGIndexCoverPage) {
         if (self.pageTypeControl.selectedSegmentIndex == 1) {
             ALAssetRepresentation *defaultRepresentation = photoInfo.defaultRepresentation;
-            cell.mainView.firstImageView.image = [UIImage imageWithCGImage:defaultRepresentation.fullScreenImage];
+            [cell.mainView putFirstImage:[UIImage imageWithCGImage:defaultRepresentation.fullScreenImage]];
             
             [self.book setObject:[photoInfo.defaultRepresentation.url query] forKey:@"cover_photo"];
         }

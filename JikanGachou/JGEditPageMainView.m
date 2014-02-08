@@ -25,6 +25,30 @@
     self.secondImageView.userInteractionEnabled = YES;
 }
 
+- (void)putFirstImage:(UIImage *)image
+{
+    if (image) {
+        self.firstImageView.image = image;
+        self.firstImageView.contentMode = UIViewContentModeScaleAspectFill;
+    }
+    else {
+        self.firstImageView.image = [UIImage imageNamed:@"Placeholder"];
+        self.firstImageView.contentMode = UIViewContentModeScaleToFill;
+    }
+}
+
+- (void)putSecondImage:(UIImage *)image
+{
+    if (image) {
+        self.secondImageView.image = image;
+        self.secondImageView.contentMode = UIViewContentModeScaleAspectFill;
+    }
+    else {
+        self.secondImageView.image = [UIImage imageNamed:@"Placeholder"];
+        self.secondImageView.contentMode = UIViewContentModeScaleToFill;
+    }
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if (textField == self.titleTextField) {
