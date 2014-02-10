@@ -19,10 +19,10 @@
     self.mainView = [[[NSBundle mainBundle] loadNibNamed:name owner:self options:nil] firstObject];
     [self addSubview:self.mainView];
     if ([name hasPrefix:@"EditPageTypeOne"]) {
-        [self.mainView.firstImageView addGestureRecognizer:recogs[0]];
+        [self.mainView.imageView1 addGestureRecognizer:recogs[0]];
     } else if ([name hasPrefix:@"EditPageTypeTwo"] || [name hasPrefix:@"EditPageTypeMixed"]) {
-        [self.mainView.firstImageView addGestureRecognizer:recogs[0]];
-        [self.mainView.secondImageView addGestureRecognizer:recogs[1]];
+        [self.mainView.imageView1 addGestureRecognizer:recogs[0]];
+        [self.mainView.imageView2 addGestureRecognizer:recogs[1]];
     }
 }
 

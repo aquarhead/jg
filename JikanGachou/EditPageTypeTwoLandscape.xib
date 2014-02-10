@@ -21,14 +21,14 @@
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="20 Dec" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4h-Cq-M3h">
-                    <rect key="frame" x="222" y="20" width="55" height="21"/>
+                    <rect key="frame" x="222" y="20" width="84" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="20 Dec" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ju-qi-0z0">
-                    <rect key="frame" x="43" y="259" width="55" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="20 Dec" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ju-qi-0z0">
+                    <rect key="frame" x="20" y="259" width="78" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -38,10 +38,10 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="firstDateLabel" destination="Q4h-Cq-M3h" id="ltZ-Og-kkp"/>
-                <outlet property="firstImageView" destination="09z-WD-1Pe" id="0mq-9E-HLj"/>
-                <outlet property="secondDateLabel" destination="7ju-qi-0z0" id="oJQ-rg-mjj"/>
-                <outlet property="secondImageView" destination="gro-Bc-9aa" id="MrC-gN-b5Z"/>
+                <outlet property="dateLabel1" destination="Q4h-Cq-M3h" id="gPd-MK-Tdj"/>
+                <outlet property="dateLabel2" destination="7ju-qi-0z0" id="NOL-rm-WPC"/>
+                <outlet property="imageView1" destination="09z-WD-1Pe" id="QPI-uh-MH8"/>
+                <outlet property="imageView2" destination="gro-Bc-9aa" id="WCT-sL-5yQ"/>
             </connections>
         </view>
     </objects>

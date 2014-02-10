@@ -211,7 +211,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
             
             if ([self.book objectForKey:@"cover_photo"]) {
                 ALAsset *p = [self.poolViewController photoWithQuery:[self.book objectForKey:@"cover_photo"]];
-                [cell.mainView putFirstPhoto:p];
+                [cell.mainView fillNth:1 withPhoto:p];
             }
         }
         else {
@@ -260,11 +260,11 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                     [cell useMainViewNamed:@"EditPageTypeOnePortrait" withGestureRecognizers:self.tapRecogs];
                 }
 
-                [cell.mainView putFirstPhoto:p];
+                [cell.mainView fillNth:1 withPhoto:p];
             }
             else {
                 [cell useMainViewNamed:@"EditPageTypeOneLandscape" withGestureRecognizers:self.tapRecogs];
-                [cell.mainView putFirstPhoto:nil];
+                [cell.mainView fillNth:1 withPhoto:nil];
             }
         }
         else {
@@ -310,8 +310,8 @@ static const NSInteger kJGIndexBackcoverPage = 22;
             }
 
             // fill mainView
-            [cell.mainView putFirstPhoto:p1];
-            [cell.mainView putSecondPhoto:p2];
+            [cell.mainView fillNth:1 withPhoto:p1];
+            [cell.mainView fillNth:2 withPhoto:p2];
         }
     }
 }
@@ -330,7 +330,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
             [self.book setObject:@{@"payload": @{@"photo": @""}, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
             [self setupCell:cell atIndexPath:[self pageIndexPath]];
         } else {
-            if ([sender.view isEqual:cell.mainView.firstImageView]) {
+            if ([sender.view isEqual:cell.mainView.imageView1]) {
                 // drop p1
                 ALAsset *p = [self.poolViewController photoWithQuery:page[@"payload"][@"photo"]];
                 if (p) {
@@ -379,15 +379,15 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 
 #pragma mark - poolView delegate
 
-- (void)didSelectPhoto:(ALAsset *)photoInfo
+- (void)didSelectPhoto:(ALAsset *)p
 {
     JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
     NSInteger pageIndex = [self.pagesCollectionView indexPathForCell:cell].row;
     if (pageIndex == kJGIndexCoverPage) {
         if (self.pageTypeControl.selectedSegmentIndex == 1) {
-            [cell.mainView putFirstPhoto:photoInfo];
+            [cell.mainView fillNth:1 withPhoto:p];
             
-            [self.book setObject:[photoInfo.defaultRepresentation.url query] forKey:@"cover_photo"];
+            [self.book setObject:[p.defaultRepresentation.url query] forKey:@"cover_photo"];
         }
     }
     else if (pageIndex >= kJGIndexPhotoPageStart) {
@@ -398,8 +398,8 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"这一页放不下更多照片了" message:@"试试点击书中的照片来撤销" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [alertView show];
             } else {
-                [self.poolViewController usePhoto:photoInfo];
-                NSDictionary *newpayload = @{@"photo": [photoInfo.defaultRepresentation.url query]};
+                [self.poolViewController usePhoto:p];
+                NSDictionary *newpayload = @{@"photo": [p.defaultRepresentation.url query]};
                 [self.book setObject:@{@"payload": newpayload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]
                  ];
                 [self setupCell:cell atIndexPath:[self pageIndexPath]];
@@ -413,17 +413,17 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                 [alertView show];
             } else if (p1) {
                 // has p1, set p2
-                [self.poolViewController usePhoto:photoInfo];
+                [self.poolViewController usePhoto:p];
                 NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:page[@"payload"]];
-                newpayload[@"photo2"] = [photoInfo.defaultRepresentation.url query];
+                newpayload[@"photo2"] = [p.defaultRepresentation.url query];
                 [self.book setObject:@{@"payload": newpayload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]
                  ];
                 [self setupCell:cell atIndexPath:[self pageIndexPath]];
             } else {
                 // no photo or has p2, set p1
-                [self.poolViewController usePhoto:photoInfo];
+                [self.poolViewController usePhoto:p];
                 NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:page[@"payload"]];
-                newpayload[@"photo"] = [photoInfo.defaultRepresentation.url query];
+                newpayload[@"photo"] = [p.defaultRepresentation.url query];
                 [self.book setObject:@{@"payload": newpayload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]
                  ];
                 [self setupCell:cell atIndexPath:[self pageIndexPath]];

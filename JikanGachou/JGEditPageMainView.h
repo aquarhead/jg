@@ -20,14 +20,13 @@
 
 @interface JGEditPageMainView : UIView
 
-@property (weak, nonatomic) IBOutlet UIImageView *firstImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *secondImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView1;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView2;
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UITextField *authorTextField;
 
 @property (nonatomic, weak) id<JGEditPageDelegate> delegate;
 
-- (void)putFirstPhoto:(ALAsset *)p;
-- (void)putSecondPhoto:(ALAsset *)p;
+- (void)fillNth:(NSUInteger)n withPhoto:(ALAsset *)p;
 
 @end

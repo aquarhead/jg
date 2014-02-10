@@ -30,7 +30,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="firstImageView" destination="bWB-b6-UcU" id="5s7-Z7-RTY"/>
+                <outlet property="imageView1" destination="bWB-b6-UcU" id="oox-tC-spN"/>
             </connections>
         </view>
     </objects>

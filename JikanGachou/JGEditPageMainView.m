@@ -10,8 +10,8 @@
 
 @interface JGEditPageMainView () <UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *firstDateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *secondDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel1;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel2;
 
 @end
 
@@ -24,16 +24,19 @@
     self.titleTextField.delegate = self;
     self.authorTextField.delegate = self;
 
-    self.firstImageView.userInteractionEnabled = YES;
-    self.secondImageView.userInteractionEnabled = YES;
+    self.imageView1.userInteractionEnabled = YES;
+    self.imageView2.userInteractionEnabled = YES;
 }
 
-- (void)putFirstPhoto:(ALAsset *)p
+- (void)fillNth:(NSUInteger)n withPhoto:(ALAsset *)p
 {
+    UIImageView *imageView = [self valueForKey:[NSString stringWithFormat:@"imageView%lu", (unsigned long)n]];
+    UILabel *dateLabel = [self valueForKey:[NSString stringWithFormat:@"dateLabel%lu", (unsigned long)n]];
+    
     if (p) {
         UIImage *image = [UIImage imageWithCGImage:p.defaultRepresentation.fullScreenImage];
-        self.firstImageView.image = image;
-        self.firstImageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.image = image;
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
         
         NSDate *date = [p valueForProperty:ALAssetPropertyDate];
         static NSDateFormatter *formatter;
@@ -41,32 +44,11 @@
             formatter = [NSDateFormatter new];
             formatter.dateStyle = NSDateFormatterMediumStyle;
         }
-        self.firstDateLabel.text = [formatter stringFromDate:date];
+        dateLabel.text = [formatter stringFromDate:date];
     }
     else {
-        self.firstImageView.image = [UIImage imageNamed:@"Placeholder"];
-        self.firstImageView.contentMode = UIViewContentModeScaleToFill;
-    }
-}
-
-- (void)putSecondPhoto:(ALAsset *)p
-{
-    if (p) {
-        UIImage *image = [UIImage imageWithCGImage:p.defaultRepresentation.fullScreenImage];
-        self.secondImageView.image = image;
-        self.secondImageView.contentMode = UIViewContentModeScaleAspectFill;
-        
-        NSDate *date = [p valueForProperty:ALAssetPropertyDate];
-        static NSDateFormatter *formatter;
-        if (!formatter) {
-            formatter = [NSDateFormatter new];
-            formatter.dateStyle = NSDateFormatterMediumStyle;
-        }
-        self.secondDateLabel.text = [formatter stringFromDate:date];
-    }
-    else {
-        self.secondImageView.image = [UIImage imageNamed:@"Placeholder"];
-        self.secondImageView.contentMode = UIViewContentModeScaleToFill;
+        imageView.image = [UIImage imageNamed:@"Placeholder"];
+        imageView.contentMode = UIViewContentModeScaleToFill;
     }
 }
 

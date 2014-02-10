@@ -31,8 +31,8 @@
             </subviews>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="firstDateLabel" destination="SPE-G2-p38" id="W72-jo-Ptu"/>
-                <outlet property="firstImageView" destination="2Nb-WY-WzJ" id="wgV-W3-1b7"/>
+                <outlet property="dateLabel1" destination="SPE-G2-p38" id="sg3-RS-bsm"/>
+                <outlet property="imageView1" destination="2Nb-WY-WzJ" id="rnU-na-j7D"/>
             </connections>
         </view>
     </objects>

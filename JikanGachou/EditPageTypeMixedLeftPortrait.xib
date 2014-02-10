@@ -18,15 +18,15 @@
                     <rect key="frame" x="172" y="171" width="119" height="84"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="20 Dec" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qix-EI-tke">
-                    <rect key="frame" x="172" y="65" width="55" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="20 Dec" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qix-EI-tke">
+                    <rect key="frame" x="172" y="65" width="110" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="20 Dec" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ps9-Xf-cZA">
-                    <rect key="frame" x="236" y="145" width="55" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="20 Dec" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ps9-Xf-cZA">
+                    <rect key="frame" x="194" y="145" width="97" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -36,10 +36,10 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="firstDateLabel" destination="qix-EI-tke" id="CUE-EO-eME"/>
-                <outlet property="firstImageView" destination="754-RO-eej" id="XcS-mw-CWD"/>
-                <outlet property="secondDateLabel" destination="ps9-Xf-cZA" id="K5q-qk-MMm"/>
-                <outlet property="secondImageView" destination="pFg-St-ulH" id="NQa-KX-ozy"/>
+                <outlet property="dateLabel1" destination="qix-EI-tke" id="9A1-qu-SQ6"/>
+                <outlet property="dateLabel2" destination="ps9-Xf-cZA" id="jU3-Qf-eJu"/>
+                <outlet property="imageView1" destination="754-RO-eej" id="Vit-Lv-P92"/>
+                <outlet property="imageView2" destination="pFg-St-ulH" id="rq9-Oy-uHv"/>
             </connections>
         </view>
     </objects>
