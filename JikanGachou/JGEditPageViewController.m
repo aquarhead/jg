@@ -211,8 +211,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
             
             if ([self.book objectForKey:@"cover_photo"]) {
                 ALAsset *p = [self.poolViewController photoWithQuery:[self.book objectForKey:@"cover_photo"]];
-                ALAssetRepresentation *defaultRepresentation = p.defaultRepresentation;
-                [cell.mainView putFirstImage:[UIImage imageWithCGImage:defaultRepresentation.fullScreenImage]];
+                [cell.mainView putFirstPhoto:p];
             }
         }
         else {
@@ -261,19 +260,11 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                     [cell useMainViewNamed:@"EditPageTypeOnePortrait" withGestureRecognizers:self.tapRecogs];
                 }
 
-                [cell.mainView putFirstImage:img];
-
-                NSDate *date = [p valueForProperty:ALAssetPropertyDate];
-                static NSDateFormatter *formatter;
-                if (!formatter) {
-                    formatter = [NSDateFormatter new];
-                    formatter.dateStyle = NSDateFormatterMediumStyle;
-                }
-                cell.mainView.firstDateLabel.text = [formatter stringFromDate:date];
+                [cell.mainView putFirstPhoto:p];
             }
             else {
                 [cell useMainViewNamed:@"EditPageTypeOneLandscape" withGestureRecognizers:self.tapRecogs];
-                [cell.mainView putFirstImage:nil];
+                [cell.mainView putFirstPhoto:nil];
             }
         }
         else {
@@ -281,38 +272,22 @@ static const NSInteger kJGIndexBackcoverPage = 22;
             self.pageTypeControl.selectedSegmentIndex = 1;
             ALAsset *p1 = [self.poolViewController photoWithQuery:page[@"payload"][@"photo"]];
             ALAsset *p2 = [self.poolViewController photoWithQuery:page[@"payload"][@"photo2"]];
-            UIImage *img1 = nil, *img2 = nil;
-            NSString *date1 = @"", *date2 = @"";
             bool p1_landscape = NO, p2_landscape = NO;
 
-            // check landscape, set UIImage
+            // check orientation
             if (p1) {
-                img1 = [UIImage imageWithCGImage:p1.defaultRepresentation.fullScreenImage];
-                CGSize size = img1.size;
+                UIImage *image = [UIImage imageWithCGImage:p1.defaultRepresentation.fullScreenImage];
+                CGSize size = image.size;
                 if (size.width >= size.height) {
                     p1_landscape = YES;
                 }
-                NSDate *date = [p1 valueForProperty:ALAssetPropertyDate];
-                static NSDateFormatter *formatter;
-                if (!formatter) {
-                    formatter = [NSDateFormatter new];
-                    formatter.dateStyle = NSDateFormatterMediumStyle;
-                }
-                date1 = [formatter stringFromDate:date];
             }
             if (p2) {
-                img2 = [UIImage imageWithCGImage:p2.defaultRepresentation.fullScreenImage];
-                CGSize size = img2.size;
+                UIImage *image = [UIImage imageWithCGImage:p2.defaultRepresentation.fullScreenImage];
+                CGSize size = image.size;
                 if (size.width >= size.height) {
                     p2_landscape = YES;
                 }
-                NSDate *date = [p2 valueForProperty:ALAssetPropertyDate];
-                static NSDateFormatter *formatter;
-                if (!formatter) {
-                    formatter = [NSDateFormatter new];
-                    formatter.dateStyle = NSDateFormatterMediumStyle;
-                }
-                date2 = [formatter stringFromDate:date];
             }
 
             // setup mainView
@@ -335,10 +310,8 @@ static const NSInteger kJGIndexBackcoverPage = 22;
             }
 
             // fill mainView
-            [cell.mainView putFirstImage:img1];
-            cell.mainView.firstDateLabel.text = date1;
-            [cell.mainView putSecondImage:img2];
-            cell.mainView.secondDateLabel.text = date2;
+            [cell.mainView putFirstPhoto:p1];
+            [cell.mainView putSecondPhoto:p2];
         }
     }
 }
@@ -412,8 +385,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     NSInteger pageIndex = [self.pagesCollectionView indexPathForCell:cell].row;
     if (pageIndex == kJGIndexCoverPage) {
         if (self.pageTypeControl.selectedSegmentIndex == 1) {
-            ALAssetRepresentation *defaultRepresentation = photoInfo.defaultRepresentation;
-            [cell.mainView putFirstImage:[UIImage imageWithCGImage:defaultRepresentation.fullScreenImage]];
+            [cell.mainView putFirstPhoto:photoInfo];
             
             [self.book setObject:[photoInfo.defaultRepresentation.url query] forKey:@"cover_photo"];
         }

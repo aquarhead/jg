@@ -10,6 +10,9 @@
 
 @interface JGEditPageMainView () <UITextFieldDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel *firstDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *secondDateLabel;
+
 @end
 
 @implementation JGEditPageMainView
@@ -25,11 +28,20 @@
     self.secondImageView.userInteractionEnabled = YES;
 }
 
-- (void)putFirstImage:(UIImage *)image
+- (void)putFirstPhoto:(ALAsset *)p
 {
-    if (image) {
+    if (p) {
+        UIImage *image = [UIImage imageWithCGImage:p.defaultRepresentation.fullScreenImage];
         self.firstImageView.image = image;
         self.firstImageView.contentMode = UIViewContentModeScaleAspectFill;
+        
+        NSDate *date = [p valueForProperty:ALAssetPropertyDate];
+        static NSDateFormatter *formatter;
+        if (!formatter) {
+            formatter = [NSDateFormatter new];
+            formatter.dateStyle = NSDateFormatterMediumStyle;
+        }
+        self.firstDateLabel.text = [formatter stringFromDate:date];
     }
     else {
         self.firstImageView.image = [UIImage imageNamed:@"Placeholder"];
@@ -37,11 +49,20 @@
     }
 }
 
-- (void)putSecondImage:(UIImage *)image
+- (void)putSecondPhoto:(ALAsset *)p
 {
-    if (image) {
+    if (p) {
+        UIImage *image = [UIImage imageWithCGImage:p.defaultRepresentation.fullScreenImage];
         self.secondImageView.image = image;
         self.secondImageView.contentMode = UIViewContentModeScaleAspectFill;
+        
+        NSDate *date = [p valueForProperty:ALAssetPropertyDate];
+        static NSDateFormatter *formatter;
+        if (!formatter) {
+            formatter = [NSDateFormatter new];
+            formatter.dateStyle = NSDateFormatterMediumStyle;
+        }
+        self.secondDateLabel.text = [formatter stringFromDate:date];
     }
     else {
         self.secondImageView.image = [UIImage imageNamed:@"Placeholder"];
