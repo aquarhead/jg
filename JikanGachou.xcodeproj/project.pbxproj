@@ -167,11 +167,11 @@
 			isa = PBXGroup;
 			children = (
 				4F1FB9821872A7A1000FCFDB /* EditPageTypeOneLandscape.xib */,
+				4F1FB9841872A7BB000FCFDB /* EditPageTypeOnePortrait.xib */,
 				4F1FB98C1872A8B0000FCFDB /* EditPageTypeMixedLeftPortrait.xib */,
 				4F1FB98A1872A8A3000FCFDB /* EditPageTypeMixedLeftLandscape.xib */,
 				4F1FB9881872A872000FCFDB /* EditPageTypeTwoPortrait.xib */,
 				4F1FB9861872A85B000FCFDB /* EditPageTypeTwoLandscape.xib */,
-				4F1FB9841872A7BB000FCFDB /* EditPageTypeOnePortrait.xib */,
 			);
 			name = Pages;
 			sourceTree = "<group>";
