@@ -50,7 +50,6 @@
     [self.phoneField resignFirstResponder];
     [self.addressTextview resignFirstResponder];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
     NSDictionary *parameters = @{@"info": self.book.info, @"recp": self.recpField.text, @"phone": self.phoneField.text, @"address": self.addressTextview.text};
     NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/", self.book.key];
     [manager POST:addr parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -78,15 +77,17 @@
 {
     self.submitButton.enabled = NO;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
     NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/", self.book.key];
     [manager GET:addr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([responseObject[@"status"] isEqualToString:@"toupload"]) {
             [self doSubmit];
-        } else {
+        } else if ([responseObject[@"status"] isEqualToString:@"topay"]) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"您还未付款" message:@"请先付款，如有其他问题请联系客服" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alertView show];
             self.submitButton.enabled = YES;
+        } else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"照片已上传过" message:@"如有其他问题请联系客服" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alertView show];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
@@ -97,7 +98,6 @@
 - (void)doSubmit
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.operationQueue.maxConcurrentOperationCount = 1;
 
@@ -130,9 +130,17 @@
     self.finished += 1;
     [self.progressBar setProgress:(1.0*self.finished / self.photos.count) animated:YES];
     if (self.finished == self.photos.count) {
-        // set server status to toprint
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"照片上传完成" message:@"我们会立刻付印您的相册" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alertView show];
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/uploaded/", self.book.key];
+        [manager GET:addr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if ([responseObject[@"status"] isEqualToString:@"toprint"]) {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"照片上传完成" message:@"我们会立刻付印您的相册" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
+            self.submitButton.enabled = YES;
+        }];
     }
 }
 
