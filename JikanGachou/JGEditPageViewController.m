@@ -328,7 +328,6 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                 [self.poolViewController dropPhoto:p];
             }
             [self.book setObject:@{@"payload": @{@"photo": @""}, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
-            [self setupCell:cell atIndexPath:[self pageIndexPath]];
         } else {
             if ([sender.view isEqual:cell.mainView.imageView1]) {
                 // drop p1
@@ -339,7 +338,6 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                 NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:page[@"payload"]];
                 newpayload[@"photo"] = @"";
                 [self.book setObject:@{@"payload": newpayload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
-                [self setupCell:cell atIndexPath:[self pageIndexPath]];
             } else {
                 // drop p2
                 ALAsset *p = [self.poolViewController photoWithQuery:page[@"payload"][@"photo2"]];
@@ -349,9 +347,9 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                 NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:page[@"payload"]];
                 newpayload[@"photo2"] = @"";
                 [self.book setObject:@{@"payload": newpayload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
-                [self setupCell:cell atIndexPath:[self pageIndexPath]];
             }
         }
+        [self.pagesCollectionView reloadData];
     }
 }
 
@@ -402,7 +400,6 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                 NSDictionary *newpayload = @{@"photo": [p.defaultRepresentation.url query]};
                 [self.book setObject:@{@"payload": newpayload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]
                  ];
-                [self setupCell:cell atIndexPath:[self pageIndexPath]];
             }
         } else {
             bool p1 = page[@"payload"][@"photo"] && ![page[@"payload"][@"photo"] isEqualToString:@""];
@@ -418,7 +415,6 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                 newpayload[@"photo2"] = [p.defaultRepresentation.url query];
                 [self.book setObject:@{@"payload": newpayload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]
                  ];
-                [self setupCell:cell atIndexPath:[self pageIndexPath]];
             } else {
                 // no photo or has p2, set p1
                 [self.poolViewController usePhoto:p];
@@ -426,9 +422,9 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                 newpayload[@"photo"] = [p.defaultRepresentation.url query];
                 [self.book setObject:@{@"payload": newpayload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]
                  ];
-                [self setupCell:cell atIndexPath:[self pageIndexPath]];
             }
         }
+        [self.pagesCollectionView reloadData];
     }
 }
 
