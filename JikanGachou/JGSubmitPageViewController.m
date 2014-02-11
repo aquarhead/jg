@@ -13,8 +13,12 @@
 
 @interface JGSubmitPageViewController () <UIAlertViewDelegate>
 
-@property (weak, nonatomic) IBOutlet YLProgressBar *progressBar;
+@property (weak, nonatomic) IBOutlet UITextField *recpField;
+@property (weak, nonatomic) IBOutlet UITextField *phoneField;
+@property (weak, nonatomic) IBOutlet UITextView *addressTextview;
 @property (weak, nonatomic) IBOutlet UIButton *paymentButton;
+
+@property (weak, nonatomic) IBOutlet YLProgressBar *progressBar;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (weak, nonatomic) NSFNanoObject *book;
 
@@ -42,9 +46,12 @@
 
 - (IBAction)createPayment:(id)sender {
     self.paymentButton.enabled = NO;
+    [self.recpField resignFirstResponder];
+    [self.phoneField resignFirstResponder];
+    [self.addressTextview resignFirstResponder];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    NSDictionary *parameters = @{@"info": self.book.info};
+    NSDictionary *parameters = @{@"info": self.book.info, @"recp": self.recpField.text, @"phone": self.phoneField.text, @"address": self.addressTextview.text};
     NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/", self.book.key];
     [manager POST:addr parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
@@ -74,7 +81,7 @@
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/", self.book.key];
     [manager GET:addr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if ([responseObject[@"status"] isEqualToString:@"toprint"]) {
+        if ([responseObject[@"status"] isEqualToString:@"toupload"]) {
             [self doSubmit];
         } else {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"您还未付款" message:@"请先付款，如有其他问题请联系客服" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -123,6 +130,7 @@
     self.finished += 1;
     [self.progressBar setProgress:(1.0*self.finished / self.photos.count) animated:YES];
     if (self.finished == self.photos.count) {
+        // set server status to toprint
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"照片上传完成" message:@"我们会立刻付印您的相册" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alertView show];
     }
