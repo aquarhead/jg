@@ -160,17 +160,10 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 
 #pragma mark - Scroll View
 
-- (IBAction)pageChanged:(UIPageControl *)sender
-{
-    CGPoint scrollTo = CGPointMake(CGRectGetWidth(self.pagesCollectionView.bounds) * sender.currentPage, 0);
-    [self.pagesCollectionView setContentOffset:scrollTo animated:YES];
-}
-
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
-
     if ([self pageIndex] == kJGIndexFlyleafPage) {
+        JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
         [cell.mainView.titleTextField resignFirstResponder];
         [cell.mainView.authorTextField resignFirstResponder];
     }
@@ -395,16 +388,13 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 {
     static NSString *CellIdentifier = @"Cell";
     JGEditPageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-
     [self setupCell:cell atIndexPath:indexPath];
-
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger pageIndex = indexPath.item;
-
     if (pageIndex == kJGIndexFlyleafPage) {
         self.pageTypeControl.hidden = NO;
     }
