@@ -470,9 +470,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iRw-YE-Fzv" customClass="YLProgressBar">
-                                <rect key="frame" x="0.0" y="23" width="320" height="2"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sRe-it-jgi">
                                 <rect key="frame" x="0.0" y="33" width="320" height="447"/>
@@ -589,6 +590,7 @@
                                                     </state>
                                                     <connections>
                                                         <action selector="createPayment:" destination="900-VG-HZa" eventType="touchUpInside" id="RK8-bZ-Uia"/>
+                                                        <action selector="pay:" destination="NGp-sL-TIq" eventType="touchUpInside" id="PeT-Ti-gJc"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -631,6 +633,7 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
+                                                        <action selector="submit:" destination="NGp-sL-TIq" eventType="touchUpInside" id="Mkd-pc-AuU"/>
                                                         <action selector="submit:" destination="900-VG-HZa" eventType="touchUpInside" id="gG6-N3-xvh"/>
                                                     </connections>
                                                 </button>

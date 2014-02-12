@@ -14,4 +14,12 @@
 
 @implementation JGSubmitPageTableViewController
 
+- (IBAction)pay:(id)sender {
+    [self.delegate pay];
+}
+
+- (IBAction)submit:(id)sender {
+    [self.delegate submit];
+}
+
 @end

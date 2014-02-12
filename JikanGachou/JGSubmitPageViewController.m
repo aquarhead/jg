@@ -12,7 +12,7 @@
 #import <NSString+MD5.h>
 #import <YLProgressBar.h>
 
-@interface JGSubmitPageViewController () <UIAlertViewDelegate>
+@interface JGSubmitPageViewController () <UIAlertViewDelegate, JGSubmitPageTableDelegate>
 
 @property (weak, nonatomic) IBOutlet YLProgressBar *progressBar;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
@@ -37,6 +37,7 @@
     self.progressBar.indicatorTextDisplayMode = YLProgressBarIndicatorTextDisplayModeNone;
     self.progressBar.behavior = YLProgressBarBehaviorDefault;
     self.progressBar.hideStripes = YES;
+    [self.progressBar setProgress:0 animated:YES];
     self.progressBar.progressTintColor = [UIColor colorWithRed:235/255.0f green:180/255.0f blue:113/255.0f alpha:1.0f];
     // color from http://nipponcolors.com/#usukoh
 
@@ -54,10 +55,12 @@
 {
     if ([segue.identifier isEqualToString:@"embed"]) {
         self.staticTableVC = segue.destinationViewController;
+        self.staticTableVC.delegate = self;
     }
 }
 
-- (IBAction)createPayment:(id)sender {
+- (void)pay
+{
     self.staticTableVC.paymentButton.enabled = NO;
     [self.staticTableVC.recpField resignFirstResponder];
     [self.staticTableVC.phoneField resignFirstResponder];
@@ -73,7 +76,8 @@
     }];
 }
 
-- (IBAction)submit:(id)sender {
+- (void)submit
+{
     if ([AFNetworkReachabilityManager sharedManager].reachableViaWiFi) {
         [self checkStatus];
     } else if ([AFNetworkReachabilityManager sharedManager].reachableViaWWAN) {
@@ -92,7 +96,7 @@
     [self.jgServerManager GET:addr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([responseObject[@"status"] isEqualToString:@"toupload"]) {
             [self doSubmit];
-        } else if ([responseObject[@"status"] isEqualToString:@"topay"]) {
+        } else if ([responseObject[@"status"] isEqualToString:@"topay"] || [responseObject[@"status"] isEqualToString:@"error"]) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"您还未付款" message:@"请先付款，如有其他问题请联系客服" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alertView show];
             self.staticTableVC.submitButton.enabled = YES;
