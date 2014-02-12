@@ -5,4 +5,3 @@ pod 'TestFlightSDK'
 pod 'KIImagePager', :head
 pod 'NanoStore'
 pod 'MD5Digest'
-pod 'YLProgressBar', '~> 3.1.1'

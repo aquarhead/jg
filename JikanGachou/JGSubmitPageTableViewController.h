@@ -26,6 +26,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalSizeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
-@property (weak, nonatomic) id <JGSubmitPageTableDelegate> delegate;
+@property (weak, nonatomic) id <JGSubmitPageTableDelegate> buttonDelegate;
 
 @end

@@ -469,14 +469,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iRw-YE-Fzv" customClass="YLProgressBar">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="25"/>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="2.7755575615628914e-17" translatesAutoresizingMaskIntoConstraints="NO" id="h4g-fF-yoh">
+                                <rect key="frame" x="0.0" y="20" width="320" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
+                            </progressView>
                             <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sRe-it-jgi">
-                                <rect key="frame" x="0.0" y="33" width="320" height="447"/>
+                                <rect key="frame" x="0.0" y="30" width="320" height="450"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
@@ -489,7 +487,7 @@
                     <navigationItem key="navigationItem" id="y0Q-ED-KXP"/>
                     <connections>
                         <outlet property="containerView" destination="sRe-it-jgi" id="5gt-ZD-f3E"/>
-                        <outlet property="progressBar" destination="iRw-YE-Fzv" id="4bh-Pa-kW4"/>
+                        <outlet property="progressBar" destination="h4g-fF-yoh" id="flL-02-VGJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2kx-Yg-iRt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -501,7 +499,7 @@
             <objects>
                 <tableViewController id="NGp-sL-TIq" customClass="JGSubmitPageTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="fBa-Sq-rY7">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="447"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="450"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -565,7 +563,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="9BK-Vq-TiF">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="9BK-Vq-TiF">
                                                     <rect key="frame" x="62" y="11" width="238" height="95"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -659,7 +657,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NIk-cy-8FF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2425" y="-110"/>
+            <point key="canvasLocation" x="2425" y="-113"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aEK-Wx-sJD">

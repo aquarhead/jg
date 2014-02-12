@@ -15,11 +15,16 @@
 @implementation JGSubmitPageTableViewController
 
 - (IBAction)pay:(id)sender {
-    [self.delegate pay];
+    [self.buttonDelegate pay];
 }
 
 - (IBAction)submit:(id)sender {
-    [self.delegate submit];
+    [self.buttonDelegate submit];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end
