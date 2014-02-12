@@ -34,11 +34,11 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.poolViewController = (JGImagePoolViewController *)((UINavigationController *)self.navigationController).parentViewController;
     self.poolViewController.delegate = self;
     self.book = self.poolViewController.book;
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 
@@ -59,7 +59,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 {
     self.pageTypeControl = [[UISegmentedControl alloc] initWithItems:@[@"图标", @"照片"]];
     self.navigationItem.titleView = self.pageTypeControl;
-    
+
     self.pageTypeControl.frame = CGRectMake(0, 0, 130, 30);
     [self.pageTypeControl addTarget:self action:@selector(pageTypeChanged:) forControlEvents:UIControlEventValueChanged];
 }
@@ -67,7 +67,45 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 #pragma mark - Segue
 
 - (IBAction)submitClicked:(id)sender {
-    [self.poolViewController performSegueWithIdentifier:@"toSubmit" sender:self.poolViewController];
+    NSString *errmsg = nil;
+    NSIndexPath *idxp = nil;
+    // check 20 pages
+    for (int pageIndex=0; pageIndex<20; pageIndex++) {
+        NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%d", pageIndex]];
+        if (!page
+            || !page[@"payload"][@"photo"]
+            || (![page[@"type"] hasPrefix:@"EditPageTypeOne"] && !page[@"payload"][@"photo2"])) {
+            errmsg = @"请选择想打印的照片";
+            idxp = [NSIndexPath indexPathForItem:pageIndex+kJGIndexPhotoPageStart inSection:0];
+            break;
+        }
+    }
+    // check title and author
+    if (![self.book objectForKey:@"author"]
+        || [[self.book objectForKey:@"author"] isEqualToString:@""]) {
+        errmsg = @"请填写作者";
+        idxp = [NSIndexPath indexPathForItem:kJGIndexFlyleafPage inSection:0];
+    }
+    if (![self.book objectForKey:@"title"]
+        || [[self.book objectForKey:@"title"] isEqualToString:@""]) {
+        errmsg = @"请填写相册名";
+        idxp = [NSIndexPath indexPathForItem:kJGIndexFlyleafPage inSection:0];
+    }
+    // check cover_photo
+    if ([[self.book objectForKey:@"cover_type"] hasSuffix:@"Photo"]) {
+        if (![self.book objectForKey:@"cover_photo"]
+            || [[self.book objectForKey:@"cover_photo"] isEqualToString:@""]) {
+            errmsg = @"请设置用于相册封面的照片";
+            idxp = [NSIndexPath indexPathForItem:kJGIndexCoverPage inSection:0];
+        }
+    }
+    if (errmsg) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"相册不完整" message:errmsg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alertView show];
+        [self.pagesCollectionView scrollToItemAtIndexPath:idxp atScrollPosition:0 animated:YES];
+    } else {
+        [self.poolViewController performSegueWithIdentifier:@"toSubmit" sender:self.poolViewController];
+    }
 }
 
 #pragma mark - Keyboard related
@@ -75,14 +113,14 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 - (void)keyboardWillShow:(NSNotification *)notification
 {
     NSDictionary *userInfo = notification.userInfo;
-    
+
     CGFloat keyboardHeightBegin = CGRectGetHeight([userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue]);
     CGFloat keyboardHeightEnd = CGRectGetHeight([userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue]);
     if (keyboardHeightBegin != keyboardHeightEnd) {
         // candidate bar appear / disappear
         return;
     }
-    
+
     NSTimeInterval duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     [UIView animateWithDuration:duration animations:^{
         self.collectionViewYConstraint.constant += (IS_R4 ? 80 : 120);
@@ -93,7 +131,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 - (void)keyboardWillHide:(NSNotification *)notification
 {
     NSDictionary *userInfo = notification.userInfo;
-    
+
     NSTimeInterval duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     [UIView animateWithDuration:duration animations:^{
         self.collectionViewYConstraint.constant -= (IS_R4 ? 80 : 120);
@@ -131,7 +169,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
-    
+
     if ([self pageIndex] == kJGIndexFlyleafPage) {
         [cell.mainView.titleTextField resignFirstResponder];
         [cell.mainView.authorTextField resignFirstResponder];
@@ -173,7 +211,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     }
     else {
         NSString *type = (sender.selectedSegmentIndex == 0 ? @"EditPageTypeOneLandscape" : @"EditPageTypeTwoLandscape");
-        NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
+        NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
         if (page) {
             if ([page[@"type"] hasPrefix:@"EditPageTypeTwo"] || [page[@"type"] hasPrefix:@"EditPageTypeMixed"]) {
                 // drop photo2
@@ -183,32 +221,32 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                 }
                 NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:page[@"payload"]];
                 newpayload[@"photo2"] = @"";
-                [self.book setObject:@{@"payload": newpayload, @"type": type} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
+                [self.book setObject:@{@"payload": newpayload, @"type": type} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
             } else {
-                [self.book setObject:@{@"payload": page[@"payload"], @"type": type} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
+                [self.book setObject:@{@"payload": page[@"payload"], @"type": type} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
             }
         }
         else {
-            [self.book setObject:@{@"payload": @{}, @"type": type} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
+            [self.book setObject:@{@"payload": @{}, @"type": type} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
         }
     }
-    
+
     [self.pagesCollectionView reloadData];
 }
 
 - (void)setupCell:(JGEditPageCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger pageIndex = indexPath.item;
-    
+
     if (pageIndex == kJGIndexCoverPage) {
         [self.pageTypeControl setTitle:@"图标" forSegmentAtIndex:0];
         [self.pageTypeControl setTitle:@"照片" forSegmentAtIndex:1];
-        
+
         if ([[self.book objectForKey:@"cover_type"] isEqualToString:@"EditPageCoverTypePhoto"]) {
             self.pageTypeControl.selectedSegmentIndex = 1;
-            
+
             [cell useMainViewNamed:@"EditPageCoverTypePhoto" withGestureRecognizers:self.tapRecogs];
-            
+
             if ([self.book objectForKey:@"cover_photo"]) {
                 ALAsset *p = [self.poolViewController photoWithQuery:[self.book objectForKey:@"cover_photo"]];
                 [cell.mainView fillNth:1 withPhoto:p];
@@ -216,13 +254,13 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         }
         else {
             self.pageTypeControl.selectedSegmentIndex = 0;
-            
+
             [cell useMainViewNamed:@"EditPageCoverTypeLogo" withGestureRecognizers:self.tapRecogs];
         }
     }
     else if (pageIndex == kJGIndexFlyleafPage) {
         self.pageTypeControl.hidden = YES;
-        
+
         [cell useMainViewNamed:@"EditPageTitle" withGestureRecognizers:self.tapRecogs];
         cell.mainView.delegate = self;
         if ([self.book objectForKey:@"title"]) {
@@ -234,17 +272,17 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     }
     else if (pageIndex == kJGIndexBackcoverPage) {
         self.pageTypeControl.hidden = YES;
-        
+
         [cell useMainViewNamed:@"EditPageBackCover" withGestureRecognizers:self.tapRecogs];
     }
     else {
         [self.pageTypeControl setTitle:@"单图" forSegmentAtIndex:0];
         [self.pageTypeControl setTitle:@"双图" forSegmentAtIndex:1];
-        
-        NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
+
+        NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
         if (!page) {
             page = @{@"payload": @{}, @"type": @"EditPageTypeOneLandscape"};
-            [self.book setObject:page forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
+            [self.book setObject:page forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
         }
 
         if ([page[@"type"] hasPrefix:@"EditPageTypeOne"]) {
@@ -321,13 +359,13 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     if (sender.state == UIGestureRecognizerStateEnded) {
         JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
         NSInteger pageIndex = [self pageIndex];
-        NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
+        NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
         if ([page[@"type"] hasPrefix:@"EditPageTypeOne"]) {
             ALAsset *p = [self.poolViewController photoWithQuery:page[@"payload"][@"photo"]];
             if (p) {
                 [self.poolViewController dropPhoto:p];
             }
-            [self.book setObject:@{@"payload": @{@"photo": @""}, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
+            [self.book setObject:@{@"payload": @{@"photo": @""}, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
         } else {
             if ([sender.view isEqual:cell.mainView.imageView1]) {
                 // drop p1
@@ -337,7 +375,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                 }
                 NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:page[@"payload"]];
                 newpayload[@"photo"] = @"";
-                [self.book setObject:@{@"payload": newpayload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
+                [self.book setObject:@{@"payload": newpayload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
             } else {
                 // drop p2
                 ALAsset *p = [self.poolViewController photoWithQuery:page[@"payload"][@"photo2"]];
@@ -346,7 +384,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                 }
                 NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:page[@"payload"]];
                 newpayload[@"photo2"] = @"";
-                [self.book setObject:@{@"payload": newpayload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
+                [self.book setObject:@{@"payload": newpayload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
             }
         }
         [self.pagesCollectionView reloadData];
@@ -366,7 +404,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger pageIndex = indexPath.item;
-    
+
     if (pageIndex == kJGIndexFlyleafPage) {
         self.pageTypeControl.hidden = NO;
     }
@@ -384,12 +422,12 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     if (pageIndex == kJGIndexCoverPage) {
         if (self.pageTypeControl.selectedSegmentIndex == 1) {
             [cell.mainView fillNth:1 withPhoto:p];
-            
+
             [self.book setObject:[p.defaultRepresentation.url query] forKey:@"cover_photo"];
         }
     }
     else if (pageIndex >= kJGIndexPhotoPageStart) {
-        NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]];
+        NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
 
         if ([page[@"type"] hasPrefix:@"EditPageTypeOne"]) {
             if (page[@"payload"][@"photo"] && ![page[@"payload"][@"photo"] isEqualToString:@""]) {
@@ -398,7 +436,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
             } else {
                 [self.poolViewController usePhoto:p];
                 NSDictionary *newpayload = @{@"photo": [p.defaultRepresentation.url query]};
-                [self.book setObject:@{@"payload": newpayload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]
+                [self.book setObject:@{@"payload": newpayload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]
                  ];
             }
         } else {
@@ -413,14 +451,14 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                 [self.poolViewController usePhoto:p];
                 NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:page[@"payload"]];
                 newpayload[@"photo2"] = [p.defaultRepresentation.url query];
-                [self.book setObject:@{@"payload": newpayload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]
+                [self.book setObject:@{@"payload": newpayload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]
                  ];
             } else {
                 // no photo or has p2, set p1
                 [self.poolViewController usePhoto:p];
                 NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:page[@"payload"]];
                 newpayload[@"photo"] = [p.defaultRepresentation.url query];
-                [self.book setObject:@{@"payload": newpayload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-2]
+                [self.book setObject:@{@"payload": newpayload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]
                  ];
             }
         }
