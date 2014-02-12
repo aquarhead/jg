@@ -426,7 +426,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
             [self.book setObject:[p.defaultRepresentation.url query] forKey:@"cover_photo"];
         }
     }
-    else if (pageIndex >= kJGIndexPhotoPageStart) {
+    else if (pageIndex >= kJGIndexPhotoPageStart && pageIndex < kJGIndexBackcoverPage) {
         NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
 
         if ([page[@"type"] hasPrefix:@"EditPageTypeOne"]) {
