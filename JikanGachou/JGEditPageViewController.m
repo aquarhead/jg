@@ -178,7 +178,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-//    self.pageControl.currentPage = self.categoryView.contentOffset.x / kCategoryPageWidth;
+    [self.pagesCollectionView reloadData];
 }
 
 #pragma mark - Collection View
