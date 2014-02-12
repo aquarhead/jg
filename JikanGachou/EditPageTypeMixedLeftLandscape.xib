@@ -10,6 +10,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Va0-hr-zNm">
+                    <rect key="frame" x="10" y="0.0" width="300" height="300"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="lzv-bw-Vsj">
                     <rect key="frame" x="31" y="44" width="143" height="103"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -82,7 +87,6 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="lzv-bw-Vsj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="44" id="0KU-5p-DOA"/>
                 <constraint firstItem="zCn-Zm-6Iu" firstAttribute="top" secondItem="XUN-7Y-bd2" secondAttribute="bottom" constant="12" id="0tf-Ga-dCK"/>
