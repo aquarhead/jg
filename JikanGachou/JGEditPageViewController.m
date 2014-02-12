@@ -67,6 +67,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 #pragma mark - Segue
 
 - (IBAction)submitClicked:(id)sender {
+#ifndef DEBUG
     NSString *errmsg = nil;
     NSIndexPath *idxp = nil;
     // check 20 pages
@@ -106,6 +107,9 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     } else {
         [self.poolViewController performSegueWithIdentifier:@"toSubmit" sender:self.poolViewController];
     }
+#else
+    [self.poolViewController performSegueWithIdentifier:@"toSubmit" sender:self.poolViewController];
+#endif
 }
 
 #pragma mark - Keyboard related

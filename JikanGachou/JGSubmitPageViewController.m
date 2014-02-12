@@ -19,8 +19,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *paymentButton;
 
 @property (weak, nonatomic) IBOutlet YLProgressBar *progressBar;
+@property (weak, nonatomic) IBOutlet UILabel *totalSizeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (weak, nonatomic) NSFNanoObject *book;
+
+@property (nonatomic) AFHTTPRequestOperationManager *jgServerManager;
 
 @property (nonatomic) NSUInteger finished;
 
@@ -35,13 +38,19 @@
     self.book = self.poolViewController.book;
 
     self.progressBar.type = YLProgressBarTypeFlat;
-    self.progressBar.indicatorTextDisplayMode = YLProgressBarIndicatorTextDisplayModeProgress;
+    self.progressBar.indicatorTextDisplayMode = YLProgressBarIndicatorTextDisplayModeNone;
     self.progressBar.behavior = YLProgressBarBehaviorDefault;
     self.progressBar.hideStripes = YES;
-    self.progressBar.progressTintColor = [UIColor colorWithRed:232/255.0f green:132/255.0f blue:12/255.0f alpha:1.0f];
-    self.finished = 0;
+    self.progressBar.progressTintColor = [UIColor colorWithRed:235/255.0f green:180/255.0f blue:113/255.0f alpha:1.0f];
 
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    self.jgServerManager = [AFHTTPRequestOperationManager manager];
+
+    unsigned long long totalsize = 0;
+    for (ALAsset *p in self.photos) {
+        totalsize += p.defaultRepresentation.size;
+    }
+    self.totalSizeLabel.text = [NSString stringWithFormat:@"%lld bytes", totalsize];
 }
 
 - (IBAction)createPayment:(id)sender {
@@ -49,10 +58,9 @@
     [self.recpField resignFirstResponder];
     [self.phoneField resignFirstResponder];
     [self.addressTextview resignFirstResponder];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"info": self.book.info, @"recp": self.recpField.text, @"phone": self.phoneField.text, @"address": self.addressTextview.text};
     NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/", self.book.key];
-    [manager POST:addr parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.jgServerManager POST:addr parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
         self.paymentButton.enabled = YES;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -76,9 +84,8 @@
 - (void)checkStatus
 {
     self.submitButton.enabled = NO;
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/", self.book.key];
-    [manager GET:addr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.jgServerManager GET:addr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([responseObject[@"status"] isEqualToString:@"toupload"]) {
             [self doSubmit];
         } else if ([responseObject[@"status"] isEqualToString:@"topay"]) {
@@ -100,6 +107,8 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.operationQueue.maxConcurrentOperationCount = 1;
+    self.finished = 0;
+    [self.progressBar setProgress:0 animated:YES];
 
     for (ALAsset *p in self.photos) {
         ALAssetRepresentation *rep = p.defaultRepresentation;
@@ -130,9 +139,8 @@
     self.finished += 1;
     [self.progressBar setProgress:(1.0*self.finished / self.photos.count) animated:YES];
     if (self.finished == self.photos.count) {
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/uploaded/", self.book.key];
-        [manager GET:addr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self.jgServerManager GET:addr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
             if ([responseObject[@"status"] isEqualToString:@"toprint"]) {
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"照片上传完成" message:@"我们会立刻付印您的相册" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [alertView show];
