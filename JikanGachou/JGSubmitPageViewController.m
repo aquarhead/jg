@@ -7,24 +7,20 @@
 //
 
 #import "JGSubmitPageViewController.h"
+#import "JGSubmitPageTableViewController.h"
 #import <AFNetworking.h>
 #import <NSString+MD5.h>
 #import <YLProgressBar.h>
 
 @interface JGSubmitPageViewController () <UIAlertViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *recpField;
-@property (weak, nonatomic) IBOutlet UITextField *phoneField;
-@property (weak, nonatomic) IBOutlet UITextView *addressTextview;
-@property (weak, nonatomic) IBOutlet UIButton *paymentButton;
-
 @property (weak, nonatomic) IBOutlet YLProgressBar *progressBar;
-@property (weak, nonatomic) IBOutlet UILabel *totalSizeLabel;
-@property (weak, nonatomic) IBOutlet UIButton *submitButton;
+@property (weak, nonatomic) IBOutlet UIView *containerView;
+@property (nonatomic) JGSubmitPageTableViewController *staticTableVC;
+
 @property (weak, nonatomic) NSFNanoObject *book;
 
 @property (nonatomic) AFHTTPRequestOperationManager *jgServerManager;
-
 @property (nonatomic) NSUInteger finished;
 
 @end
@@ -42,6 +38,7 @@
     self.progressBar.behavior = YLProgressBarBehaviorDefault;
     self.progressBar.hideStripes = YES;
     self.progressBar.progressTintColor = [UIColor colorWithRed:235/255.0f green:180/255.0f blue:113/255.0f alpha:1.0f];
+    // color from http://nipponcolors.com/#usukoh
 
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     self.jgServerManager = [AFHTTPRequestOperationManager manager];
@@ -50,22 +47,29 @@
     for (ALAsset *p in self.photos) {
         totalsize += p.defaultRepresentation.size;
     }
-    self.totalSizeLabel.text = [NSString stringWithFormat:@"%lld bytes", totalsize];
+    self.staticTableVC.totalSizeLabel.text = [NSString stringWithFormat:@"%lld bytes", totalsize];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"embed"]) {
+        self.staticTableVC = segue.destinationViewController;
+    }
 }
 
 - (IBAction)createPayment:(id)sender {
-    self.paymentButton.enabled = NO;
-    [self.recpField resignFirstResponder];
-    [self.phoneField resignFirstResponder];
-    [self.addressTextview resignFirstResponder];
-    NSDictionary *parameters = @{@"info": self.book.info, @"recp": self.recpField.text, @"phone": self.phoneField.text, @"address": self.addressTextview.text};
+    self.staticTableVC.paymentButton.enabled = NO;
+    [self.staticTableVC.recpField resignFirstResponder];
+    [self.staticTableVC.phoneField resignFirstResponder];
+    [self.staticTableVC.addressTextview resignFirstResponder];
+    NSDictionary *parameters = @{@"info": self.book.info, @"recp": self.staticTableVC.recpField.text, @"phone": self.staticTableVC.phoneField.text, @"address": self.staticTableVC.addressTextview.text};
     NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/", self.book.key];
     [self.jgServerManager POST:addr parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
-        self.paymentButton.enabled = YES;
+        self.staticTableVC.paymentButton.enabled = YES;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
-        self.paymentButton.enabled = YES;
+        self.staticTableVC.paymentButton.enabled = YES;
     }];
 }
 
@@ -83,7 +87,7 @@
 
 - (void)checkStatus
 {
-    self.submitButton.enabled = NO;
+    self.staticTableVC.submitButton.enabled = NO;
     NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/", self.book.key];
     [self.jgServerManager GET:addr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([responseObject[@"status"] isEqualToString:@"toupload"]) {
@@ -91,14 +95,14 @@
         } else if ([responseObject[@"status"] isEqualToString:@"topay"]) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"您还未付款" message:@"请先付款，如有其他问题请联系客服" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alertView show];
-            self.submitButton.enabled = YES;
+            self.staticTableVC.submitButton.enabled = YES;
         } else {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"照片已上传过" message:@"如有其他问题请联系客服" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alertView show];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
-        self.submitButton.enabled = YES;
+        self.staticTableVC.submitButton.enabled = YES;
     }];
 }
 
@@ -129,7 +133,7 @@
             [self finishOne];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error: %@", error);
-            self.submitButton.enabled = YES;
+            self.staticTableVC.submitButton.enabled = YES;
         }];
     }
 }
@@ -147,7 +151,7 @@
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error: %@", error);
-            self.submitButton.enabled = YES;
+            self.staticTableVC.submitButton.enabled = YES;
         }];
     }
 }
