@@ -15,21 +15,21 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="2Nb-WY-WzJ">
-                            <rect key="frame" x="20" y="48" width="260" height="166"/>
+                            <rect key="frame" x="30" y="44" width="240" height="180"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="166" id="45E-HL-3f9"/>
+                                <constraint firstAttribute="height" constant="180" id="45E-HL-3f9"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2011" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbI-Np-kpj">
-                            <rect key="frame" x="62" y="235" width="39" height="21"/>
+                            <rect key="frame" x="72" y="246" width="39" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SPE-G2-p38">
-                            <rect key="frame" x="20" y="221" width="39" height="31"/>
+                            <rect key="frame" x="30" y="232" width="39" height="31"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="31" id="qZl-jH-v5N"/>
@@ -39,7 +39,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jul" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EeG-DP-Pzy">
-                            <rect key="frame" x="62" y="220" width="39" height="21"/>
+                            <rect key="frame" x="72" y="231" width="39" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="39" id="C1t-cE-9kz"/>
@@ -51,19 +51,19 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="EeG-DP-Pzy" firstAttribute="top" secondItem="2Nb-WY-WzJ" secondAttribute="bottom" constant="6" id="7hi-zv-xq1"/>
+                        <constraint firstItem="EeG-DP-Pzy" firstAttribute="top" secondItem="2Nb-WY-WzJ" secondAttribute="bottom" constant="7" id="7hi-zv-xq1"/>
                         <constraint firstItem="EeG-DP-Pzy" firstAttribute="leading" secondItem="SPE-G2-p38" secondAttribute="trailing" constant="3" id="7nM-eR-SiI"/>
-                        <constraint firstAttribute="bottom" secondItem="dbI-Np-kpj" secondAttribute="bottom" constant="44" id="Jlk-kq-u2i"/>
-                        <constraint firstAttribute="trailing" secondItem="2Nb-WY-WzJ" secondAttribute="trailing" constant="20" id="NGF-Wx-hU9"/>
-                        <constraint firstItem="2Nb-WY-WzJ" firstAttribute="top" secondItem="r7e-0n-6c1" secondAttribute="top" constant="48" id="Quf-rG-Tmz"/>
+                        <constraint firstAttribute="bottom" secondItem="dbI-Np-kpj" secondAttribute="bottom" constant="33" id="Jlk-kq-u2i"/>
+                        <constraint firstAttribute="trailing" secondItem="2Nb-WY-WzJ" secondAttribute="trailing" constant="30" id="NGF-Wx-hU9"/>
+                        <constraint firstItem="2Nb-WY-WzJ" firstAttribute="top" secondItem="r7e-0n-6c1" secondAttribute="top" constant="44" id="Quf-rG-Tmz"/>
                         <constraint firstItem="dbI-Np-kpj" firstAttribute="trailing" secondItem="EeG-DP-Pzy" secondAttribute="trailing" id="TA6-ca-kvI"/>
                         <constraint firstItem="dbI-Np-kpj" firstAttribute="leading" secondItem="SPE-G2-p38" secondAttribute="trailing" constant="3" id="TWh-oE-2ar"/>
-                        <constraint firstItem="SPE-G2-p38" firstAttribute="top" secondItem="r7e-0n-6c1" secondAttribute="top" constant="221" id="UOQ-1I-15S"/>
-                        <constraint firstItem="dbI-Np-kpj" firstAttribute="top" secondItem="2Nb-WY-WzJ" secondAttribute="bottom" constant="21" id="Y5f-s5-T28"/>
-                        <constraint firstItem="SPE-G2-p38" firstAttribute="leading" secondItem="r7e-0n-6c1" secondAttribute="leading" constant="20" symbolic="YES" id="cdK-9T-19y"/>
-                        <constraint firstItem="2Nb-WY-WzJ" firstAttribute="leading" secondItem="r7e-0n-6c1" secondAttribute="leading" constant="20" id="cfv-Ld-one"/>
-                        <constraint firstAttribute="bottom" secondItem="SPE-G2-p38" secondAttribute="bottom" constant="48" id="dRD-oJ-7NH"/>
-                        <constraint firstAttribute="bottom" secondItem="EeG-DP-Pzy" secondAttribute="bottom" constant="59" id="eXH-D2-ds8"/>
+                        <constraint firstItem="SPE-G2-p38" firstAttribute="top" secondItem="r7e-0n-6c1" secondAttribute="top" constant="232" id="UOQ-1I-15S"/>
+                        <constraint firstItem="dbI-Np-kpj" firstAttribute="top" secondItem="2Nb-WY-WzJ" secondAttribute="bottom" constant="22" id="Y5f-s5-T28"/>
+                        <constraint firstItem="SPE-G2-p38" firstAttribute="leading" secondItem="r7e-0n-6c1" secondAttribute="leading" constant="30" id="cdK-9T-19y"/>
+                        <constraint firstItem="2Nb-WY-WzJ" firstAttribute="leading" secondItem="r7e-0n-6c1" secondAttribute="leading" constant="30" id="cfv-Ld-one"/>
+                        <constraint firstAttribute="bottom" secondItem="SPE-G2-p38" secondAttribute="bottom" constant="37" id="dRD-oJ-7NH"/>
+                        <constraint firstAttribute="bottom" secondItem="EeG-DP-Pzy" secondAttribute="bottom" constant="48" id="eXH-D2-ds8"/>
                     </constraints>
                 </view>
             </subviews>
