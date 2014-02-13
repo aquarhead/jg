@@ -56,6 +56,7 @@
 
 - (void)pay
 {
+    // TODO: add reachability check
     [self.staticTableVC.recpField resignFirstResponder];
     [self.staticTableVC.phoneField resignFirstResponder];
     [self.staticTableVC.addressTextview resignFirstResponder];
@@ -76,8 +77,11 @@
         NSDictionary *parameters = @{@"info": self.book.info, @"recp": self.staticTableVC.recpField.text, @"phone": self.staticTableVC.phoneField.text, @"address": self.staticTableVC.addressTextview.text};
         NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/", self.book.key];
         [self.jgServerManager POST:addr parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"JSON: %@", responseObject);
             self.staticTableVC.paymentButton.enabled = YES;
+            if ([responseObject[@"status"] isEqualToString:@"done"]) {
+                NSURL *url = [NSURL URLWithString:[responseObject[@"url"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                [[UIApplication sharedApplication] openURL:url];
+            }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error: %@", error);
             self.staticTableVC.paymentButton.enabled = YES;
