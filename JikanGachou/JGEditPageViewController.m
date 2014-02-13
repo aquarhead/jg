@@ -57,8 +57,9 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.pageTypeControl = [[UISegmentedControl alloc] initWithItems:@[@"图标", @"照片"]];
+    self.pageTypeControl = [[UISegmentedControl alloc] initWithItems:@[@"", @""]];
     self.navigationItem.titleView = self.pageTypeControl;
+    [self reloadSegmentedControl];
 
     self.pageTypeControl.frame = CGRectMake(0, 0, 130, 30);
     [self.pageTypeControl addTarget:self action:@selector(pageTypeChanged:) forControlEvents:UIControlEventValueChanged];
@@ -175,7 +176,43 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    [self.pagesCollectionView reloadData];
+    [self reloadSegmentedControl];
+}
+
+- (void)reloadSegmentedControl
+{
+    NSUInteger pageIndex = [self pageIndex];
+    if (pageIndex == kJGIndexCoverPage) {
+        self.pageTypeControl.hidden = NO;
+        [self.pageTypeControl setTitle:@"图标" forSegmentAtIndex:0];
+        [self.pageTypeControl setTitle:@"照片" forSegmentAtIndex:1];
+        
+        if ([[self.book objectForKey:@"cover_type"] isEqualToString:@"EditPageCoverTypePhoto"]) {
+            self.pageTypeControl.selectedSegmentIndex = 1;
+        }
+        else {
+            self.pageTypeControl.selectedSegmentIndex = 0;
+        }
+    }
+    else if (pageIndex == kJGIndexFlyleafPage) {
+        self.pageTypeControl.hidden = YES;
+    }
+    else if (pageIndex == kJGIndexBackcoverPage) {
+        self.pageTypeControl.hidden = YES;
+    }
+    else {
+        self.pageTypeControl.hidden = NO;
+        [self.pageTypeControl setTitle:@"单图" forSegmentAtIndex:0];
+        [self.pageTypeControl setTitle:@"双图" forSegmentAtIndex:1];
+        
+        NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
+        if ([page[@"type"] hasPrefix:@"EditPageTypeOne"]) {
+            self.pageTypeControl.selectedSegmentIndex = 0;
+        }
+        else {
+            self.pageTypeControl.selectedSegmentIndex = 1;
+        }
+    }
 }
 
 #pragma mark - Collection View
@@ -236,12 +273,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     NSInteger pageIndex = indexPath.item;
 
     if (pageIndex == kJGIndexCoverPage) {
-        [self.pageTypeControl setTitle:@"图标" forSegmentAtIndex:0];
-        [self.pageTypeControl setTitle:@"照片" forSegmentAtIndex:1];
-
         if ([[self.book objectForKey:@"cover_type"] isEqualToString:@"EditPageCoverTypePhoto"]) {
-            self.pageTypeControl.selectedSegmentIndex = 1;
-
             [cell useMainViewNamed:@"EditPageCoverTypePhoto" withGestureRecognizers:self.tapRecogs];
 
             if ([self.book objectForKey:@"cover_photo"]) {
@@ -250,14 +282,10 @@ static const NSInteger kJGIndexBackcoverPage = 22;
             }
         }
         else {
-            self.pageTypeControl.selectedSegmentIndex = 0;
-
             [cell useMainViewNamed:@"EditPageCoverTypeLogo" withGestureRecognizers:self.tapRecogs];
         }
     }
     else if (pageIndex == kJGIndexFlyleafPage) {
-        self.pageTypeControl.hidden = YES;
-
         [cell useMainViewNamed:@"EditPageTitle" withGestureRecognizers:self.tapRecogs];
         cell.mainView.delegate = self;
         if ([self.book objectForKey:@"title"]) {
@@ -268,14 +296,9 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         }
     }
     else if (pageIndex == kJGIndexBackcoverPage) {
-        self.pageTypeControl.hidden = YES;
-
         [cell useMainViewNamed:@"EditPageBackCover" withGestureRecognizers:self.tapRecogs];
     }
     else {
-        [self.pageTypeControl setTitle:@"单图" forSegmentAtIndex:0];
-        [self.pageTypeControl setTitle:@"双图" forSegmentAtIndex:1];
-
         NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
         if (!page) {
             page = @{@"payload": @{}, @"type": @"EditPageTypeOneLandscape"};
@@ -283,7 +306,6 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         }
 
         if ([page[@"type"] hasPrefix:@"EditPageTypeOne"]) {
-            self.pageTypeControl.selectedSegmentIndex = 0;
             ALAsset *p = [self.poolViewController photoWithQuery:page[@"payload"][@"photo"]];
             if (p) {
                 UIImage *img = [UIImage imageWithCGImage:p.defaultRepresentation.fullScreenImage];
@@ -304,7 +326,6 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         }
         else {
             // two photos
-            self.pageTypeControl.selectedSegmentIndex = 1;
             ALAsset *p1 = [self.poolViewController photoWithQuery:page[@"payload"][@"photo"]];
             ALAsset *p2 = [self.poolViewController photoWithQuery:page[@"payload"][@"photo2"]];
             bool p1_landscape = NO, p2_landscape = NO;
@@ -398,13 +419,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSInteger pageIndex = indexPath.item;
-    if (pageIndex == kJGIndexFlyleafPage) {
-        self.pageTypeControl.hidden = NO;
-    }
-    else if (pageIndex == kJGIndexBackcoverPage) {
-        self.pageTypeControl.hidden = NO;
-    }
+    [self reloadSegmentedControl];
 }
 
 #pragma mark - poolView delegate
