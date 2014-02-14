@@ -14,6 +14,7 @@
 
 - (void)pay;
 - (void)submit;
+- (void)back;
 
 @end
 
@@ -26,6 +27,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalSizeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
-@property (weak, nonatomic) id <JGSubmitPageTableDelegate> buttonDelegate;
+@property (weak, nonatomic) id <JGSubmitPageTableDelegate> actionDelegate;
 
 @end

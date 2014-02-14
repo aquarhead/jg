@@ -14,16 +14,21 @@
 
 @implementation JGSubmitPageTableViewController
 
-- (IBAction)pay:(id)sender {
-    [self.buttonDelegate pay];
-}
-
-- (IBAction)submit:(id)sender {
-    [self.buttonDelegate submit];
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == 0) {
+        [self.recpField becomeFirstResponder];
+    } else if (indexPath.row == 1) {
+        [self.phoneField becomeFirstResponder];
+    } else if (indexPath.row == 2) {
+        [self.addressTextview becomeFirstResponder];
+    } else if (indexPath.row == 3) {
+        [self.actionDelegate pay];
+    } else if (indexPath.row == 5) {
+        [self.actionDelegate submit];
+    } else if (indexPath.row == 6) {
+        [self.actionDelegate back];
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

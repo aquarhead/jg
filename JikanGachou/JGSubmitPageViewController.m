@@ -47,8 +47,6 @@
         }];
     }
 
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-
     self.progressBar.trackTintColor = [UIColor whiteColor];
     self.progressBar.progressTintColor = [UIColor colorWithRed:125/255.0f green:185/255.0f blue:222/255.0f alpha:1.0f];
     // color from http://nipponcolors.com/#wasurenagusa
@@ -57,11 +55,23 @@
     self.jgServerManager = [AFHTTPRequestOperationManager manager];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    [super viewWillDisappear:animated];
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"embed"]) {
         self.staticTableVC = segue.destinationViewController;
-        self.staticTableVC.buttonDelegate = self;
+        self.staticTableVC.actionDelegate = self;
     }
 }
 
@@ -195,6 +205,11 @@
             self.staticTableVC.submitButton.enabled = YES;
         }];
     }
+}
+
+- (void)back
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
