@@ -168,7 +168,7 @@ const NSUInteger kJGPoolMostPhotos  = 40;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"toSubmit"]) {
-        JGSubmitPageViewController *vc = segue.destinationViewController;
+        JGSubmitPageViewController *vc = (JGSubmitPageViewController *)((UINavigationController *)segue.destinationViewController).topViewController;
         vc.book = [self.book copy];
         NyaruDB *db = [NyaruDB instance];
         NyaruCollection *collection = [db collection:@"books"];

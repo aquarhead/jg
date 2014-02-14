@@ -7,22 +7,26 @@
 //
 
 #import "JGSubmitPageViewController.h"
-#import "JGSubmitPageTableViewController.h"
 #import <AFNetworking.h>
 #import <NSString+MD5.h>
 
-@interface JGSubmitPageViewController () <UIAlertViewDelegate, JGSubmitPageTableDelegate>
+@interface JGSubmitPageViewController () <UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UITextViewDelegate>
 
 @property (nonatomic) NSArray *photo_urls;
 @property (nonatomic) NSArray *photos;
 @property (nonatomic) ALAssetsLibrary *lib;
 
-@property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
-@property (weak, nonatomic) IBOutlet UIView *containerView;
-@property (nonatomic) JGSubmitPageTableViewController *staticTableVC;
-
 @property (nonatomic) AFHTTPRequestOperationManager *jgServerManager;
 @property (nonatomic) NSUInteger finished;
+
+@property (weak, nonatomic) IBOutlet UITextField *nameField;
+@property (weak, nonatomic) IBOutlet UITextField *phoneField;
+@property (weak, nonatomic) IBOutlet UITextView *addressTextView;
+@property (weak, nonatomic) IBOutlet UITextField *addressPlaceholder;
+
+@property (weak, nonatomic) IBOutlet UITableViewCell *payCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *sizeCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *uploadCell;
 
 @end
 
@@ -56,7 +60,7 @@
             [photos addObject:asset];
             self.photos = [photos copy];
             if (self.photos.count == self.photo_urls.count) {
-                [self setTotalSize];
+                [self updateTotalSize];
             }
         } failureBlock:^(NSError *error) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"无法获取图片" message:@"请联系客服" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -64,10 +68,6 @@
             [self dismissViewControllerAnimated:YES completion:nil];
         }];
     }
-
-    self.progressBar.trackTintColor = [UIColor whiteColor];
-    self.progressBar.progressTintColor = [UIColor colorWithRed:125/255.0f green:185/255.0f blue:222/255.0f alpha:1.0f];
-    // color from http://nipponcolors.com/#wasurenagusa
 
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     self.jgServerManager = [AFHTTPRequestOperationManager manager];
@@ -85,55 +85,99 @@
     [super viewWillDisappear:animated];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (IBAction)backPressed:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"embed"]) {
-        self.staticTableVC = segue.destinationViewController;
-        self.staticTableVC.actionDelegate = self;
-    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)setTotalSize
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    
+    if (cell == self.payCell) {
+        [self pay];
+    }
+    else if (cell == self.uploadCell) {
+        [self submit];
+    }
+    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField == self.nameField) {
+        [self.phoneField becomeFirstResponder];
+    }
+    else if (textField == self.phoneField) {
+        [self.addressTextView becomeFirstResponder];
+    }
+    
+    return YES;
+}
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    self.addressPlaceholder.hidden = (textView.text.length > 0);
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
+- (void)updateTotalSize
 {
     long long totalsize = 0;
     for (ALAsset *p in self.photos) {
         totalsize += p.defaultRepresentation.size;
     }
-    self.staticTableVC.totalSizeLabel.text = [NSByteCountFormatter stringFromByteCount:totalsize countStyle:NSByteCountFormatterCountStyleBinary];
+    self.sizeCell.detailTextLabel.text = [NSByteCountFormatter stringFromByteCount:totalsize countStyle:NSByteCountFormatterCountStyleBinary];
 }
 
 - (void)pay
 {
-    [self.staticTableVC.recpField resignFirstResponder];
-    [self.staticTableVC.phoneField resignFirstResponder];
-    [self.staticTableVC.addressTextview resignFirstResponder];
-    if ([self.staticTableVC.recpField.text isEqualToString:@""]) {
+    [self.nameField resignFirstResponder];
+    [self.phoneField resignFirstResponder];
+    [self.addressTextView resignFirstResponder];
+    
+    if ([self.nameField.text isEqualToString:@""]) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"收件人信息不完整" message:@"请填写姓名" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alertView show];
-        [self.staticTableVC.recpField becomeFirstResponder];
-    } else if ([self.staticTableVC.phoneField.text isEqualToString:@""]) {
+        [self.nameField becomeFirstResponder];
+    }
+    else if ([self.phoneField.text isEqualToString:@""]) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"收件人信息不完整" message:@"请填写可用的手机号码" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alertView show];
-        [self.staticTableVC.phoneField becomeFirstResponder];
-    } else if ([self.staticTableVC.addressTextview.text isEqualToString:@""]) {
+        [self.phoneField becomeFirstResponder];
+    }
+    else if ([self.addressTextView.text isEqualToString:@""]) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"收件人信息不完整" message:@"请填写完整的地址" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alertView show];
-        [self.staticTableVC.addressTextview becomeFirstResponder];
-    } else {
+        [self.addressTextView becomeFirstResponder];
+    }
+    else {
         if ([AFNetworkReachabilityManager sharedManager].reachable) {
-            self.staticTableVC.paymentButton.enabled = NO;
+            self.payCell.userInteractionEnabled = NO;
             NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self.book options:0 error:nil];
-            NSDictionary *parameters = @{@"info": [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding], @"recp": self.staticTableVC.recpField.text, @"phone": self.staticTableVC.phoneField.text, @"address": self.staticTableVC.addressTextview.text};
+            NSDictionary *parameters = @{@"info": [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding],
+                                         @"recp": self.nameField.text,
+                                         @"phone": self.phoneField.text,
+                                         @"address": self.addressTextView.text};
             NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/", self.book[@"key"]];
             [self.jgServerManager POST:addr parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                self.staticTableVC.paymentButton.enabled = YES;
+                self.payCell.userInteractionEnabled = YES;
                 if ([responseObject[@"status"] isEqualToString:@"done"]) {
                     NSURL *url = [NSURL URLWithString:[responseObject[@"url"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
                     [[UIApplication sharedApplication] openURL:url];
                 }
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 NSLog(@"Error: %@", error);
-                self.staticTableVC.paymentButton.enabled = YES;
+                self.payCell.userInteractionEnabled = YES;
             }];
         } else {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"没有网络连接" message:@"请连接网络以上传照片" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -157,22 +201,24 @@
 
 - (void)checkStatus
 {
-    self.staticTableVC.submitButton.enabled = NO;
+    self.uploadCell.userInteractionEnabled = NO;
     NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/", self.book[@"key"]];
     [self.jgServerManager GET:addr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([responseObject[@"status"] isEqualToString:@"toupload"]) {
             [self uploadPhotos];
-        } else if ([responseObject[@"status"] isEqualToString:@"topay"] || [responseObject[@"status"] isEqualToString:@"error"]) {
+        }
+        else if ([responseObject[@"status"] isEqualToString:@"topay"] || [responseObject[@"status"] isEqualToString:@"error"]) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"您还未付款" message:@"请先付款，如有其他问题请联系客服" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alertView show];
-            self.staticTableVC.submitButton.enabled = YES;
-        } else {
+            self.uploadCell.userInteractionEnabled = YES;
+        }
+        else {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"照片已上传过" message:@"如有其他问题请联系客服" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alertView show];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
-        self.staticTableVC.submitButton.enabled = YES;
+        self.uploadCell.userInteractionEnabled = YES;
     }];
 }
 
@@ -182,7 +228,7 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.operationQueue.maxConcurrentOperationCount = 1;
     self.finished = 0;
-    [self.progressBar setProgress:0 animated:YES];
+//    [self.progressBar setProgress:0 animated:YES];
 
     for (ALAsset *p in self.photos) {
         ALAssetRepresentation *rep = p.defaultRepresentation;
@@ -203,7 +249,7 @@
             [self finishOne];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error: %@", error);
-            self.staticTableVC.submitButton.enabled = YES;
+            self.uploadCell.userInteractionEnabled = YES;
         }];
     }
 }
@@ -211,7 +257,7 @@
 - (void)finishOne
 {
     self.finished += 1;
-    [self.progressBar setProgress:(1.0*self.finished / self.photos.count) animated:YES];
+//    [self.progressBar setProgress:(1.0 * self.finished / self.photos.count) animated:YES];
     if (self.finished == self.photos.count) {
         NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/uploaded/", self.book[@"key"]];
         [self.jgServerManager GET:addr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -221,14 +267,9 @@
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error: %@", error);
-            self.staticTableVC.submitButton.enabled = YES;
+            self.uploadCell.userInteractionEnabled = YES;
         }];
     }
-}
-
-- (void)back
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex

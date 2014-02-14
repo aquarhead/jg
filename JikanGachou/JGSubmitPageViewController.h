@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "JGImagePoolViewController.h"
 
-@interface JGSubmitPageViewController : UIViewController
+@interface JGSubmitPageViewController : UITableViewController
 
 @property (nonatomic, strong) NSDictionary *book;
 

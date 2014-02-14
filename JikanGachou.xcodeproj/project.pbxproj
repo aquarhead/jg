@@ -36,7 +36,6 @@
 		4F2FEF1F184B1A4B001A7AFE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F2FEF1D184B1A4B001A7AFE /* InfoPlist.strings */; };
 		4F2FEF21184B1A4B001A7AFE /* JikanGachouTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FEF20184B1A4B001A7AFE /* JikanGachouTests.m */; };
 		4F3CF06C184ED10B00B43634 /* JGStartPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3CF06B184ED10B00B43634 /* JGStartPageViewController.m */; };
-		4F611BC618ABA29F00AEEBF3 /* JGSubmitPageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F611BC518ABA29F00AEEBF3 /* JGSubmitPageTableViewController.m */; };
 		4FBB080F189E25340094B1E4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4FBB080E189E25340094B1E4 /* README.md */; };
 		4FD73EE718518A3C00C9F568 /* JGImageAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD73EE618518A3C00C9F568 /* JGImageAlbumViewController.m */; };
 		4FD73EE91851AEA700C9F568 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FD73EE81851AEA700C9F568 /* AssetsLibrary.framework */; };
@@ -95,8 +94,6 @@
 		4F2FEF20184B1A4B001A7AFE /* JikanGachouTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JikanGachouTests.m; sourceTree = "<group>"; };
 		4F3CF06A184ED10B00B43634 /* JGStartPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGStartPageViewController.h; sourceTree = "<group>"; };
 		4F3CF06B184ED10B00B43634 /* JGStartPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGStartPageViewController.m; sourceTree = "<group>"; };
-		4F611BC418ABA29F00AEEBF3 /* JGSubmitPageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSubmitPageTableViewController.h; sourceTree = "<group>"; };
-		4F611BC518ABA29F00AEEBF3 /* JGSubmitPageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSubmitPageTableViewController.m; sourceTree = "<group>"; };
 		4FBB080E189E25340094B1E4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
 		4FD73EE518518A3C00C9F568 /* JGImageAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGImageAlbumViewController.h; sourceTree = "<group>"; };
 		4FD73EE618518A3C00C9F568 /* JGImageAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGImageAlbumViewController.m; sourceTree = "<group>"; };
@@ -293,8 +290,6 @@
 			children = (
 				4FF482361893655500E26003 /* JGSubmitPageViewController.h */,
 				4FF482371893655500E26003 /* JGSubmitPageViewController.m */,
-				4F611BC418ABA29F00AEEBF3 /* JGSubmitPageTableViewController.h */,
-				4F611BC518ABA29F00AEEBF3 /* JGSubmitPageTableViewController.m */,
 			);
 			name = "Submit Page";
 			sourceTree = "<group>";
@@ -446,7 +441,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F611BC618ABA29F00AEEBF3 /* JGSubmitPageTableViewController.m in Sources */,
 				4F2FEF02184B1A4A001A7AFE /* main.m in Sources */,
 				4FD73EE718518A3C00C9F568 /* JGImageAlbumViewController.m in Sources */,
 				4F3CF06C184ED10B00B43634 /* JGStartPageViewController.m in Sources */,
