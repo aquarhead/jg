@@ -11,7 +11,7 @@
 
 @interface JGSubmitPageViewController : UIViewController
 
-@property (nonatomic) NSArray *photos;
-@property (weak, nonatomic) JGImagePoolViewController *poolViewController;
+@property (nonatomic, strong) NSFNanoObject *book;
+@property (nonatomic) NSArray *photo_urls;
 
 @end

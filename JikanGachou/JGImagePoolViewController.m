@@ -173,9 +173,14 @@ const NSUInteger kJGPoolMostPhotos  = 40;
                 [self usePhoto:[self photoWithQuery:coverPhotoQuery]];
             }
         }
-        vc.photos = [self.usedPhotos copy];
-        vc.poolViewController = self;
+        NSMutableArray *photo_urls = [NSMutableArray new];
+        for (ALAsset *p in self.usedPhotos) {
+            [photo_urls addObject:p.defaultRepresentation.url];
+        }
+        vc.photo_urls = [photo_urls copy];
+        vc.book = [self.book copy];
         [self.store saveStoreAndReturnError:nil];
+        [self.store closeWithError:nil];
     }
 }
 

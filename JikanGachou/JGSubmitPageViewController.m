@@ -13,11 +13,12 @@
 
 @interface JGSubmitPageViewController () <UIAlertViewDelegate, JGSubmitPageTableDelegate>
 
+@property (nonatomic) NSArray *photos;
+@property (nonatomic) ALAssetsLibrary *lib;
+
 @property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (nonatomic) JGSubmitPageTableViewController *staticTableVC;
-
-@property (weak, nonatomic) NSFNanoObject *book;
 
 @property (nonatomic) AFHTTPRequestOperationManager *jgServerManager;
 @property (nonatomic) NSUInteger finished;
@@ -29,8 +30,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.book = self.poolViewController.book;
+
+    self.lib = [ALAssetsLibrary new];
+    NSMutableArray *photos = [NSMutableArray new];
+    for (NSURL *url in self.photo_urls) {
+        [self.lib assetForURL:url resultBlock:^(ALAsset *asset) {
+            [photos addObject:asset];
+            self.photos = [photos copy];
+        } failureBlock:^(NSError *error) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"无法获取图片" message:@"请联系客服" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alertView show];
+        }];
+    }
+
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 
     self.progressBar.trackTintColor = [UIColor whiteColor];
     self.progressBar.progressTintColor = [UIColor colorWithRed:125/255.0f green:185/255.0f blue:222/255.0f alpha:1.0f];
@@ -44,6 +57,8 @@
         totalsize += p.defaultRepresentation.size;
     }
     self.staticTableVC.totalSizeLabel.text = [NSByteCountFormatter stringFromByteCount:totalsize countStyle:NSByteCountFormatterCountStyleBinary];
+
+
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -56,7 +71,6 @@
 
 - (void)pay
 {
-    // TODO: add reachability check
     [self.staticTableVC.recpField resignFirstResponder];
     [self.staticTableVC.phoneField resignFirstResponder];
     [self.staticTableVC.addressTextview resignFirstResponder];
@@ -73,19 +87,24 @@
         [alertView show];
         [self.staticTableVC.addressTextview becomeFirstResponder];
     } else {
-        self.staticTableVC.paymentButton.enabled = NO;
-        NSDictionary *parameters = @{@"info": self.book.info, @"recp": self.staticTableVC.recpField.text, @"phone": self.staticTableVC.phoneField.text, @"address": self.staticTableVC.addressTextview.text};
-        NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/", self.book.key];
-        [self.jgServerManager POST:addr parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            self.staticTableVC.paymentButton.enabled = YES;
-            if ([responseObject[@"status"] isEqualToString:@"done"]) {
-                NSURL *url = [NSURL URLWithString:[responseObject[@"url"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-                [[UIApplication sharedApplication] openURL:url];
-            }
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"Error: %@", error);
-            self.staticTableVC.paymentButton.enabled = YES;
-        }];
+        if ([AFNetworkReachabilityManager sharedManager].reachable) {
+            self.staticTableVC.paymentButton.enabled = NO;
+            NSDictionary *parameters = @{@"info": self.book.info, @"recp": self.staticTableVC.recpField.text, @"phone": self.staticTableVC.phoneField.text, @"address": self.staticTableVC.addressTextview.text};
+            NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/", self.book.key];
+            [self.jgServerManager POST:addr parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                self.staticTableVC.paymentButton.enabled = YES;
+                if ([responseObject[@"status"] isEqualToString:@"done"]) {
+                    NSURL *url = [NSURL URLWithString:[responseObject[@"url"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                    [[UIApplication sharedApplication] openURL:url];
+                }
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                NSLog(@"Error: %@", error);
+                self.staticTableVC.paymentButton.enabled = YES;
+            }];
+        } else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"没有网络连接" message:@"请连接网络以上传照片" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alertView show];
+        }
     }
 }
 
