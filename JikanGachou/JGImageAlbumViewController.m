@@ -9,16 +9,15 @@
 #import "JGImageAlbumViewController.h"
 #import "JGImageGridViewController.h"
 #import "JGImagePoolViewController.h"
-#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface JGImageAlbumViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *nextButton;
 
-@property (nonatomic) NSMutableArray *groups;
-@property (nonatomic) NSArray *selectedGroupPhotos;
 @property (weak, nonatomic) JGImagePoolViewController *poolViewController;
+@property (nonatomic) NSArray *groups;
+@property (nonatomic) NSArray *selectedGroupPhotos;
 
 @end
 
@@ -28,15 +27,15 @@
 {
     [super viewDidLoad];
     self.poolViewController = (JGImagePoolViewController *)((UINavigationController*)self.navigationController).parentViewController;
-    self.groups = [NSMutableArray new];
-
+    NSMutableArray *groups = [NSMutableArray new];
     [self.poolViewController.lib enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
         if (group) {
             [group setAssetsFilter:[ALAssetsFilter allPhotos]];
-            [self.groups addObject:group];
+            [groups addObject:group];
         }
         else {
             *stop = YES;
+            self.groups = [groups copy];
             [self.tableView reloadData];
         }
     } failureBlock:^(NSError *error) {
@@ -48,7 +47,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
     self.nextButton.enabled = [self.poolViewController isValidNumberOfPhotos];
 }
 

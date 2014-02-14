@@ -54,12 +54,9 @@ typedef NS_ENUM(NSUInteger, JGImageGridCellTag) {
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-
     ALAsset *photo = self.photos[indexPath.row];
-
     ((UIImageView *)[cell viewWithTag:JGImageGridCellTagImageView]).image = [UIImage imageWithCGImage:photo.thumbnail];
     [self updateMaskAndCheckViewForCell:cell forPhoto:photo];
-
     return cell;
 }
 

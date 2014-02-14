@@ -43,7 +43,6 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     NSError *outError = nil;
     self.store = [NSFNanoStore createAndOpenStoreWithType:NSFPersistentStoreType path:path error:&outError];
     self.book = [NSFNanoObject new];
-    [self.book setObject:@"logo" forKey:@"cover_type"];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -72,14 +71,24 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     if ([self.delegate respondsToSelector:@selector(didSelectPhoto:)]) {
         [self.delegate didSelectPhoto:self.selectedPhotos[indexPath.row]];
     }
+    [self reload];
 }
 
 - (void)reload
 {
     [self.collectionView reloadData];
     NSUInteger count = self.selectedPhotos.count + self.usedPhotos.count;
-    self.selectedCountLabel.text = [NSString stringWithFormat:@"已选 %u 张", (unsigned)count];
-    
+    NSUInteger used_count = self.usedPhotos.count;
+    if ([[self.book objectForKey:@"cover_type"] isEqualToString:@"EditPageCoverTypePhoto"]
+        && [self.book objectForKey:@"cover_photo"]
+        && ![self.usedPhotos containsObject:[self photoWithQuery:[self.book objectForKey:@"cover_photo"]]]) {
+        used_count += 1;
+    }
+    if (used_count > 0) {
+        self.selectedCountLabel.text = [NSString stringWithFormat:@"已用 %u 张，已选 %u 张", (unsigned)used_count, (unsigned)count];
+    } else {
+        self.selectedCountLabel.text = [NSString stringWithFormat:@"已选 %u 张", (unsigned)count];
+    }
     if (self.selectedPhotos.count > 0) {
         self.placeholderView.hidden = YES;
     }
@@ -97,7 +106,7 @@ const NSUInteger kJGPoolMostPhotos  = 40;
 
 - (void)removePhoto:(ALAsset *)photo
 {
-    [self.selectedPhotos removeObject:photo];
+    [self.selectedPhotos removeObject:[self photoWithQuery:[photo.defaultRepresentation.url query]]];
     [self reload];
 }
 
@@ -107,7 +116,7 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     [photos addObjectsFromArray:self.selectedPhotos];
     [photos addObjectsFromArray:self.usedPhotos];
     for (ALAsset *p in photos) {
-        if ([p isEqual:photo]) {
+        if ([p.defaultRepresentation.url isEqual:photo.defaultRepresentation.url]) {
             return true;
         }
     }
@@ -130,12 +139,11 @@ const NSUInteger kJGPoolMostPhotos  = 40;
 
 - (BOOL)isUsedPhoto:(ALAsset *)photo
 {
-    for (ALAsset *p in self.usedPhotos) {
-        if ([p isEqual:photo]) {
-            return true;
-        }
+    if ([[self.book objectForKey:@"cover_type"] isEqualToString:@"EditPageCoverTypePhoto"]
+        && [photo isEqual:[self photoWithQuery:[self.book objectForKey:@"cover_photo"]]]) {
+        return YES;
     }
-    return false;
+    return [self.usedPhotos containsObject:photo];
 }
 
 - (ALAsset *)photoWithQuery:(NSString *)query

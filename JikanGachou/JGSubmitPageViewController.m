@@ -43,6 +43,7 @@
         } failureBlock:^(NSError *error) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"无法获取图片" message:@"请联系客服" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alertView show];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }];
     }
 
