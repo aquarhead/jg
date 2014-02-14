@@ -19,6 +19,7 @@ PODS:
     - AFNetworking/NSURLConnection
   - KIImagePager (HEAD based on 1.4.1)
   - MD5Digest (0.1.0)
+  - MRProgress (0.3.1)
   - NanoStore (2.7.7)
   - TestFlightSDK (2.2.1)
 
@@ -26,6 +27,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - KIImagePager (HEAD)
   - MD5Digest
+  - MRProgress (~> 0.3)
   - NanoStore
   - TestFlightSDK
 
@@ -33,6 +35,7 @@ SPEC CHECKSUMS:
   AFNetworking: c7d7901a83f631414c7eda1737261f696101a5cd
   KIImagePager: 6ab95f68c885cfb65fefc697ac641f75839adba5
   MD5Digest: 355c8733ab522cc516a4047e2d93e2b842947b18
+  MRProgress: 741d8849f3d6e71cf254b32ea8c0bc0b2a122136
   NanoStore: 879a131b4f9b968f936187bb927cd5f8887cb202
   TestFlightSDK: 030fa8a1bc8aa9ba5c9ae1be05ceaba775368c0c
 

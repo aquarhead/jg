@@ -10,6 +10,7 @@
 #import "JGImagePoolViewController.h"
 #import "JGEditPageCell.h"
 #import <NanoStore.h>
+#import <MRProgress.h>
 
 static const NSInteger kJGIndexCoverPage = 0;
 static const NSInteger kJGIndexFlyleafPage = 1;
@@ -176,6 +177,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
+    [[MRNavigationBarProgressView progressViewForNavigationController:self.navigationController] setProgress:[self pageIndex]*1.0/23 animated:YES];
     [self reloadSegmentedControl];
 }
 
