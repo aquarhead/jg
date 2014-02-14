@@ -37,6 +37,9 @@
         [self.lib assetForURL:url resultBlock:^(ALAsset *asset) {
             [photos addObject:asset];
             self.photos = [photos copy];
+            if (self.photos.count == self.photo_urls.count) {
+                [self setTotalSize];
+            }
         } failureBlock:^(NSError *error) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"无法获取图片" message:@"请联系客服" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alertView show];
@@ -51,14 +54,6 @@
 
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     self.jgServerManager = [AFHTTPRequestOperationManager manager];
-
-    long long totalsize = 0;
-    for (ALAsset *p in self.photos) {
-        totalsize += p.defaultRepresentation.size;
-    }
-    self.staticTableVC.totalSizeLabel.text = [NSByteCountFormatter stringFromByteCount:totalsize countStyle:NSByteCountFormatterCountStyleBinary];
-
-
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -67,6 +62,15 @@
         self.staticTableVC = segue.destinationViewController;
         self.staticTableVC.buttonDelegate = self;
     }
+}
+
+- (void)setTotalSize
+{
+    long long totalsize = 0;
+    for (ALAsset *p in self.photos) {
+        totalsize += p.defaultRepresentation.size;
+    }
+    self.staticTableVC.totalSizeLabel.text = [NSByteCountFormatter stringFromByteCount:totalsize countStyle:NSByteCountFormatterCountStyleBinary];
 }
 
 - (void)pay
