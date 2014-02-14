@@ -13,6 +13,7 @@
 
 @interface JGSubmitPageViewController () <UIAlertViewDelegate, JGSubmitPageTableDelegate>
 
+@property (nonatomic) NSArray *photo_urls;
 @property (nonatomic) NSArray *photos;
 @property (nonatomic) ALAssetsLibrary *lib;
 
@@ -32,9 +33,26 @@
     [super viewDidLoad];
 
     self.lib = [ALAssetsLibrary new];
+    NSMutableArray *photo_urls = [NSMutableArray new];
+    if ([[self.book objectForKey:@"cover_type"] isEqualToString:@"EditPageCoverTypePhoto"]) {
+        [photo_urls addObject:[self.book objectForKey:@"cover_photo"]];
+    }
+    for (int i=0; i<20; i++) {
+        NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%d", i]];
+        // all these checks are redundant
+        if (page) {
+            if (page[@"payload"][@"photo"]) {
+                [photo_urls addObject:page[@"payload"][@"photo"]];
+            }
+            if (page[@"type"] && ![page[@"type"] hasPrefix:@"EditPageTypeOne"] && page[@"payload"][@"photo2"]) {
+                [photo_urls addObject:page[@"payload"][@"photo2"]];
+            }
+        }
+    }
+    self.photo_urls = [photo_urls copy];
     NSMutableArray *photos = [NSMutableArray new];
-    for (NSURL *url in self.photo_urls) {
-        [self.lib assetForURL:url resultBlock:^(ALAsset *asset) {
+    for (NSString *urlstr in self.photo_urls) {
+        [self.lib assetForURL:[NSURL URLWithString:urlstr] resultBlock:^(ALAsset *asset) {
             [photos addObject:asset];
             self.photos = [photos copy];
             if (self.photos.count == self.photo_urls.count) {
@@ -104,8 +122,9 @@
     } else {
         if ([AFNetworkReachabilityManager sharedManager].reachable) {
             self.staticTableVC.paymentButton.enabled = NO;
-            NSDictionary *parameters = @{@"info": self.book.info, @"recp": self.staticTableVC.recpField.text, @"phone": self.staticTableVC.phoneField.text, @"address": self.staticTableVC.addressTextview.text};
-            NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/", self.book.key];
+            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self.book options:0 error:nil];
+            NSDictionary *parameters = @{@"info": [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding], @"recp": self.staticTableVC.recpField.text, @"phone": self.staticTableVC.phoneField.text, @"address": self.staticTableVC.addressTextview.text};
+            NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/", self.book[@"key"]];
             [self.jgServerManager POST:addr parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 self.staticTableVC.paymentButton.enabled = YES;
                 if ([responseObject[@"status"] isEqualToString:@"done"]) {
@@ -139,7 +158,7 @@
 - (void)checkStatus
 {
     self.staticTableVC.submitButton.enabled = NO;
-    NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/", self.book.key];
+    NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/", self.book[@"key"]];
     [self.jgServerManager GET:addr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([responseObject[@"status"] isEqualToString:@"toupload"]) {
             [self uploadPhotos];
@@ -174,7 +193,7 @@
         NSMutableDictionary *options = [NSMutableDictionary new];
         options[@"bucket"] = @"jikangachou";
         options[@"expiration"] = [NSString stringWithFormat:@"%.0f",[[NSDate date] timeIntervalSince1970] + 600];
-        options[@"save-key"] = [NSString stringWithFormat:@"/%@/%@.JPG", self.book.key, [data_url query]];
+        options[@"save-key"] = [NSString stringWithFormat:@"/%@/%@.JPG", self.book[@"key"], [data_url query]];
         NSString *policy = [[NSJSONSerialization dataWithJSONObject:[options copy] options:0 error:nil] base64EncodedStringWithOptions:0];
         NSString *sig = [[NSString stringWithFormat:@"%@&DWAPWXDv2cLI7MuZmJRWq63r0T8=", policy] MD5Digest];
         NSDictionary *parameters = @{@"policy": policy, @"signature": sig};
@@ -194,7 +213,7 @@
     self.finished += 1;
     [self.progressBar setProgress:(1.0*self.finished / self.photos.count) animated:YES];
     if (self.finished == self.photos.count) {
-        NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/uploaded/", self.book.key];
+        NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/uploaded/", self.book[@"key"]];
         [self.jgServerManager GET:addr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
             if ([responseObject[@"status"] isEqualToString:@"toprint"]) {
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"照片上传完成" message:@"我们会立刻付印您的相册" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];

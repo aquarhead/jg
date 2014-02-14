@@ -11,7 +11,6 @@
 
 @interface JGSubmitPageViewController : UIViewController
 
-@property (nonatomic, strong) NSFNanoObject *book;
-@property (nonatomic) NSArray *photo_urls;
+@property (nonatomic, strong) NSDictionary *book;
 
 @end

@@ -9,7 +9,6 @@
 #import "JGEditPageViewController.h"
 #import "JGImagePoolViewController.h"
 #import "JGEditPageCell.h"
-#import <NanoStore.h>
 #import <MRProgress.h>
 
 static const NSInteger kJGIndexCoverPage = 0;
@@ -25,7 +24,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 @property (nonatomic) NSArray *tapRecogs;
 
 @property (weak, nonatomic) JGImagePoolViewController *poolViewController;
-@property (weak, nonatomic) NSFNanoObject *book;
+@property (weak, nonatomic) NSMutableDictionary *book;
 @property (nonatomic) UISegmentedControl *pageTypeControl;
 
 @end
@@ -156,12 +155,12 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 
 - (void)saveTitle:(NSString *)title
 {
-    [self.book setObject:title forKey:@"title"];
+    self.book[@"title"] = title;
 }
 
 - (void)saveAuthor:(NSString *)author
 {
-    [self.book setObject:author forKey:@"author"];
+    self.book[@"author"] = author;
 }
 
 #pragma mark - Scroll View
@@ -177,7 +176,6 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    [[MRNavigationBarProgressView progressViewForNavigationController:self.navigationController] setProgress:[self pageIndex]*1.0/23 animated:YES];
     [self reloadSegmentedControl];
 }
 
@@ -251,7 +249,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         if (page) {
             if ([page[@"type"] hasPrefix:@"EditPageTypeTwo"] || [page[@"type"] hasPrefix:@"EditPageTypeMixed"]) {
                 // drop photo2
-                ALAsset *p = [self.poolViewController photoWithQuery:page[@"payload"][@"photo2"]];
+                ALAsset *p = [self.poolViewController photoWithURLString:page[@"payload"][@"photo2"]];
                 if (p) {
                     [self.poolViewController dropPhoto:p];
                 }
@@ -273,13 +271,13 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 - (void)setupCell:(JGEditPageCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger pageIndex = indexPath.item;
+    [[MRNavigationBarProgressView progressViewForNavigationController:self.navigationController] setProgress:pageIndex*1.0/23 animated:YES];
 
     if (pageIndex == kJGIndexCoverPage) {
         if ([[self.book objectForKey:@"cover_type"] isEqualToString:@"EditPageCoverTypePhoto"]) {
             [cell useMainViewNamed:@"EditPageCoverTypePhoto" withGestureRecognizers:self.tapRecogs];
-
             if ([self.book objectForKey:@"cover_photo"]) {
-                ALAsset *p = [self.poolViewController photoWithQuery:[self.book objectForKey:@"cover_photo"]];
+                ALAsset *p = [self.poolViewController photoWithURLString:[self.book objectForKey:@"cover_photo"]];
                 [cell.mainView fillNth:1 withPhoto:p];
             }
         }
@@ -308,7 +306,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         }
 
         if ([page[@"type"] hasPrefix:@"EditPageTypeOne"]) {
-            ALAsset *p = [self.poolViewController photoWithQuery:page[@"payload"][@"photo"]];
+            ALAsset *p = [self.poolViewController photoWithURLString:page[@"payload"][@"photo"]];
             if (p) {
                 UIImage *img = [UIImage imageWithCGImage:p.defaultRepresentation.fullScreenImage];
                 CGSize size = img.size;
@@ -328,8 +326,8 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         }
         else {
             // two photos
-            ALAsset *p1 = [self.poolViewController photoWithQuery:page[@"payload"][@"photo"]];
-            ALAsset *p2 = [self.poolViewController photoWithQuery:page[@"payload"][@"photo2"]];
+            ALAsset *p1 = [self.poolViewController photoWithURLString:page[@"payload"][@"photo"]];
+            ALAsset *p2 = [self.poolViewController photoWithURLString:page[@"payload"][@"photo2"]];
             bool p1_landscape = NO, p2_landscape = NO;
 
             // check orientation
@@ -379,32 +377,33 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     if (sender.state == UIGestureRecognizerStateEnded) {
         JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
         NSInteger pageIndex = [self pageIndex];
-        NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
+        NSString *pageKey = [NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart];
+        NSDictionary *page = self.book[pageKey];
         if ([page[@"type"] hasPrefix:@"EditPageTypeOne"]) {
-            ALAsset *p = [self.poolViewController photoWithQuery:page[@"payload"][@"photo"]];
+            ALAsset *p = [self.poolViewController photoWithURLString:page[@"payload"][@"photo"]];
             if (p) {
                 [self.poolViewController dropPhoto:p];
             }
-            [self.book setObject:@{@"payload": @{@"photo": @""}, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
+            self.book[pageKey] = @{@"payload": @{@"photo": @""}, @"type": page[@"type"]};
         } else {
             if ([sender.view isEqual:cell.mainView.imageView1]) {
                 // drop p1
-                ALAsset *p = [self.poolViewController photoWithQuery:page[@"payload"][@"photo"]];
+                ALAsset *p = [self.poolViewController photoWithURLString:page[@"payload"][@"photo"]];
                 if (p) {
                     [self.poolViewController dropPhoto:p];
                 }
                 NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:page[@"payload"]];
                 newpayload[@"photo"] = @"";
-                [self.book setObject:@{@"payload": newpayload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
+                self.book[pageKey] = @{@"payload": newpayload, @"type": page[@"type"]};
             } else {
                 // drop p2
-                ALAsset *p = [self.poolViewController photoWithQuery:page[@"payload"][@"photo2"]];
+                ALAsset *p = [self.poolViewController photoWithURLString:page[@"payload"][@"photo2"]];
                 if (p) {
                     [self.poolViewController dropPhoto:p];
                 }
                 NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:page[@"payload"]];
                 newpayload[@"photo2"] = @"";
-                [self.book setObject:@{@"payload": newpayload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
+                self.book[pageKey] = @{@"payload": newpayload, @"type": page[@"type"]};
             }
         }
         [self.pagesCollectionView reloadData];
@@ -433,12 +432,12 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     if (pageIndex == kJGIndexCoverPage) {
         if (self.pageTypeControl.selectedSegmentIndex == 1) {
             [cell.mainView fillNth:1 withPhoto:p];
-
-            [self.book setObject:[p.defaultRepresentation.url query] forKey:@"cover_photo"];
+            self.book[@"cover_photo"] = [p.defaultRepresentation.url absoluteString];
         }
     }
     else if (pageIndex >= kJGIndexPhotoPageStart && pageIndex < kJGIndexBackcoverPage) {
-        NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
+        NSString *pageKey = [NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart];
+        NSDictionary *page = self.book[pageKey];
 
         if ([page[@"type"] hasPrefix:@"EditPageTypeOne"]) {
             if (page[@"payload"][@"photo"] && ![page[@"payload"][@"photo"] isEqualToString:@""]) {
@@ -446,9 +445,8 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                 [alertView show];
             } else {
                 [self.poolViewController usePhoto:p];
-                NSDictionary *newpayload = @{@"photo": [p.defaultRepresentation.url query]};
-                [self.book setObject:@{@"payload": newpayload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]
-                 ];
+                NSDictionary *newpayload = @{@"photo": [p.defaultRepresentation.url absoluteString]};
+                self.book[pageKey] =@{@"payload": newpayload, @"type": page[@"type"]};
             }
         } else {
             bool p1 = page[@"payload"][@"photo"] && ![page[@"payload"][@"photo"] isEqualToString:@""];
@@ -461,16 +459,14 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                 // has p1, set p2
                 [self.poolViewController usePhoto:p];
                 NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:page[@"payload"]];
-                newpayload[@"photo2"] = [p.defaultRepresentation.url query];
-                [self.book setObject:@{@"payload": newpayload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]
-                 ];
+                newpayload[@"photo2"] = [p.defaultRepresentation.url absoluteString];
+                self.book[pageKey] = @{@"payload": newpayload, @"type": page[@"type"]};
             } else {
                 // no photo or has p2, set p1
                 [self.poolViewController usePhoto:p];
                 NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:page[@"payload"]];
-                newpayload[@"photo"] = [p.defaultRepresentation.url query];
-                [self.book setObject:@{@"payload": newpayload, @"type": page[@"type"]} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]
-                 ];
+                newpayload[@"photo"] = [p.defaultRepresentation.url absoluteString];
+                self.book[pageKey] = @{@"payload": newpayload, @"type": page[@"type"]};
             }
         }
         [self.pagesCollectionView reloadData];

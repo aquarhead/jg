@@ -8,6 +8,7 @@
 
 #import "JGImagePoolViewController.h"
 #import "JGSubmitPageViewController.h"
+#import <NyaruDB.h>
 
 #ifdef DEBUG
 const NSUInteger kJGPoolLeastPhotos = 1;
@@ -25,8 +26,6 @@ const NSUInteger kJGPoolMostPhotos  = 40;
 @property (nonatomic) NSMutableArray *selectedPhotos;
 @property (nonatomic) NSMutableArray *usedPhotos;
 
-@property (nonatomic) NSFNanoStore *store;
-
 @end
 
 @implementation JGImagePoolViewController
@@ -37,12 +36,9 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     self.selectedPhotos = [NSMutableArray new];
     self.usedPhotos = [NSMutableArray new];
     self.lib = [ALAssetsLibrary new];
-
-    NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *path = [doc stringByAppendingPathComponent:@"store.sqlite"];
-    NSError *outError = nil;
-    self.store = [NSFNanoStore createAndOpenStoreWithType:NSFPersistentStoreType path:path error:&outError];
-    self.book = [NSFNanoObject new];
+    self.book = [NSMutableDictionary new];
+    self.book[@"cover_type"] = @"EditPageCoverTypeLogo";
+    self.book[@"key"] = [[NSUUID UUID] UUIDString];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -59,10 +55,8 @@ const NSUInteger kJGPoolMostPhotos  = 40;
 {
     static NSString *CellIdentifier = @"Cell";
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-
     ALAsset *asset = self.selectedPhotos[indexPath.row];
     ((UIImageView *)[cell viewWithTag:100]).image = [UIImage imageWithCGImage:[asset aspectRatioThumbnail]];
-
     return cell;
 }
 
@@ -81,11 +75,11 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     NSUInteger used_count = self.usedPhotos.count;
     if ([[self.book objectForKey:@"cover_type"] isEqualToString:@"EditPageCoverTypePhoto"]
         && [self.book objectForKey:@"cover_photo"]
-        && ![self.usedPhotos containsObject:[self photoWithQuery:[self.book objectForKey:@"cover_photo"]]]) {
+        && ![self.usedPhotos containsObject:[self photoWithURLString:[self.book objectForKey:@"cover_photo"]]]) {
         used_count += 1;
     }
     if (used_count > 0) {
-        self.selectedCountLabel.text = [NSString stringWithFormat:@"已用 %u 张，已选 %u 张", (unsigned)used_count, (unsigned)count];
+        self.selectedCountLabel.text = [NSString stringWithFormat:@"已用 %u / %u 张", (unsigned)used_count, (unsigned)count];
     } else {
         self.selectedCountLabel.text = [NSString stringWithFormat:@"已选 %u 张", (unsigned)count];
     }
@@ -106,7 +100,7 @@ const NSUInteger kJGPoolMostPhotos  = 40;
 
 - (void)removePhoto:(ALAsset *)photo
 {
-    [self.selectedPhotos removeObject:[self photoWithQuery:[photo.defaultRepresentation.url query]]];
+    [self.selectedPhotos removeObject:[self photoWithURLString:[photo.defaultRepresentation.url absoluteString]]];
     [self reload];
 }
 
@@ -140,19 +134,19 @@ const NSUInteger kJGPoolMostPhotos  = 40;
 - (BOOL)isUsedPhoto:(ALAsset *)photo
 {
     if ([[self.book objectForKey:@"cover_type"] isEqualToString:@"EditPageCoverTypePhoto"]
-        && [photo isEqual:[self photoWithQuery:[self.book objectForKey:@"cover_photo"]]]) {
+        && [photo isEqual:[self photoWithURLString:[self.book objectForKey:@"cover_photo"]]]) {
         return YES;
     }
     return [self.usedPhotos containsObject:photo];
 }
 
-- (ALAsset *)photoWithQuery:(NSString *)query
+- (ALAsset *)photoWithURLString:(NSString *)urlstr
 {
     NSMutableArray *photos = [NSMutableArray new];
     [photos addObjectsFromArray:self.selectedPhotos];
     [photos addObjectsFromArray:self.usedPhotos];
     for (ALAsset *p in photos) {
-        if ([[p.defaultRepresentation.url query] isEqualToString:query]) {
+        if ([p.defaultRepresentation.url isEqual:[NSURL URLWithString:urlstr]]) {
             return p;
         }
     }
@@ -175,19 +169,11 @@ const NSUInteger kJGPoolMostPhotos  = 40;
 {
     if ([segue.identifier isEqualToString:@"toSubmit"]) {
         JGSubmitPageViewController *vc = segue.destinationViewController;
-        if ([[self.book objectForKey:@"cover_type"] isEqualToString:@"EditPageCoverTypePhoto"]) {
-            NSString *coverPhotoQuery = [self.book objectForKey:@"cover_photo"];
-            if (coverPhotoQuery && ![self isUsedPhoto:[self photoWithQuery:coverPhotoQuery]]) {
-                [self usePhoto:[self photoWithQuery:coverPhotoQuery]];
-            }
-        }
-        NSMutableArray *photo_urls = [NSMutableArray new];
-        for (ALAsset *p in self.usedPhotos) {
-            [photo_urls addObject:p.defaultRepresentation.url];
-        }
-        vc.photo_urls = [photo_urls copy];
         vc.book = [self.book copy];
-        [self.store saveStoreAndReturnError:nil];
+        NyaruDB *db = [NyaruDB instance];
+        NyaruCollection *collection = [db collection:@"books"];
+        [collection put:[self.book copy]];
+        [collection waitForWriting];
     }
 }
 

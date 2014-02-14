@@ -10,4 +10,6 @@
 
 @interface JGStartPageViewController : UIViewController
 
+- (void)openWithBookUUID:(NSString *)uuid;
+
 @end

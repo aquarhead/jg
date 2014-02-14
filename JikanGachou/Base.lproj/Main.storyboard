@@ -52,11 +52,12 @@
                     <navigationItem key="navigationItem" id="jQ6-1C-fmd"/>
                     <connections>
                         <outlet property="imagePager" destination="KIj-62-2Co" id="Z4u-Yc-RhV"/>
+                        <segue destination="900-VG-HZa" kind="modal" identifier="openSubmit" id="PhZ-Rp-8jU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="606" y="-143"/>
+            <point key="canvasLocation" x="139" y="-808"/>
         </scene>
         <!--Image Pool View Controller-->
         <scene sceneID="sav-Ir-YZi">
@@ -185,7 +186,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7HM-1h-hl2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1079" y="-143"/>
+            <point key="canvasLocation" x="612" y="-808"/>
         </scene>
         <!--Image Album View Controller - 选择照片-->
         <scene sceneID="I8r-ly-EHA">
@@ -492,7 +493,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2kx-Yg-iRt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2005" y="-143"/>
+            <point key="canvasLocation" x="612" y="-121"/>
         </scene>
         <!--Submit Page Table View Controller-->
         <scene sceneID="Fhz-Za-WBF">
@@ -662,7 +663,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NIk-cy-8FF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2425" y="-113"/>
+            <point key="canvasLocation" x="1086" y="-91"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aEK-Wx-sJD">
@@ -696,6 +697,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="PhZ-Rp-8jU"/>
         <segue reference="yvU-bO-kQ9"/>
     </inferredMetricsTieBreakers>
 </document>
