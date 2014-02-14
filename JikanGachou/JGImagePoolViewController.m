@@ -188,7 +188,6 @@ const NSUInteger kJGPoolMostPhotos  = 40;
         vc.photo_urls = [photo_urls copy];
         vc.book = [self.book copy];
         [self.store saveStoreAndReturnError:nil];
-        [self.store closeWithError:nil];
     }
 }
 
