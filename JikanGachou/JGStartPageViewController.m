@@ -63,7 +63,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"openSubmit"]) {
-        JGSubmitPageViewController *vc = segue.destinationViewController;
+        JGSubmitPageViewController *vc = (JGSubmitPageViewController *)((UINavigationController *)segue.destinationViewController).topViewController;;
         vc.book = [self.book copy];
     }
 }
