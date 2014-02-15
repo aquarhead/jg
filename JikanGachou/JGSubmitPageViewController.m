@@ -9,6 +9,7 @@
 #import "JGSubmitPageViewController.h"
 #import <AFNetworking.h>
 #import <NSString+MD5.h>
+#import <MRProgress.h>
 
 @interface JGSubmitPageViewController () <UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UITextViewDelegate>
 
@@ -228,7 +229,7 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.operationQueue.maxConcurrentOperationCount = 1;
     self.finished = 0;
-//    [self.progressBar setProgress:0 animated:YES];
+    [[MRNavigationBarProgressView progressViewForNavigationController:self.navigationController] setProgress:0 animated:YES];
 
     for (ALAsset *p in self.photos) {
         ALAssetRepresentation *rep = p.defaultRepresentation;
@@ -257,7 +258,7 @@
 - (void)finishOne
 {
     self.finished += 1;
-//    [self.progressBar setProgress:(1.0 * self.finished / self.photos.count) animated:YES];
+    [[MRNavigationBarProgressView progressViewForNavigationController:self.navigationController] setProgress:(1.0 * self.finished / self.photos.count) animated:YES];
     if (self.finished == self.photos.count) {
         NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/uploaded/", self.book[@"key"]];
         [self.jgServerManager GET:addr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
