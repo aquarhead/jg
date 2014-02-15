@@ -72,6 +72,10 @@
 
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     self.jgServerManager = [AFHTTPRequestOperationManager manager];
+
+    if (self.book[@"title"]) {
+        self.title = [NSString stringWithFormat:@"提交 - %@", self.book[@"title"]];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
