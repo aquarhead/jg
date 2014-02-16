@@ -14,6 +14,7 @@
 static const NSInteger kJGIndexCoverPage = 0;
 static const NSInteger kJGIndexFlyleafPage = 1;
 static const NSInteger kJGIndexPhotoPageStart = 2; // cover, flyleaf, photos; start from zero.
+static const NSInteger kJGIndexPhotoPageEnd = 21;
 static const NSInteger kJGIndexBackcoverPage = 22;
 
 @interface JGEditPageViewController () <UICollectionViewDelegate, UICollectionViewDataSource, JGImagePoolDelegate, JGEditPageDelegate>
@@ -144,13 +145,23 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     }];
 }
 
-- (IBAction)collectionViewTouched:(UITapGestureRecognizer *)sender
+- (void)hideKeyboard
 {
-    if ([self pageIndex] == kJGIndexFlyleafPage) {
-        JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
+    JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
+    NSUInteger pageIndex = [self pageIndex];
+    
+    if (pageIndex == kJGIndexFlyleafPage) {
         [cell.mainView.titleTextField resignFirstResponder];
         [cell.mainView.authorTextField resignFirstResponder];
     }
+    else if (pageIndex >= kJGIndexPhotoPageStart && pageIndex <= kJGIndexPhotoPageEnd) {
+        [cell.mainView.descriptionTextView resignFirstResponder];
+    }
+}
+
+- (IBAction)collectionViewTouched:(UITapGestureRecognizer *)sender
+{
+    [self hideKeyboard];
 }
 
 - (void)saveTitle:(NSString *)title
@@ -167,11 +178,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    if ([self pageIndex] == kJGIndexFlyleafPage) {
-        JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
-        [cell.mainView.titleTextField resignFirstResponder];
-        [cell.mainView.authorTextField resignFirstResponder];
-    }
+    [self hideKeyboard];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView

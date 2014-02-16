@@ -14,6 +14,14 @@
                     <rect key="frame" x="10" y="0.0" width="300" height="300"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="点击添加描述…" translatesAutoresizingMaskIntoConstraints="NO" id="Vvs-vl-5EQ">
+                            <rect key="frame" x="18" y="234" width="132" height="66"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="k6B-fJ-4Qf">
                             <rect key="frame" x="158" y="107" width="120" height="160"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -121,6 +129,7 @@
             <connections>
                 <outlet property="dayLabel1" destination="UZv-Jq-MUW" id="FYd-S7-Tqf"/>
                 <outlet property="dayLabel2" destination="vuu-gb-OKU" id="sUu-Zg-IEn"/>
+                <outlet property="descriptionTextView" destination="Vvs-vl-5EQ" id="4hp-db-DlQ"/>
                 <outlet property="imageView1" destination="09z-WD-1Pe" id="Dba-AY-jN7"/>
                 <outlet property="imageView2" destination="k6B-fJ-4Qf" id="nfT-KA-2dL"/>
                 <outlet property="monthLabel1" destination="max-nt-Lyq" id="OUK-bs-FtM"/>

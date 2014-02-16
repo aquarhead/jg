@@ -8,7 +8,7 @@
 
 #import "JGEditPageMainView.h"
 
-@interface JGEditPageMainView () <UITextFieldDelegate>
+@interface JGEditPageMainView () <UITextFieldDelegate, UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *yearLabel1;
 @property (weak, nonatomic) IBOutlet UILabel *monthLabel1;
@@ -28,6 +28,7 @@
     
     self.titleTextField.delegate = self;
     self.authorTextField.delegate = self;
+    self.descriptionTextView.delegate = self;
 
     self.imageView1.userInteractionEnabled = YES;
     self.imageView2.userInteractionEnabled = YES;
@@ -71,6 +72,31 @@
     }
 }
 
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@"点击添加描述…"]) {
+        textView.text = @"";
+        textView.textColor = [UIColor colorWithWhite:0.25 alpha:1];
+    }
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@""]) {
+        textView.text = @"点击添加描述…";
+        textView.textColor = [UIColor lightGrayColor];
+    }
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if (textField == self.titleTextField) {
@@ -87,7 +113,8 @@
 {
     if ([textField isEqual:self.titleTextField]) {
         [self.delegate saveTitle:textField.text];
-    } else if ([textField isEqual:self.authorTextField]) {
+    }
+    else if ([textField isEqual:self.authorTextField]) {
         [self.delegate saveAuthor:textField.text];
     }
 }

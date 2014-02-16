@@ -54,6 +54,13 @@
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="点击添加描述…" translatesAutoresizingMaskIntoConstraints="NO" id="GIR-06-AyX">
+                            <rect key="frame" x="202" y="23" width="100" height="122"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
@@ -79,6 +86,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="dayLabel1" destination="KfI-G8-VGn" id="46C-Xa-QzP"/>
+                <outlet property="descriptionTextView" destination="GIR-06-AyX" id="ykd-8l-yj6"/>
                 <outlet property="imageView1" destination="09z-WD-1Pe" id="Maz-Sn-NQI"/>
                 <outlet property="monthLabel1" destination="T9L-2Z-Q1N" id="cWg-1e-G4r"/>
                 <outlet property="yearLabel1" destination="81V-BN-0PW" id="wyh-Th-SvM"/>

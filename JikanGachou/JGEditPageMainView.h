@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView2;
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UITextField *authorTextField;
+@property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
 
 @property (nonatomic, weak) id<JGEditPageDelegate> delegate;
 

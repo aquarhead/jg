@@ -85,6 +85,14 @@
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="点击添加描述…" translatesAutoresizingMaskIntoConstraints="NO" id="wC2-i3-c37">
+                            <rect key="frame" x="14" y="194" width="122" height="73"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
@@ -123,6 +131,7 @@
             <connections>
                 <outlet property="dayLabel1" destination="XDL-jZ-bDe" id="0xJ-V0-svj"/>
                 <outlet property="dayLabel2" destination="gLf-hq-bUT" id="UkP-48-TPS"/>
+                <outlet property="descriptionTextView" destination="wC2-i3-c37" id="Nq5-y6-aK2"/>
                 <outlet property="imageView1" destination="754-RO-eej" id="Vit-Lv-P92"/>
                 <outlet property="imageView2" destination="pFg-St-ulH" id="rq9-Oy-uHv"/>
                 <outlet property="monthLabel1" destination="zkf-CN-iw0" id="mKq-E3-B9a"/>
