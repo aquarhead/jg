@@ -465,7 +465,8 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                 [alertView show];
             } else {
                 [self.poolViewController usePhoto:p];
-                NSDictionary *newpayload = @{@"photo": [p.defaultRepresentation.url absoluteString]};
+                NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:page[@"payload"]];
+                newpayload[@"photo"] = [p.defaultRepresentation.url absoluteString];
                 self.book[pageKey] =@{@"payload": newpayload, @"type": page[@"type"]};
             }
         } else {
