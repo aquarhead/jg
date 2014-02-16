@@ -69,6 +69,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 #pragma mark - Segue
 
 - (IBAction)submitClicked:(id)sender {
+    [self hideKeyboard];
 #ifndef DEBUG
     NSString *errmsg = nil;
     NSIndexPath *idxp = nil;
