@@ -64,11 +64,13 @@ const NSUInteger kJGPoolMostPhotos  = 40;
 {
     if ([self.delegate respondsToSelector:@selector(didSelectPhoto:)]) {
         UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+        [self.delegate lockInteraction];
         [UIView animateWithDuration:0.4
                          animations:^{
-                             cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y - 64, cell.frame.size.width, cell.frame.size.height);
+                             cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y - 82, cell.frame.size.width, cell.frame.size.height);
                          } completion:^(BOOL finished) {
                              [self.delegate didSelectPhoto:self.selectedPhotos[indexPath.row]];
+                             [self.delegate unlockInteraction];
                              [self reload];
                          }];
     }

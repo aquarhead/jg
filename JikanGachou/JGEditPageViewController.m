@@ -495,6 +495,16 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     }
 }
 
+- (void)lockInteraction
+{
+    self.pagesCollectionView.userInteractionEnabled = NO;
+}
+
+- (void)unlockInteraction
+{
+    self.pagesCollectionView.userInteractionEnabled = YES;
+}
+
 - (void)didTapPlaceholder
 {
     [self.navigationController popViewControllerAnimated:YES];

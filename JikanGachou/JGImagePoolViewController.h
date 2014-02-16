@@ -14,6 +14,8 @@
 @required
 
 - (void)didSelectPhoto:(ALAsset *)photo;
+- (void)lockInteraction;
+- (void)unlockInteraction;
 - (void)didTapPlaceholder;
 
 @end
