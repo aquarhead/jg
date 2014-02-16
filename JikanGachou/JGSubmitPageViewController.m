@@ -179,6 +179,9 @@
                 if ([responseObject[@"status"] isEqualToString:@"done"]) {
                     NSURL *url = [NSURL URLWithString:[responseObject[@"url"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
                     [[UIApplication sharedApplication] openURL:url];
+                } else {
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:responseObject[@"errmsg"] message:@"如有问题请联系客服" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    [alertView show];
                 }
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 NSLog(@"Error: %@", error);
