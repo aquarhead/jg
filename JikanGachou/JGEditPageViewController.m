@@ -174,6 +174,14 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     self.book[@"author"] = author;
 }
 
+- (void)saveDescriptionText:(NSString *)descriptionText
+{
+    NSString *pageKey = [NSString stringWithFormat:@"page%ld", (long)[self pageIndex]-kJGIndexPhotoPageStart];
+    NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:self.book[pageKey][@"payload"]];
+    newpayload[@"text"] = descriptionText;
+    self.book[pageKey] = @{@"payload": newpayload, @"type": self.book[pageKey][@"type"]};
+}
+
 #pragma mark - Scroll View
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
@@ -306,10 +314,11 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         [cell useMainViewNamed:@"EditPageBackCover" withGestureRecognizers:self.tapRecogs];
     }
     else {
-        NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
+        NSString *pageKey = [NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart];
+        NSDictionary *page = self.book[pageKey];
         if (!page) {
             page = @{@"payload": @{}, @"type": @"EditPageTypeOneLandscape"};
-            [self.book setObject:page forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
+            self.book[pageKey] = page;
         }
 
         if ([page[@"type"] hasPrefix:@"EditPageTypeOne"]) {
@@ -375,6 +384,10 @@ static const NSInteger kJGIndexBackcoverPage = 22;
             // fill mainView
             [cell.mainView fillNth:1 withPhoto:p1];
             [cell.mainView fillNth:2 withPhoto:p2];
+        }
+        cell.mainView.delegate = self;
+        if (page[@"payload"][@"text"]) {
+            [cell.mainView setDescriptionText:page[@"payload"][@"text"]];
         }
     }
 }

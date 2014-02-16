@@ -15,6 +15,7 @@
 
 - (void)saveTitle:(NSString *)title;
 - (void)saveAuthor:(NSString *)author;
+- (void)saveDescriptionText:(NSString *)descriptionText;
 
 @end
 
@@ -29,5 +30,6 @@
 @property (nonatomic, weak) id<JGEditPageDelegate> delegate;
 
 - (void)fillNth:(NSUInteger)n withPhoto:(ALAsset *)p;
+- (void)setDescriptionText:(NSString *)descriptionText;
 
 @end

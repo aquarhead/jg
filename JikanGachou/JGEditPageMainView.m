@@ -72,6 +72,11 @@
     }
 }
 
+- (void)setDescriptionText:(NSString *)descriptionText
+{
+    self.descriptionTextView.text = descriptionText;
+}
+
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
     if ([textView.text isEqualToString:@"点击添加描述…"]) {
@@ -86,6 +91,7 @@
         textView.text = @"点击添加描述…";
         textView.textColor = [UIColor lightGrayColor];
     }
+    [self.delegate saveDescriptionText:textView.text];
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
