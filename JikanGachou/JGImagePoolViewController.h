@@ -14,6 +14,7 @@
 @required
 
 - (void)didSelectPhoto:(ALAsset *)photo;
+- (void)didTapPlaceholder;
 
 @end
 

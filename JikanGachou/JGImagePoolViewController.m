@@ -21,7 +21,7 @@ const NSUInteger kJGPoolMostPhotos  = 40;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UILabel *selectedCountLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *placeholderView;
+@property (weak, nonatomic) IBOutlet UIButton *placeholderButton;
 
 @property (nonatomic) NSMutableArray *selectedPhotos;
 @property (nonatomic) NSMutableArray *usedPhotos;
@@ -68,6 +68,13 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     [self reload];
 }
 
+- (IBAction)placeholderPressed:(UIButton *)sender
+{
+    if ([self.delegate respondsToSelector:@selector(didTapPlaceholder)]) {
+        [self.delegate didTapPlaceholder];
+    }
+}
+
 - (void)reload
 {
     [self.collectionView reloadData];
@@ -84,10 +91,10 @@ const NSUInteger kJGPoolMostPhotos  = 40;
         self.selectedCountLabel.text = [NSString stringWithFormat:@"已选 %u 张", (unsigned)count];
     }
     if (self.selectedPhotos.count > 0) {
-        self.placeholderView.hidden = YES;
+        self.placeholderButton.hidden = YES;
     }
     else {
-        self.placeholderView.hidden = NO;
+        self.placeholderButton.hidden = NO;
     }
 }
 

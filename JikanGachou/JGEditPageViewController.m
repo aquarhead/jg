@@ -480,4 +480,9 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     }
 }
 
+- (void)didTapPlaceholder
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 @end
