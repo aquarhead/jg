@@ -396,38 +396,46 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 - (void)handleTap:(UITapGestureRecognizer *)sender
 {
     if (sender.state == UIGestureRecognizerStateEnded) {
-        JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
-        NSInteger pageIndex = [self pageIndex];
-        NSString *pageKey = [NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart];
-        NSDictionary *page = self.book[pageKey];
-        if ([page[@"type"] hasPrefix:@"EditPageTypeOne"]) {
-            ALAsset *p = [self.poolViewController photoWithURLString:page[@"payload"][@"photo"]];
-            if (p) {
-                [self.poolViewController dropPhoto:p];
-            }
-            self.book[pageKey] = @{@"payload": @{@"photo": @""}, @"type": page[@"type"]};
-        } else {
-            if ([sender.view isEqual:cell.mainView.imageView1]) {
-                // drop p1
-                ALAsset *p = [self.poolViewController photoWithURLString:page[@"payload"][@"photo"]];
-                if (p) {
-                    [self.poolViewController dropPhoto:p];
-                }
-                NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:page[@"payload"]];
-                newpayload[@"photo"] = @"";
-                self.book[pageKey] = @{@"payload": newpayload, @"type": page[@"type"]};
-            } else {
-                // drop p2
-                ALAsset *p = [self.poolViewController photoWithURLString:page[@"payload"][@"photo2"]];
-                if (p) {
-                    [self.poolViewController dropPhoto:p];
-                }
-                NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:page[@"payload"]];
-                newpayload[@"photo2"] = @"";
-                self.book[pageKey] = @{@"payload": newpayload, @"type": page[@"type"]};
-            }
-        }
-        [self.pagesCollectionView reloadData];
+        UIView *imgView = sender.view;
+        self.pagesCollectionView.userInteractionEnabled = NO;
+        [UIView animateWithDuration:0.4
+                         animations:^{
+                             imgView.frame = CGRectMake(imgView.frame.origin.x + imgView.frame.size.width/2, imgView.frame.origin.y + imgView.frame.size.height/2, 0, 0);
+                         } completion:^(BOOL finished) {
+                             JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
+                             NSInteger pageIndex = [self pageIndex];
+                             NSString *pageKey = [NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart];
+                             NSDictionary *page = self.book[pageKey];
+                             if ([page[@"type"] hasPrefix:@"EditPageTypeOne"]) {
+                                 ALAsset *p = [self.poolViewController photoWithURLString:page[@"payload"][@"photo"]];
+                                 if (p) {
+                                     [self.poolViewController dropPhoto:p];
+                                 }
+                                 self.book[pageKey] = @{@"payload": @{@"photo": @""}, @"type": page[@"type"]};
+                             } else {
+                                 if ([sender.view isEqual:cell.mainView.imageView1]) {
+                                     // drop p1
+                                     ALAsset *p = [self.poolViewController photoWithURLString:page[@"payload"][@"photo"]];
+                                     if (p) {
+                                         [self.poolViewController dropPhoto:p];
+                                     }
+                                     NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:page[@"payload"]];
+                                     newpayload[@"photo"] = @"";
+                                     self.book[pageKey] = @{@"payload": newpayload, @"type": page[@"type"]};
+                                 } else {
+                                     // drop p2
+                                     ALAsset *p = [self.poolViewController photoWithURLString:page[@"payload"][@"photo2"]];
+                                     if (p) {
+                                         [self.poolViewController dropPhoto:p];
+                                     }
+                                     NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:page[@"payload"]];
+                                     newpayload[@"photo2"] = @"";
+                                     self.book[pageKey] = @{@"payload": newpayload, @"type": page[@"type"]};
+                                 }
+                             }
+                             [self.pagesCollectionView reloadData];
+                             self.pagesCollectionView.userInteractionEnabled = YES;
+                         }];
     }
 }
 
