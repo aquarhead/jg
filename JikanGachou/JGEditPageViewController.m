@@ -398,7 +398,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     if (sender.state == UIGestureRecognizerStateEnded) {
         UIView *imgView = sender.view;
         self.pagesCollectionView.userInteractionEnabled = NO;
-        [UIView animateWithDuration:0.4
+        [UIView animateWithDuration:0.2
                          animations:^{
                              imgView.frame = CGRectMake(imgView.frame.origin.x + imgView.frame.size.width/2, imgView.frame.origin.y + imgView.frame.size.height/2, 0, 0);
                          } completion:^(BOOL finished) {
