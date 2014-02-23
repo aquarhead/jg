@@ -21,7 +21,7 @@ PODS:
   - MD5Digest (0.1.0)
   - MRProgress (0.3.1)
   - NyaruDB (1.4.1)
-  - TestFlightSDK (2.2.1)
+  - TestFlightSDK (3.0.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
@@ -37,6 +37,6 @@ SPEC CHECKSUMS:
   MD5Digest: 355c8733ab522cc516a4047e2d93e2b842947b18
   MRProgress: 741d8849f3d6e71cf254b32ea8c0bc0b2a122136
   NyaruDB: 294a1316faeae429c1c76743dd5369fcd1e8b42c
-  TestFlightSDK: 030fa8a1bc8aa9ba5c9ae1be05ceaba775368c0c
+  TestFlightSDK: 71e3e78d3a46144dbad975a4bf80a14dae6a818a
 
 COCOAPODS: 0.29.0
