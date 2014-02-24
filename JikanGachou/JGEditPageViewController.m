@@ -70,9 +70,9 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 
 - (IBAction)submitClicked:(id)sender {
     [self hideKeyboard];
-#ifndef DEBUG
     NSString *errmsg = nil;
     NSIndexPath *idxp = nil;
+#ifndef DEBUG
     // check 20 pages
     for (int pageIndex=0; pageIndex<20; pageIndex++) {
         NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%d", pageIndex]];
@@ -84,6 +84,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
             break;
         }
     }
+#endif
     // check title and author
     if (![self.book objectForKey:@"author"]
         || [[self.book objectForKey:@"author"] isEqualToString:@""]) {
@@ -110,9 +111,6 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     } else {
         [self.poolViewController performSegueWithIdentifier:@"toSubmit" sender:self.poolViewController];
     }
-#else
-    [self.poolViewController performSegueWithIdentifier:@"toSubmit" sender:self.poolViewController];
-#endif
 }
 
 #pragma mark - Keyboard related
