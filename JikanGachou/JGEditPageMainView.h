@@ -27,6 +27,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *authorTextField;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
 
+@property (nonatomic) BOOL needsMoveUp;
+
 @property (nonatomic, weak) id<JGEditPageDelegate> delegate;
 
 - (void)fillNth:(NSUInteger)n withPhoto:(ALAsset *)p;

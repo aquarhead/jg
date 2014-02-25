@@ -35,6 +35,9 @@
                 </textField>
             </subviews>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="needsMoveUp" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="authorTextField" destination="FMW-hd-rwf" id="vQo-oH-JU5"/>
                 <outlet property="titleTextField" destination="TjB-rL-iYd" id="uTH-hH-eYh"/>

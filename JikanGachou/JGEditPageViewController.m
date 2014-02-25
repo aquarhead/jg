@@ -126,22 +126,27 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         return;
     }
 
-    NSTimeInterval duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    [UIView animateWithDuration:duration animations:^{
-        self.collectionViewYConstraint.constant += (IS_R4 ? 80 : 120);
-        [self.view layoutIfNeeded];
-    }];
+    JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
+    if (cell.mainView.needsMoveUp) {
+        NSTimeInterval duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+        [UIView animateWithDuration:duration animations:^{
+            self.collectionViewYConstraint.constant += (IS_R4 ? 80 : 120);
+            [self.view layoutIfNeeded];
+        }];
+    }
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
-    NSDictionary *userInfo = notification.userInfo;
-
-    NSTimeInterval duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    [UIView animateWithDuration:duration animations:^{
-        self.collectionViewYConstraint.constant -= (IS_R4 ? 80 : 120);
-        [self.view layoutIfNeeded];
-    }];
+    JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
+    if (cell.mainView.needsMoveUp) {
+        NSDictionary *userInfo = notification.userInfo;
+        NSTimeInterval duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+        [UIView animateWithDuration:duration animations:^{
+            self.collectionViewYConstraint.constant -= (IS_R4 ? 80 : 120);
+            [self.view layoutIfNeeded];
+        }];
+    }
 }
 
 - (void)hideKeyboard

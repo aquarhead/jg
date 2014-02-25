@@ -82,6 +82,9 @@
                 <constraint firstItem="r7e-0n-6c1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="zV5-nO-clw"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="needsMoveUp" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="dayLabel1" destination="SPE-G2-p38" id="2uz-nM-ZIH"/>
                 <outlet property="descriptionTextView" destination="eou-CB-zsf" id="MPT-Pv-hi5"/>
