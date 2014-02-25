@@ -35,10 +35,18 @@
     self.imagePager.imageCounterDisabled = YES;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    self.imagePager.pageControlCenter = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height - 16);
+}
+
 - (NSArray *)arrayWithImages
 {
-    return @[[UIImage imageNamed:@"start1"],
-             [UIImage imageNamed:@"start2"]];
+    return @[[UIImage imageNamed:@"start1.jpg"],
+             [UIImage imageNamed:@"start2.jpg"],
+             [UIImage imageNamed:@"start3.jpg"]];
 }
 
 - (UIViewContentMode)contentModeForImage:(NSUInteger)image
@@ -54,7 +62,8 @@
     if (documents.count > 0) {
         self.book = documents[0];
         [self performSegueWithIdentifier:@"openSubmit" sender:self];
-    } else {
+    }
+    else {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"相册错误" message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alertView show];
     }

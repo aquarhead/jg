@@ -11,6 +11,9 @@
 		1A2F6459187F63AA00BC4D06 /* JGEditPageMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F6458187F63AA00BC4D06 /* JGEditPageMainView.m */; };
 		1A7E24FF1851FD9500113959 /* JGImagePoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E24FE1851FD9500113959 /* JGImagePoolViewController.m */; };
 		1A7E25021851FDCF00113959 /* JGImageGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E25011851FDCF00113959 /* JGImageGridViewController.m */; };
+		1A8B446918BC737C00E06CA6 /* start1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A8B446618BC737C00E06CA6 /* start1.jpg */; };
+		1A8B446A18BC737C00E06CA6 /* start2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A8B446718BC737C00E06CA6 /* start2.jpg */; };
+		1A8B446B18BC737C00E06CA6 /* start3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A8B446818BC737C00E06CA6 /* start3.jpg */; };
 		1AD436E9185DFE7F003B5D19 /* JGEditPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD436E8185DFE7F003B5D19 /* JGEditPageViewController.m */; };
 		4F1FB97918729FB6000FCFDB /* EditPageCoverTypeLogo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB97818729FB6000FCFDB /* EditPageCoverTypeLogo.xib */; };
 		4F1FB97B1872A049000FCFDB /* EditPageCoverTypePhoto.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB97A1872A049000FCFDB /* EditPageCoverTypePhoto.xib */; };
@@ -62,6 +65,9 @@
 		1A7E24FE1851FD9500113959 /* JGImagePoolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGImagePoolViewController.m; sourceTree = "<group>"; };
 		1A7E25001851FDCF00113959 /* JGImageGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGImageGridViewController.h; sourceTree = "<group>"; };
 		1A7E25011851FDCF00113959 /* JGImageGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGImageGridViewController.m; sourceTree = "<group>"; };
+		1A8B446618BC737C00E06CA6 /* start1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = start1.jpg; path = Resources/start1.jpg; sourceTree = "<group>"; };
+		1A8B446718BC737C00E06CA6 /* start2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = start2.jpg; path = Resources/start2.jpg; sourceTree = "<group>"; };
+		1A8B446818BC737C00E06CA6 /* start3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = start3.jpg; path = Resources/start3.jpg; sourceTree = "<group>"; };
 		1AD436E7185DFE7F003B5D19 /* JGEditPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGEditPageViewController.h; sourceTree = "<group>"; };
 		1AD436E8185DFE7F003B5D19 /* JGEditPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGEditPageViewController.m; sourceTree = "<group>"; };
 		49761CB1CE0A4A59944B727D /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -139,6 +145,16 @@
 				4F1FB9941872A9BE000FCFDB /* Back */,
 			);
 			name = "Main View";
+			sourceTree = "<group>";
+		};
+		1A8B446518BC72CB00E06CA6 /* Start Photo */ = {
+			isa = PBXGroup;
+			children = (
+				1A8B446618BC737C00E06CA6 /* start1.jpg */,
+				1A8B446718BC737C00E06CA6 /* start2.jpg */,
+				1A8B446818BC737C00E06CA6 /* start3.jpg */,
+			);
+			name = "Start Photo";
 			sourceTree = "<group>";
 		};
 		1AD436EA185DFE82003B5D19 /* Edit Page */ = {
@@ -234,6 +250,7 @@
 		4F2FEEFC184B1A4A001A7AFE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1A8B446518BC72CB00E06CA6 /* Start Photo */,
 				4FBB080E189E25340094B1E4 /* README.md */,
 				4F2FEF04184B1A4A001A7AFE /* JGAppDelegate.h */,
 				4F2FEF05184B1A4A001A7AFE /* JGAppDelegate.m */,
@@ -380,11 +397,14 @@
 				4F1FB9851872A7BB000FCFDB /* EditPageTypeOnePortrait.xib in Resources */,
 				4F1FB9911872A992000FCFDB /* EditPageTitle.xib in Resources */,
 				4F1FB98F1872A980000FCFDB /* EditPageBackCover.xib in Resources */,
+				1A8B446B18BC737C00E06CA6 /* start3.jpg in Resources */,
 				4F1FB97918729FB6000FCFDB /* EditPageCoverTypeLogo.xib in Resources */,
 				4F1FB9831872A7A1000FCFDB /* EditPageTypeOneLandscape.xib in Resources */,
 				4F2FEF0E184B1A4A001A7AFE /* Images.xcassets in Resources */,
 				4F1FB98D1872A8B0000FCFDB /* EditPageTypeMixedLeftPortrait.xib in Resources */,
 				4F2FEF00184B1A4A001A7AFE /* InfoPlist.strings in Resources */,
+				1A8B446A18BC737C00E06CA6 /* start2.jpg in Resources */,
+				1A8B446918BC737C00E06CA6 /* start1.jpg in Resources */,
 				4F1FB9891872A872000FCFDB /* EditPageTypeTwoPortrait.xib in Resources */,
 				4FBB080F189E25340094B1E4 /* README.md in Resources */,
 				4F2FEF09184B1A4A001A7AFE /* Main.storyboard in Resources */,
