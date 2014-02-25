@@ -21,7 +21,24 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZL-BK-ORG">
+                            <button opaque="NO" alpha="0.82999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jG7-kT-SOD">
+                                <rect key="frame" x="68" y="379" width="184" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.74901960779999999" green="0.5568627451" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="cjl-tT-Zx0"/>
+                                    <constraint firstAttribute="width" constant="184" id="uph-Tf-q3f"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="查看相册状态">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="izN-rQ-P5R" kind="modal" id="4NA-JJ-gIr"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.82999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZL-BK-ORG">
                                 <rect key="frame" x="68" y="419" width="184" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.74901960784313726" green="0.55686274509803924" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
@@ -40,6 +57,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="cZL-BK-ORG" firstAttribute="top" secondItem="jG7-kT-SOD" secondAttribute="bottom" constant="10" id="EIw-hu-Vgf"/>
+                            <constraint firstItem="jG7-kT-SOD" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="68" id="G8S-5Q-wle"/>
                             <constraint firstItem="KIj-62-2Co" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Lwu-FV-GU0"/>
                             <constraint firstAttribute="trailing" secondItem="KIj-62-2Co" secondAttribute="trailing" id="NeH-Kc-fat"/>
                             <constraint firstItem="8UU-TN-jES" firstAttribute="top" secondItem="cZL-BK-ORG" secondAttribute="bottom" constant="31" id="PE9-8R-ttS"/>
@@ -666,6 +685,81 @@
             </objects>
             <point key="canvasLocation" x="1086" y="-125"/>
         </scene>
+        <!--Book Table View Controller - 我的相册-->
+        <scene sceneID="R1m-Hb-yrL">
+            <objects>
+                <tableViewController id="kmN-ii-Hks" customClass="JGBookTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="105" sectionHeaderHeight="22" sectionFooterHeight="22" id="kJW-gX-Ff6">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="105" id="2fG-iD-f90">
+                                <rect key="frame" x="0.0" y="22" width="320" height="105"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2fG-iD-f90" id="c0H-P8-6wT">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="104"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Cover1" translatesAutoresizingMaskIntoConstraints="NO" id="NC9-aC-bhV">
+                                            <rect key="frame" x="20" y="22" width="60" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="未命名相册" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="205" translatesAutoresizingMaskIntoConstraints="NO" id="o9a-WM-sa3">
+                                            <rect key="frame" x="95" y="21" width="205" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2013年6月23日 已送达" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="205" translatesAutoresizingMaskIntoConstraints="NO" id="eU7-fq-6sS">
+                                            <rect key="frame" x="95" y="51" width="205" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="kmN-ii-Hks" id="KDp-QP-h95"/>
+                            <outlet property="delegate" destination="kmN-ii-Hks" id="ffN-Jh-2Io"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="我的相册" id="e9B-I5-qE8">
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="Zzr-NU-gvv">
+                            <connections>
+                                <action selector="cancelPressed:" destination="kmN-ii-Hks" id="0CB-Gr-ehG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fer-kc-0TH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1086" y="-1430"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="U6b-Ck-SO3">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="izN-rQ-P5R" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="juy-ti-ObZ">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="0.84999999999999998" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.67823262120000005" green="0.35352257580000002" blue="0.17941833069999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="kmN-ii-Hks" kind="relationship" relationship="rootViewController" id="BOt-So-coL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="044-Bl-8NO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="612" y="-1430"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="aEK-Wx-sJD">
             <objects>
@@ -688,6 +782,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Cover1" width="300" height="300"/>
         <image name="check" width="22" height="22"/>
         <image name="no-photo" width="127" height="70"/>
     </resources>
@@ -698,7 +793,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="wP5-pT-q13"/>
-        <segue reference="yvU-bO-kQ9"/>
+        <segue reference="hDy-eX-N4M"/>
+        <segue reference="yhe-lp-2g5"/>
     </inferredMetricsTieBreakers>
 </document>
