@@ -10,7 +10,6 @@ Book:
 - cover_photo: (optional)
 - page0 .. page20
   - type: as xib name
-  - payload:
-    - text
-    - photo, photo2:
-    - date, date2:
+  - text
+  - photo, photo2:
+  - date, date2:

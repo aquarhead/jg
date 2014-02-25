@@ -77,8 +77,8 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     for (int pageIndex=0; pageIndex<20; pageIndex++) {
         NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%d", pageIndex]];
         if (!page
-            || !page[@"payload"][@"photo"]
-            || (![page[@"type"] hasPrefix:@"EditPageTypeOne"] && !page[@"payload"][@"photo2"])) {
+            || !page[@"photo"]
+            || (![page[@"type"] hasPrefix:@"EditPageTypeOne"] && !page[@"photo2"])) {
             errmsg = @"请选择想打印的照片";
             idxp = [NSIndexPath indexPathForItem:pageIndex+kJGIndexPhotoPageStart inSection:0];
             break;
@@ -176,9 +176,9 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 - (void)saveDescriptionText:(NSString *)descriptionText
 {
     NSString *pageKey = [NSString stringWithFormat:@"page%ld", (long)[self pageIndex]-kJGIndexPhotoPageStart];
-    NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:self.book[pageKey][@"payload"]];
-    newpayload[@"text"] = descriptionText;
-    self.book[pageKey] = @{@"payload": newpayload, @"type": self.book[pageKey][@"type"]};
+    NSMutableDictionary *newpage = [self.book[pageKey] mutableCopy];
+    newpage[@"text"] = descriptionText;
+    self.book[pageKey] = newpage;
 }
 
 #pragma mark - Scroll View
@@ -259,23 +259,22 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     }
     else {
         NSString *type = (sender.selectedSegmentIndex == 0 ? @"EditPageTypeOneLandscape" : @"EditPageTypeTwoLandscape");
-        NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
+        NSString *pageKey = [NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart];
+        NSMutableDictionary *page = [self.book[pageKey] mutableCopy];
         if (page) {
             if ([page[@"type"] hasPrefix:@"EditPageTypeTwo"] || [page[@"type"] hasPrefix:@"EditPageTypeMixed"]) {
                 // drop photo2
-                ALAsset *p = [self.poolViewController photoWithURLString:page[@"payload"][@"photo2"]];
+                ALAsset *p = [self.poolViewController photoWithURLString:page[@"photo2"]];
                 if (p) {
                     [self.poolViewController dropPhoto:p];
                 }
-                NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:page[@"payload"]];
-                newpayload[@"photo2"] = @"";
-                [self.book setObject:@{@"payload": newpayload, @"type": type} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
-            } else {
-                [self.book setObject:@{@"payload": page[@"payload"], @"type": type} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
+                page[@"photo2"] = @"";
             }
+            page[@"type"] = type;
+            self.book[pageKey] = page;
         }
         else {
-            [self.book setObject:@{@"payload": @{}, @"type": type} forKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
+            self.book[pageKey] = @{@"type": type};
         }
     }
 
@@ -314,16 +313,17 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     }
     else {
         NSString *pageKey = [NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart];
-        NSDictionary *page = self.book[pageKey];
+        NSMutableDictionary *page = [self.book[pageKey] mutableCopy];
         if (!page) {
-            page = @{@"payload": @{}, @"type": @"EditPageTypeOneLandscape"};
+            page = [NSMutableDictionary new];
+            page[@"type"] = @"EditPageTypeOneLandscape";
             self.book[pageKey] = page;
         }
 
         if ([page[@"type"] hasPrefix:@"EditPageTypeOne"]) {
-            ALAsset *p = [self.poolViewController photoWithURLString:page[@"payload"][@"photo"]];
+            ALAsset *p = [self.poolViewController photoWithURLString:page[@"photo"]];
             if (p) {
-                UIImage *img = [UIImage imageWithCGImage:p.defaultRepresentation.fullScreenImage];
+                UIImage *img = [UIImage imageWithCGImage:p.aspectRatioThumbnail];
                 CGSize size = img.size;
                 if (size.width >= size.height) {
                     [cell useMainViewNamed:@"EditPageTypeOneLandscape" withGestureRecognizers:self.tapRecogs];
@@ -341,20 +341,20 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         }
         else {
             // two photos
-            ALAsset *p1 = [self.poolViewController photoWithURLString:page[@"payload"][@"photo"]];
-            ALAsset *p2 = [self.poolViewController photoWithURLString:page[@"payload"][@"photo2"]];
+            ALAsset *p1 = [self.poolViewController photoWithURLString:page[@"photo"]];
+            ALAsset *p2 = [self.poolViewController photoWithURLString:page[@"photo2"]];
             bool p1_landscape = NO, p2_landscape = NO;
 
             // check orientation
             if (p1) {
-                UIImage *image = [UIImage imageWithCGImage:p1.defaultRepresentation.fullScreenImage];
+                UIImage *image = [UIImage imageWithCGImage:p1.aspectRatioThumbnail];
                 CGSize size = image.size;
                 if (size.width >= size.height) {
                     p1_landscape = YES;
                 }
             }
             if (p2) {
-                UIImage *image = [UIImage imageWithCGImage:p2.defaultRepresentation.fullScreenImage];
+                UIImage *image = [UIImage imageWithCGImage:p2.aspectRatioThumbnail];
                 CGSize size = image.size;
                 if (size.width >= size.height) {
                     p2_landscape = YES;
@@ -385,8 +385,8 @@ static const NSInteger kJGIndexBackcoverPage = 22;
             [cell.mainView fillNth:2 withPhoto:p2];
         }
         cell.mainView.delegate = self;
-        if (page[@"payload"][@"text"]) {
-            [cell.mainView setDescriptionText:page[@"payload"][@"text"]];
+        if (page[@"text"]) {
+            [cell.mainView setDescriptionText:page[@"text"]];
         }
     }
 }
@@ -395,7 +395,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 {
     if (sender.state == UIGestureRecognizerStateEnded) {
         UIView *imgView = sender.view;
-        self.pagesCollectionView.userInteractionEnabled = NO;
+        [self lockInteraction];
         [UIView animateWithDuration:0.2
                          animations:^{
                              imgView.frame = CGRectMake(imgView.frame.origin.x + imgView.frame.size.width/2, imgView.frame.origin.y + imgView.frame.size.height/2, 0, 0);
@@ -403,36 +403,33 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                              JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
                              NSInteger pageIndex = [self pageIndex];
                              NSString *pageKey = [NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart];
-                             NSDictionary *page = self.book[pageKey];
+                             NSMutableDictionary *page = [self.book[pageKey] mutableCopy];
                              if ([page[@"type"] hasPrefix:@"EditPageTypeOne"]) {
-                                 ALAsset *p = [self.poolViewController photoWithURLString:page[@"payload"][@"photo"]];
+                                 ALAsset *p = [self.poolViewController photoWithURLString:page[@"photo"]];
                                  if (p) {
                                      [self.poolViewController dropPhoto:p];
                                  }
-                                 self.book[pageKey] = @{@"payload": @{@"photo": @""}, @"type": page[@"type"]};
+                                 page[@"photo"] = @"";
                              } else {
                                  if ([sender.view isEqual:cell.mainView.imageView1]) {
                                      // drop p1
-                                     ALAsset *p = [self.poolViewController photoWithURLString:page[@"payload"][@"photo"]];
+                                     ALAsset *p = [self.poolViewController photoWithURLString:page[@"photo"]];
                                      if (p) {
                                          [self.poolViewController dropPhoto:p];
                                      }
-                                     NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:page[@"payload"]];
-                                     newpayload[@"photo"] = @"";
-                                     self.book[pageKey] = @{@"payload": newpayload, @"type": page[@"type"]};
+                                     page[@"photo"] = @"";
                                  } else {
                                      // drop p2
-                                     ALAsset *p = [self.poolViewController photoWithURLString:page[@"payload"][@"photo2"]];
+                                     ALAsset *p = [self.poolViewController photoWithURLString:page[@"photo2"]];
                                      if (p) {
                                          [self.poolViewController dropPhoto:p];
                                      }
-                                     NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:page[@"payload"]];
-                                     newpayload[@"photo2"] = @"";
-                                     self.book[pageKey] = @{@"payload": newpayload, @"type": page[@"type"]};
+                                     page[@"photo2"] = @"";
                                  }
                              }
+                             self.book[pageKey] = page;
+                             [self unlockInteraction];
                              [self.pagesCollectionView reloadData];
-                             self.pagesCollectionView.userInteractionEnabled = YES;
                          }];
     }
 }
@@ -464,21 +461,19 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     }
     else if (pageIndex >= kJGIndexPhotoPageStart && pageIndex < kJGIndexBackcoverPage) {
         NSString *pageKey = [NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart];
-        NSDictionary *page = self.book[pageKey];
+        NSMutableDictionary *page = [self.book[pageKey] mutableCopy];
 
         if ([page[@"type"] hasPrefix:@"EditPageTypeOne"]) {
-            if (page[@"payload"][@"photo"] && ![page[@"payload"][@"photo"] isEqualToString:@""]) {
+            if (page[@"photo"] && ![page[@"photo"] isEqualToString:@""]) {
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"这一页放不下更多照片了" message:@"试试点击书中的照片来撤销" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [alertView show];
             } else {
                 [self.poolViewController usePhoto:p];
-                NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:page[@"payload"]];
-                newpayload[@"photo"] = [p.defaultRepresentation.url absoluteString];
-                self.book[pageKey] =@{@"payload": newpayload, @"type": page[@"type"]};
+                page[@"photo"] = [p.defaultRepresentation.url absoluteString];
             }
         } else {
-            bool p1 = page[@"payload"][@"photo"] && ![page[@"payload"][@"photo"] isEqualToString:@""];
-            bool p2 = page[@"payload"][@"photo2"] && ![page[@"payload"][@"photo2"] isEqualToString:@""];
+            bool p1 = page[@"photo"] && ![page[@"photo"] isEqualToString:@""];
+            bool p2 = page[@"photo2"] && ![page[@"photo2"] isEqualToString:@""];
             if (p1 && p2) {
                 // full
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"这一页放不下更多照片了" message:@"试试点击书中的照片来撤销" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -486,29 +481,26 @@ static const NSInteger kJGIndexBackcoverPage = 22;
             } else if (p1) {
                 // has p1, set p2
                 [self.poolViewController usePhoto:p];
-                NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:page[@"payload"]];
-                newpayload[@"photo2"] = [p.defaultRepresentation.url absoluteString];
-                self.book[pageKey] = @{@"payload": newpayload, @"type": page[@"type"]};
+                page[@"photo2"] = [p.defaultRepresentation.url absoluteString];
             } else {
                 // no photo or has p2, set p1
                 [self.poolViewController usePhoto:p];
-                NSMutableDictionary *newpayload = [NSMutableDictionary dictionaryWithDictionary:page[@"payload"]];
-                newpayload[@"photo"] = [p.defaultRepresentation.url absoluteString];
-                self.book[pageKey] = @{@"payload": newpayload, @"type": page[@"type"]};
+                page[@"photo"] = [p.defaultRepresentation.url absoluteString];
             }
         }
+        self.book[pageKey] = page;
         [self.pagesCollectionView reloadData];
     }
 }
 
 - (void)lockInteraction
 {
-    self.pagesCollectionView.userInteractionEnabled = NO;
+    self.view.userInteractionEnabled = NO;
 }
 
 - (void)unlockInteraction
 {
-    self.pagesCollectionView.userInteractionEnabled = YES;
+    self.view.userInteractionEnabled = YES;
 }
 
 - (void)didTapPlaceholder

@@ -63,16 +63,6 @@ const NSUInteger kJGPoolMostPhotos  = 40;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self.delegate respondsToSelector:@selector(didSelectPhoto:)]) {
-//        UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-//        [self.delegate lockInteraction];
-//        [UIView animateWithDuration:0.2
-//                         animations:^{
-//                             cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y - 82, cell.frame.size.width, cell.frame.size.height);
-//                         } completion:^(BOOL finished) {
-//                             [self.delegate didSelectPhoto:self.selectedPhotos[indexPath.row]];
-//                             [self.delegate unlockInteraction];
-//                             [self reload];
-//                         }];
         [self.delegate didSelectPhoto:self.selectedPhotos[indexPath.row]];
         [self reload];
     }
@@ -193,20 +183,19 @@ const NSUInteger kJGPoolMostPhotos  = 40;
         }
         for (int i=0; i<20; i++) {
             NSString *pageKey = [NSString stringWithFormat:@"page%d", i];
-            NSDictionary *page = self.book[pageKey];
+            NSMutableDictionary *page = [self.book[pageKey] mutableCopy];
             if (page) {
-                NSMutableDictionary *newpayload = [page[@"payload"] mutableCopy];
-                if (page[@"payload"][@"photo"]) {
-                    ALAsset *p = [self photoWithURLString:page[@"payload"][@"photo"]];
+                if (page[@"photo"]) {
+                    ALAsset *p = [self photoWithURLString:page[@"photo"]];
                     NSDate *date = [p valueForProperty:ALAssetPropertyDate];
-                    newpayload[@"date"] = [formatter stringFromDate:date];
+                    page[@"date"] = [formatter stringFromDate:date];
                 }
-                if (page[@"type"] && ![page[@"type"] hasPrefix:@"EditPageTypeOne"] && page[@"payload"][@"photo2"]) {
-                    ALAsset *p = [self photoWithURLString:page[@"payload"][@"photo2"]];
+                if (page[@"type"] && ![page[@"type"] hasPrefix:@"EditPageTypeOne"] && page[@"photo2"]) {
+                    ALAsset *p = [self photoWithURLString:page[@"photo2"]];
                     NSDate *date = [p valueForProperty:ALAssetPropertyDate];
-                    newpayload[@"date2"] = [formatter stringFromDate:date];
+                    page[@"date2"] = [formatter stringFromDate:date];
                 }
-                self.book[pageKey] = @{@"type": page[@"type"], @"payload": newpayload};
+                self.book[pageKey] = page;
             }
         }
         vc.book = [self.book copy];

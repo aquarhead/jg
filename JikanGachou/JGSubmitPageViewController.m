@@ -46,11 +46,11 @@
         NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%d", i]];
         // all these checks are redundant
         if (page) {
-            if (page[@"payload"][@"photo"]) {
-                [photo_urls addObject:page[@"payload"][@"photo"]];
+            if (page[@"photo"]) {
+                [photo_urls addObject:page[@"photo"]];
             }
-            if (page[@"type"] && ![page[@"type"] hasPrefix:@"EditPageTypeOne"] && page[@"payload"][@"photo2"]) {
-                [photo_urls addObject:page[@"payload"][@"photo2"]];
+            if (page[@"type"] && ![page[@"type"] hasPrefix:@"EditPageTypeOne"] && page[@"photo2"]) {
+                [photo_urls addObject:page[@"photo2"]];
             }
         }
     }

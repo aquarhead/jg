@@ -42,7 +42,7 @@
     UILabel *dayLabel = [self valueForKey:[NSString stringWithFormat:@"dayLabel%lu", (unsigned long)n]];
     
     if (p) {
-        UIImage *image = [UIImage imageWithCGImage:p.defaultRepresentation.fullScreenImage];
+        UIImage *image = [UIImage imageWithCGImage:p.aspectRatioThumbnail];
         imageView.image = image;
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         
