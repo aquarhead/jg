@@ -1,26 +1,58 @@
 PODS:
-  - AFNetworking (2.1.0):
+  - AFNetworking (2.2.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
     - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.1.0):
+  - AFNetworking/NSURLConnection (2.2.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.1.0):
+  - AFNetworking/NSURLSession (2.2.0):
     - AFNetworking/NSURLConnection
-  - AFNetworking/Reachability (2.1.0)
-  - AFNetworking/Security (2.1.0)
-  - AFNetworking/Serialization (2.1.0)
-  - AFNetworking/UIKit (2.1.0):
+  - AFNetworking/Reachability (2.2.0)
+  - AFNetworking/Security (2.2.0)
+  - AFNetworking/Serialization (2.2.0)
+  - AFNetworking/UIKit (2.2.0):
     - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
   - JVFloatLabeledTextField (0.0.6)
   - KIImagePager (HEAD based on 1.4.1)
   - MD5Digest (0.1.0)
-  - MRProgress (0.3.1)
+  - MRProgress (0.4.1):
+    - MRProgress/ActivityIndicator
+    - MRProgress/Blur
+    - MRProgress/Circular
+    - MRProgress/Helper
+    - MRProgress/Icons
+    - MRProgress/MessageInterceptor
+    - MRProgress/NavigationBarProgress
+    - MRProgress/Overlay
+    - MRProgress/Stopable
+    - MRProgress/WeakProxy
+  - MRProgress/ActivityIndicator (0.4.1):
+    - MRProgress/Stopable
+  - MRProgress/Blur (0.4.1):
+    - MRProgress/Helper
+  - MRProgress/Circular (0.4.1):
+    - MRProgress/Helper
+    - MRProgress/Stopable
+  - MRProgress/Helper (0.4.1)
+  - MRProgress/Icons (0.4.1)
+  - MRProgress/MessageInterceptor (0.4.1)
+  - MRProgress/NavigationBarProgress (0.4.1):
+    - MRProgress/MessageInterceptor
+  - MRProgress/Overlay (0.4.1):
+    - MRProgress/ActivityIndicator
+    - MRProgress/Blur
+    - MRProgress/Circular
+    - MRProgress/Helper
+    - MRProgress/Icons
+  - MRProgress/Stopable (0.4.1):
+    - MRProgress/Helper
+  - MRProgress/WeakProxy (0.4.1)
   - NyaruDB (1.4.1)
   - TestFlightSDK (3.0.0)
 
@@ -34,11 +66,11 @@ DEPENDENCIES:
   - TestFlightSDK
 
 SPEC CHECKSUMS:
-  AFNetworking: c7d7901a83f631414c7eda1737261f696101a5cd
+  AFNetworking: e8cfd8f3fe3bfe19124a0cc63f4d45752d892a56
   JVFloatLabeledTextField: 5f9a3648e0d215626e3cd7319788dc96354940b4
   KIImagePager: 6ab95f68c885cfb65fefc697ac641f75839adba5
   MD5Digest: 355c8733ab522cc516a4047e2d93e2b842947b18
-  MRProgress: 741d8849f3d6e71cf254b32ea8c0bc0b2a122136
+  MRProgress: 6530ce71278dd7ecfb5e3c3e37df03a323690936
   NyaruDB: 294a1316faeae429c1c76743dd5369fcd1e8b42c
   TestFlightSDK: 71e3e78d3a46144dbad975a4bf80a14dae6a818a
 

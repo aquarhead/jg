@@ -11,11 +11,9 @@
 @interface JGEditPageMainView () <UITextFieldDelegate, UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *yearLabel1;
-@property (weak, nonatomic) IBOutlet UILabel *monthLabel1;
 @property (weak, nonatomic) IBOutlet UILabel *dayLabel1;
 
 @property (weak, nonatomic) IBOutlet UILabel *yearLabel2;
-@property (weak, nonatomic) IBOutlet UILabel *monthLabel2;
 @property (weak, nonatomic) IBOutlet UILabel *dayLabel2;
 
 @end
@@ -25,7 +23,7 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    
+
     self.titleTextField.delegate = self;
     self.authorTextField.delegate = self;
     self.descriptionTextView.delegate = self;
@@ -38,34 +36,28 @@
 {
     UIImageView *imageView = [self valueForKey:[NSString stringWithFormat:@"imageView%lu", (unsigned long)n]];
     UILabel *yearLabel = [self valueForKey:[NSString stringWithFormat:@"yearLabel%lu", (unsigned long)n]];
-    UILabel *monthLabel = [self valueForKey:[NSString stringWithFormat:@"monthLabel%lu", (unsigned long)n]];
     UILabel *dayLabel = [self valueForKey:[NSString stringWithFormat:@"dayLabel%lu", (unsigned long)n]];
-    
+
     if (p) {
         UIImage *image = [UIImage imageWithCGImage:p.aspectRatioThumbnail];
         imageView.image = image;
         imageView.contentMode = UIViewContentModeScaleAspectFill;
-        
+
         NSDate *date = [p valueForProperty:ALAssetPropertyDate];
-        static NSDateFormatter *yearFormatter, *monthFormatter, *dayFormatter;
+        static NSDateFormatter *yearFormatter, *dayFormatter;
         if (!yearFormatter) {
             yearFormatter = [NSDateFormatter new];
-            yearFormatter.dateFormat = @"YYYY";
-            monthFormatter = [NSDateFormatter new];
-            monthFormatter.dateFormat = @"MMM";
+            yearFormatter.dateFormat = @" MMMM YYYY";
             dayFormatter = [NSDateFormatter new];
-            dayFormatter.dateFormat = @"dd";
+            dayFormatter.dateFormat = @" d ";
         }
         yearLabel.text = [yearFormatter stringFromDate:date];
-        monthLabel.text = [monthFormatter stringFromDate:date];
         dayLabel.text = [dayFormatter stringFromDate:date];
-        
-        yearLabel.textColor = [UIColor colorWithWhite:0.25 alpha:1];
-        monthLabel.textColor = [UIColor colorWithWhite:0.25 alpha:1];
-        dayLabel.textColor = [UIColor colorWithWhite:0.25 alpha:1];
-        
-        [dayLabel sizeToFit];
-    } else {
+
+        yearLabel.textColor = [UIColor colorWithWhite:0.35 alpha:1];
+        dayLabel.backgroundColor = [UIColor colorWithWhite:0.35 alpha:1];
+    }
+    else {
         imageView.image = [UIImage imageNamed:@"Placeholder"];
         imageView.contentMode = UIViewContentModeScaleToFill;
     }
@@ -109,7 +101,7 @@
     } else {
         [textField resignFirstResponder];
     }
-    
+
     return YES;
 }
 
