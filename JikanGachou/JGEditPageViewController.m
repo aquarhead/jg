@@ -93,23 +93,23 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     }
     if (![self.book objectForKey:@"title"]
         || [[self.book objectForKey:@"title"] isEqualToString:@""]) {
-        errmsg = @"请填写相册名";
+        errmsg = @"请填写画册名";
         idxp = [NSIndexPath indexPathForItem:kJGIndexFlyleafPage inSection:0];
     }
     // check cover_photo
     if ([[self.book objectForKey:@"cover_type"] hasSuffix:@"Photo"]) {
         if (![self.book objectForKey:@"cover_photo"]
             || [[self.book objectForKey:@"cover_photo"] isEqualToString:@""]) {
-            errmsg = @"请设置用于相册封面的照片";
+            errmsg = @"请设置用于画册封面的照片";
             idxp = [NSIndexPath indexPathForItem:kJGIndexCoverPage inSection:0];
         }
     }
     if (errmsg) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"相册不完整" message:errmsg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"画册不完整" message:errmsg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alertView show];
         [self.pagesCollectionView scrollToItemAtIndexPath:idxp atScrollPosition:0 animated:YES];
     } else {
-        [self.poolViewController performSegueWithIdentifier:@"toSubmit" sender:self.poolViewController];
+        [self.poolViewController saveBookAndExit];
     }
 }
 
@@ -276,7 +276,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                 page[@"photo2"] = @"";
             }
             page[@"type"] = type;
-            self.book[pageKey] = page;
+            self.book[pageKey] = [page copy];
         }
         else {
             self.book[pageKey] = @{@"type": type};
@@ -322,7 +322,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         if (!page) {
             page = [NSMutableDictionary new];
             page[@"type"] = @"EditPageTypeOneLandscape";
-            self.book[pageKey] = page;
+            self.book[pageKey] = [page copy];
         }
 
         if ([page[@"type"] hasPrefix:@"EditPageTypeOne"]) {
@@ -432,7 +432,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                                      page[@"photo2"] = @"";
                                  }
                              }
-                             self.book[pageKey] = page;
+                             self.book[pageKey] = [page copy];
                              [self unlockInteraction];
                              [self.pagesCollectionView reloadData];
                          }];
@@ -493,7 +493,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                 page[@"photo"] = [p.defaultRepresentation.url absoluteString];
             }
         }
-        self.book[pageKey] = page;
+        self.book[pageKey] = [page copy];
         [self.pagesCollectionView reloadData];
     }
 }

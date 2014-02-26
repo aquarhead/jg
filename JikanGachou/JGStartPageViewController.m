@@ -7,9 +7,10 @@
 //
 
 #import "JGStartPageViewController.h"
-#import <KIImagePager.h>
 #import "JGAppDelegate.h"
-#import "JGSubmitPageViewController.h"
+#import "JGBookTableViewController.h"
+#import "JGImagePoolViewController.h"
+#import <KIImagePager.h>
 #import <NyaruDB.h>
 
 @interface JGStartPageViewController () <KIImagePagerDataSource>
@@ -61,19 +62,23 @@
     NSArray *documents = [[co where:@"key" equal:uuid] fetch];
     if (documents.count > 0) {
         self.book = documents[0];
-        [self performSegueWithIdentifier:@"openSubmit" sender:self];
+        [self performSegueWithIdentifier:@"listBooks" sender:self];
     }
     else {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"相册错误" message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"画册错误" message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alertView show];
     }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"openSubmit"]) {
-        JGSubmitPageViewController *vc = (JGSubmitPageViewController *)((UINavigationController *)segue.destinationViewController).topViewController;;
-        vc.book = [self.book copy];
+    if ([segue.identifier isEqualToString:@"listBooks"]) {
+         JGBookTableViewController *vc = (JGBookTableViewController *)((UINavigationController *)segue.destinationViewController).topViewController;
+        vc.openBookUUID = self.book[@"key"];
+    }
+    if ([segue.identifier isEqualToString:@"newBook"]) {
+        JGImagePoolViewController *vc = (JGImagePoolViewController *)segue.destinationViewController;
+        vc.homeVC = self;
     }
 }
 
