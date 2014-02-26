@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5051" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Start Page View Controller-->
@@ -30,12 +30,12 @@
                                     <constraint firstAttribute="width" constant="184" id="uph-Tf-q3f"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="查看相册状态">
+                                <state key="normal" title="查看画册状态">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="izN-rQ-P5R" kind="modal" id="4NA-JJ-gIr"/>
+                                    <segue destination="izN-rQ-P5R" kind="modal" identifier="listBooks" id="4NA-JJ-gIr"/>
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.82999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZL-BK-ORG">
@@ -46,12 +46,12 @@
                                     <constraint firstAttribute="height" constant="30" id="pm9-sj-IM6"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="创建新相册">
+                                <state key="normal" title="创建新画册">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="JLH-3v-K42" kind="modal" id="a8f-Zj-bec"/>
+                                    <segue destination="JLH-3v-K42" kind="modal" identifier="newBook" id="SvW-eJ-Gs7"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -71,12 +71,11 @@
                     <navigationItem key="navigationItem" id="jQ6-1C-fmd"/>
                     <connections>
                         <outlet property="imagePager" destination="KIj-62-2Co" id="Z4u-Yc-RhV"/>
-                        <segue destination="jm4-i5-pUc" kind="modal" identifier="openSubmit" id="hDy-eX-N4M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="-808"/>
+            <point key="canvasLocation" x="69" y="-1092"/>
         </scene>
         <!--Image Pool View Controller-->
         <scene sceneID="sav-Ir-YZi">
@@ -206,7 +205,6 @@
                         <outlet property="collectionView" destination="biB-rn-vgL" id="k7y-Yf-BoG"/>
                         <outlet property="placeholderButton" destination="dsL-RF-YfP" id="hre-4V-sEr"/>
                         <outlet property="selectedCountLabel" destination="SEb-QN-rfm" id="pUL-fv-CYc"/>
-                        <segue destination="jm4-i5-pUc" kind="modal" identifier="toSubmit" id="wP5-pT-q13"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7HM-1h-hl2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -483,34 +481,19 @@
             </objects>
             <point key="canvasLocation" x="2425" y="-696"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="oDc-Ik-fSf">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="jm4-i5-pUc" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bxs-42-ilP">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="NGp-sL-TIq" kind="relationship" relationship="rootViewController" id="s19-vV-Abk"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="B0W-eb-nwt" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="612" y="-125"/>
-        </scene>
-        <!--Submit Page View Controller - 提交相册-->
+        <!--Submit Page View Controller - 更新状态-->
         <scene sceneID="Fhz-Za-WBF">
             <objects>
                 <tableViewController id="NGp-sL-TIq" customClass="JGSubmitPageViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="fBa-Sq-rY7">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
                             <tableViewSection headerTitle="第一步 填写收件人信息并付款" footerTitle="如遇任何问题，请联系客服。" id="9eZ-tk-JOa">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ANW-oq-ehy">
-                                        <rect key="frame" x="0.0" y="119" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="55" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ANW-oq-ehy" id="WRz-zH-Tqj">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -536,7 +519,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="nWj-gQ-Tjk">
-                                        <rect key="frame" x="0.0" y="163" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="99" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nWj-gQ-Tjk" id="Kd6-p3-Md0">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -562,7 +545,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="83" id="5lY-Yb-Daf">
-                                        <rect key="frame" x="0.0" y="207" width="320" height="83"/>
+                                        <rect key="frame" x="0.0" y="143" width="320" height="83"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5lY-Yb-Daf" id="v9y-W7-8Ce">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
@@ -595,7 +578,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="qGP-qA-AsM" style="IBUITableViewCellStyleDefault" id="Fud-f1-PCV">
-                                        <rect key="frame" x="0.0" y="290" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="226" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fud-f1-PCV" id="HRx-ob-VAf">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -616,7 +599,7 @@
                             <tableViewSection headerTitle="第二步 上传照片" id="dVH-LI-nxf">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="eVF-De-8sI" detailTextLabel="Pr1-bx-ObU" style="IBUITableViewCellStyleValue1" id="xFc-ku-1PW">
-                                        <rect key="frame" x="0.0" y="409" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="345" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xFc-ku-1PW" id="yWL-oh-zW6">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -640,7 +623,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="7kv-Ka-dbs" style="IBUITableViewCellStyleDefault" id="dkh-mv-hWi">
-                                        <rect key="frame" x="0.0" y="453" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="389" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dkh-mv-hWi" id="Hna-TL-x5S">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -664,13 +647,7 @@
                             <outlet property="delegate" destination="NGp-sL-TIq" id="Iek-GP-hW8"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="提交相册" id="WIn-q8-nQq">
-                        <barButtonItem key="rightBarButtonItem" title="返回" id="6gf-LP-F0w">
-                            <connections>
-                                <action selector="backPressed:" destination="NGp-sL-TIq" id="Sh6-12-tKq"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="更新状态" id="WIn-q8-nQq"/>
                     <connections>
                         <outlet property="addressPlaceholder" destination="mns-e7-ejw" id="J6G-Wm-H5Q"/>
                         <outlet property="addressTextView" destination="XwZ-el-n1i" id="8Vb-g3-B0B"/>
@@ -683,9 +660,9 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NIk-cy-8FF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1086" y="-125"/>
+            <point key="canvasLocation" x="1547" y="-1430"/>
         </scene>
-        <!--Book Table View Controller - 我的相册-->
+        <!--Book Table View Controller - 全部画册-->
         <scene sceneID="R1m-Hb-yrL">
             <objects>
                 <tableViewController id="kmN-ii-Hks" customClass="JGBookTableViewController" sceneMemberID="viewController">
@@ -701,11 +678,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="104"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Cover1" translatesAutoresizingMaskIntoConstraints="NO" id="NC9-aC-bhV">
+                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Cover1" translatesAutoresizingMaskIntoConstraints="NO" id="NC9-aC-bhV">
                                             <rect key="frame" x="20" y="22" width="60" height="60"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="未命名相册" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="205" translatesAutoresizingMaskIntoConstraints="NO" id="o9a-WM-sa3">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="未命名画册" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="205" translatesAutoresizingMaskIntoConstraints="NO" id="o9a-WM-sa3">
                                             <rect key="frame" x="95" y="21" width="205" height="40"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -728,13 +705,16 @@
                             <outlet property="delegate" destination="kmN-ii-Hks" id="ffN-Jh-2Io"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="我的相册" id="e9B-I5-qE8">
+                    <navigationItem key="navigationItem" title="全部画册" id="e9B-I5-qE8">
                         <barButtonItem key="leftBarButtonItem" title="取消" id="Zzr-NU-gvv">
                             <connections>
                                 <action selector="cancelPressed:" destination="kmN-ii-Hks" id="0CB-Gr-ehG"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="NGp-sL-TIq" kind="push" identifier="bookStatus" id="VtI-bH-fx7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fer-kc-0TH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -793,7 +773,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="hDy-eX-N4M"/>
         <segue reference="yhe-lp-2g5"/>
     </inferredMetricsTieBreakers>
 </document>

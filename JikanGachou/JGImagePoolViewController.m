@@ -92,8 +92,7 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     }
     if (self.selectedPhotos.count > 0) {
         self.placeholderButton.hidden = YES;
-    }
-    else {
+    } else {
         self.placeholderButton.hidden = NO;
     }
 }
@@ -172,38 +171,46 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     return (count == kJGPoolMostPhotos);
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)saveBookAndExit
 {
-    if ([segue.identifier isEqualToString:@"toSubmit"]) {
-        JGSubmitPageViewController *vc = (JGSubmitPageViewController *)((UINavigationController *)segue.destinationViewController).topViewController;
-        static NSDateFormatter *formatter;
-        if (!formatter) {
-            formatter = [NSDateFormatter new];
-            formatter.dateFormat = @"yyyy MM dd";
-        }
-        for (int i=0; i<20; i++) {
-            NSString *pageKey = [NSString stringWithFormat:@"page%d", i];
-            NSMutableDictionary *page = [self.book[pageKey] mutableCopy];
-            if (page) {
-                if (page[@"photo"]) {
-                    ALAsset *p = [self photoWithURLString:page[@"photo"]];
-                    NSDate *date = [p valueForProperty:ALAssetPropertyDate];
-                    page[@"date"] = [formatter stringFromDate:date];
-                }
-                if (page[@"type"] && ![page[@"type"] hasPrefix:@"EditPageTypeOne"] && page[@"photo2"]) {
-                    ALAsset *p = [self photoWithURLString:page[@"photo2"]];
-                    NSDate *date = [p valueForProperty:ALAssetPropertyDate];
-                    page[@"date2"] = [formatter stringFromDate:date];
-                }
-                self.book[pageKey] = page;
-            }
-        }
-        vc.book = [self.book copy];
-        NyaruDB *db = [NyaruDB instance];
-        NyaruCollection *collection = [db collection:@"books"];
-        [collection put:[self.book copy]];
-        [collection waitForWriting];
+    static NSDateFormatter *formatter;
+    if (!formatter) {
+        formatter = [NSDateFormatter new];
+        formatter.dateFormat = @"yyyy MM dd";
     }
+    for (int i=0; i<20; i++) {
+        NSString *pageKey = [NSString stringWithFormat:@"page%d", i];
+        NSMutableDictionary *page = [self.book[pageKey] mutableCopy];
+        NSDictionary *pageTypeMapping = @{@"EditPageTypeOneLandscape": @"h",
+                                          @"EditPageTypeOnePortrait": @"v",
+                                          @"EditPageTypeTwoLandscape": @"hh",
+                                          @"EditPageTypeMixedLeftLandscape": @"hv",
+                                          @"EditPageTypeMixedLeftPortrait": @"vh",
+                                          @"EditPageTypeTwoPortrait": @"vv"};
+        if (page) {
+            if (page[@"photo"]) {
+                ALAsset *p = [self photoWithURLString:page[@"photo"]];
+                NSDate *date = [p valueForProperty:ALAssetPropertyDate];
+                page[@"date"] = [formatter stringFromDate:date];
+                page[@"photo_name"] = [NSString stringWithFormat:@"%@.JPG", [[NSURL URLWithString:page[@"photo"]] query]];
+            }
+            if (page[@"type"] && ![page[@"type"] hasPrefix:@"EditPageTypeOne"] && page[@"photo2"]) {
+                ALAsset *p = [self photoWithURLString:page[@"photo2"]];
+                NSDate *date = [p valueForProperty:ALAssetPropertyDate];
+                page[@"date2"] = [formatter stringFromDate:date];
+                page[@"photo2_name"] = [NSString stringWithFormat:@"%@.JPG", [[NSURL URLWithString:page[@"photo2"]] query]];
+            }
+            page[@"type_class"] = pageTypeMapping[page[@"type"]];
+            self.book[pageKey] = [page copy];
+        }
+    }
+    NyaruDB *db = [NyaruDB instance];
+    NyaruCollection *collection = [db collection:@"books"];
+    [collection put:[self.book copy]];
+    [collection waitForWriting];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self.homeVC openWithBookUUID:self.book[@"key"]];
+    }];
 }
 
 @end

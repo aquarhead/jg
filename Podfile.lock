@@ -17,6 +17,7 @@ PODS:
   - AFNetworking/Serialization (2.1.0)
   - AFNetworking/UIKit (2.1.0):
     - AFNetworking/NSURLConnection
+  - JVFloatLabeledTextField (0.0.6)
   - KIImagePager (HEAD based on 1.4.1)
   - MD5Digest (0.1.0)
   - MRProgress (0.3.1)
@@ -25,6 +26,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
+  - JVFloatLabeledTextField
   - KIImagePager (HEAD)
   - MD5Digest
   - MRProgress (~> 0.3)
@@ -33,6 +35,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: c7d7901a83f631414c7eda1737261f696101a5cd
+  JVFloatLabeledTextField: 5f9a3648e0d215626e3cd7319788dc96354940b4
   KIImagePager: 6ab95f68c885cfb65fefc697ac641f75839adba5
   MD5Digest: 355c8733ab522cc516a4047e2d93e2b842947b18
   MRProgress: 741d8849f3d6e71cf254b32ea8c0bc0b2a122136

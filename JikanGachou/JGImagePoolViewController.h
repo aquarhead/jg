@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "JGStartPageViewController.h"
 
 @protocol JGImagePoolDelegate <NSObject>
 
@@ -24,6 +25,7 @@
 
 @property (nonatomic) ALAssetsLibrary *lib;
 @property (nonatomic, weak) id <JGImagePoolDelegate> delegate;
+@property (nonatomic, weak) JGStartPageViewController *homeVC;
 
 @property (nonatomic) NSMutableDictionary *book;
 
@@ -39,5 +41,7 @@
 
 - (BOOL)isValidNumberOfPhotos;
 - (BOOL)poolFull;
+
+- (void)saveBookAndExit;
 
 @end

@@ -10,6 +10,7 @@
 #import <AFNetworking.h>
 #import <NSString+MD5.h>
 #import <MRProgress.h>
+#import <NyaruDB.h>
 
 @interface JGSubmitPageViewController () <UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UITextViewDelegate>
 
@@ -72,27 +73,35 @@
 
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     self.jgServerManager = [AFHTTPRequestOperationManager manager];
-
-    if (self.book[@"title"]) {
-        self.title = [NSString stringWithFormat:@"提交 - %@", self.book[@"title"]];
-    }
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-    [super viewWillDisappear:animated];
-}
-
-- (IBAction)backPressed:(id)sender
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [super viewDidAppear:YES];
+    [MRProgressOverlayView showOverlayAddedTo:self.view animated:YES];
+    NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/", self.book[@"key"]];
+    [self.jgServerManager GET:addr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject[@"status"] isEqualToString:@"error"]) {
+            self.book[@"status"] = @"topay";
+        } else {
+            self.book[@"status"] = responseObject[@"status"];
+        }
+        NyaruDB *db = [NyaruDB instance];
+        NyaruCollection *collection = [db collection:@"books"];
+        [collection put:[self.book copy]];
+        [collection waitForWriting];
+        NSDictionary *statusDescription = @{@"topay": @"待付款",
+                                            @"toupload": @"待上传",
+                                            @"toprint": @"印刷中",
+                                            @"shipping": @"已发货",
+                                            @"recved": @"已收货"};
+        self.title = [NSString stringWithFormat:@"%@ - %@", statusDescription[self.book[@"status"]], self.book[@"title"]];
+        // use specific view here
+        [MRProgressOverlayView dismissOverlayForView:self.view animated:YES];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -101,8 +110,7 @@
     
     if (cell == self.payCell) {
         [self pay];
-    }
-    else if (cell == self.uploadCell) {
+    } else if (cell == self.uploadCell) {
         [self submit];
     }
     
@@ -113,8 +121,7 @@
 {
     if (textField == self.nameField) {
         [self.phoneField becomeFirstResponder];
-    }
-    else if (textField == self.phoneField) {
+    } else if (textField == self.phoneField) {
         [self.addressTextView becomeFirstResponder];
     }
     
@@ -154,18 +161,15 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"收件人信息不完整" message:@"请填写姓名" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alertView show];
         [self.nameField becomeFirstResponder];
-    }
-    else if ([self.phoneField.text isEqualToString:@""]) {
+    } else if ([self.phoneField.text isEqualToString:@""]) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"收件人信息不完整" message:@"请填写可用的手机号码" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alertView show];
         [self.phoneField becomeFirstResponder];
-    }
-    else if ([self.addressTextView.text isEqualToString:@""]) {
+    } else if ([self.addressTextView.text isEqualToString:@""]) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"收件人信息不完整" message:@"请填写完整的地址" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alertView show];
         [self.addressTextView becomeFirstResponder];
-    }
-    else {
+    } else {
         if ([AFNetworkReachabilityManager sharedManager].reachable) {
             self.payCell.userInteractionEnabled = NO;
             NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self.book options:0 error:nil];
@@ -214,13 +218,11 @@
     [self.jgServerManager GET:addr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([responseObject[@"status"] isEqualToString:@"toupload"]) {
             [self uploadPhotos];
-        }
-        else if ([responseObject[@"status"] isEqualToString:@"topay"] || [responseObject[@"status"] isEqualToString:@"error"]) {
+        } else if ([responseObject[@"status"] isEqualToString:@"topay"] || [responseObject[@"status"] isEqualToString:@"error"]) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"您还未付款" message:@"请先付款，如有其他问题请联系客服" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alertView show];
             self.uploadCell.userInteractionEnabled = YES;
-        }
-        else {
+        } else {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"照片已上传过" message:@"如有其他问题请联系客服" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alertView show];
         }
@@ -270,7 +272,7 @@
         NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/uploaded/", self.book[@"key"]];
         [self.jgServerManager GET:addr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
             if ([responseObject[@"status"] isEqualToString:@"toprint"]) {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"照片上传完成" message:@"我们会立刻付印您的相册" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"照片上传完成" message:@"我们会立刻付印您的画册" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [alertView show];
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

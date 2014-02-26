@@ -65,8 +65,7 @@
         dayLabel.textColor = [UIColor colorWithWhite:0.25 alpha:1];
         
         [dayLabel sizeToFit];
-    }
-    else {
+    } else {
         imageView.image = [UIImage imageNamed:@"Placeholder"];
         imageView.contentMode = UIViewContentModeScaleToFill;
     }
@@ -107,8 +106,7 @@
 {
     if (textField == self.titleTextField) {
         [self.authorTextField becomeFirstResponder];
-    }
-    else {
+    } else {
         [textField resignFirstResponder];
     }
     
@@ -119,8 +117,7 @@
 {
     if ([textField isEqual:self.titleTextField]) {
         [self.delegate saveTitle:textField.text];
-    }
-    else if ([textField isEqual:self.authorTextField]) {
+    } else if ([textField isEqual:self.authorTextField]) {
         [self.delegate saveAuthor:textField.text];
     }
 }

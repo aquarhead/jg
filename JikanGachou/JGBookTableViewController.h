@@ -10,4 +10,6 @@
 
 @interface JGBookTableViewController : UITableViewController
 
+@property (nonatomic) NSString *openBookUUID;
+
 @end

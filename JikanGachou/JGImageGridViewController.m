@@ -76,7 +76,7 @@ typedef NS_ENUM(NSUInteger, JGImageGridCellTag) {
         if (![self.poolViewController poolFull]) {
             [self.poolViewController addPhoto:photo];
         } else {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"相册放不下更多照片了" message:@"先撤销几张再试试？" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"画册放不下更多照片了" message:@"先撤销几张再试试？" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alertView show];
         }
     }
@@ -94,8 +94,7 @@ typedef NS_ENUM(NSUInteger, JGImageGridCellTag) {
     if ([self.poolViewController hasPhoto:photo]) {
         maskView.hidden = NO;
         checkView.hidden = NO;
-    }
-    else {
+    } else {
         maskView.hidden = YES;
         checkView.hidden = YES;
     }
