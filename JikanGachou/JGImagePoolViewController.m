@@ -92,8 +92,7 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     }
     if (self.selectedPhotos.count > 0) {
         self.placeholderButton.hidden = YES;
-    }
-    else {
+    } else {
         self.placeholderButton.hidden = NO;
     }
 }
@@ -187,11 +186,13 @@ const NSUInteger kJGPoolMostPhotos  = 40;
                 ALAsset *p = [self photoWithURLString:page[@"photo"]];
                 NSDate *date = [p valueForProperty:ALAssetPropertyDate];
                 page[@"date"] = [formatter stringFromDate:date];
+                page[@"photo_name"] = [NSString stringWithFormat:@"%@.JPG", [[NSURL URLWithString:page[@"photo"]] query]];
             }
             if (page[@"type"] && ![page[@"type"] hasPrefix:@"EditPageTypeOne"] && page[@"photo2"]) {
                 ALAsset *p = [self photoWithURLString:page[@"photo2"]];
                 NSDate *date = [p valueForProperty:ALAssetPropertyDate];
                 page[@"date2"] = [formatter stringFromDate:date];
+                page[@"photo2_name"] = [NSString stringWithFormat:@"%@.JPG", [[NSURL URLWithString:page[@"photo2"]] query]];
             }
             self.book[pageKey] = [page copy];
         }

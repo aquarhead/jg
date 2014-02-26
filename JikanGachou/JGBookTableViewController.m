@@ -24,14 +24,21 @@
     [super viewDidLoad];
     self.clearsSelectionOnViewWillAppear = NO;
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     NyaruDB *db = [NyaruDB instance];
     NyaruCollection *co = [db collection:@"books"];
     self.books = [[co all] fetch];
+    [self.tableView reloadData];
     self.selectedBook = nil;
     if (self.openBookUUID) {
         for (NSDictionary *bk in self.books) {
             if ([bk[@"key"] isEqualToString:self.openBookUUID]) {
                 self.selectedBook = bk;
+                self.openBookUUID = nil;
                 break;
             }
         }
@@ -70,7 +77,11 @@ typedef NS_ENUM(NSUInteger, JGBookCellTag) {
     NSDictionary *bk = self.books[indexPath.row];
 
     UIImageView *statusImageView = (UIImageView *)[cell viewWithTag:JGBookCellTagImageView];
-    statusImageView.image = [UIImage imageNamed:@"topay"];
+    if (bk[@"status"]) {
+        statusImageView.image = [UIImage imageNamed:bk[@"status"]];
+    } else {
+        statusImageView.image = [UIImage imageNamed:@"topay"];
+    }
 
     UILabel *bookStatusLabel = (UILabel *)[cell viewWithTag:JGBookCellTagBookStatus];
     if (indexPath.row == 0) {
@@ -108,7 +119,7 @@ typedef NS_ENUM(NSUInteger, JGBookCellTag) {
 {
     if ([segue.identifier isEqualToString:@"bookStatus"]) {
         JGSubmitPageViewController *vc = (JGSubmitPageViewController *)segue.destinationViewController;;
-        vc.book = [self.selectedBook copy];
+        vc.book = [self.selectedBook mutableCopy];
     }
 }
 

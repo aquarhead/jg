@@ -481,7 +481,7 @@
             </objects>
             <point key="canvasLocation" x="2425" y="-696"/>
         </scene>
-        <!--Submit Page View Controller - 提交相册-->
+        <!--Submit Page View Controller - 更新状态-->
         <scene sceneID="Fhz-Za-WBF">
             <objects>
                 <tableViewController id="NGp-sL-TIq" customClass="JGSubmitPageViewController" sceneMemberID="viewController">
@@ -647,7 +647,7 @@
                             <outlet property="delegate" destination="NGp-sL-TIq" id="Iek-GP-hW8"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="提交相册" id="WIn-q8-nQq"/>
+                    <navigationItem key="navigationItem" title="更新状态" id="WIn-q8-nQq"/>
                     <connections>
                         <outlet property="addressPlaceholder" destination="mns-e7-ejw" id="J6G-Wm-H5Q"/>
                         <outlet property="addressTextView" destination="XwZ-el-n1i" id="8Vb-g3-B0B"/>

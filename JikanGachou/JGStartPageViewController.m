@@ -63,8 +63,7 @@
     if (documents.count > 0) {
         self.book = documents[0];
         [self performSegueWithIdentifier:@"listBooks" sender:self];
-    }
-    else {
+    } else {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"画册错误" message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alertView show];
     }

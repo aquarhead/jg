@@ -32,8 +32,7 @@
         if (group) {
             [group setAssetsFilter:[ALAssetsFilter allPhotos]];
             [groups addObject:group];
-        }
-        else {
+        } else {
             *stop = YES;
             self.groups = [groups copy];
             [self.tableView reloadData];
@@ -95,8 +94,7 @@ typedef NS_ENUM(NSUInteger, JGImagePickerCellTag) {
     [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
         if (result) {
             [photos addObject:result];
-        }
-        else {
+        } else {
             *stop = YES;
             self.selectedGroupPhotos = [photos copy];
             [self performSegueWithIdentifier:@"AlbumToGridSegue" sender:self];

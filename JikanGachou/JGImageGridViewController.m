@@ -94,8 +94,7 @@ typedef NS_ENUM(NSUInteger, JGImageGridCellTag) {
     if ([self.poolViewController hasPhoto:photo]) {
         maskView.hidden = NO;
         checkView.hidden = NO;
-    }
-    else {
+    } else {
         maskView.hidden = YES;
         checkView.hidden = YES;
     }
