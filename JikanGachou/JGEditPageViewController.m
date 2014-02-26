@@ -310,7 +310,6 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         if (!page) {
             page = [NSMutableDictionary new];
             page[@"type"] = @"EditPageTypeOneLandscape";
-            self.book[pageKey] = [page copy];
         }
 
         if ([page[@"type"] hasPrefix:@"EditPageTypeOne"]) {
@@ -320,8 +319,10 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                 CGSize size = img.size;
                 if (size.width >= size.height) {
                     [cell useMainViewNamed:@"EditPageTypeOneLandscape" withGestureRecognizers:self.tapRecogs];
+                    page[@"type"] = @"EditPageTypeOneLandscape";
                 } else {
                     [cell useMainViewNamed:@"EditPageTypeOnePortrait" withGestureRecognizers:self.tapRecogs];
+                    page[@"type"] = @"EditPageTypeOnePortrait";
                 }
 
                 [cell.mainView fillNth:1 withPhoto:p];
@@ -356,17 +357,21 @@ static const NSInteger kJGIndexBackcoverPage = 22;
                 if (p2_landscape) {
                     // two landscape
                     [cell useMainViewNamed:@"EditPageTypeTwoLandscape" withGestureRecognizers:self.tapRecogs];
+                    page[@"type"] = @"EditPageTypeTwoLandscape";
                 } else {
                     // mixed left landscape
                     [cell useMainViewNamed:@"EditPageTypeMixedLeftLandscape" withGestureRecognizers:self.tapRecogs];
+                    page[@"type"] = @"EditPageTypeMixedLeftLandscape";
                 }
             } else {
                 if (p2_landscape) {
                     // mixed left portrait
                     [cell useMainViewNamed:@"EditPageTypeMixedLeftPortrait" withGestureRecognizers:self.tapRecogs];
+                    page[@"type"] = @"EditPageTypeMixedLeftPortrait";
                 } else {
                     // two portrait
                     [cell useMainViewNamed:@"EditPageTypeTwoPortrait" withGestureRecognizers:self.tapRecogs];
+                    page[@"type"] = @"EditPageTypeTwoPortrait";
                 }
             }
 
@@ -378,6 +383,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         if (page[@"text"]) {
             [cell.mainView setDescriptionText:page[@"text"]];
         }
+        self.book[pageKey] = [page copy];
     }
 }
 

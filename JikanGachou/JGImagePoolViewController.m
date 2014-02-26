@@ -181,6 +181,12 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     for (int i=0; i<20; i++) {
         NSString *pageKey = [NSString stringWithFormat:@"page%d", i];
         NSMutableDictionary *page = [self.book[pageKey] mutableCopy];
+        NSDictionary *pageTypeMapping = @{@"EditPageTypeOneLandscape": @"h",
+                                          @"EditPageTypeOnePortrait": @"v",
+                                          @"EditPageTypeTwoLandscape": @"hh",
+                                          @"EditPageTypeMixedLeftLandscape": @"hv",
+                                          @"EditPageTypeMixedLeftPortrait": @"vh",
+                                          @"EditPageTypeTwoPortrait": @"vv"};
         if (page) {
             if (page[@"photo"]) {
                 ALAsset *p = [self photoWithURLString:page[@"photo"]];
@@ -194,6 +200,7 @@ const NSUInteger kJGPoolMostPhotos  = 40;
                 page[@"date2"] = [formatter stringFromDate:date];
                 page[@"photo2_name"] = [NSString stringWithFormat:@"%@.JPG", [[NSURL URLWithString:page[@"photo2"]] query]];
             }
+            page[@"type_class"] = pageTypeMapping[page[@"type"]];
             self.book[pageKey] = [page copy];
         }
     }
