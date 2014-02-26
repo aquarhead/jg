@@ -7,29 +7,24 @@
 //
 
 #import "JGBookTableViewController.h"
+#import <NyaruDB.h>
 
 @interface JGBookTableViewController ()
+
+@property (nonatomic) NSArray *books;
 
 @end
 
 @implementation JGBookTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     self.clearsSelectionOnViewWillAppear = NO;
-
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    NyaruDB *db = [NyaruDB instance];
+    NyaruCollection *co = [db collection:@"books"];
+    self.books = [[co all] fetch];
 }
 
 - (IBAction)cancelPressed:(UIBarButtonItem *)sender
@@ -46,7 +41,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return self.books.count;
 }
 
 typedef NS_ENUM(NSUInteger, JGBookCellTag) {
@@ -63,6 +58,11 @@ typedef NS_ENUM(NSUInteger, JGBookCellTag) {
     if (indexPath.row == 0) {
         bookStatusLabel.text = @"未付款 2014年1月1日";
     }
+
+    NSDictionary *bk = self.books[indexPath.row];
+
+    UILabel *bookNameLabel = (UILabel *)[cell viewWithTag:JGBookCellTagBookName];
+    bookNameLabel.text = bk[@"title"];
     
     return cell;
 }
