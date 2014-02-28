@@ -124,9 +124,6 @@
                 <constraint firstItem="1AI-uN-dBN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="v5T-aZ-lrF"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <userDefinedRuntimeAttributes>
-                <userDefinedRuntimeAttribute type="boolean" keyPath="needsMoveUp" value="YES"/>
-            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="dayLabel1" destination="uCE-bN-lbk" id="kLg-DH-52Y"/>
                 <outlet property="dayLabel2" destination="rfT-Bd-u8M" id="WNt-uq-QAU"/>

@@ -115,6 +115,31 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 
 #pragma mark - Keyboard related
 
+- (BOOL)needsMoveUp
+{
+    JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
+    UIView *firstResponder;
+    if ([cell.mainView.titleTextField isFirstResponder]) {
+        firstResponder = cell.mainView.titleTextField;
+    }
+    else if ([cell.mainView.authorTextField isFirstResponder]) {
+        firstResponder = cell.mainView.authorTextField;
+    }
+    else if ([cell.mainView.descriptionTextView1 isFirstResponder]) {
+        firstResponder = cell.mainView.descriptionTextView1;
+    }
+    else if ([cell.mainView.descriptionTextView2 isFirstResponder]) {
+        firstResponder = cell.mainView.descriptionTextView2;
+    }
+
+    if (firstResponder.center.y < 150) {
+        return NO;
+    }
+    else {
+        return YES;
+    }
+}
+
 - (void)keyboardWillShow:(NSNotification *)notification
 {
     NSDictionary *userInfo = notification.userInfo;
@@ -126,8 +151,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         return;
     }
 
-    JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
-    if (cell.mainView.needsMoveUp) {
+    if ([self needsMoveUp]) {
         NSTimeInterval duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
         [UIView animateWithDuration:duration animations:^{
             self.collectionViewYConstraint.constant += (IS_R4 ? 80 : 120);
@@ -138,8 +162,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
-    JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
-    if (cell.mainView.needsMoveUp) {
+    if ([self needsMoveUp]) {
         NSDictionary *userInfo = notification.userInfo;
         NSTimeInterval duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
         [UIView animateWithDuration:duration animations:^{

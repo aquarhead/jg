@@ -30,8 +30,6 @@
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView1;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView2;
 
-@property (nonatomic) BOOL needsMoveUp;
-
 @property (nonatomic, weak) id<JGEditPageDelegate> delegate;
 
 - (void)fillNth:(NSUInteger)n withPhoto:(ALAsset *)p;
