@@ -27,6 +27,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 @property (weak, nonatomic) JGImagePoolViewController *poolViewController;
 @property (weak, nonatomic) NSMutableDictionary *book;
 @property (nonatomic) UISegmentedControl *pageTypeControl;
+@property (nonatomic) BOOL movedUp;
 
 @end
 
@@ -39,6 +40,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     self.poolViewController = (JGImagePoolViewController *)((UINavigationController *)self.navigationController).parentViewController;
     self.poolViewController.delegate = self;
     self.book = self.poolViewController.book;
+    self.movedUp = NO;
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -151,7 +153,8 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         return;
     }
 
-    if ([self needsMoveUp]) {
+    if ([self needsMoveUp] && !self.movedUp) {
+        self.movedUp = YES;
         NSTimeInterval duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
         [UIView animateWithDuration:duration animations:^{
             self.collectionViewYConstraint.constant += (IS_R4 ? 80 : 120);
@@ -162,7 +165,8 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
-    if ([self needsMoveUp]) {
+    if (self.movedUp) {
+        self.movedUp = NO;
         NSDictionary *userInfo = notification.userInfo;
         NSTimeInterval duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
         [UIView animateWithDuration:duration animations:^{
