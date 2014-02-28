@@ -183,7 +183,15 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     NSString *pageKey = [NSString stringWithFormat:@"page%ld", (long)[self pageIndex]-kJGIndexPhotoPageStart];
     NSMutableDictionary *newpage = [self.book[pageKey] mutableCopy];
     newpage[@"text"] = descriptionText;
-    self.book[pageKey] = newpage;
+    self.book[pageKey] = [newpage copy];
+}
+
+- (void)saveDescriptionText2:(NSString *)descriptionText
+{
+    NSString *pageKey = [NSString stringWithFormat:@"page%ld", (long)[self pageIndex]-kJGIndexPhotoPageStart];
+    NSMutableDictionary *newpage = [self.book[pageKey] mutableCopy];
+    newpage[@"text2"] = descriptionText;
+    self.book[pageKey] = [newpage copy];
 }
 
 #pragma mark - Scroll View
@@ -379,11 +387,16 @@ static const NSInteger kJGIndexBackcoverPage = 22;
             // fill mainView
             [cell.mainView fillNth:1 withPhoto:p1];
             [cell.mainView fillNth:2 withPhoto:p2];
+
+            if (page[@"text2"] && ![page[@"text2"] isEqualToString:@""]) {
+                [cell.mainView fillNth:2 withText:page[@"text2"]];
+            }
         }
         cell.mainView.delegate = self;
-        if (page[@"text"]) {
+        if (page[@"text"] && ![page[@"text"] isEqualToString:@""]) {
             [cell.mainView fillNth:1 withText:page[@"text"]];
         }
+
         self.book[pageKey] = [page copy];
     }
 }

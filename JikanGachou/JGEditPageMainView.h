@@ -16,6 +16,7 @@
 - (void)saveTitle:(NSString *)title;
 - (void)saveAuthor:(NSString *)author;
 - (void)saveDescriptionText:(NSString *)descriptionText;
+- (void)saveDescriptionText2:(NSString *)descriptionText;
 
 @end
 

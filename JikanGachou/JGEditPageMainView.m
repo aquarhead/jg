@@ -84,7 +84,11 @@
         textView.text = @"点击添加描述…";
         textView.textColor = [UIColor lightGrayColor];
     }
-    [self.delegate saveDescriptionText:textView.text];
+    if ([textView isEqual:self.descriptionTextView1]) {
+        [self.delegate saveDescriptionText:textView.text];
+    } else {
+        [self.delegate saveDescriptionText2:textView.text];
+    }
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
