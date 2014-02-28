@@ -26,7 +26,8 @@
 
     self.titleTextField.delegate = self;
     self.authorTextField.delegate = self;
-    self.descriptionTextView.delegate = self;
+    self.descriptionTextView1.delegate = self;
+    self.descriptionTextView2.delegate = self;
 
     self.imageView1.userInteractionEnabled = YES;
     self.imageView2.userInteractionEnabled = YES;
@@ -63,9 +64,10 @@
     }
 }
 
-- (void)setDescriptionText:(NSString *)descriptionText
+- (void)fillNth:(NSUInteger)n withText:(NSString *)text
 {
-    self.descriptionTextView.text = descriptionText;
+    UITextView *textView = [self valueForKey:[NSString stringWithFormat:@"descriptionTextView%lu", (unsigned long)n]];
+    textView.text = text;
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView

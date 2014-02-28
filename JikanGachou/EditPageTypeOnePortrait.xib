@@ -26,7 +26,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="点击添加描述…" translatesAutoresizingMaskIntoConstraints="NO" id="GIR-06-AyX">
-                            <rect key="frame" x="62" y="258" width="159" height="36"/>
+                            <rect key="frame" x="62" y="258" width="176" height="42"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -54,14 +54,14 @@
                         <constraint firstItem="09z-WD-1Pe" firstAttribute="leading" secondItem="aGA-nX-Uh1" secondAttribute="leading" constant="67" id="3wz-7T-jiT"/>
                         <constraint firstItem="09z-WD-1Pe" firstAttribute="top" secondItem="aGA-nX-Uh1" secondAttribute="top" constant="19" id="FU8-qr-pda"/>
                         <constraint firstAttribute="bottom" secondItem="KfI-G8-VGn" secondAttribute="bottom" constant="38" id="Hh3-UV-cMm"/>
-                        <constraint firstAttribute="trailing" secondItem="GIR-06-AyX" secondAttribute="trailing" constant="79" id="JNO-wy-FFy"/>
+                        <constraint firstAttribute="trailing" secondItem="GIR-06-AyX" secondAttribute="trailing" constant="62" id="JNO-wy-FFy"/>
                         <constraint firstAttribute="bottom" secondItem="81V-BN-0PW" secondAttribute="bottom" constant="24" id="SOv-I9-ZfJ"/>
                         <constraint firstItem="GIR-06-AyX" firstAttribute="top" secondItem="09z-WD-1Pe" secondAttribute="bottom" constant="28" id="arW-7N-fOF"/>
                         <constraint firstItem="KfI-G8-VGn" firstAttribute="leading" secondItem="09z-WD-1Pe" secondAttribute="leading" id="b7d-dM-GqI"/>
                         <constraint firstAttribute="trailing" secondItem="81V-BN-0PW" secondAttribute="trailing" constant="-7" id="gNM-El-bkE"/>
                         <constraint firstItem="81V-BN-0PW" firstAttribute="leading" secondItem="KfI-G8-VGn" secondAttribute="trailing" constant="3" id="iMN-eq-2Rf"/>
                         <constraint firstItem="GIR-06-AyX" firstAttribute="leading" secondItem="aGA-nX-Uh1" secondAttribute="leading" constant="62" id="kMC-QC-Xzb"/>
-                        <constraint firstAttribute="bottom" secondItem="GIR-06-AyX" secondAttribute="bottom" constant="6" id="pwI-ha-WTc"/>
+                        <constraint firstAttribute="bottom" secondItem="GIR-06-AyX" secondAttribute="bottom" id="pwI-ha-WTc"/>
                         <constraint firstItem="KfI-G8-VGn" firstAttribute="centerY" secondItem="81V-BN-0PW" secondAttribute="centerY" id="u9c-iu-krQ"/>
                     </constraints>
                 </view>
@@ -75,7 +75,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="dayLabel1" destination="KfI-G8-VGn" id="46C-Xa-QzP"/>
-                <outlet property="descriptionTextView" destination="GIR-06-AyX" id="ykd-8l-yj6"/>
+                <outlet property="descriptionTextView1" destination="GIR-06-AyX" id="w7b-gg-UvE"/>
                 <outlet property="imageView1" destination="09z-WD-1Pe" id="Maz-Sn-NQI"/>
                 <outlet property="yearLabel1" destination="81V-BN-0PW" id="wyh-Th-SvM"/>
             </connections>

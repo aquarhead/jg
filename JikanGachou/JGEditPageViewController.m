@@ -158,7 +158,8 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         [cell.mainView.titleTextField resignFirstResponder];
         [cell.mainView.authorTextField resignFirstResponder];
     } else if (pageIndex >= kJGIndexPhotoPageStart && pageIndex <= kJGIndexPhotoPageEnd) {
-        [cell.mainView.descriptionTextView resignFirstResponder];
+        [cell.mainView.descriptionTextView1 resignFirstResponder];
+        [cell.mainView.descriptionTextView2 resignFirstResponder];
     }
 }
 
@@ -381,7 +382,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         }
         cell.mainView.delegate = self;
         if (page[@"text"]) {
-            [cell.mainView setDescriptionText:page[@"text"]];
+            [cell.mainView fillNth:1 withText:page[@"text"]];
         }
         self.book[pageKey] = [page copy];
     }

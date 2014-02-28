@@ -33,7 +33,7 @@
                             </constraints>
                         </imageView>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="点击添加描述…" translatesAutoresizingMaskIntoConstraints="NO" id="jV3-30-Ced">
-                            <rect key="frame" x="153" y="78" width="125" height="28"/>
+                            <rect key="frame" x="153" y="78" width="136" height="28"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -63,7 +63,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="点击添加描述…" translatesAutoresizingMaskIntoConstraints="NO" id="QOB-Ex-WBg">
-                            <rect key="frame" x="17" y="224" width="125" height="28"/>
+                            <rect key="frame" x="17" y="224" width="133" height="48"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -96,11 +96,11 @@
                         <constraint firstItem="rfT-Bd-u8M" firstAttribute="top" secondItem="1AI-uN-dBN" secondAttribute="top" constant="60" id="0dB-4T-lsq"/>
                         <constraint firstItem="uCE-bN-lbk" firstAttribute="leading" secondItem="1AI-uN-dBN" secondAttribute="leading" constant="22" id="0jO-Df-YmU"/>
                         <constraint firstItem="jV3-30-Ced" firstAttribute="top" secondItem="1AI-uN-dBN" secondAttribute="top" constant="78" id="1sH-Ej-YkK"/>
-                        <constraint firstAttribute="bottom" secondItem="QOB-Ex-WBg" secondAttribute="bottom" constant="48" id="2SW-BO-kCh"/>
+                        <constraint firstAttribute="bottom" secondItem="QOB-Ex-WBg" secondAttribute="bottom" constant="28" id="2SW-BO-kCh"/>
                         <constraint firstItem="9G6-rK-MMs" firstAttribute="leading" secondItem="rfT-Bd-u8M" secondAttribute="trailing" constant="2" id="42w-X9-ljB"/>
-                        <constraint firstItem="jV3-30-Ced" firstAttribute="trailing" secondItem="k6B-fJ-4Qf" secondAttribute="trailing" id="9nR-Ec-zes"/>
+                        <constraint firstItem="jV3-30-Ced" firstAttribute="trailing" secondItem="k6B-fJ-4Qf" secondAttribute="trailing" constant="11" id="9nR-Ec-zes"/>
                         <constraint firstItem="09z-WD-1Pe" firstAttribute="leading" secondItem="1AI-uN-dBN" secondAttribute="leading" constant="22" id="EM3-vU-xFY"/>
-                        <constraint firstItem="QOB-Ex-WBg" firstAttribute="trailing" secondItem="09z-WD-1Pe" secondAttribute="trailing" id="Fas-hW-AYt"/>
+                        <constraint firstItem="QOB-Ex-WBg" firstAttribute="trailing" secondItem="09z-WD-1Pe" secondAttribute="trailing" constant="8" id="Fas-hW-AYt"/>
                         <constraint firstItem="09z-WD-1Pe" firstAttribute="top" secondItem="1AI-uN-dBN" secondAttribute="top" constant="37" id="ImI-6Q-qpi"/>
                         <constraint firstItem="9G6-rK-MMs" firstAttribute="top" secondItem="1AI-uN-dBN" secondAttribute="top" constant="41" id="PxM-8b-hAN"/>
                         <constraint firstItem="jV3-30-Ced" firstAttribute="leading" secondItem="09z-WD-1Pe" secondAttribute="trailing" constant="11" id="WaS-RU-uap"/>
@@ -130,6 +130,8 @@
             <connections>
                 <outlet property="dayLabel1" destination="uCE-bN-lbk" id="kLg-DH-52Y"/>
                 <outlet property="dayLabel2" destination="rfT-Bd-u8M" id="WNt-uq-QAU"/>
+                <outlet property="descriptionTextView1" destination="QOB-Ex-WBg" id="LwE-Be-eVH"/>
+                <outlet property="descriptionTextView2" destination="jV3-30-Ced" id="Att-58-ckZ"/>
                 <outlet property="imageView1" destination="09z-WD-1Pe" id="Dba-AY-jN7"/>
                 <outlet property="imageView2" destination="k6B-fJ-4Qf" id="nfT-KA-2dL"/>
                 <outlet property="yearLabel1" destination="04N-Vl-cpE" id="Jh8-Th-JuY"/>

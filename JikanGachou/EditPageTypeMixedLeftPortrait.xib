@@ -131,6 +131,8 @@
             <connections>
                 <outlet property="dayLabel1" destination="feE-GK-3gG" id="vbW-hO-kOv"/>
                 <outlet property="dayLabel2" destination="7yc-CU-xPq" id="jzh-6S-ozv"/>
+                <outlet property="descriptionTextView1" destination="woS-Uu-SsG" id="H6F-C3-L1w"/>
+                <outlet property="descriptionTextView2" destination="BGI-q4-eSz" id="lOf-YK-cze"/>
                 <outlet property="imageView1" destination="754-RO-eej" id="Vit-Lv-P92"/>
                 <outlet property="imageView2" destination="pFg-St-ulH" id="rq9-Oy-uHv"/>
                 <outlet property="yearLabel1" destination="0mz-Oc-TKN" id="EjP-7G-x5c"/>

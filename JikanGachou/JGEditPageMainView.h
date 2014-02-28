@@ -21,17 +21,19 @@
 
 @interface JGEditPageMainView : UIView
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageView1;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView2;
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UITextField *authorTextField;
-@property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
+
+@property (weak, nonatomic) IBOutlet UIImageView *imageView1;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView2;
+@property (weak, nonatomic) IBOutlet UITextView *descriptionTextView1;
+@property (weak, nonatomic) IBOutlet UITextView *descriptionTextView2;
 
 @property (nonatomic) BOOL needsMoveUp;
 
 @property (nonatomic, weak) id<JGEditPageDelegate> delegate;
 
 - (void)fillNth:(NSUInteger)n withPhoto:(ALAsset *)p;
-- (void)setDescriptionText:(NSString *)descriptionText;
+- (void)fillNth:(NSUInteger)n withText:(NSString *)text;
 
 @end
