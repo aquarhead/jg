@@ -7,4 +7,5 @@ pod 'KIImagePager', :head
 pod 'NyaruDB'
 pod 'MD5Digest'
 pod 'MRProgress', '~> 0.3'
+pod 'MBProgressHUD'
 pod 'JVFloatLabeledTextField'

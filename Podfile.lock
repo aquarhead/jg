@@ -20,6 +20,7 @@ PODS:
     - AFNetworking/NSURLSession
   - JVFloatLabeledTextField (0.0.6)
   - KIImagePager (HEAD based on 1.4.1)
+  - MBProgressHUD (0.8)
   - MD5Digest (0.1.0)
   - MRProgress (0.4.1):
     - MRProgress/ActivityIndicator
@@ -60,6 +61,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - JVFloatLabeledTextField
   - KIImagePager (HEAD)
+  - MBProgressHUD
   - MD5Digest
   - MRProgress (~> 0.3)
   - NyaruDB
@@ -69,6 +71,7 @@ SPEC CHECKSUMS:
   AFNetworking: e8cfd8f3fe3bfe19124a0cc63f4d45752d892a56
   JVFloatLabeledTextField: 5f9a3648e0d215626e3cd7319788dc96354940b4
   KIImagePager: 6ab95f68c885cfb65fefc697ac641f75839adba5
+  MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   MD5Digest: 355c8733ab522cc516a4047e2d93e2b842947b18
   MRProgress: 6530ce71278dd7ecfb5e3c3e37df03a323690936
   NyaruDB: 294a1316faeae429c1c76743dd5369fcd1e8b42c

@@ -11,6 +11,7 @@
 #import <NSString+MD5.h>
 #import <MRProgress.h>
 #import <NyaruDB.h>
+#import <MBProgressHUD.h>
 
 @interface JGSubmitPageViewController () <UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UITextViewDelegate>
 
@@ -20,6 +21,7 @@
 
 @property (nonatomic) AFHTTPRequestOperationManager *jgServerManager;
 @property (nonatomic) NSUInteger finished;
+@property (nonatomic) MBProgressHUD *hud;
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneField;
@@ -78,7 +80,10 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
-    [MRProgressOverlayView showOverlayAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"请稍候";
+    self.navigationController.view.userInteractionEnabled = NO;
+    self.view.userInteractionEnabled = NO;
     NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/", self.book[@"key"]];
     [self.jgServerManager GET:addr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([responseObject[@"status"] isEqualToString:@"error"]) {
@@ -96,11 +101,14 @@
                                             @"shipping": @"已发货",
                                             @"recved": @"已收货"};
         self.title = [NSString stringWithFormat:@"%@ - %@", statusDescription[self.book[@"status"]], self.book[@"title"]];
-        // use specific view here
-        [MRProgressOverlayView dismissOverlayForView:self.view animated:YES];
+        [hud hide:YES];
+        self.navigationController.view.userInteractionEnabled = YES;
+        self.view.userInteractionEnabled = YES;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
-        [self dismissViewControllerAnimated:YES completion:nil];
+        self.navigationController.view.userInteractionEnabled = YES;
+        self.view.userInteractionEnabled = YES;
+        [self.navigationController popViewControllerAnimated:YES];
     }];
 }
 
@@ -240,7 +248,12 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.operationQueue.maxConcurrentOperationCount = 1;
     self.finished = 0;
-    [[MRNavigationBarProgressView progressViewForNavigationController:self.navigationController] setProgress:0 animated:YES];
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud.mode = MBProgressHUDModeDeterminate;
+    self.hud.labelText = @"上传中...";
+    self.hud.progress = 0;
+    self.navigationController.view.userInteractionEnabled = NO;
+    self.view.userInteractionEnabled = NO;
 
     for (ALAsset *p in self.photos) {
         ALAssetRepresentation *rep = p.defaultRepresentation;
@@ -270,19 +283,27 @@
 - (void)finishOne
 {
     self.finished += 1;
-    [[MRNavigationBarProgressView progressViewForNavigationController:self.navigationController] setProgress:(1.0 * self.finished / self.photos.count) animated:YES];
+    [self.hud setProgress:(1.0 * self.finished / self.photos.count)];
     if (self.finished == self.photos.count) {
         NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/uploaded/", self.book[@"key"]];
         [self.jgServerManager GET:addr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
             if ([responseObject[@"status"] isEqualToString:@"toprint"]) {
-                [self dismissViewControllerAnimated:YES completion:^{
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"照片上传完成" message:@"我们会立刻付印您的画册" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                    [alertView show];
-                }];
+                NyaruDB *db = [NyaruDB instance];
+                NyaruCollection *collection = [db collection:@"books"];
+                self.book[@"status"] = @"toprint";
+                [collection put:[self.book copy]];
+                [collection waitForWriting];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"照片上传完成" message:@"我们会立刻付印您的画册" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alertView show];
+                self.navigationController.view.userInteractionEnabled = YES;
+                self.view.userInteractionEnabled = YES;
+                [self.navigationController popViewControllerAnimated:YES];
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error: %@", error);
             self.uploadCell.userInteractionEnabled = YES;
+            self.navigationController.view.userInteractionEnabled = YES;
+            self.view.userInteractionEnabled = YES;
         }];
     }
 }
