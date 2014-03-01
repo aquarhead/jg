@@ -182,7 +182,9 @@
                 self.payCell.userInteractionEnabled = YES;
                 if ([responseObject[@"status"] isEqualToString:@"done"]) {
                     NSURL *url = [NSURL URLWithString:[responseObject[@"url"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-                    [[UIApplication sharedApplication] openURL:url];
+                    [self dismissViewControllerAnimated:YES completion:^{
+                        [[UIApplication sharedApplication] openURL:url];
+                    }];
                 } else {
                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:responseObject[@"errmsg"] message:@"如有问题请联系客服" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                     [alertView show];
@@ -250,6 +252,7 @@
         options[@"bucket"] = @"jikangachou";
         options[@"expiration"] = [NSString stringWithFormat:@"%.0f",[[NSDate date] timeIntervalSince1970] + 600];
         options[@"save-key"] = [NSString stringWithFormat:@"/%@/%@.JPG", self.book[@"key"], [data_url query]];
+        options[@"x-gmkerl-rotate"] = @"auto";
         NSString *policy = [[NSJSONSerialization dataWithJSONObject:[options copy] options:0 error:nil] base64EncodedStringWithOptions:0];
         NSString *sig = [[NSString stringWithFormat:@"%@&DWAPWXDv2cLI7MuZmJRWq63r0T8=", policy] MD5Digest];
         NSDictionary *parameters = @{@"policy": policy, @"signature": sig};
@@ -272,8 +275,10 @@
         NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/uploaded/", self.book[@"key"]];
         [self.jgServerManager GET:addr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
             if ([responseObject[@"status"] isEqualToString:@"toprint"]) {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"照片上传完成" message:@"我们会立刻付印您的画册" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                [alertView show];
+                [self dismissViewControllerAnimated:YES completion:^{
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"照片上传完成" message:@"我们会立刻付印您的画册" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    [alertView show];
+                }];
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error: %@", error);
