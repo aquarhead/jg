@@ -191,7 +191,7 @@
                                     <constraint firstAttribute="height" constant="54" id="hTP-29-Kof"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="换一批图片">
+                                <state key="normal" title="换一组照片">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>

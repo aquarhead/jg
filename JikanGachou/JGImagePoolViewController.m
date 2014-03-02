@@ -9,6 +9,7 @@
 #import "JGImagePoolViewController.h"
 #import "JGSubmitPageViewController.h"
 #import <NyaruDB.h>
+#import <NSMutableArray+Shuffle.h>
 
 #ifdef DEBUG
 const NSUInteger kJGPoolLeastPhotos = 1;
@@ -49,12 +50,14 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     self.barView.hidden = NO;
     self.collectionView.hidden = NO;
     self.shuffleButton.hidden = YES;
+    [self reload];
 }
 
 - (void)switchToShuffleButton
 {
     self.barView.hidden = YES;
     self.collectionView.hidden = YES;
+    self.placeholderButton.hidden = YES;
     self.shuffleButton.hidden = NO;
 }
 
@@ -113,8 +116,9 @@ const NSUInteger kJGPoolMostPhotos  = 40;
 
 - (IBAction)shufflePressed:(UIButton *)sender
 {
-    if ([self.delegate respondsToSelector:@selector(didTapShuffleButton)]) {
-        [self.delegate didTapShuffleButton];
+    if ([self.shuffleDelegate respondsToSelector:@selector(shuffledPhotos:)]) {
+        [self.usedPhotos shuffle];
+        [self.shuffleDelegate shuffledPhotos:[self.usedPhotos copy]];
     }
 }
 
@@ -224,6 +228,10 @@ const NSUInteger kJGPoolMostPhotos  = 40;
             page[@"type_class"] = pageTypeMapping[page[@"type"]];
             self.book[pageKey] = [page copy];
         }
+    }
+    for (int i=0; i<9; i++) {
+        NSURL *url = [NSURL URLWithString:self.book[[NSString stringWithFormat:@"cover%d", i+1]]];
+        self.book[[NSString stringWithFormat:@"cover%d_name", i+1]] = [NSString stringWithFormat:@"%@.JPG", [url query]];
     }
     NyaruDB *db = [NyaruDB instance];
     NyaruCollection *collection = [db collection:@"books"];

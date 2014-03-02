@@ -53,6 +53,7 @@ PODS:
   - MRProgress/Stopable (0.4.1):
     - MRProgress/Helper
   - MRProgress/WeakProxy (0.4.1)
+  - NSMutableArray-Shuffle (0.4)
   - NyaruDB (1.4.1)
   - StaticDataTableViewController (2.0.3)
   - TestFlightSDK (3.0.0)
@@ -63,6 +64,7 @@ DEPENDENCIES:
   - MBProgressHUD
   - MD5Digest
   - MRProgress (~> 0.3)
+  - NSMutableArray-Shuffle
   - NyaruDB
   - StaticDataTableViewController (from `git@github.com:xelvenone/StaticDataTableViewController.git`)
   - TestFlightSDK
@@ -77,6 +79,7 @@ SPEC CHECKSUMS:
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   MD5Digest: 355c8733ab522cc516a4047e2d93e2b842947b18
   MRProgress: 6530ce71278dd7ecfb5e3c3e37df03a323690936
+  NSMutableArray-Shuffle: 79e96f2bbd1400a72bc0ead9168768693ba0bcf0
   NyaruDB: 294a1316faeae429c1c76743dd5369fcd1e8b42c
   StaticDataTableViewController: 90fb91b63b9efbe988f21116be109c454ef297de
   TestFlightSDK: 71e3e78d3a46144dbad975a4bf80a14dae6a818a

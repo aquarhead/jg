@@ -73,6 +73,21 @@
     }
 }
 
+- (void)fillCoverNth:(NSUInteger)n withPhoto:(ALAsset *)p
+{
+    UIImageView *imageView = [self valueForKey:[NSString stringWithFormat:@"imageView%lu", (unsigned long)n]];
+
+    if (p) {
+        UIImage *image = [UIImage imageWithCGImage:p.aspectRatioThumbnail];
+        imageView.image = image;
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+    }
+    else {
+        imageView.image = [UIImage imageNamed:@"Placeholder"];
+        imageView.contentMode = UIViewContentModeScaleToFill;
+    }
+}
+
 - (void)fillNth:(NSUInteger)n withText:(NSString *)text
 {
     UITextView *textView = [self valueForKey:[NSString stringWithFormat:@"descriptionTextView%lu", (unsigned long)n]];

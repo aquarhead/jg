@@ -12,26 +12,35 @@
 
 @protocol JGImagePoolDelegate <NSObject>
 
-@optional
+@required
 
 - (void)didSelectPhoto:(ALAsset *)photo;
 - (void)lockInteraction;
 - (void)unlockInteraction;
 - (void)didTapPlaceholder;
-- (void)didTapShuffleButton;
+
+@end
+
+@protocol JGImagePoolShuffleDelegate <NSObject>
+
+@required
+
+- (void)shuffledPhotos:(NSArray *)photos;
 
 @end
 
 @interface JGImagePoolViewController : UIViewController
 
 @property (nonatomic) ALAssetsLibrary *lib;
-@property (nonatomic, weak) id <JGImagePoolDelegate> delegate;
+@property (nonatomic, weak) id<JGImagePoolDelegate> delegate;
+@property (nonatomic, weak) id<JGImagePoolShuffleDelegate> shuffleDelegate;
 @property (nonatomic, weak) JGStartPageViewController *homeVC;
 
 @property (nonatomic) NSMutableDictionary *book;
 
 - (void)switchToPool;
 - (void)switchToShuffleButton;
+- (IBAction)shufflePressed:(UIButton *)sender;
 
 - (void)addPhoto:(ALAsset *)photo;
 - (void)removePhoto:(ALAsset *)photo;

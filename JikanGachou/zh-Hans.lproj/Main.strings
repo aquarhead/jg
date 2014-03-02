@@ -5,23 +5,32 @@
 /* Class = "IBUIBarButtonItem"; title = "取消"; ObjectID = "5f6-xq-YRR"; */
 "5f6-xq-YRR.title" = "取消";
 
+/* Class = "IBUILabel"; text = "1"; ObjectID = "6Fk-qY-fdF"; */
+"6Fk-qY-fdF.text" = "1";
+
 /* Class = "IBUILabel"; text = "上传照片"; ObjectID = "7kv-Ka-dbs"; */
 "7kv-Ka-dbs.text" = "上传照片";
 
 /* Class = "IBUITableViewSection"; footerTitle = "如遇任何问题，请联系客服。"; ObjectID = "9eZ-tk-JOa"; */
 "9eZ-tk-JOa.footerTitle" = "如遇任何问题，请联系客服。";
 
-/* Class = "IBUITableViewSection"; headerTitle = "第一步 填写收件人信息并付款"; ObjectID = "9eZ-tk-JOa"; */
-"9eZ-tk-JOa.headerTitle" = "第一步 填写收件人信息并付款";
+/* Class = "IBUITableViewSection"; headerTitle = "填写收件人信息并付款"; ObjectID = "9eZ-tk-JOa"; */
+"9eZ-tk-JOa.headerTitle" = "填写收件人信息并付款";
 
 /* Class = "IBUILabel"; text = "联系电话"; ObjectID = "GEb-fs-OQe"; */
 "GEb-fs-OQe.text" = "联系电话";
+
+/* Class = "IBUIBarButtonItem"; title = "状态"; ObjectID = "Gps-gu-xOl"; */
+"Gps-gu-xOl.title" = "状态";
 
 /* Class = "IBUIBarButtonItem"; title = "下一步"; ObjectID = "IKU-61-Ccm"; */
 "IKU-61-Ccm.title" = "下一步";
 
 /* Class = "IBUITextField"; placeholder = "姓名"; ObjectID = "NSL-mX-ur7"; */
 "NSL-mX-ur7.placeholder" = "姓名";
+
+/* Class = "IBUILabel"; text = "数量"; ObjectID = "P3q-ua-ad5"; */
+"P3q-ua-ad5.text" = "数量";
 
 /* Class = "IBUILabel"; text = "123 MB"; ObjectID = "Pr1-bx-ObU"; */
 "Pr1-bx-ObU.text" = "123 MB";
@@ -47,14 +56,17 @@
 /* Class = "IBUILabel"; text = "选择 20-40 张照片"; ObjectID = "cCr-Xm-LRK"; */
 "cCr-Xm-LRK.text" = "选择 20-40 张照片";
 
+/* Class = "IBUIButton"; normalTitle = "换一组照片"; ObjectID = "cJC-od-A3f"; */
+"cJC-od-A3f.normalTitle" = "换一组照片";
+
 /* Class = "IBUIButton"; normalTitle = "创建新画册"; ObjectID = "cZL-BK-ORG"; */
 "cZL-BK-ORG.normalTitle" = "创建新画册";
 
 /* Class = "IBUINavigationItem"; title = "选择图片"; ObjectID = "dFy-Ak-WmE"; */
 "dFy-Ak-WmE.title" = "选择图片";
 
-/* Class = "IBUITableViewSection"; headerTitle = "第二步 上传照片"; ObjectID = "dVH-LI-nxf"; */
-"dVH-LI-nxf.headerTitle" = "第二步 上传照片";
+/* Class = "IBUITableViewSection"; headerTitle = "上传照片"; ObjectID = "dVH-LI-nxf"; */
+"dVH-LI-nxf.headerTitle" = "上传照片";
 
 /* Class = "IBUIBarButtonItem"; title = "下一步"; ObjectID = "dkd-5p-Tb8"; */
 "dkd-5p-Tb8.title" = "下一步";

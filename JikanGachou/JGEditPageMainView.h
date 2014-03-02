@@ -33,6 +33,7 @@
 @property (nonatomic, weak) id<JGEditPageDelegate> delegate;
 
 - (void)fillNth:(NSUInteger)n withPhoto:(ALAsset *)p;
+- (void)fillCoverNth:(NSUInteger)n withPhoto:(ALAsset *)p;
 - (void)fillNth:(NSUInteger)n withText:(NSString *)text;
 
 @end

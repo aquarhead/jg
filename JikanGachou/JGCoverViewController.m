@@ -10,7 +10,7 @@
 #import "JGEditPageMainView.h"
 #import "JGImagePoolViewController.h"
 
-@interface JGCoverViewController () <UIAlertViewDelegate>
+@interface JGCoverViewController () <UIAlertViewDelegate, JGImagePoolShuffleDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *wrapperView;
 
@@ -27,10 +27,13 @@
     [super viewDidLoad];
 
     self.poolViewController = (JGImagePoolViewController *)((UINavigationController *)self.navigationController).parentViewController;
+    self.poolViewController.shuffleDelegate = self;
     self.book = self.poolViewController.book;
 
     self.mainView = [[[NSBundle mainBundle] loadNibNamed:@"EditPageCover" owner:self options:nil] firstObject];
     [self.wrapperView addSubview:self.mainView];
+
+    [self.poolViewController shufflePressed:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -44,7 +47,19 @@
 {
     [super viewWillDisappear:animated];
 
+    for (int i=0; i<9; i++) {
+        [self.book removeObjectForKey:[NSString stringWithFormat:@"cover%d", i+1]];
+    }
     [self.poolViewController switchToPool];
+}
+
+- (void)shuffledPhotos:(NSArray *)photos
+{
+    for (int i=0; i<9; i++) {
+        ALAsset *p = photos[i];
+        [self.mainView fillCoverNth:i+1 withPhoto:p];
+        self.book[[NSString stringWithFormat:@"cover%d", i+1]] = [p.defaultRepresentation.url absoluteString];
+    }
 }
 
 #pragma mark - Segue
