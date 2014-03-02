@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5051" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Start Page View Controller-->
@@ -211,7 +211,7 @@
             </objects>
             <point key="canvasLocation" x="612" y="-808"/>
         </scene>
-        <!--Image Album View Controller - 选择照片-->
+        <!--Image Album View Controller - 相册-->
         <scene sceneID="I8r-ly-EHA">
             <objects>
                 <viewController id="axQ-qA-fWi" customClass="JGImageAlbumViewController" sceneMemberID="viewController">
@@ -287,7 +287,7 @@
                             <constraint firstItem="2jJ-BQ-4VB" firstAttribute="leading" secondItem="hPb-fK-5WY" secondAttribute="leading" id="zkl-s6-S3L"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="选择照片" id="Udh-pW-SVw">
+                    <navigationItem key="navigationItem" title="相册" id="Udh-pW-SVw">
                         <barButtonItem key="leftBarButtonItem" title="取消" id="5f6-xq-YRR">
                             <connections>
                                 <action selector="cancel:" destination="axQ-qA-fWi" id="Z5l-UO-lap"/>
