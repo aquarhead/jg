@@ -70,7 +70,7 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
 
 #pragma mark - Segue
 
-- (IBAction)submitClicked:(id)sender {
+- (IBAction)nextClicked:(id)sender {
     [self hideKeyboard];
     NSString *errmsg = nil;
     NSIndexPath *idxp = nil;
@@ -103,7 +103,7 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
         [alertView show];
         [self.pagesCollectionView scrollToItemAtIndexPath:idxp atScrollPosition:0 animated:YES];
     } else {
-        [self.poolViewController saveBookAndExit];
+        [self performSegueWithIdentifier:@"genCover" sender:self];
     }
 }
 
