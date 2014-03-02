@@ -19,6 +19,7 @@ const NSUInteger kJGPoolMostPhotos  = 40;
 
 @interface JGImagePoolViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
+@property (weak, nonatomic) IBOutlet UIView *barView;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UILabel *selectedCountLabel;
 @property (weak, nonatomic) IBOutlet UIButton *placeholderButton;
@@ -40,6 +41,22 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     self.book[@"cover_type"] = @"EditPageCoverTypeLogo";
     self.book[@"key"] = [[NSUUID UUID] UUIDString];
 }
+
+#pragma mark - Function Switch
+
+- (void)switchToPool
+{
+    self.barView.hidden = NO;
+    self.collectionView.hidden = NO;
+}
+
+- (void)switchToShuffleButton
+{
+    self.barView.hidden = YES;
+    self.collectionView.hidden = YES;
+}
+
+#pragma mark - Collection View
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {

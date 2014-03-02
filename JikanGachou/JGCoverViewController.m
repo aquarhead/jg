@@ -13,8 +13,8 @@
 @interface JGCoverViewController () <UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *wrapperView;
-@property (nonatomic) JGEditPageMainView *mainView;
 
+@property (nonatomic) JGEditPageMainView *mainView;
 @property (weak, nonatomic) JGImagePoolViewController *poolViewController;
 @property (weak, nonatomic) NSMutableDictionary *book;
 
@@ -31,6 +31,20 @@
 
     self.mainView = [[[NSBundle mainBundle] loadNibNamed:@"EditPageCover" owner:self options:nil] firstObject];
     [self.wrapperView addSubview:self.mainView];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    [self.poolViewController switchToShuffleButton];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+
+    [self.poolViewController switchToPool];
 }
 
 #pragma mark - Segue

@@ -123,7 +123,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.67051977040816324" green="0.45352496525901453" blue="0.35728333883295244" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.67051977040816324" green="0.48379036631517608" blue="0.42826138763832422" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="SEb-QN-rfm" secondAttribute="trailing" constant="14" id="2LX-ZG-fMG"/>
                                     <constraint firstItem="cCr-Xm-LRK" firstAttribute="top" secondItem="zVJ-di-7Bi" secondAttribute="top" constant="4" id="6uA-f2-GdN"/>
@@ -138,7 +138,7 @@
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="biB-rn-vgL">
                                 <rect key="frame" x="0.0" y="398" width="320" height="82"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="0.88948899872448983" green="0.55551428101969558" blue="0.438244876182035" alpha="0.12" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.98823535442352295" green="0.95294123888015747" blue="0.94117653369903564" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="82" id="5aP-xJ-2br"/>
                                 </constraints>
@@ -185,7 +185,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.93660101880000002" blue="0.87186263580000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="4iA-gY-iAV" firstAttribute="top" secondItem="rP7-Cb-wm3" secondAttribute="top" id="4xY-l4-NGU"/>
                             <constraint firstItem="zVJ-di-7Bi" firstAttribute="leading" secondItem="rP7-Cb-wm3" secondAttribute="leading" id="8Kw-a5-hti"/>
@@ -202,6 +202,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="barView" destination="zVJ-di-7Bi" id="vWT-y4-ti3"/>
                         <outlet property="collectionView" destination="biB-rn-vgL" id="k7y-Yf-BoG"/>
                         <outlet property="placeholderButton" destination="dsL-RF-YfP" id="hre-4V-sEr"/>
                         <outlet property="selectedCountLabel" destination="SEb-QN-rfm" id="pUL-fv-CYc"/>

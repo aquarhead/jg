@@ -29,6 +29,9 @@
 
 @property (nonatomic) NSMutableDictionary *book;
 
+- (void)switchToPool;
+- (void)switchToShuffleButton;
+
 - (void)addPhoto:(ALAsset *)photo;
 - (void)removePhoto:(ALAsset *)photo;
 - (BOOL)hasPhoto:(ALAsset *)photo;
