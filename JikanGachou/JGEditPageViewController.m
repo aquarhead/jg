@@ -60,7 +60,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.pageTypeControl = [[UISegmentedControl alloc] initWithItems:@[@"", @""]];
+    self.pageTypeControl = [[UISegmentedControl alloc] initWithItems:@[@"单图", @"双图"]];
     self.navigationItem.titleView = self.pageTypeControl;
     [self reloadSegmentedControl];
 
@@ -97,14 +97,6 @@ static const NSInteger kJGIndexBackcoverPage = 22;
         || [[self.book objectForKey:@"title"] isEqualToString:@""]) {
         errmsg = @"请填写画册名";
         idxp = [NSIndexPath indexPathForItem:kJGIndexFlyleafPage inSection:0];
-    }
-    // check cover_photo
-    if ([[self.book objectForKey:@"cover_type"] hasSuffix:@"Photo"]) {
-        if (![self.book objectForKey:@"cover_photo"]
-            || [[self.book objectForKey:@"cover_photo"] isEqualToString:@""]) {
-            errmsg = @"请设置用于画册封面的照片";
-            idxp = [NSIndexPath indexPathForItem:kJGIndexCoverPage inSection:0];
-        }
     }
     if (errmsg) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"画册不完整" message:errmsg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -237,24 +229,14 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 {
     NSUInteger pageIndex = [self pageIndex];
     if (pageIndex == kJGIndexCoverPage) {
-        self.pageTypeControl.hidden = NO;
-        [self.pageTypeControl setTitle:@"图标" forSegmentAtIndex:0];
-        [self.pageTypeControl setTitle:@"照片" forSegmentAtIndex:1];
-        
-        if ([[self.book objectForKey:@"cover_type"] isEqualToString:@"EditPageCoverTypePhoto"]) {
-            self.pageTypeControl.selectedSegmentIndex = 1;
-        } else {
-            self.pageTypeControl.selectedSegmentIndex = 0;
-        }
+        self.pageTypeControl.hidden = YES;
     } else if (pageIndex == kJGIndexFlyleafPage) {
         self.pageTypeControl.hidden = YES;
     } else if (pageIndex == kJGIndexBackcoverPage) {
         self.pageTypeControl.hidden = YES;
     } else {
         self.pageTypeControl.hidden = NO;
-        [self.pageTypeControl setTitle:@"单图" forSegmentAtIndex:0];
-        [self.pageTypeControl setTitle:@"双图" forSegmentAtIndex:1];
-        
+
         NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
         if ([page[@"type"] hasPrefix:@"EditPageTypeOne"]) {
             self.pageTypeControl.selectedSegmentIndex = 0;
@@ -289,26 +271,22 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 - (void)pageTypeChanged:(UISegmentedControl *)sender
 {
     NSUInteger pageIndex = [self pageIndex];
-    if (pageIndex == kJGIndexCoverPage) {
-        [self.book setObject:(sender.selectedSegmentIndex == 0 ? @"EditPageCoverTypeLogo" : @"EditPageCoverTypePhoto") forKey:@"cover_type"];
-    } else {
-        NSString *type = (sender.selectedSegmentIndex == 0 ? @"EditPageTypeOneLandscape" : @"EditPageTypeTwoLandscape");
-        NSString *pageKey = [NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart];
-        NSMutableDictionary *page = [self.book[pageKey] mutableCopy];
-        if (page) {
-            if ([page[@"type"] hasPrefix:@"EditPageTypeTwo"] || [page[@"type"] hasPrefix:@"EditPageTypeMixed"]) {
-                // drop photo2
-                ALAsset *p = [self.poolViewController photoWithURLString:page[@"photo2"]];
-                if (p) {
-                    [self.poolViewController dropPhoto:p];
-                }
-                page[@"photo2"] = @"";
+    NSString *type = (sender.selectedSegmentIndex == 0 ? @"EditPageTypeOneLandscape" : @"EditPageTypeTwoLandscape");
+    NSString *pageKey = [NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart];
+    NSMutableDictionary *page = [self.book[pageKey] mutableCopy];
+    if (page) {
+        if ([page[@"type"] hasPrefix:@"EditPageTypeTwo"] || [page[@"type"] hasPrefix:@"EditPageTypeMixed"]) {
+            // drop photo2
+            ALAsset *p = [self.poolViewController photoWithURLString:page[@"photo2"]];
+            if (p) {
+                [self.poolViewController dropPhoto:p];
             }
-            page[@"type"] = type;
-            self.book[pageKey] = [page copy];
-        } else {
-            self.book[pageKey] = @{@"type": type};
+            page[@"photo2"] = @"";
         }
+        page[@"type"] = type;
+        self.book[pageKey] = [page copy];
+    } else {
+        self.book[pageKey] = @{@"type": type};
     }
 
     [self.pagesCollectionView reloadData];
@@ -320,15 +298,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     [[MRNavigationBarProgressView progressViewForNavigationController:self.navigationController] setProgress:pageIndex*1.0/23 animated:YES];
 
     if (pageIndex == kJGIndexCoverPage) {
-        if ([[self.book objectForKey:@"cover_type"] isEqualToString:@"EditPageCoverTypePhoto"]) {
-            [cell useMainViewNamed:@"EditPageCoverTypePhoto" withGestureRecognizers:self.tapRecogs];
-            if ([self.book objectForKey:@"cover_photo"]) {
-                ALAsset *p = [self.poolViewController photoWithURLString:[self.book objectForKey:@"cover_photo"]];
-                [cell.mainView fillNth:1 withPhoto:p];
-            }
-        } else {
-            [cell useMainViewNamed:@"EditPageCoverTypeLogo" withGestureRecognizers:self.tapRecogs];
-        }
+        [cell useMainViewNamed:@"EditPageCover" withGestureRecognizers:self.tapRecogs];
     } else if (pageIndex == kJGIndexFlyleafPage) {
         [cell useMainViewNamed:@"EditPageTitle" withGestureRecognizers:self.tapRecogs];
         cell.mainView.delegate = self;
@@ -490,12 +460,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 {
     JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
     NSInteger pageIndex = [self.pagesCollectionView indexPathForCell:cell].row;
-    if (pageIndex == kJGIndexCoverPage) {
-        if (self.pageTypeControl.selectedSegmentIndex == 1) {
-            [cell.mainView fillNth:1 withPhoto:p];
-            self.book[@"cover_photo"] = [p.defaultRepresentation.url absoluteString];
-        }
-    } else if (pageIndex >= kJGIndexPhotoPageStart && pageIndex < kJGIndexBackcoverPage) {
+    if (pageIndex >= kJGIndexPhotoPageStart && pageIndex < kJGIndexBackcoverPage) {
         NSString *pageKey = [NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart];
         NSMutableDictionary *page = [self.book[pageKey] mutableCopy];
 

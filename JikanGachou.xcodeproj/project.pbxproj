@@ -16,8 +16,7 @@
 		1A8B446B18BC737C00E06CA6 /* start3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A8B446818BC737C00E06CA6 /* start3.jpg */; };
 		1AD436E9185DFE7F003B5D19 /* JGEditPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD436E8185DFE7F003B5D19 /* JGEditPageViewController.m */; };
 		1AFCDC5B18BD225800BE8461 /* JGBookTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFCDC5A18BD225800BE8461 /* JGBookTableViewController.m */; };
-		4F1FB97918729FB6000FCFDB /* EditPageCoverTypeLogo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB97818729FB6000FCFDB /* EditPageCoverTypeLogo.xib */; };
-		4F1FB97B1872A049000FCFDB /* EditPageCoverTypePhoto.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB97A1872A049000FCFDB /* EditPageCoverTypePhoto.xib */; };
+		4F1FB97B1872A049000FCFDB /* EditPageCover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB97A1872A049000FCFDB /* EditPageCover.xib */; };
 		4F1FB9831872A7A1000FCFDB /* EditPageTypeOneLandscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB9821872A7A1000FCFDB /* EditPageTypeOneLandscape.xib */; };
 		4F1FB9851872A7BB000FCFDB /* EditPageTypeOnePortrait.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB9841872A7BB000FCFDB /* EditPageTypeOnePortrait.xib */; };
 		4F1FB9871872A85B000FCFDB /* EditPageTypeTwoLandscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB9861872A85B000FCFDB /* EditPageTypeTwoLandscape.xib */; };
@@ -75,8 +74,7 @@
 		1AFCDC5918BD225800BE8461 /* JGBookTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGBookTableViewController.h; sourceTree = "<group>"; };
 		1AFCDC5A18BD225800BE8461 /* JGBookTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGBookTableViewController.m; sourceTree = "<group>"; };
 		49761CB1CE0A4A59944B727D /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		4F1FB97818729FB6000FCFDB /* EditPageCoverTypeLogo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPageCoverTypeLogo.xib; sourceTree = "<group>"; };
-		4F1FB97A1872A049000FCFDB /* EditPageCoverTypePhoto.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPageCoverTypePhoto.xib; sourceTree = "<group>"; };
+		4F1FB97A1872A049000FCFDB /* EditPageCover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPageCover.xib; sourceTree = "<group>"; };
 		4F1FB9821872A7A1000FCFDB /* EditPageTypeOneLandscape.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPageTypeOneLandscape.xib; sourceTree = "<group>"; };
 		4F1FB9841872A7BB000FCFDB /* EditPageTypeOnePortrait.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPageTypeOnePortrait.xib; sourceTree = "<group>"; };
 		4F1FB9861872A85B000FCFDB /* EditPageTypeTwoLandscape.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPageTypeTwoLandscape.xib; sourceTree = "<group>"; };
@@ -189,8 +187,7 @@
 		4F1FB9921872A99B000FCFDB /* Cover */ = {
 			isa = PBXGroup;
 			children = (
-				4F1FB97818729FB6000FCFDB /* EditPageCoverTypeLogo.xib */,
-				4F1FB97A1872A049000FCFDB /* EditPageCoverTypePhoto.xib */,
+				4F1FB97A1872A049000FCFDB /* EditPageCover.xib */,
 				4F1FB9901872A992000FCFDB /* EditPageTitle.xib */,
 			);
 			name = Cover;
@@ -418,7 +415,6 @@
 				4F1FB9911872A992000FCFDB /* EditPageTitle.xib in Resources */,
 				4F1FB98F1872A980000FCFDB /* EditPageBackCover.xib in Resources */,
 				1A8B446B18BC737C00E06CA6 /* start3.jpg in Resources */,
-				4F1FB97918729FB6000FCFDB /* EditPageCoverTypeLogo.xib in Resources */,
 				4F1FB9831872A7A1000FCFDB /* EditPageTypeOneLandscape.xib in Resources */,
 				4F2FEF0E184B1A4A001A7AFE /* Images.xcassets in Resources */,
 				4F1FB98D1872A8B0000FCFDB /* EditPageTypeMixedLeftPortrait.xib in Resources */,
@@ -429,7 +425,7 @@
 				4FBB080F189E25340094B1E4 /* README.md in Resources */,
 				4F2FEF09184B1A4A001A7AFE /* Main.storyboard in Resources */,
 				4F1FB9871872A85B000FCFDB /* EditPageTypeTwoLandscape.xib in Resources */,
-				4F1FB97B1872A049000FCFDB /* EditPageCoverTypePhoto.xib in Resources */,
+				4F1FB97B1872A049000FCFDB /* EditPageCover.xib in Resources */,
 				4FD6334C18C1783A00D270BB /* topay.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

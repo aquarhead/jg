@@ -16,6 +16,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *yearLabel2;
 @property (weak, nonatomic) IBOutlet UILabel *dayLabel2;
 
+// for cover only
+@property (weak, nonatomic) IBOutlet UIImageView *imageView3;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView4;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView5;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView6;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView7;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView8;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView9;
+
 @end
 
 @implementation JGEditPageMainView
