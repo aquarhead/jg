@@ -74,6 +74,7 @@
 		1AD436E8185DFE7F003B5D19 /* JGEditPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGEditPageViewController.m; sourceTree = "<group>"; };
 		1AD7926B18C3145900840916 /* JGCoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGCoverViewController.h; sourceTree = "<group>"; };
 		1AD7926C18C3145900840916 /* JGCoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGCoverViewController.m; sourceTree = "<group>"; };
+		1AD7926E18C317C700840916 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		1AFCDC5918BD225800BE8461 /* JGBookTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGBookTableViewController.h; sourceTree = "<group>"; };
 		1AFCDC5A18BD225800BE8461 /* JGBookTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGBookTableViewController.m; sourceTree = "<group>"; };
 		49761CB1CE0A4A59944B727D /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -107,9 +108,6 @@
 		4F3CF06B184ED10B00B43634 /* JGStartPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGStartPageViewController.m; sourceTree = "<group>"; };
 		4FBB080E189E25340094B1E4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
 		4FD6334B18C1783A00D270BB /* topay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = topay.xib; path = "Submit Page/topay.xib"; sourceTree = "<group>"; };
-		4FD6334D18C18DFB00D270BB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/Main.storyboard"; sourceTree = "<group>"; };
-		4FD6334E18C18DFB00D270BB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		4FD6334F18C18DFB00D270BB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		4FD73EE518518A3C00C9F568 /* JGImageAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGImageAlbumViewController.h; sourceTree = "<group>"; };
 		4FD73EE618518A3C00C9F568 /* JGImageAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGImageAlbumViewController.m; sourceTree = "<group>"; };
 		4FD73EE81851AEA700C9F568 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -521,7 +519,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				4F2FEEFF184B1A4A001A7AFE /* en */,
-				4FD6334E18C18DFB00D270BB /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -530,7 +527,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				4F2FEF08184B1A4A001A7AFE /* Base */,
-				4FD6334D18C18DFB00D270BB /* zh-Hans */,
+				1AD7926E18C317C700840916 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -539,7 +536,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				4F2FEF1E184B1A4B001A7AFE /* en */,
-				4FD6334F18C18DFB00D270BB /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

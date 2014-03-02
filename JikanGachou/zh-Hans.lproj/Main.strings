@@ -1,0 +1,99 @@
+
+/* Class = "IBUILabel"; text = "地址"; ObjectID = "2tb-2A-BA6"; */
+"2tb-2A-BA6.text" = "地址";
+
+/* Class = "IBUIBarButtonItem"; title = "取消"; ObjectID = "5f6-xq-YRR"; */
+"5f6-xq-YRR.title" = "取消";
+
+/* Class = "IBUILabel"; text = "上传照片"; ObjectID = "7kv-Ka-dbs"; */
+"7kv-Ka-dbs.text" = "上传照片";
+
+/* Class = "IBUITableViewSection"; footerTitle = "如遇任何问题，请联系客服。"; ObjectID = "9eZ-tk-JOa"; */
+"9eZ-tk-JOa.footerTitle" = "如遇任何问题，请联系客服。";
+
+/* Class = "IBUITableViewSection"; headerTitle = "第一步 填写收件人信息并付款"; ObjectID = "9eZ-tk-JOa"; */
+"9eZ-tk-JOa.headerTitle" = "第一步 填写收件人信息并付款";
+
+/* Class = "IBUILabel"; text = "联系电话"; ObjectID = "GEb-fs-OQe"; */
+"GEb-fs-OQe.text" = "联系电话";
+
+/* Class = "IBUIBarButtonItem"; title = "下一步"; ObjectID = "IKU-61-Ccm"; */
+"IKU-61-Ccm.title" = "下一步";
+
+/* Class = "IBUITextField"; placeholder = "姓名"; ObjectID = "NSL-mX-ur7"; */
+"NSL-mX-ur7.placeholder" = "姓名";
+
+/* Class = "IBUILabel"; text = "123 MB"; ObjectID = "Pr1-bx-ObU"; */
+"Pr1-bx-ObU.text" = "123 MB";
+
+/* Class = "IBUIBarButtonItem"; title = "下一步"; ObjectID = "S8S-wW-k1J"; */
+"S8S-wW-k1J.title" = "下一步";
+
+/* Class = "IBUILabel"; text = "已选 0 张"; ObjectID = "SEb-QN-rfm"; */
+"SEb-QN-rfm.text" = "已选 0 张";
+
+/* Class = "IBUILabel"; text = "12 张图片"; ObjectID = "Tr7-dn-JTc"; */
+"Tr7-dn-JTc.text" = "12 张图片";
+
+/* Class = "IBUINavigationItem"; title = "相册"; ObjectID = "Udh-pW-SVw"; */
+"Udh-pW-SVw.title" = "相册";
+
+/* Class = "IBUINavigationItem"; title = "更新状态"; ObjectID = "WIn-q8-nQq"; */
+"WIn-q8-nQq.title" = "更新状态";
+
+/* Class = "IBUIBarButtonItem"; title = "返回"; ObjectID = "Zzr-NU-gvv"; */
+"Zzr-NU-gvv.title" = "返回";
+
+/* Class = "IBUILabel"; text = "选择 20-40 张照片"; ObjectID = "cCr-Xm-LRK"; */
+"cCr-Xm-LRK.text" = "选择 20-40 张照片";
+
+/* Class = "IBUIButton"; normalTitle = "创建新画册"; ObjectID = "cZL-BK-ORG"; */
+"cZL-BK-ORG.normalTitle" = "创建新画册";
+
+/* Class = "IBUINavigationItem"; title = "选择图片"; ObjectID = "dFy-Ak-WmE"; */
+"dFy-Ak-WmE.title" = "选择图片";
+
+/* Class = "IBUITableViewSection"; headerTitle = "第二步 上传照片"; ObjectID = "dVH-LI-nxf"; */
+"dVH-LI-nxf.headerTitle" = "第二步 上传照片";
+
+/* Class = "IBUIBarButtonItem"; title = "下一步"; ObjectID = "dkd-5p-Tb8"; */
+"dkd-5p-Tb8.title" = "下一步";
+
+/* Class = "IBUINavigationItem"; title = "全部画册"; ObjectID = "e9B-I5-qE8"; */
+"e9B-I5-qE8.title" = "全部画册";
+
+/* Class = "IBUILabel"; text = "2013年6月23日 已送达"; ObjectID = "eU7-fq-6sS"; */
+"eU7-fq-6sS.text" = "2013年6月23日 已送达";
+
+/* Class = "IBUILabel"; text = "总大小"; ObjectID = "eVF-De-8sI"; */
+"eVF-De-8sI.text" = "总大小";
+
+/* Class = "IBUIBarButtonItem"; title = "提交"; ObjectID = "giZ-82-EvT"; */
+"giZ-82-EvT.title" = "提交";
+
+/* Class = "IBUINavigationItem"; title = "生成封面"; ObjectID = "gpK-H2-Jf9"; */
+"gpK-H2-Jf9.title" = "生成封面";
+
+/* Class = "IBUIButton"; normalTitle = "查看画册状态"; ObjectID = "jG7-kT-SOD"; */
+"jG7-kT-SOD.normalTitle" = "查看画册状态";
+
+/* Class = "IBUIBarButtonItem"; title = "返回"; ObjectID = "jfq-AH-gC7"; */
+"jfq-AH-gC7.title" = "返回";
+
+/* Class = "IBUITextField"; placeholder = "详细收件地址"; ObjectID = "mns-e7-ejw"; */
+"mns-e7-ejw.placeholder" = "详细收件地址";
+
+/* Class = "IBUILabel"; text = "收件人"; ObjectID = "nTY-oE-5Cy"; */
+"nTY-oE-5Cy.text" = "收件人";
+
+/* Class = "IBUILabel"; text = "未命名画册"; ObjectID = "o9a-WM-sa3"; */
+"o9a-WM-sa3.text" = "未命名画册";
+
+/* Class = "IBUILabel"; text = "去付款"; ObjectID = "qGP-qA-AsM"; */
+"qGP-qA-AsM.text" = "去付款";
+
+/* Class = "IBUILabel"; text = "相机胶卷"; ObjectID = "wF1-pO-QQx"; */
+"wF1-pO-QQx.text" = "相机胶卷";
+
+/* Class = "IBUITextField"; placeholder = "1234567890"; ObjectID = "zZ5-ad-Ver"; */
+"zZ5-ad-Ver.placeholder" = "1234567890";
