@@ -18,7 +18,6 @@ PODS:
   - AFNetworking/UIKit (2.2.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - JVFloatLabeledTextField (0.0.6)
   - KIImagePager (HEAD based on 1.4.1)
   - MBProgressHUD (0.8)
   - MD5Digest (0.1.0)
@@ -55,26 +54,31 @@ PODS:
     - MRProgress/Helper
   - MRProgress/WeakProxy (0.4.1)
   - NyaruDB (1.4.1)
+  - StaticDataTableViewController (2.0.3)
   - TestFlightSDK (3.0.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
-  - JVFloatLabeledTextField
   - KIImagePager (HEAD)
   - MBProgressHUD
   - MD5Digest
   - MRProgress (~> 0.3)
   - NyaruDB
+  - StaticDataTableViewController (from `git@github.com:xelvenone/StaticDataTableViewController.git`)
   - TestFlightSDK
+
+EXTERNAL SOURCES:
+  StaticDataTableViewController:
+    :git: git@github.com:xelvenone/StaticDataTableViewController.git
 
 SPEC CHECKSUMS:
   AFNetworking: e8cfd8f3fe3bfe19124a0cc63f4d45752d892a56
-  JVFloatLabeledTextField: 5f9a3648e0d215626e3cd7319788dc96354940b4
   KIImagePager: 6ab95f68c885cfb65fefc697ac641f75839adba5
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   MD5Digest: 355c8733ab522cc516a4047e2d93e2b842947b18
   MRProgress: 6530ce71278dd7ecfb5e3c3e37df03a323690936
   NyaruDB: 294a1316faeae429c1c76743dd5369fcd1e8b42c
+  StaticDataTableViewController: 90fb91b63b9efbe988f21116be109c454ef297de
   TestFlightSDK: 71e3e78d3a46144dbad975a4bf80a14dae6a818a
 
 COCOAPODS: 0.29.0

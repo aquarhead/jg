@@ -12,6 +12,7 @@
 #import <MRProgress.h>
 #import <NyaruDB.h>
 #import <MBProgressHUD.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface JGSubmitPageViewController () <UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UITextViewDelegate>
 
@@ -23,15 +24,21 @@
 @property (nonatomic) NSUInteger finished;
 @property (nonatomic) MBProgressHUD *hud;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *statusItem;
+
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneField;
 @property (weak, nonatomic) IBOutlet UITextView *addressTextView;
 @property (weak, nonatomic) IBOutlet UITextField *addressPlaceholder;
+@property (weak, nonatomic) IBOutlet UILabel *quantityLabel;
+@property (weak, nonatomic) IBOutlet UIStepper *stepper;
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *payCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *sizeCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *uploadCell;
 
+@property (strong, nonatomic) IBOutletCollection(UITableViewCell) NSArray *payCells;
+@property (strong, nonatomic) IBOutletCollection(UITableViewCell) NSArray *uploadCells;
 @end
 
 @implementation JGSubmitPageViewController
@@ -40,11 +47,17 @@
 {
     [super viewDidLoad];
 
+    self.title = self.book[@"title"];
+
+    // setup StaticDataTableViewController
+    self.hideSectionsWithHiddenRows = YES;
+    [self cells:self.payCells setHidden:YES];
+    [self cells:self.uploadCells setHidden:YES];
+    [self reloadDataAnimated:YES];
+
+    // load photos
     self.lib = [ALAssetsLibrary new];
     NSMutableArray *photo_urls = [NSMutableArray new];
-    if ([[self.book objectForKey:@"cover_type"] isEqualToString:@"EditPageCoverTypePhoto"]) {
-        [photo_urls addObject:[self.book objectForKey:@"cover_photo"]];
-    }
     for (int i=0; i<20; i++) {
         NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%d", i]];
         // all these checks are redundant
@@ -100,7 +113,14 @@
                                             @"toprint": @"印刷中",
                                             @"shipping": @"已发货",
                                             @"recved": @"已收货"};
-        self.title = [NSString stringWithFormat:@"%@ - %@", statusDescription[self.book[@"status"]], self.book[@"title"]];
+        self.statusItem.title = statusDescription[self.book[@"status"]];
+        if ([self.book[@"status"] isEqualToString:@"topay"]) {
+            [self cells:self.payCells setHidden:NO];
+            [self reloadDataAnimated:YES];
+        } else if ([self.book[@"status"] isEqualToString:@"toupload"]) {
+            [self cells:self.uploadCells setHidden:NO];
+            [self reloadDataAnimated:YES];
+        }
         [hud hide:YES];
         self.navigationController.view.userInteractionEnabled = YES;
         self.view.userInteractionEnabled = YES;
@@ -159,6 +179,10 @@
     self.sizeCell.detailTextLabel.text = [NSByteCountFormatter stringFromByteCount:totalsize countStyle:NSByteCountFormatterCountStyleBinary];
 }
 
+- (IBAction)quantityChanged:(id)sender {
+    self.quantityLabel.text = [NSString stringWithFormat:@"%d", (int)self.stepper.value];
+}
+
 - (void)pay
 {
     [self.nameField resignFirstResponder];
@@ -184,7 +208,8 @@
             NSDictionary *parameters = @{@"info": [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding],
                                          @"recp": self.nameField.text,
                                          @"phone": self.phoneField.text,
-                                         @"address": self.addressTextView.text};
+                                         @"address": self.addressTextView.text,
+                                         @"quantity": [NSString stringWithFormat:@"%d", (int)self.stepper.value]};
             NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/", self.book[@"key"]];
             [self.jgServerManager POST:addr parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 self.payCell.userInteractionEnabled = YES;

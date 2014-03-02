@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5051" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Start Page View Controller-->
@@ -554,7 +554,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="第一步 填写收件人信息并付款" footerTitle="如遇任何问题，请联系客服。" id="9eZ-tk-JOa">
+                            <tableViewSection headerTitle="填写收件人信息并付款" footerTitle="如遇任何问题，请联系客服。" id="9eZ-tk-JOa">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ANW-oq-ehy">
                                         <rect key="frame" x="0.0" y="55" width="320" height="44"/>
@@ -641,8 +641,38 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="qGP-qA-AsM" style="IBUITableViewCellStyleDefault" id="Fud-f1-PCV">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="aaS-iC-700">
                                         <rect key="frame" x="0.0" y="226" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aaS-iC-700" id="wbS-mk-mD7">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="G3H-52-Te6">
+                                                    <rect key="frame" x="206" y="7" width="94" height="29"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <connections>
+                                                        <action selector="quantityChanged:" destination="NGp-sL-TIq" eventType="valueChanged" id="HsM-ph-rhY"/>
+                                                    </connections>
+                                                </stepper>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="数量" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P3q-ua-ad5">
+                                                    <rect key="frame" x="20" y="11" width="34" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Fk-qY-fdF">
+                                                    <rect key="frame" x="150" y="11" width="48" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="qGP-qA-AsM" style="IBUITableViewCellStyleDefault" id="Fud-f1-PCV">
+                                        <rect key="frame" x="0.0" y="270" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fud-f1-PCV" id="HRx-ob-VAf">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -660,10 +690,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="第二步 上传照片" id="dVH-LI-nxf">
+                            <tableViewSection headerTitle="上传照片" id="dVH-LI-nxf">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="eVF-De-8sI" detailTextLabel="Pr1-bx-ObU" style="IBUITableViewCellStyleValue1" id="xFc-ku-1PW">
-                                        <rect key="frame" x="0.0" y="345" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="389" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xFc-ku-1PW" id="yWL-oh-zW6">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -687,7 +717,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="7kv-Ka-dbs" style="IBUITableViewCellStyleDefault" id="dkh-mv-hWi">
-                                        <rect key="frame" x="0.0" y="389" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="433" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dkh-mv-hWi" id="Hna-TL-x5S">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -711,15 +741,29 @@
                             <outlet property="delegate" destination="NGp-sL-TIq" id="Iek-GP-hW8"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="更新状态" id="WIn-q8-nQq"/>
+                    <navigationItem key="navigationItem" title="更新状态" id="WIn-q8-nQq">
+                        <barButtonItem key="rightBarButtonItem" title="状态" id="Gps-gu-xOl">
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="addressPlaceholder" destination="mns-e7-ejw" id="J6G-Wm-H5Q"/>
                         <outlet property="addressTextView" destination="XwZ-el-n1i" id="8Vb-g3-B0B"/>
                         <outlet property="nameField" destination="NSL-mX-ur7" id="3vD-73-tQL"/>
                         <outlet property="payCell" destination="Fud-f1-PCV" id="ijG-iv-Jwa"/>
                         <outlet property="phoneField" destination="zZ5-ad-Ver" id="OFL-Rc-Hh4"/>
+                        <outlet property="quantityLabel" destination="6Fk-qY-fdF" id="tgE-M2-aJe"/>
                         <outlet property="sizeCell" destination="xFc-ku-1PW" id="Iu9-J3-qcT"/>
+                        <outlet property="statusItem" destination="Gps-gu-xOl" id="VeB-vO-iLi"/>
+                        <outlet property="stepper" destination="G3H-52-Te6" id="pB7-qa-hr1"/>
                         <outlet property="uploadCell" destination="dkh-mv-hWi" id="y2t-3K-bTg"/>
+                        <outletCollection property="uploadCells" destination="xFc-ku-1PW" id="9DU-Y9-rwx"/>
+                        <outletCollection property="uploadCells" destination="dkh-mv-hWi" id="5yj-SZ-GPz"/>
+                        <outletCollection property="payCells" destination="ANW-oq-ehy" id="7AH-pd-8fU"/>
+                        <outletCollection property="payCells" destination="nWj-gQ-Tjk" id="xZM-d7-wyc"/>
+                        <outletCollection property="payCells" destination="5lY-Yb-Daf" id="836-TP-Tli"/>
+                        <outletCollection property="payCells" destination="aaS-iC-700" id="qwf-1E-GJh"/>
+                        <outletCollection property="payCells" destination="Fud-f1-PCV" id="pJn-AU-lbN"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NIk-cy-8FF" userLabel="First Responder" sceneMemberID="firstResponder"/>

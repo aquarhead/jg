@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JGImagePoolViewController.h"
+#import <StaticDataTableViewController.h>
 
-@interface JGSubmitPageViewController : UITableViewController
+@interface JGSubmitPageViewController : StaticDataTableViewController
 
 @property (nonatomic, strong) NSMutableDictionary *book;
 

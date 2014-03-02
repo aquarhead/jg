@@ -39,7 +39,6 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     self.usedPhotos = [NSMutableArray new];
     self.lib = [ALAssetsLibrary new];
     self.book = [NSMutableDictionary new];
-    self.book[@"cover_type"] = @"EditPageCoverTypeLogo";
     self.book[@"key"] = [[NSUUID UUID] UUIDString];
 }
 
@@ -100,11 +99,6 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     [self.collectionView reloadData];
     NSUInteger count = self.selectedPhotos.count + self.usedPhotos.count;
     NSUInteger used_count = self.usedPhotos.count;
-    if ([[self.book objectForKey:@"cover_type"] isEqualToString:@"EditPageCoverTypePhoto"]
-        && [self.book objectForKey:@"cover_photo"]
-        && ![self.usedPhotos containsObject:[self photoWithURLString:[self.book objectForKey:@"cover_photo"]]]) {
-        used_count += 1;
-    }
     if (used_count > 0) {
         self.selectedCountLabel.text = [NSString stringWithFormat:@"已用 %u / %u 张", (unsigned)used_count, (unsigned)count];
     } else {
