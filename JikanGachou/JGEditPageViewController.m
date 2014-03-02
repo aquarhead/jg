@@ -11,11 +11,11 @@
 #import "JGEditPageCell.h"
 #import <MRProgress.h>
 
-static const NSInteger kJGIndexCoverPage = 0;
-static const NSInteger kJGIndexFlyleafPage = 1;
-static const NSInteger kJGIndexPhotoPageStart = 2; // cover, flyleaf, photos; start from zero.
-static const NSInteger kJGIndexPhotoPageEnd = 21;
-static const NSInteger kJGIndexBackcoverPage = 22;
+static const NSInteger kJGIndexFlyleafPage = 0;
+static const NSInteger kJGIndexPhotoPageStart = 1; // flyleaf, photos; start from zero.
+static const NSInteger kJGIndexPhotoPageEnd = 20;
+static const NSInteger kJGIndexBackcoverPage = 21;
+static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
 
 @interface JGEditPageViewController () <UICollectionViewDelegate, UICollectionViewDataSource, JGImagePoolDelegate, JGEditPageDelegate>
 
@@ -228,9 +228,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 - (void)reloadSegmentedControl
 {
     NSUInteger pageIndex = [self pageIndex];
-    if (pageIndex == kJGIndexCoverPage) {
-        self.pageTypeControl.hidden = YES;
-    } else if (pageIndex == kJGIndexFlyleafPage) {
+    if (pageIndex == kJGIndexFlyleafPage) {
         self.pageTypeControl.hidden = YES;
     } else if (pageIndex == kJGIndexBackcoverPage) {
         self.pageTypeControl.hidden = YES;
@@ -264,8 +262,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    // cover, flyleaf, 20 pages, and backcover
-    return 23;
+    return kJGTotalPages;
 }
 
 - (void)pageTypeChanged:(UISegmentedControl *)sender
@@ -297,9 +294,7 @@ static const NSInteger kJGIndexBackcoverPage = 22;
     NSInteger pageIndex = indexPath.item;
     [[MRNavigationBarProgressView progressViewForNavigationController:self.navigationController] setProgress:pageIndex*1.0/23 animated:YES];
 
-    if (pageIndex == kJGIndexCoverPage) {
-        [cell useMainViewNamed:@"EditPageCover" withGestureRecognizers:self.tapRecogs];
-    } else if (pageIndex == kJGIndexFlyleafPage) {
+    if (pageIndex == kJGIndexFlyleafPage) {
         [cell useMainViewNamed:@"EditPageTitle" withGestureRecognizers:self.tapRecogs];
         cell.mainView.delegate = self;
         if ([self.book objectForKey:@"title"]) {

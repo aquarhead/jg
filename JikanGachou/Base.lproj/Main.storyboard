@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5051" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Start Page View Controller-->
@@ -408,7 +408,45 @@
             </objects>
             <point key="canvasLocation" x="2005" y="-696"/>
         </scene>
-        <!--Edit Page View Controller - 选择封面-->
+        <!--Cover View Controller - 生成封面-->
+        <scene sceneID="KpQ-aj-nV9">
+            <objects>
+                <viewController id="Fqa-b2-NTp" customClass="JGCoverViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="b6N-XA-vWH"/>
+                        <viewControllerLayoutGuide type="bottom" id="ba2-Y0-8Gn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="G4Z-Y2-3xq">
+                        <rect key="frame" x="0.0" y="44" width="320" height="324"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0hO-bv-KUN">
+                                <rect key="frame" x="0.0" y="12" width="320" height="300"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="AEY-Vx-3cX"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.93660101880000002" blue="0.87186263580000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="0hO-bv-KUN" firstAttribute="leading" secondItem="G4Z-Y2-3xq" secondAttribute="leading" id="b7y-cT-rvf"/>
+                            <constraint firstAttribute="trailing" secondItem="0hO-bv-KUN" secondAttribute="trailing" id="lmK-C1-vIH"/>
+                            <constraint firstItem="0hO-bv-KUN" firstAttribute="centerY" secondItem="G4Z-Y2-3xq" secondAttribute="centerY" id="tDl-nk-Bli"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="生成封面" id="gpK-H2-Jf9">
+                        <barButtonItem key="rightBarButtonItem" title="提交" id="giZ-82-EvT"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="wrapperView" destination="0hO-bv-KUN" id="0vv-ms-kJE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="135-b0-EgU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2844" y="-696"/>
+        </scene>
+        <!--Edit Page View Controller - 选择图片-->
         <scene sceneID="oqw-0w-B0B">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="3dW-pO-oxH" customClass="JGEditPageViewController" sceneMemberID="viewController">
@@ -460,10 +498,10 @@
                             <constraint firstAttribute="centerX" secondItem="rUN-Vc-etx" secondAttribute="centerX" id="h8Y-m9-PYr"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="选择封面" id="dFy-Ak-WmE">
-                        <barButtonItem key="rightBarButtonItem" title="提交" id="IKU-61-Ccm">
+                    <navigationItem key="navigationItem" title="选择图片" id="dFy-Ak-WmE">
+                        <barButtonItem key="rightBarButtonItem" title="下一步" id="IKU-61-Ccm">
                             <connections>
-                                <action selector="submitClicked:" destination="3dW-pO-oxH" id="1Qz-qD-DXq"/>
+                                <segue destination="Fqa-b2-NTp" kind="push" id="SPI-xg-5jz"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
