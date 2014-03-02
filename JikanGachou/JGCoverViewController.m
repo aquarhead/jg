@@ -47,7 +47,7 @@
 {
     [super viewWillDisappear:animated];
 
-    for (int i=0; i<9; i++) {
+    for (int i = 0; i < 9; ++i) {
         [self.book removeObjectForKey:[NSString stringWithFormat:@"cover%d", i+1]];
     }
     [self.poolViewController switchToPool];
@@ -55,7 +55,7 @@
 
 - (void)shuffledPhotos:(NSArray *)photos
 {
-    for (int i=0; i<9; i++) {
+    for (int i = 0; i < MIN(9, photos.count); ++i) {
         ALAsset *p = photos[i];
         [self.mainView fillCoverNth:i+1 withPhoto:p];
         self.book[[NSString stringWithFormat:@"cover%d", i+1]] = [p.defaultRepresentation.url absoluteString];
@@ -64,7 +64,8 @@
 
 #pragma mark - Segue
 
-- (IBAction)submitClicked:(id)sender {
+- (IBAction)submitClicked:(id)sender
+{
     // user confirm
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"确认提交" message:@"提交之后不能再次修改，确认提交画册吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"提交", nil];
     [alertView show];
