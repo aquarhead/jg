@@ -32,7 +32,7 @@
                             </constraints>
                         </imageView>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="点击添加描述…" translatesAutoresizingMaskIntoConstraints="NO" id="xWN-QN-QgY">
-                            <rect key="frame" x="175" y="47" width="125" height="52"/>
+                            <rect key="frame" x="175" y="46" width="125" height="53"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -40,30 +40,30 @@
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 1 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avB-Io-Q5H">
-                            <rect key="frame" x="180" y="28" width="16" height="19"/>
+                            <rect key="frame" x="180" y="28" width="15" height="18"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.61820392219999998" green="0.61820392219999998" blue="0.61820392219999998" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" priority="250" constant="20" id="fZg-2y-4bQ"/>
                                 <constraint firstAttribute="height" priority="250" constant="23" id="o5h-tp-0Pb"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="Baskerville-SemiBoldItalic" family="Baskerville" pointSize="16"/>
+                            <fontDescription key="fontDescription" name="Baskerville-SemiBoldItalic" family="Baskerville" pointSize="15"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" July 2011" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULW-I4-kHt">
-                            <rect key="frame" x="197" y="8" width="103" height="59"/>
+                            <rect key="frame" x="196" y="8" width="104" height="59"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="103" id="SI8-JW-doB"/>
+                                <constraint firstAttribute="width" constant="104" id="SI8-JW-doB"/>
                                 <constraint firstAttribute="height" constant="59" id="afE-lW-38W"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="15"/>
+                            <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="14"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="点击添加描述…" translatesAutoresizingMaskIntoConstraints="NO" id="zW7-oO-kQm">
-                            <rect key="frame" x="85" y="173" width="98" height="76"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="点击添加描述…" translatesAutoresizingMaskIntoConstraints="NO" id="zW7-oO-kQm">
+                            <rect key="frame" x="89" y="173" width="94" height="76"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -71,25 +71,25 @@
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 1 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZXo-v6-s2z">
-                            <rect key="frame" x="90" y="153" width="17" height="20"/>
+                            <rect key="frame" x="95" y="153" width="16" height="19"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.61820392219999998" green="0.61820392219999998" blue="0.61820392219999998" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" priority="250" constant="17" id="6wS-BK-WZh"/>
                                 <constraint firstAttribute="height" priority="250" constant="20" id="J52-fp-gbE"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="Baskerville-SemiBoldItalic" family="Baskerville" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="Baskerville-SemiBoldItalic" family="Baskerville" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" July 2011" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hih-dQ-Rb1">
-                            <rect key="frame" x="109" y="134" width="69" height="59"/>
+                            <rect key="frame" x="113" y="133" width="65" height="59"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="59" id="1Ql-gv-LzJ"/>
-                                <constraint firstAttribute="width" priority="250" constant="78" id="EMX-pi-Sxk"/>
+                                <constraint firstAttribute="width" priority="250" constant="65" id="EMX-pi-Sxk"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="16"/>
+                            <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="15"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -97,7 +97,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="zCn-Zm-6Iu" firstAttribute="top" secondItem="xWN-QN-QgY" secondAttribute="bottom" constant="54" id="1Xt-bn-dtB"/>
-                        <constraint firstItem="hih-dQ-Rb1" firstAttribute="top" secondItem="Va0-hr-zNm" secondAttribute="top" constant="134" id="3Zx-5X-y5X"/>
+                        <constraint firstItem="hih-dQ-Rb1" firstAttribute="top" secondItem="Va0-hr-zNm" secondAttribute="top" constant="133" id="3Zx-5X-y5X"/>
                         <constraint firstItem="lzv-bw-Vsj" firstAttribute="top" secondItem="Va0-hr-zNm" secondAttribute="top" constant="28" id="DXb-CS-JRZ"/>
                         <constraint firstItem="zW7-oO-kQm" firstAttribute="leading" secondItem="ZXo-v6-s2z" secondAttribute="leading" constant="-5" id="EYa-PE-8p3"/>
                         <constraint firstItem="xWN-QN-QgY" firstAttribute="leading" secondItem="lzv-bw-Vsj" secondAttribute="trailing" constant="3" id="Hlu-RA-a0w"/>
