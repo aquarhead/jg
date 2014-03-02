@@ -40,29 +40,29 @@
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 1 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G34-Cp-nnk">
-                            <rect key="frame" x="176" y="25" width="16" height="19"/>
+                            <rect key="frame" x="176" y="25" width="15" height="18"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.61820392219999998" green="0.61820392219999998" blue="0.61820392219999998" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" priority="250" constant="16" id="Q5K-6r-hM4"/>
                                 <constraint firstAttribute="height" priority="250" constant="19" id="bwF-Kh-LiQ"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="Baskerville-SemiBoldItalic" family="Baskerville" pointSize="16"/>
+                            <fontDescription key="fontDescription" name="Baskerville-SemiBoldItalic" family="Baskerville" pointSize="15"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" July 2011" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDH-0D-iUT">
-                            <rect key="frame" x="193" y="5" width="97" height="59"/>
+                            <rect key="frame" x="192" y="4" width="97" height="59"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="59" id="DRW-0Y-97P"/>
                                 <constraint firstAttribute="width" constant="97" id="yWT-Qr-3As"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="15"/>
+                            <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="14"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="点击添加描述…" translatesAutoresizingMaskIntoConstraints="NO" id="CMU-fR-zDe">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="点击添加描述…" translatesAutoresizingMaskIntoConstraints="NO" id="CMU-fR-zDe">
                             <rect key="frame" x="37" y="177" width="95" height="61"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -70,25 +70,25 @@
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 1 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GW2-l0-44E">
-                            <rect key="frame" x="42" y="158" width="16" height="19"/>
+                            <rect key="frame" x="47" y="158" width="15" height="18"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.61820392219999998" green="0.61820392219999998" blue="0.61820392219999998" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" priority="250" constant="19" id="5pJ-xL-Xls"/>
                                 <constraint firstAttribute="width" priority="250" constant="16" id="c5I-zr-X4H"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="Baskerville-SemiBoldItalic" family="Baskerville" pointSize="16"/>
+                            <fontDescription key="fontDescription" name="Baskerville-SemiBoldItalic" family="Baskerville" pointSize="15"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" July 2011" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKo-2p-pWu">
-                            <rect key="frame" x="60" y="138" width="65" height="59"/>
+                            <rect key="frame" x="64" y="137" width="61" height="59"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
-                                <constraint firstAttribute="width" priority="250" constant="65" id="M7w-wi-m9d"/>
+                                <constraint firstAttribute="width" priority="250" constant="61" id="M7w-wi-m9d"/>
                                 <constraint firstAttribute="height" constant="59" id="bsC-0b-rWY"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="15"/>
+                            <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="14"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -97,9 +97,9 @@
                     <constraints>
                         <constraint firstItem="CMU-fR-zDe" firstAttribute="top" secondItem="GW2-l0-44E" secondAttribute="bottom" id="5Tt-jj-kzy"/>
                         <constraint firstAttribute="trailing" secondItem="gro-Bc-9aa" secondAttribute="trailing" constant="12" id="FAC-De-8JT"/>
-                        <constraint firstItem="SKo-2p-pWu" firstAttribute="top" secondItem="VAn-1u-SgR" secondAttribute="top" constant="138" id="IGa-vb-fdP"/>
+                        <constraint firstItem="SKo-2p-pWu" firstAttribute="top" secondItem="VAn-1u-SgR" secondAttribute="top" constant="137" id="IGa-vb-fdP"/>
                         <constraint firstAttribute="bottom" secondItem="CMU-fR-zDe" secondAttribute="bottom" constant="62" id="ISx-p5-tp2"/>
-                        <constraint firstItem="bDH-0D-iUT" firstAttribute="top" secondItem="VAn-1u-SgR" secondAttribute="top" constant="5" id="Key-Tm-ZhM"/>
+                        <constraint firstItem="bDH-0D-iUT" firstAttribute="top" secondItem="VAn-1u-SgR" secondAttribute="top" constant="4" id="Key-Tm-ZhM"/>
                         <constraint firstItem="SKo-2p-pWu" firstAttribute="leading" secondItem="GW2-l0-44E" secondAttribute="trailing" constant="2" id="SHF-Sr-Ovv"/>
                         <constraint firstAttribute="bottom" secondItem="gro-Bc-9aa" secondAttribute="bottom" constant="23" id="VT6-Ui-2Tx"/>
                         <constraint firstItem="G34-Cp-nnk" firstAttribute="leading" secondItem="09z-WD-1Pe" secondAttribute="trailing" constant="11" id="YXe-ol-ZHN"/>
