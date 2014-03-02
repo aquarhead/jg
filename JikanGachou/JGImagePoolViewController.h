@@ -12,12 +12,13 @@
 
 @protocol JGImagePoolDelegate <NSObject>
 
-@required
+@optional
 
 - (void)didSelectPhoto:(ALAsset *)photo;
 - (void)lockInteraction;
 - (void)unlockInteraction;
 - (void)didTapPlaceholder;
+- (void)didTapShuffleButton;
 
 @end
 

@@ -184,20 +184,37 @@
                                     <action selector="placeholderPressed:" destination="JLH-3v-K42" eventType="touchUpInside" id="2TR-1V-z45"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJC-od-A3f">
+                                <rect key="frame" x="81" y="381" width="158" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="hTP-29-Kof"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="换一批图片">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="shufflePressed:" destination="JLH-3v-K42" eventType="touchUpInside" id="nw4-Wo-1Vt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.93660101880000002" blue="0.87186263580000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="4iA-gY-iAV" firstAttribute="top" secondItem="rP7-Cb-wm3" secondAttribute="top" id="4xY-l4-NGU"/>
                             <constraint firstItem="zVJ-di-7Bi" firstAttribute="leading" secondItem="rP7-Cb-wm3" secondAttribute="leading" id="8Kw-a5-hti"/>
+                            <constraint firstItem="2rD-El-bLV" firstAttribute="top" secondItem="cJC-od-A3f" secondAttribute="bottom" constant="45" id="EUZ-Oh-gn3"/>
                             <constraint firstItem="4iA-gY-iAV" firstAttribute="leading" secondItem="rP7-Cb-wm3" secondAttribute="leading" id="KU9-8v-W5M"/>
                             <constraint firstItem="biB-rn-vgL" firstAttribute="top" secondItem="zVJ-di-7Bi" secondAttribute="bottom" id="Ldt-Id-15I"/>
                             <constraint firstAttribute="trailing" secondItem="zVJ-di-7Bi" secondAttribute="trailing" id="SOr-uE-9It"/>
                             <constraint firstAttribute="trailing" secondItem="biB-rn-vgL" secondAttribute="trailing" id="VuV-n3-8JY"/>
+                            <constraint firstItem="cJC-od-A3f" firstAttribute="leading" secondItem="rP7-Cb-wm3" secondAttribute="leading" constant="81" id="W2Q-D7-3Ts"/>
                             <constraint firstAttribute="trailing" secondItem="4iA-gY-iAV" secondAttribute="trailing" id="Wu5-oP-aPX"/>
                             <constraint firstItem="2rD-El-bLV" firstAttribute="top" secondItem="biB-rn-vgL" secondAttribute="bottom" id="fPH-rZ-64R"/>
                             <constraint firstItem="dsL-RF-YfP" firstAttribute="leading" secondItem="rP7-Cb-wm3" secondAttribute="leading" constant="7" id="k9u-ZY-Loa"/>
                             <constraint firstItem="biB-rn-vgL" firstAttribute="leading" secondItem="rP7-Cb-wm3" secondAttribute="leading" id="nUB-5a-4Lp"/>
                             <constraint firstItem="2rD-El-bLV" firstAttribute="top" secondItem="4iA-gY-iAV" secondAttribute="bottom" constant="112" id="nxI-yM-cg6"/>
+                            <constraint firstAttribute="trailing" secondItem="cJC-od-A3f" secondAttribute="trailing" constant="81" id="pqX-Bl-H1u"/>
                             <constraint firstItem="2rD-El-bLV" firstAttribute="top" secondItem="dsL-RF-YfP" secondAttribute="bottom" constant="6" id="u3p-R5-aYU"/>
                         </constraints>
                     </view>
@@ -206,6 +223,7 @@
                         <outlet property="collectionView" destination="biB-rn-vgL" id="k7y-Yf-BoG"/>
                         <outlet property="placeholderButton" destination="dsL-RF-YfP" id="hre-4V-sEr"/>
                         <outlet property="selectedCountLabel" destination="SEb-QN-rfm" id="pUL-fv-CYc"/>
+                        <outlet property="shuffleButton" destination="cJC-od-A3f" id="V1A-Ux-10X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7HM-1h-hl2" userLabel="First Responder" sceneMemberID="firstResponder"/>

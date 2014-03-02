@@ -23,6 +23,7 @@ const NSUInteger kJGPoolMostPhotos  = 40;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UILabel *selectedCountLabel;
 @property (weak, nonatomic) IBOutlet UIButton *placeholderButton;
+@property (weak, nonatomic) IBOutlet UIButton *shuffleButton;
 
 @property (nonatomic) NSMutableArray *selectedPhotos;
 @property (nonatomic) NSMutableArray *usedPhotos;
@@ -48,12 +49,14 @@ const NSUInteger kJGPoolMostPhotos  = 40;
 {
     self.barView.hidden = NO;
     self.collectionView.hidden = NO;
+    self.shuffleButton.hidden = YES;
 }
 
 - (void)switchToShuffleButton
 {
     self.barView.hidden = YES;
     self.collectionView.hidden = YES;
+    self.shuffleButton.hidden = NO;
 }
 
 #pragma mark - Collection View
@@ -111,6 +114,13 @@ const NSUInteger kJGPoolMostPhotos  = 40;
         self.placeholderButton.hidden = YES;
     } else {
         self.placeholderButton.hidden = NO;
+    }
+}
+
+- (IBAction)shufflePressed:(UIButton *)sender
+{
+    if ([self.delegate respondsToSelector:@selector(didTapShuffleButton)]) {
+        [self.delegate didTapShuffleButton];
     }
 }
 
