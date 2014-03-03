@@ -77,6 +77,7 @@
         static NSDateFormatter *yearFormatter, *dayFormatter;
         if (!yearFormatter) {
             yearFormatter = [NSDateFormatter new];
+            [yearFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
             yearFormatter.dateFormat = @" MMMM YYYY";
             dayFormatter = [NSDateFormatter new];
             dayFormatter.dateFormat = @" d ";
