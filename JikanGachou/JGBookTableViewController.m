@@ -23,7 +23,7 @@
 {
     [super viewDidLoad];
     self.clearsSelectionOnViewWillAppear = NO;
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+//    self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -85,7 +85,7 @@ typedef NS_ENUM(NSUInteger, JGBookCellTag) {
 
     UILabel *bookStatusLabel = (UILabel *)[cell viewWithTag:JGBookCellTagBookStatus];
     if (indexPath.row == 0) {
-        bookStatusLabel.text = @"未付款 2014年1月1日";
+        bookStatusLabel.text = @"待付款 2014年1月1日";
     }
 
     UILabel *bookNameLabel = (UILabel *)[cell viewWithTag:JGBookCellTagBookName];

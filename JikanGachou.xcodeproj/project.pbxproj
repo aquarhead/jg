@@ -181,6 +181,8 @@
 			children = (
 				1AFCDC5918BD225800BE8461 /* JGBookTableViewController.h */,
 				1AFCDC5A18BD225800BE8461 /* JGBookTableViewController.m */,
+				4FF482361893655500E26003 /* JGSubmitPageViewController.h */,
+				4FF482371893655500E26003 /* JGSubmitPageViewController.m */,
 			);
 			name = Books;
 			sourceTree = "<group>";
@@ -257,7 +259,6 @@
 				4F3CF06E184F068100B43634 /* Start Page */,
 				4FD73EE4185189F000C9F568 /* Image Picker */,
 				1AD436EA185DFE82003B5D19 /* Edit Page */,
-				4FF4823518928B7400E26003 /* Submit Page */,
 				4F2FEEFC184B1A4A001A7AFE /* Supporting Files */,
 			);
 			path = JikanGachou;
@@ -316,15 +317,6 @@
 				1A7E25011851FDCF00113959 /* JGImageGridViewController.m */,
 			);
 			name = "Image Picker";
-			sourceTree = "<group>";
-		};
-		4FF4823518928B7400E26003 /* Submit Page */ = {
-			isa = PBXGroup;
-			children = (
-				4FF482361893655500E26003 /* JGSubmitPageViewController.h */,
-				4FF482371893655500E26003 /* JGSubmitPageViewController.m */,
-			);
-			name = "Submit Page";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
