@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5051" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Start Page View Controller-->
@@ -254,21 +254,21 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fFZ-qX-Mz9">
-                                                    <rect key="frame" x="19" y="7" width="61" height="62"/>
+                                                    <rect key="frame" x="15" y="7" width="61" height="62"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="61" id="jNH-8E-0vZ"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="相机胶卷" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="143" translatesAutoresizingMaskIntoConstraints="NO" id="wF1-pO-QQx">
-                                                    <rect key="frame" x="95" y="9" width="143" height="40"/>
+                                                    <rect key="frame" x="91" y="8" width="143" height="40"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12 张图片" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="108" translatesAutoresizingMaskIntoConstraints="NO" id="Tr7-dn-JTc">
-                                                    <rect key="frame" x="95" y="39" width="108" height="26"/>
+                                                    <rect key="frame" x="91" y="38" width="108" height="26"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -276,16 +276,16 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Tr7-dn-JTc" firstAttribute="top" secondItem="IbY-Of-NKF" secondAttribute="top" constant="39" id="8bT-UI-Blg"/>
+                                                <constraint firstItem="Tr7-dn-JTc" firstAttribute="top" secondItem="IbY-Of-NKF" secondAttribute="top" constant="38" id="8bT-UI-Blg"/>
                                                 <constraint firstItem="fFZ-qX-Mz9" firstAttribute="centerY" secondItem="IbY-Of-NKF" secondAttribute="centerY" id="Bkq-BB-QUl"/>
-                                                <constraint firstAttribute="trailing" secondItem="Tr7-dn-JTc" secondAttribute="trailing" constant="84" id="CbW-Mb-Vse"/>
+                                                <constraint firstAttribute="trailing" secondItem="Tr7-dn-JTc" secondAttribute="trailing" constant="88" id="CbW-Mb-Vse"/>
                                                 <constraint firstItem="Tr7-dn-JTc" firstAttribute="leading" secondItem="fFZ-qX-Mz9" secondAttribute="trailing" constant="15" id="DGT-H5-4CU"/>
-                                                <constraint firstAttribute="bottom" secondItem="Tr7-dn-JTc" secondAttribute="bottom" constant="11" id="F1g-vw-OzN"/>
-                                                <constraint firstItem="wF1-pO-QQx" firstAttribute="top" secondItem="IbY-Of-NKF" secondAttribute="top" constant="9" id="GGU-fJ-fqJ"/>
-                                                <constraint firstItem="fFZ-qX-Mz9" firstAttribute="leading" secondItem="IbY-Of-NKF" secondAttribute="leading" constant="19" id="TeZ-9D-pjQ"/>
+                                                <constraint firstAttribute="bottom" secondItem="Tr7-dn-JTc" secondAttribute="bottom" constant="12" id="F1g-vw-OzN"/>
+                                                <constraint firstItem="wF1-pO-QQx" firstAttribute="top" secondItem="IbY-Of-NKF" secondAttribute="top" constant="8" id="GGU-fJ-fqJ"/>
+                                                <constraint firstItem="fFZ-qX-Mz9" firstAttribute="leading" secondItem="IbY-Of-NKF" secondAttribute="leading" constant="15" id="TeZ-9D-pjQ"/>
                                                 <constraint firstItem="wF1-pO-QQx" firstAttribute="leading" secondItem="Tr7-dn-JTc" secondAttribute="leading" id="ZXX-or-b50"/>
-                                                <constraint firstAttribute="bottom" secondItem="wF1-pO-QQx" secondAttribute="bottom" constant="27" id="fba-Nx-ITk"/>
-                                                <constraint firstAttribute="trailing" secondItem="wF1-pO-QQx" secondAttribute="trailing" constant="49" id="qdA-8J-m6K"/>
+                                                <constraint firstAttribute="bottom" secondItem="wF1-pO-QQx" secondAttribute="bottom" constant="28" id="fba-Nx-ITk"/>
+                                                <constraint firstAttribute="trailing" secondItem="wF1-pO-QQx" secondAttribute="trailing" constant="53" id="qdA-8J-m6K"/>
                                                 <constraint firstItem="fFZ-qX-Mz9" firstAttribute="top" secondItem="IbY-Of-NKF" secondAttribute="top" constant="7" id="ywK-4y-Jml"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -342,31 +342,31 @@
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GOM-Km-JN2">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="324"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="0.93660101880000002" blue="0.87186263580000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="6" minimumInteritemSpacing="6" id="Ikb-h9-IYO">
-                                    <size key="itemSize" width="75" height="75"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Ikb-h9-IYO">
+                                    <size key="itemSize" width="80" height="80"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="5" maxX="0.0" maxY="5"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="Ggk-dd-Up5">
-                                        <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                        <rect key="frame" x="0.0" y="5" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MWM-91-PyK">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
-                                                <view hidden="YES" alpha="0.5" tag="101" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MsW-Io-3Qn" userLabel="Mask View">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                                <view hidden="YES" alpha="0.40000000000000002" tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MsW-Io-3Qn" userLabel="Mask View">
+                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <imageView hidden="YES" userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="PY3-Sr-xSf">
-                                                            <rect key="frame" x="72" y="73" width="0.0" height="0.0"/>
+                                                            <rect key="frame" x="49" y="47" width="22" height="22"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         </imageView>
                                                     </subviews>
@@ -375,30 +375,36 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="MsW-Io-3Qn" firstAttribute="top" secondItem="Ggk-dd-Up5" secondAttribute="top" id="1mS-QU-6qA"/>
+                                            <constraint firstAttribute="bottom" secondItem="MsW-Io-3Qn" secondAttribute="bottom" id="ODz-8K-bxp"/>
+                                            <constraint firstAttribute="trailing" secondItem="MsW-Io-3Qn" secondAttribute="trailing" id="TCC-HX-xrU"/>
+                                            <constraint firstItem="MsW-Io-3Qn" firstAttribute="leading" secondItem="Ggk-dd-Up5" secondAttribute="leading" id="XKO-5R-slg"/>
+                                        </constraints>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Placeholder" id="s0I-YA-l4J">
-                                        <rect key="frame" x="82" y="0.0" width="75" height="75"/>
+                                        <rect key="frame" x="80" y="5" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Placeholder2" id="Lke-d4-u27">
-                                        <rect key="frame" x="163" y="0.0" width="75" height="75"/>
+                                        <rect key="frame" x="160" y="5" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Placeholder3" id="fyg-um-YFX">
-                                        <rect key="frame" x="245" y="0.0" width="75" height="75"/>
+                                        <rect key="frame" x="240" y="5" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
