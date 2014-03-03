@@ -194,9 +194,9 @@
 
 - (IBAction)quantityChanged:(id)sender
 {
-    NSInteger quantity = (NSInteger)self.stepper.value;
-    self.quantityLabel.text = [NSString stringWithFormat:@"%ld 本", (long)quantity];
-    self.priceLabel.text = [NSString stringWithFormat:@"%ld 元", (long)quantity * self.price];
+    long quantity = self.stepper.value;
+    self.quantityLabel.text = [NSString stringWithFormat:@"%ld本", quantity];
+    self.priceLabel.text = [NSString stringWithFormat:@"共%ld元", quantity * self.price];
 }
 
 - (void)pay
