@@ -11,10 +11,11 @@
 #import "JGEditPageCell.h"
 #import <MRProgress.h>
 
-static const NSInteger kJGIndexFlyleafPage = 0;
-static const NSInteger kJGIndexPhotoPageStart = 1; // flyleaf, photos; start from zero.
-static const NSInteger kJGIndexPhotoPageEnd = 20;
-static const NSInteger kJGIndexBackcoverPage = 21;
+static const NSInteger kJGIndexCoverPage = 0;
+static const NSInteger kJGIndexFlyleafPage = kJGIndexCoverPage + 1;
+static const NSInteger kJGIndexPhotoPageStart = kJGIndexFlyleafPage + 1;
+static const NSInteger kJGIndexPhotoPageEnd = kJGIndexPhotoPageStart + 20 - 1;
+static const NSInteger kJGIndexBackcoverPage = kJGIndexPhotoPageEnd + 1;
 static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
 
 @interface JGEditPageViewController () <UICollectionViewDelegate, UICollectionViewDataSource, JGImagePoolDelegate, JGEditPageDelegate>
@@ -102,7 +103,8 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"画册不完整" message:errmsg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alertView show];
         [self.pagesCollectionView scrollToItemAtIndexPath:idxp atScrollPosition:0 animated:YES];
-    } else {
+    }
+    else {
         [self performSegueWithIdentifier:@"genCover" sender:self];
     }
 }
@@ -176,7 +178,8 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
     if (pageIndex == kJGIndexFlyleafPage) {
         [cell.mainView.titleTextField resignFirstResponder];
         [cell.mainView.authorTextField resignFirstResponder];
-    } else if (pageIndex >= kJGIndexPhotoPageStart && pageIndex <= kJGIndexPhotoPageEnd) {
+    }
+    else if (pageIndex >= kJGIndexPhotoPageStart && pageIndex <= kJGIndexPhotoPageEnd) {
         [cell.mainView.descriptionTextView1 resignFirstResponder];
         [cell.mainView.descriptionTextView2 resignFirstResponder];
     }
@@ -228,11 +231,16 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
 - (void)reloadSegmentedControl
 {
     NSUInteger pageIndex = [self pageIndex];
-    if (pageIndex == kJGIndexFlyleafPage) {
+    if (pageIndex == kJGIndexCoverPage) {
         self.pageTypeControl.hidden = YES;
-    } else if (pageIndex == kJGIndexBackcoverPage) {
+    }
+    else if (pageIndex == kJGIndexFlyleafPage) {
         self.pageTypeControl.hidden = YES;
-    } else {
+    }
+    else if (pageIndex == kJGIndexBackcoverPage) {
+        self.pageTypeControl.hidden = YES;
+    }
+    else {
         self.pageTypeControl.hidden = NO;
 
         NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
@@ -282,7 +290,8 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
         }
         page[@"type"] = type;
         self.book[pageKey] = [page copy];
-    } else {
+    }
+    else {
         self.book[pageKey] = @{@"type": type};
     }
 
@@ -294,7 +303,10 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
     NSInteger pageIndex = indexPath.item;
     [[MRNavigationBarProgressView progressViewForNavigationController:self.navigationController] setProgress:pageIndex*1.0/23 animated:YES];
 
-    if (pageIndex == kJGIndexFlyleafPage) {
+    if (pageIndex == kJGIndexCoverPage) {
+        [cell useMainViewNamed:@"EditPageCover" withGestureRecognizers:self.tapRecogs];
+    }
+    else if (pageIndex == kJGIndexFlyleafPage) {
         [cell useMainViewNamed:@"EditPageTitle" withGestureRecognizers:self.tapRecogs];
         cell.mainView.delegate = self;
         if ([self.book objectForKey:@"title"]) {
@@ -303,9 +315,11 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
         if ([self.book objectForKey:@"author"]) {
             cell.mainView.authorTextField.text = [self.book objectForKey:@"author"];
         }
-    } else if (pageIndex == kJGIndexBackcoverPage) {
+    }
+    else if (pageIndex == kJGIndexBackcoverPage) {
         [cell useMainViewNamed:@"EditPageBackCover" withGestureRecognizers:self.tapRecogs];
-    } else {
+    }
+    else {
         NSString *pageKey = [NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart];
         NSMutableDictionary *page = [self.book[pageKey] mutableCopy];
         if (!page) {

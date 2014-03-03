@@ -339,34 +339,34 @@
                         <rect key="frame" x="0.0" y="44" width="320" height="324"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GOM-Km-JN2">
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GOM-Km-JN2">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="324"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="0.93660101880000002" blue="0.87186263580000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="Ikb-h9-IYO">
-                                    <size key="itemSize" width="103" height="103"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="6" minimumInteritemSpacing="6" id="Ikb-h9-IYO">
+                                    <size key="itemSize" width="75" height="75"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="Ggk-dd-Up5">
-                                        <rect key="frame" x="0.0" y="0.0" width="103" height="103"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="103" height="103"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MWM-91-PyK">
-                                                    <rect key="frame" x="0.0" y="0.0" width="103" height="103"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <view hidden="YES" alpha="0.5" tag="101" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MsW-Io-3Qn" userLabel="Mask View">
-                                                    <rect key="frame" x="0.0" y="0.0" width="103" height="103"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <imageView hidden="YES" userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="PY3-Sr-xSf">
-                                                            <rect key="frame" x="72" y="73" width="22" height="22"/>
+                                                            <rect key="frame" x="72" y="73" width="0.0" height="0.0"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         </imageView>
                                                     </subviews>
@@ -377,19 +377,28 @@
                                         </view>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Placeholder" id="s0I-YA-l4J">
-                                        <rect key="frame" x="109" y="0.0" width="103" height="103"/>
+                                        <rect key="frame" x="82" y="0.0" width="75" height="75"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="103" height="103"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Placeholder2" id="Lke-d4-u27">
-                                        <rect key="frame" x="217" y="0.0" width="103" height="103"/>
+                                        <rect key="frame" x="163" y="0.0" width="75" height="75"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="103" height="103"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Placeholder3" id="fyg-um-YFX">
+                                        <rect key="frame" x="245" y="0.0" width="75" height="75"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -425,48 +434,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bJD-MR-BkW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2005" y="-696"/>
-        </scene>
-        <!--Cover View Controller - 生成封面-->
-        <scene sceneID="KpQ-aj-nV9">
-            <objects>
-                <viewController id="Fqa-b2-NTp" customClass="JGCoverViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="b6N-XA-vWH"/>
-                        <viewControllerLayoutGuide type="bottom" id="ba2-Y0-8Gn"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="G4Z-Y2-3xq">
-                        <rect key="frame" x="0.0" y="44" width="320" height="324"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0hO-bv-KUN">
-                                <rect key="frame" x="0.0" y="12" width="320" height="300"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="AEY-Vx-3cX"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="0.93660101880000002" blue="0.87186263580000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="0hO-bv-KUN" firstAttribute="leading" secondItem="G4Z-Y2-3xq" secondAttribute="leading" id="b7y-cT-rvf"/>
-                            <constraint firstAttribute="trailing" secondItem="0hO-bv-KUN" secondAttribute="trailing" id="lmK-C1-vIH"/>
-                            <constraint firstItem="0hO-bv-KUN" firstAttribute="centerY" secondItem="G4Z-Y2-3xq" secondAttribute="centerY" id="tDl-nk-Bli"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="生成封面" id="gpK-H2-Jf9">
-                        <barButtonItem key="rightBarButtonItem" title="提交" id="giZ-82-EvT">
-                            <connections>
-                                <action selector="submitClicked:" destination="Fqa-b2-NTp" id="ebZ-4W-wV3"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="wrapperView" destination="0hO-bv-KUN" id="0vv-ms-kJE"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="135-b0-EgU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2844" y="-696"/>
         </scene>
         <!--Edit Page View Controller - 选择图片-->
         <scene sceneID="oqw-0w-B0B">
@@ -505,9 +472,6 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <gestureRecognizers/>
-                                        <connections>
-                                            <segue destination="Fqa-b2-NTp" kind="push" identifier="genCover" id="e5W-Kn-k4d"/>
-                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -524,7 +488,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="选择图片" id="dFy-Ak-WmE">
-                        <barButtonItem key="rightBarButtonItem" title="下一步" id="IKU-61-Ccm">
+                        <barButtonItem key="rightBarButtonItem" title="提交" id="IKU-61-Ccm">
                             <connections>
                                 <action selector="nextClicked:" destination="3dW-pO-oxH" id="cbX-1a-y2L"/>
                             </connections>
@@ -885,6 +849,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="yhe-lp-2g5"/>
+        <segue reference="yvU-bO-kQ9"/>
     </inferredMetricsTieBreakers>
 </document>
