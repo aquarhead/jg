@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5051" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Start Page View Controller-->
@@ -490,7 +490,7 @@
                     <navigationItem key="navigationItem" title="选择图片" id="dFy-Ak-WmE">
                         <barButtonItem key="rightBarButtonItem" title="提交" id="IKU-61-Ccm">
                             <connections>
-                                <action selector="nextClicked:" destination="3dW-pO-oxH" id="cbX-1a-y2L"/>
+                                <action selector="submitClicked:" destination="3dW-pO-oxH" id="M7U-qo-MRx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

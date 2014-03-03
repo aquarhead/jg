@@ -18,7 +18,7 @@ static const NSInteger kJGIndexPhotoPageEnd = kJGIndexPhotoPageStart + 20 - 1;
 static const NSInteger kJGIndexBackcoverPage = kJGIndexPhotoPageEnd + 1;
 static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
 
-@interface JGEditPageViewController () <UICollectionViewDelegate, UICollectionViewDataSource, JGImagePoolDelegate, JGEditPageDelegate>
+@interface JGEditPageViewController () <UIAlertViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, JGImagePoolDelegate, JGEditPageDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *pagesCollectionView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *collectionViewYConstraint;
@@ -71,7 +71,7 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
 
 #pragma mark - Segue
 
-- (IBAction)nextClicked:(id)sender {
+- (IBAction)submitClicked:(id)sender {
     [self hideKeyboard];
     NSString *errmsg = nil;
     NSIndexPath *idxp = nil;
@@ -105,7 +105,8 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
         [self.pagesCollectionView scrollToItemAtIndexPath:idxp atScrollPosition:0 animated:YES];
     }
     else {
-        [self performSegueWithIdentifier:@"genCover" sender:self];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"确认提交" message:@"提交之后不能再次修改，确认提交画册吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"提交", nil];
+        [alertView show];
     }
 }
 
@@ -231,24 +232,16 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
 - (void)reloadSegmentedControl
 {
     NSUInteger pageIndex = [self pageIndex];
-    if (pageIndex == kJGIndexCoverPage) {
-        self.pageTypeControl.hidden = YES;
-    }
-    else if (pageIndex == kJGIndexFlyleafPage) {
-        self.pageTypeControl.hidden = YES;
-    }
-    else if (pageIndex == kJGIndexBackcoverPage) {
-        self.pageTypeControl.hidden = YES;
-    }
-    else {
+    if (pageIndex >= kJGIndexPhotoPageStart && pageIndex <= kJGIndexPhotoPageEnd) {
         self.pageTypeControl.hidden = NO;
-
         NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
         if ([page[@"type"] hasPrefix:@"EditPageTypeOne"]) {
             self.pageTypeControl.selectedSegmentIndex = 0;
         } else {
             self.pageTypeControl.selectedSegmentIndex = 1;
         }
+    } else {
+        self.pageTypeControl.hidden = YES;
     }
 }
 
@@ -510,6 +503,15 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
 - (void)didTapPlaceholder
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - AlertView
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [self.poolViewController saveBookAndExit];
+    }
 }
 
 @end

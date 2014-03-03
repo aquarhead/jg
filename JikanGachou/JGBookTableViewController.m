@@ -84,7 +84,7 @@ typedef NS_ENUM(NSUInteger, JGBookCellTag) {
                                         @"shipping": @"已发货",
                                         @"recved": @"已收货"};
     UILabel *bookStatusLabel = (UILabel *)[cell viewWithTag:JGBookCellTagBookStatus];
-    bookStatusLabel.text = [NSString stringWithFormat:@"%@ (更新于%@)", statusDescription[bk[@"status"]], bk[@"statusUpdated"]];
+    bookStatusLabel.text = [NSString stringWithFormat:@"%@（更新于%@）", statusDescription[bk[@"status"]], bk[@"statusUpdated"]];
 
     UILabel *bookNameLabel = (UILabel *)[cell viewWithTag:JGBookCellTagBookName];
     bookNameLabel.text = bk[@"title"];
