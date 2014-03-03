@@ -99,10 +99,10 @@
 		4F2FEF1C184B1A4B001A7AFE /* JikanGachouTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JikanGachouTests-Info.plist"; sourceTree = "<group>"; };
 		4F2FEF1E184B1A4B001A7AFE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4F2FEF20184B1A4B001A7AFE /* JikanGachouTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JikanGachouTests.m; sourceTree = "<group>"; };
+		4F38B3C818C4C2E20058545E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		4F3CF06A184ED10B00B43634 /* JGStartPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGStartPageViewController.h; sourceTree = "<group>"; };
 		4F3CF06B184ED10B00B43634 /* JGStartPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGStartPageViewController.m; sourceTree = "<group>"; };
 		4FBB080E189E25340094B1E4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
-		4FD6335018C36DBC00D270BB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		4FD73EE518518A3C00C9F568 /* JGImageAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGImageAlbumViewController.h; sourceTree = "<group>"; };
 		4FD73EE618518A3C00C9F568 /* JGImageAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGImageAlbumViewController.m; sourceTree = "<group>"; };
 		4FD73EE81851AEA700C9F568 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -509,7 +509,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				4F2FEF08184B1A4A001A7AFE /* Base */,
-				4FD6335018C36DBC00D270BB /* zh-Hans */,
+				4F38B3C818C4C2E20058545E /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

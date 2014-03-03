@@ -11,8 +11,8 @@
 /* Class = "IBUILabel"; text = "上传照片"; ObjectID = "7kv-Ka-dbs"; */
 "7kv-Ka-dbs.text" = "上传照片";
 
-/* Class = "IBUITableViewSection"; footerTitle = "如遇任何问题，请联系客服。"; ObjectID = "9eZ-tk-JOa"; */
-"9eZ-tk-JOa.footerTitle" = "如遇任何问题，请联系客服。";
+/* Class = "IBUITableViewSection"; footerTitle = "如遇任何问题，请联系客服：15822554293 service@veibook.com"; ObjectID = "9eZ-tk-JOa"; */
+"9eZ-tk-JOa.footerTitle" = "如遇任何问题，请联系客服：15822554293 service@veibook.com";
 
 /* Class = "IBUITableViewSection"; headerTitle = "填写收件人信息并付款"; ObjectID = "9eZ-tk-JOa"; */
 "9eZ-tk-JOa.headerTitle" = "填写收件人信息并付款";
@@ -23,8 +23,8 @@
 /* Class = "IBUIBarButtonItem"; title = "状态"; ObjectID = "Gps-gu-xOl"; */
 "Gps-gu-xOl.title" = "状态";
 
-/* Class = "IBUIBarButtonItem"; title = "下一步"; ObjectID = "IKU-61-Ccm"; */
-"IKU-61-Ccm.title" = "下一步";
+/* Class = "IBUIBarButtonItem"; title = "提交"; ObjectID = "IKU-61-Ccm"; */
+"IKU-61-Ccm.title" = "提交";
 
 /* Class = "IBUITextField"; placeholder = "姓名"; ObjectID = "NSL-mX-ur7"; */
 "NSL-mX-ur7.placeholder" = "姓名";
@@ -56,9 +56,6 @@
 /* Class = "IBUILabel"; text = "选择 20-40 张照片"; ObjectID = "cCr-Xm-LRK"; */
 "cCr-Xm-LRK.text" = "选择 20-40 张照片";
 
-/* Class = "IBUIButton"; normalTitle = "换一组照片"; ObjectID = "cJC-od-A3f"; */
-"cJC-od-A3f.normalTitle" = "换一组照片";
-
 /* Class = "IBUIButton"; normalTitle = "创建新画册"; ObjectID = "cZL-BK-ORG"; */
 "cZL-BK-ORG.normalTitle" = "创建新画册";
 
@@ -79,12 +76,6 @@
 
 /* Class = "IBUILabel"; text = "总大小"; ObjectID = "eVF-De-8sI"; */
 "eVF-De-8sI.text" = "总大小";
-
-/* Class = "IBUIBarButtonItem"; title = "提交"; ObjectID = "giZ-82-EvT"; */
-"giZ-82-EvT.title" = "提交";
-
-/* Class = "IBUINavigationItem"; title = "生成封面"; ObjectID = "gpK-H2-Jf9"; */
-"gpK-H2-Jf9.title" = "生成封面";
 
 /* Class = "IBUIButton"; normalTitle = "查看画册状态"; ObjectID = "jG7-kT-SOD"; */
 "jG7-kT-SOD.normalTitle" = "查看画册状态";
