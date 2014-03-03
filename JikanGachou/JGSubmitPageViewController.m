@@ -34,6 +34,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UIStepper *stepper;
 
+@property (nonatomic) NSUInteger price;
+
 @property (weak, nonatomic) IBOutlet UITableViewCell *payCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *sizeCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *uploadCell;
@@ -95,11 +97,8 @@
 
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     self.jgServerManager = [AFHTTPRequestOperationManager manager];
-}
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:YES];
+    // check status
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"请稍候";
     self.navigationController.view.userInteractionEnabled = NO;
@@ -128,6 +127,7 @@
                                             @"recved": @"已收货"};
         self.statusItem.title = statusDescription[self.book[@"status"]];
         if ([self.book[@"status"] isEqualToString:@"topay"]) {
+            self.price = [responseObject[@"price"] unsignedLongValue];
             [self cells:self.payCells setHidden:NO];
             [self reloadDataAnimated:YES];
         } else if ([self.book[@"status"] isEqualToString:@"toupload"]) {
@@ -195,8 +195,8 @@
 - (IBAction)quantityChanged:(id)sender
 {
     NSInteger quantity = (NSInteger)self.stepper.value;
-    self.quantityLabel.text = [NSString stringWithFormat:@"%ld 本", quantity];
-    self.priceLabel.text = [NSString stringWithFormat:@"%ld 元", quantity * 118];
+    self.quantityLabel.text = [NSString stringWithFormat:@"%ld 本", (long)quantity];
+    self.priceLabel.text = [NSString stringWithFormat:@"%ld 元", (long)quantity * self.price];
 }
 
 - (void)pay
