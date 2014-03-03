@@ -7,6 +7,7 @@
 //
 
 #import "JGEditPageMainView.h"
+#include <sys/sysctl.h>
 
 @interface JGEditPageMainView () <UITextFieldDelegate, UITextViewDelegate>
 
@@ -42,6 +43,17 @@
     self.imageView2.userInteractionEnabled = YES;
 }
 
+- (NSString *)modelString
+{
+    size_t size;
+    sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+    char *machine = malloc(size);
+    sysctlbyname("hw.machine", machine, &size, NULL, 0);
+    NSString *model = [NSString stringWithCString:machine encoding:NSUTF8StringEncoding];
+    free(machine);
+    return model;
+}
+
 - (void)fillNth:(NSUInteger)n withPhoto:(ALAsset *)p
 {
     UIImageView *imageView = [self valueForKey:[NSString stringWithFormat:@"imageView%lu", (unsigned long)n]];
@@ -49,7 +61,15 @@
     UILabel *dayLabel = [self valueForKey:[NSString stringWithFormat:@"dayLabel%lu", (unsigned long)n]];
 
     if (p) {
-        UIImage *image = [UIImage imageWithCGImage:p.aspectRatioThumbnail];
+        UIImage *image;
+        if ([[self modelString] hasPrefix:@"iPhone3"]) {
+            // iPhone3 is iPhone 4, the only A4 device runs iOS 7
+            image = [UIImage imageWithCGImage:p.aspectRatioThumbnail];
+        }
+        else {
+            image = [UIImage imageWithCGImage:p.defaultRepresentation.fullScreenImage];
+        }
+
         imageView.image = image;
         imageView.contentMode = UIViewContentModeScaleAspectFill;
 
