@@ -447,6 +447,7 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
 
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    [[MRNavigationBarProgressView progressViewForNavigationController:self.navigationController] setProgress:([self pageIndex] + 1.0) / kJGTotalPages animated:YES];
     [self reloadSegmentedControl];
 }
 
