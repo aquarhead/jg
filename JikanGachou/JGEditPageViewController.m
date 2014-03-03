@@ -58,6 +58,8 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
     tapRecog2.numberOfTouchesRequired = 1;
 
     self.tapRecogs = @[tapRecog, tapRecog2];
+
+    [self shufflePressed:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -76,9 +78,22 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
     [self reloadSegmentedControl];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    for (int i = 1; i < 10; ++i) {
+        [self.book removeObjectForKey:[NSString stringWithFormat:@"cover%d", i]];
+    }
+    [super viewWillDisappear:animated];
+}
+
 - (void)shufflePressed:(id)sender
 {
-    NSLog(@"miaow");
+    NSArray *photos = [self.poolViewController shuffledPhotos];
+    for (int i = 0; i < MIN(9, photos.count); ++i) {
+        ALAsset *p = photos[i];
+        self.book[[NSString stringWithFormat:@"cover%d", i+1]] = [p.defaultRepresentation.url absoluteString];
+    }
+    [self.pagesCollectionView reloadData];
 }
 
 #pragma mark - Segue
@@ -315,9 +330,17 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
 
     if (pageIndex == kJGIndexCoverPage) {
         [cell useMainViewNamed:@"EditPageCover" withGestureRecognizers:self.tapRecogs];
+        for (int i = 1; i < 10; ++i) {
+            ALAsset *p = [self.poolViewController photoWithURLString:self.book[[NSString stringWithFormat:@"cover%d", i]]];
+            [cell.mainView fillCoverNth:i withPhoto:p];
+        }
     }
     else if (pageIndex == kJGIndexFlyleafPage) {
         [cell useMainViewNamed:@"EditPageTitle" withGestureRecognizers:self.tapRecogs];
+        for (int i = 1; i < 10; ++i) {
+            ALAsset *p = [self.poolViewController photoWithURLString:self.book[[NSString stringWithFormat:@"cover%d", i]]];
+            [cell.mainView fillCoverNth:i withPhoto:p];
+        }
         cell.mainView.delegate = self;
         if ([self.book objectForKey:@"title"]) {
             cell.mainView.titleTextField.text = [self.book objectForKey:@"title"];

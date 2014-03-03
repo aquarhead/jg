@@ -24,7 +24,6 @@ const NSUInteger kJGPoolMostPhotos  = 40;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UILabel *selectedCountLabel;
 @property (weak, nonatomic) IBOutlet UIButton *placeholderButton;
-@property (weak, nonatomic) IBOutlet UIButton *shuffleButton;
 
 @property (nonatomic) NSMutableArray *selectedPhotos;
 @property (nonatomic) NSMutableArray *usedPhotos;
@@ -41,24 +40,6 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     self.lib = [ALAssetsLibrary new];
     self.book = [NSMutableDictionary new];
     self.book[@"key"] = [[NSUUID UUID] UUIDString];
-}
-
-#pragma mark - Function Switch
-
-- (void)switchToPool
-{
-    self.barView.hidden = NO;
-    self.collectionView.hidden = NO;
-    self.shuffleButton.hidden = YES;
-    [self reload];
-}
-
-- (void)switchToShuffleButton
-{
-    self.barView.hidden = YES;
-    self.collectionView.hidden = YES;
-    self.placeholderButton.hidden = YES;
-    self.shuffleButton.hidden = NO;
 }
 
 #pragma mark - Collection View
@@ -133,12 +114,13 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     }
 }
 
-- (IBAction)shufflePressed:(UIButton *)sender
+- (NSArray *)shuffledPhotos
 {
-    if ([self.shuffleDelegate respondsToSelector:@selector(shuffledPhotos:)]) {
-        [self.usedPhotos shuffle];
-        [self.shuffleDelegate shuffledPhotos:[self.usedPhotos copy]];
-    }
+    NSMutableArray *photos = [NSMutableArray new];
+    [photos addObjectsFromArray:self.selectedPhotos];
+    [photos addObjectsFromArray:self.usedPhotos];
+    [photos shuffle];
+    return [photos copy];
 }
 
 - (void)addPhoto:(ALAsset *)photo

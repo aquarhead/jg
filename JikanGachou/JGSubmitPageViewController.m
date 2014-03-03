@@ -70,6 +70,11 @@
             }
         }
     }
+    for (int i = 1; i < 10; ++i) {
+        if (![photo_urls containsObject:self.book[[NSString stringWithFormat:@"cover%d", i]]]) {
+            [photo_urls addObject:self.book[[NSString stringWithFormat:@"cover%d", i]]];
+        }
+    }
     self.photo_urls = [photo_urls copy];
     NSMutableArray *photos = [NSMutableArray new];
     for (NSString *urlstr in self.photo_urls) {

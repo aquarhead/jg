@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5051" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -15,47 +15,47 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cye-2E-083" userLabel="Image View 1">
-                            <rect key="frame" x="66" y="65.5" width="52.5" height="52.5"/>
+                            <rect key="frame" x="66" y="66" width="52" height="52"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" red="0.87930484693877553" green="0.87930484693877553" blue="0.87930484693877553" alpha="1" colorSpace="calibratedRGB"/>
                         </imageView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sbX-zz-wX5" userLabel="Image View 2">
-                            <rect key="frame" x="124" y="65" width="52.5" height="52.5"/>
+                            <rect key="frame" x="124" y="65" width="52" height="52"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" red="0.87930484693877553" green="0.87930484693877553" blue="0.87930484693877553" alpha="1" colorSpace="calibratedRGB"/>
                         </imageView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="54M-ta-iiO" userLabel="Image View 3">
-                            <rect key="frame" x="182" y="65" width="52.5" height="52.5"/>
+                            <rect key="frame" x="182" y="65" width="52" height="52"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" red="0.87930484693877553" green="0.87930484693877553" blue="0.87930484693877553" alpha="1" colorSpace="calibratedRGB"/>
                         </imageView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="efd-xc-LGu" userLabel="Image View 4">
-                            <rect key="frame" x="66" y="123" width="52.5" height="52.5"/>
+                            <rect key="frame" x="66" y="123" width="52" height="52"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" red="0.87930484693877553" green="0.87930484693877553" blue="0.87930484693877553" alpha="1" colorSpace="calibratedRGB"/>
                         </imageView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qZD-WT-eio" userLabel="Image View 5">
-                            <rect key="frame" x="124" y="123" width="52.5" height="52.5"/>
+                            <rect key="frame" x="124" y="123" width="52" height="52"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" red="0.87930484693877553" green="0.87930484693877553" blue="0.87930484693877553" alpha="1" colorSpace="calibratedRGB"/>
                         </imageView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O1a-iJ-Sft" userLabel="Image View 6">
-                            <rect key="frame" x="182" y="123" width="52.5" height="52.5"/>
+                            <rect key="frame" x="182" y="123" width="52" height="52"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" red="0.87930484693877553" green="0.87930484693877553" blue="0.87930484693877553" alpha="1" colorSpace="calibratedRGB"/>
                         </imageView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qed-sH-mvJ" userLabel="Image View 7">
-                            <rect key="frame" x="66" y="181" width="52.5" height="52.5"/>
+                            <rect key="frame" x="66" y="181" width="52" height="52"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" red="0.87930484693877553" green="0.87930484693877553" blue="0.87930484693877553" alpha="1" colorSpace="calibratedRGB"/>
                         </imageView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Gx-C9-kpo" userLabel="Image View 8">
-                            <rect key="frame" x="124" y="181.5" width="52.5" height="52.5"/>
+                            <rect key="frame" x="124" y="182" width="52" height="52"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" red="0.87930484693877553" green="0.87930484693877553" blue="0.87930484693877553" alpha="1" colorSpace="calibratedRGB"/>
                         </imageView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RLY-fC-cwa" userLabel="Image View 9">
-                            <rect key="frame" x="182" y="181" width="52.5" height="52.5"/>
+                            <rect key="frame" x="182" y="181" width="52" height="52"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" red="0.87930484693877553" green="0.87930484693877553" blue="0.87930484693877553" alpha="1" colorSpace="calibratedRGB"/>
                         </imageView>
@@ -88,6 +88,15 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="authorTextField" destination="FMW-hd-rwf" id="vQo-oH-JU5"/>
+                <outlet property="imageView1" destination="Cye-2E-083" id="vL1-Kl-th5"/>
+                <outlet property="imageView2" destination="sbX-zz-wX5" id="ihi-eR-xnP"/>
+                <outlet property="imageView3" destination="54M-ta-iiO" id="LfJ-n9-cMh"/>
+                <outlet property="imageView4" destination="efd-xc-LGu" id="JOe-Ar-UEi"/>
+                <outlet property="imageView5" destination="qZD-WT-eio" id="ODh-O3-urk"/>
+                <outlet property="imageView6" destination="O1a-iJ-Sft" id="9aa-7E-N0f"/>
+                <outlet property="imageView7" destination="qed-sH-mvJ" id="FdP-jh-Sn8"/>
+                <outlet property="imageView8" destination="2Gx-C9-kpo" id="g3n-pW-Lyf"/>
+                <outlet property="imageView9" destination="RLY-fC-cwa" id="CIJ-DY-Vr4"/>
                 <outlet property="titleTextField" destination="TjB-rL-iYd" id="uTH-hH-eYh"/>
             </connections>
         </view>

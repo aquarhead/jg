@@ -15,7 +15,6 @@
 		1A8B446A18BC737C00E06CA6 /* start2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A8B446718BC737C00E06CA6 /* start2.jpg */; };
 		1A8B446B18BC737C00E06CA6 /* start3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A8B446818BC737C00E06CA6 /* start3.jpg */; };
 		1AD436E9185DFE7F003B5D19 /* JGEditPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD436E8185DFE7F003B5D19 /* JGEditPageViewController.m */; };
-		1AD7926D18C3145900840916 /* JGCoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD7926C18C3145900840916 /* JGCoverViewController.m */; };
 		1AFCDC5B18BD225800BE8461 /* JGBookTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFCDC5A18BD225800BE8461 /* JGBookTableViewController.m */; };
 		4F1FB97B1872A049000FCFDB /* EditPageCover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB97A1872A049000FCFDB /* EditPageCover.xib */; };
 		4F1FB9831872A7A1000FCFDB /* EditPageTypeOneLandscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB9821872A7A1000FCFDB /* EditPageTypeOneLandscape.xib */; };
@@ -71,8 +70,6 @@
 		1A8B446818BC737C00E06CA6 /* start3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = start3.jpg; path = Resources/start3.jpg; sourceTree = "<group>"; };
 		1AD436E7185DFE7F003B5D19 /* JGEditPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGEditPageViewController.h; sourceTree = "<group>"; };
 		1AD436E8185DFE7F003B5D19 /* JGEditPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGEditPageViewController.m; sourceTree = "<group>"; };
-		1AD7926B18C3145900840916 /* JGCoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGCoverViewController.h; sourceTree = "<group>"; };
-		1AD7926C18C3145900840916 /* JGCoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGCoverViewController.m; sourceTree = "<group>"; };
 		1AFCDC5918BD225800BE8461 /* JGBookTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGBookTableViewController.h; sourceTree = "<group>"; };
 		1AFCDC5A18BD225800BE8461 /* JGBookTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGBookTableViewController.m; sourceTree = "<group>"; };
 		49761CB1CE0A4A59944B727D /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -169,8 +166,6 @@
 				1AD436E8185DFE7F003B5D19 /* JGEditPageViewController.m */,
 				1A2F6454187F634400BC4D06 /* JGEditPageCell.h */,
 				1A2F6455187F634400BC4D06 /* JGEditPageCell.m */,
-				1AD7926B18C3145900840916 /* JGCoverViewController.h */,
-				1AD7926C18C3145900840916 /* JGCoverViewController.m */,
 				1A2F645A187F66EE00BC4D06 /* Main View */,
 			);
 			name = "Edit Page";
@@ -470,7 +465,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F2FEF02184B1A4A001A7AFE /* main.m in Sources */,
-				1AD7926D18C3145900840916 /* JGCoverViewController.m in Sources */,
 				1AFCDC5B18BD225800BE8461 /* JGBookTableViewController.m in Sources */,
 				4FD73EE718518A3C00C9F568 /* JGImageAlbumViewController.m in Sources */,
 				4F3CF06C184ED10B00B43634 /* JGStartPageViewController.m in Sources */,
