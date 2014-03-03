@@ -28,6 +28,7 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
 @property (weak, nonatomic) JGImagePoolViewController *poolViewController;
 @property (weak, nonatomic) NSMutableDictionary *book;
 @property (nonatomic) UISegmentedControl *pageTypeControl;
+@property (nonatomic) UIButton *shuffleButton;
 @property (nonatomic) BOOL movedUp;
 
 @end
@@ -62,11 +63,22 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
 - (void)viewWillAppear:(BOOL)animated
 {
     self.pageTypeControl = [[UISegmentedControl alloc] initWithItems:@[@"单图", @"双图"]];
-    self.navigationItem.titleView = self.pageTypeControl;
-    [self reloadSegmentedControl];
-
     self.pageTypeControl.frame = CGRectMake(0, 0, 130, 30);
     [self.pageTypeControl addTarget:self action:@selector(pageTypeChanged:) forControlEvents:UIControlEventValueChanged];
+
+    self.shuffleButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 116, 32)];
+    self.shuffleButton.backgroundColor = [UIColor colorWithWhite:1 alpha:0.07];
+    [self.shuffleButton setTitleColor:[UIColor colorWithWhite:1 alpha:0.7] forState:UIControlStateHighlighted];
+    [self.shuffleButton setTitle:@"换一组照片" forState:UIControlStateNormal];
+    self.shuffleButton.titleLabel.font = [UIFont systemFontOfSize:16];
+    [self.shuffleButton addTarget:self action:@selector(shufflePressed:) forControlEvents:UIControlEventTouchUpInside];
+
+    [self reloadSegmentedControl];
+}
+
+- (void)shufflePressed:(id)sender
+{
+    NSLog(@"miaow");
 }
 
 #pragma mark - Segue
@@ -77,7 +89,7 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
     NSIndexPath *idxp = nil;
 #ifndef DEBUG
     // check 20 pages
-    for (int pageIndex=0; pageIndex<20; pageIndex++) {
+    for (int pageIndex = 0; pageIndex < 20; ++pageIndex) {
         NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%d", pageIndex]];
         if (!page
             || !page[@"photo"]
@@ -233,15 +245,21 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
 {
     NSUInteger pageIndex = [self pageIndex];
     if (pageIndex >= kJGIndexPhotoPageStart && pageIndex <= kJGIndexPhotoPageEnd) {
-        self.pageTypeControl.hidden = NO;
+        self.navigationItem.titleView = self.pageTypeControl;
         NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
         if ([page[@"type"] hasPrefix:@"EditPageTypeOne"]) {
             self.pageTypeControl.selectedSegmentIndex = 0;
-        } else {
+        }
+        else {
             self.pageTypeControl.selectedSegmentIndex = 1;
         }
-    } else {
-        self.pageTypeControl.hidden = YES;
+    }
+    else if (pageIndex == kJGIndexCoverPage || pageIndex == kJGIndexFlyleafPage) {
+        self.navigationItem.titleView = self.shuffleButton;
+    }
+    else if (pageIndex == kJGIndexBackcoverPage) {
+        self.navigationItem.titleView = nil;
+        self.navigationItem.title = @"封底";
     }
 }
 
