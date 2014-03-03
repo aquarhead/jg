@@ -101,11 +101,9 @@
     if (p) {
         UIImage *image = [UIImage imageWithCGImage:p.aspectRatioThumbnail];
         imageView.image = image;
-        imageView.contentMode = UIViewContentModeScaleAspectFill;
     }
     else {
-        imageView.image = [UIImage imageNamed:@"Placeholder"];
-        imageView.contentMode = UIViewContentModeScaleToFill;
+        imageView.image = nil;
     }
 }
 
