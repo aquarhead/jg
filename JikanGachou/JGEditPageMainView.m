@@ -153,7 +153,14 @@
 {
     if (textField == self.titleTextField) {
         [self.authorTextField becomeFirstResponder];
-    } else {
+    }
+    else if (textField == self.authorTextField) {
+        if (textField.text.length > 0 && ![textField.text hasSuffix:@"作品"]) {
+            textField.text = [textField.text stringByAppendingString:@" 作品"];
+        }
+        [textField resignFirstResponder];
+    }
+    else {
         [textField resignFirstResponder];
     }
 
