@@ -121,6 +121,11 @@
         [textView resignFirstResponder];
         return NO;
     }
+    if (textView.text.length >= 20 && text.length > 0 && range.length == 0){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"描述太长了" message:@"描述最多为 20 个字" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alertView show];
+        return NO;
+    }
     return YES;
 }
 

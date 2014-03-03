@@ -396,43 +396,37 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
 - (void)handleTap:(UITapGestureRecognizer *)sender
 {
     if (sender.state == UIGestureRecognizerStateEnded) {
-        UIView *imgView = sender.view;
-        [self lockInteraction];
-        [UIView animateWithDuration:0.2
-                         animations:^{
-                             imgView.frame = CGRectMake(imgView.frame.origin.x + imgView.frame.size.width/2, imgView.frame.origin.y + imgView.frame.size.height/2, 0, 0);
-                         } completion:^(BOOL finished) {
-                             JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
-                             NSInteger pageIndex = [self pageIndex];
-                             NSString *pageKey = [NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart];
-                             NSMutableDictionary *page = [self.book[pageKey] mutableCopy];
-                             if ([page[@"type"] hasPrefix:@"EditPageTypeOne"]) {
-                                 ALAsset *p = [self.poolViewController photoWithURLString:page[@"photo"]];
-                                 if (p) {
-                                     [self.poolViewController dropPhoto:p];
-                                 }
-                                 page[@"photo"] = @"";
-                             } else {
-                                 if ([sender.view isEqual:cell.mainView.imageView1]) {
-                                     // drop p1
-                                     ALAsset *p = [self.poolViewController photoWithURLString:page[@"photo"]];
-                                     if (p) {
-                                         [self.poolViewController dropPhoto:p];
-                                     }
-                                     page[@"photo"] = @"";
-                                 } else {
-                                     // drop p2
-                                     ALAsset *p = [self.poolViewController photoWithURLString:page[@"photo2"]];
-                                     if (p) {
-                                         [self.poolViewController dropPhoto:p];
-                                     }
-                                     page[@"photo2"] = @"";
-                                 }
-                             }
-                             self.book[pageKey] = [page copy];
-                             [self unlockInteraction];
-                             [self.pagesCollectionView reloadData];
-                         }];
+        JGEditPageCell *cell = [self.pagesCollectionView.visibleCells firstObject];
+        NSInteger pageIndex = [self pageIndex];
+        NSString *pageKey = [NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart];
+        NSMutableDictionary *page = [self.book[pageKey] mutableCopy];
+        if ([page[@"type"] hasPrefix:@"EditPageTypeOne"]) {
+            ALAsset *p = [self.poolViewController photoWithURLString:page[@"photo"]];
+            if (p) {
+                [self.poolViewController dropPhoto:p];
+            }
+            page[@"photo"] = @"";
+        }
+        else {
+            if ([sender.view isEqual:cell.mainView.imageView1]) {
+                // drop p1
+                ALAsset *p = [self.poolViewController photoWithURLString:page[@"photo"]];
+                if (p) {
+                    [self.poolViewController dropPhoto:p];
+                }
+                page[@"photo"] = @"";
+            }
+            else {
+                // drop p2
+                ALAsset *p = [self.poolViewController photoWithURLString:page[@"photo2"]];
+                if (p) {
+                    [self.poolViewController dropPhoto:p];
+                }
+                page[@"photo2"] = @"";
+            }
+        }
+        self.book[pageKey] = [page copy];
+        [self.pagesCollectionView reloadData];
     }
 }
 
