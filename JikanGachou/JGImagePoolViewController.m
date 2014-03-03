@@ -229,10 +229,17 @@ const NSUInteger kJGPoolMostPhotos  = 40;
             self.book[pageKey] = [page copy];
         }
     }
-    for (int i=0; i<9; i++) {
+    for (int i = 0; i < MIN(9, self.usedPhotos.count); ++i) {
         NSURL *url = [NSURL URLWithString:self.book[[NSString stringWithFormat:@"cover%d", i+1]]];
         self.book[[NSString stringWithFormat:@"cover%d_name", i+1]] = [NSString stringWithFormat:@"%@.JPG", [url query]];
     }
+    self.book[@"status"] = @"topay";
+    static NSDateFormatter *updatedFormatter;
+    if (!updatedFormatter) {
+        updatedFormatter = [NSDateFormatter new];
+        updatedFormatter.dateFormat = @"yyyy年MM月dd日";
+    }
+    self.book[@"statusUpdated"] = [updatedFormatter stringFromDate:[NSDate date]];
     NyaruDB *db = [NyaruDB instance];
     NyaruCollection *collection = [db collection:@"books"];
     [collection put:[self.book copy]];

@@ -104,6 +104,12 @@
         } else {
             self.book[@"status"] = responseObject[@"status"];
         }
+        static NSDateFormatter *updatedFormatter;
+        if (!updatedFormatter) {
+            updatedFormatter = [NSDateFormatter new];
+            updatedFormatter.dateFormat = @"yyyy年MM月dd日";
+        }
+        self.book[@"statusUpdated"] = [updatedFormatter stringFromDate:[NSDate date]];
         NyaruDB *db = [NyaruDB instance];
         NyaruCollection *collection = [db collection:@"books"];
         [collection put:[self.book copy]];

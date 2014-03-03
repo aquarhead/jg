@@ -23,7 +23,6 @@
 {
     [super viewDidLoad];
     self.clearsSelectionOnViewWillAppear = NO;
-//    self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -77,16 +76,15 @@ typedef NS_ENUM(NSUInteger, JGBookCellTag) {
     NSDictionary *bk = self.books[indexPath.row];
 
     UIImageView *statusImageView = (UIImageView *)[cell viewWithTag:JGBookCellTagImageView];
-    if (bk[@"status"]) {
-        statusImageView.image = [UIImage imageNamed:bk[@"status"]];
-    } else {
-        statusImageView.image = [UIImage imageNamed:@"topay"];
-    }
+    statusImageView.image = [UIImage imageNamed:bk[@"status"]];
 
+    NSDictionary *statusDescription = @{@"topay": @"待付款",
+                                        @"toupload": @"待上传",
+                                        @"toprint": @"印刷中",
+                                        @"shipping": @"已发货",
+                                        @"recved": @"已收货"};
     UILabel *bookStatusLabel = (UILabel *)[cell viewWithTag:JGBookCellTagBookStatus];
-    if (indexPath.row == 0) {
-        bookStatusLabel.text = @"待付款 2014年1月1日";
-    }
+    bookStatusLabel.text = [NSString stringWithFormat:@"%@ (更新于%@)", statusDescription[bk[@"status"]], bk[@"statusUpdated"]];
 
     UILabel *bookNameLabel = (UILabel *)[cell viewWithTag:JGBookCellTagBookName];
     bookNameLabel.text = bk[@"title"];
