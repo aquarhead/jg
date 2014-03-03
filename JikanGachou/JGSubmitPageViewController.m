@@ -71,8 +71,9 @@
         }
     }
     for (int i = 1; i < 10; ++i) {
-        if (![photo_urls containsObject:self.book[[NSString stringWithFormat:@"cover%d", i]]]) {
-            [photo_urls addObject:self.book[[NSString stringWithFormat:@"cover%d", i]]];
+        id item = self.book[[NSString stringWithFormat:@"cover%d", i]];
+        if (![photo_urls containsObject:item] && item) {
+            [photo_urls addObject:item];
         }
     }
     self.photo_urls = [photo_urls copy];
