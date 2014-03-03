@@ -232,7 +232,6 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
 - (void)reloadSegmentedControl
 {
     NSUInteger pageIndex = [self pageIndex];
-    [[MRNavigationBarProgressView progressViewForNavigationController:self.navigationController] setProgress:(pageIndex+1)*1.0/kJGTotalPages animated:YES];
     if (pageIndex >= kJGIndexPhotoPageStart && pageIndex <= kJGIndexPhotoPageEnd) {
         self.pageTypeControl.hidden = NO;
         NSDictionary *page = [self.book objectForKey:[NSString stringWithFormat:@"page%ld", (long)pageIndex-kJGIndexPhotoPageStart]];
