@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *addressTextView;
 @property (weak, nonatomic) IBOutlet UITextField *addressPlaceholder;
 @property (weak, nonatomic) IBOutlet UILabel *quantityLabel;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UIStepper *stepper;
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *payCell;
@@ -191,8 +192,11 @@
     self.sizeCell.detailTextLabel.text = [NSByteCountFormatter stringFromByteCount:totalsize countStyle:NSByteCountFormatterCountStyleBinary];
 }
 
-- (IBAction)quantityChanged:(id)sender {
-    self.quantityLabel.text = [NSString stringWithFormat:@"%d", (int)self.stepper.value];
+- (IBAction)quantityChanged:(id)sender
+{
+    NSInteger quantity = (NSInteger)self.stepper.value;
+    self.quantityLabel.text = [NSString stringWithFormat:@"%ld 本", quantity];
+    self.priceLabel.text = [NSString stringWithFormat:@"%ld 元", quantity * 118];
 }
 
 - (void)pay
