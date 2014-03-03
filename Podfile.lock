@@ -18,7 +18,7 @@ PODS:
   - AFNetworking/UIKit (2.2.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - KIImagePager (HEAD based on 1.4.1)
+  - KIImagePager (1.4.1)
   - MBProgressHUD (0.8)
   - MD5Digest (0.1.0)
   - MRProgress (0.4.1):
@@ -60,7 +60,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
-  - KIImagePager (HEAD)
+  - KIImagePager (from `git@github.com:xhacker/KIImagePager.git`)
   - MBProgressHUD
   - MD5Digest
   - MRProgress (~> 0.3)
@@ -70,6 +70,8 @@ DEPENDENCIES:
   - TestFlightSDK
 
 EXTERNAL SOURCES:
+  KIImagePager:
+    :git: git@github.com:xhacker/KIImagePager.git
   StaticDataTableViewController:
     :git: git@github.com:xelvenone/StaticDataTableViewController.git
 

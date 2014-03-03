@@ -3,7 +3,7 @@ inhibit_all_warnings!
 
 pod 'AFNetworking', '~> 2.0'
 pod 'TestFlightSDK'
-pod 'KIImagePager', :head
+pod 'KIImagePager', :git => 'git@github.com:xhacker/KIImagePager.git'
 pod 'NyaruDB'
 pod 'MD5Digest'
 pod 'MRProgress', '~> 0.3'

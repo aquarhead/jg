@@ -31,7 +31,6 @@
     self.imagePager.dataSource = self;
     self.imagePager.pageControl.currentPageIndicatorTintColor = [UIColor lightGrayColor];
     self.imagePager.pageControl.pageIndicatorTintColor = [UIColor blackColor];
-    self.imagePager.backgroundColor = [UIColor whiteColor];
     self.imagePager.slideshowTimeInterval = 7.0;
     self.imagePager.imageCounterDisabled = YES;
 }
@@ -41,6 +40,7 @@
     [super viewDidAppear:animated];
 
     self.imagePager.pageControlCenter = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height - 16);
+    self.imagePager.scrollView.bounces = NO;
 }
 
 - (NSArray *)arrayWithImages

@@ -255,8 +255,8 @@
 			children = (
 				4F2FEF0D184B1A4A001A7AFE /* Images.xcassets */,
 				4F2FEF07184B1A4A001A7AFE /* Main.storyboard */,
-				1AFCDC5C18BD225D00BE8461 /* Books */,
 				4F3CF06E184F068100B43634 /* Start Page */,
+				1AFCDC5C18BD225D00BE8461 /* Books */,
 				4FD73EE4185189F000C9F568 /* Image Picker */,
 				1AD436EA185DFE82003B5D19 /* Edit Page */,
 				4F2FEEFC184B1A4A001A7AFE /* Supporting Files */,
