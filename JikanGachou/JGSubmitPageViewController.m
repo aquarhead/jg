@@ -366,7 +366,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                     self.book[@"status"] = @"toprint";
                     [collection put:[self.book copy]];
                     [collection waitForWriting];
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"照片上传完成" message:@"我们会立刻付印您的画册" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"照片上传完成" message:@"我们会立刻付印您的画册，约五个工作日内您就能收到相册" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                     [alertView show];
                     [self.navigationController popViewControllerAnimated:YES];
                 }
