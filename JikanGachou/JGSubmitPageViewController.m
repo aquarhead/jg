@@ -130,6 +130,7 @@
             self.price = [responseObject[@"price"] unsignedLongValue];
             [self cells:self.payCells setHidden:NO];
             [self reloadDataAnimated:YES];
+            [self quantityChanged:self];
         } else if ([self.book[@"status"] isEqualToString:@"toupload"]) {
             [self cells:self.uploadCells setHidden:NO];
             [self reloadDataAnimated:YES];
@@ -195,8 +196,8 @@
 - (IBAction)quantityChanged:(id)sender
 {
     long quantity = self.stepper.value;
-    self.quantityLabel.text = [NSString stringWithFormat:@"%ld本", quantity];
-    self.priceLabel.text = [NSString stringWithFormat:@"共%ld元", quantity * self.price];
+    self.quantityLabel.text = [NSString stringWithFormat:@"%ld 本", quantity];
+    self.priceLabel.text = [NSString stringWithFormat:@"%ld 元", quantity * self.price];
 }
 
 - (void)pay

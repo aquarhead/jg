@@ -68,6 +68,7 @@
 		1A8B446618BC737C00E06CA6 /* start1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = start1.jpg; path = Resources/start1.jpg; sourceTree = "<group>"; };
 		1A8B446718BC737C00E06CA6 /* start2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = start2.jpg; path = Resources/start2.jpg; sourceTree = "<group>"; };
 		1A8B446818BC737C00E06CA6 /* start3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = start3.jpg; path = Resources/start3.jpg; sourceTree = "<group>"; };
+		1AA9C7AE18C5823D0038F661 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		1AD436E7185DFE7F003B5D19 /* JGEditPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGEditPageViewController.h; sourceTree = "<group>"; };
 		1AD436E8185DFE7F003B5D19 /* JGEditPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGEditPageViewController.m; sourceTree = "<group>"; };
 		1AFCDC5918BD225800BE8461 /* JGBookTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGBookTableViewController.h; sourceTree = "<group>"; };
@@ -99,7 +100,6 @@
 		4F2FEF1C184B1A4B001A7AFE /* JikanGachouTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JikanGachouTests-Info.plist"; sourceTree = "<group>"; };
 		4F2FEF1E184B1A4B001A7AFE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4F2FEF20184B1A4B001A7AFE /* JikanGachouTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JikanGachouTests.m; sourceTree = "<group>"; };
-		4F38B3C818C4C2E20058545E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		4F3CF06A184ED10B00B43634 /* JGStartPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGStartPageViewController.h; sourceTree = "<group>"; };
 		4F3CF06B184ED10B00B43634 /* JGStartPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGStartPageViewController.m; sourceTree = "<group>"; };
 		4FBB080E189E25340094B1E4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
@@ -509,7 +509,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				4F2FEF08184B1A4A001A7AFE /* Base */,
-				4F38B3C818C4C2E20058545E /* zh-Hans */,
+				1AA9C7AE18C5823D0038F661 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

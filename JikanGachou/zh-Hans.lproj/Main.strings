@@ -5,8 +5,8 @@
 /* Class = "IBUIBarButtonItem"; title = "取消"; ObjectID = "5f6-xq-YRR"; */
 "5f6-xq-YRR.title" = "取消";
 
-/* Class = "IBUILabel"; text = "1"; ObjectID = "6Fk-qY-fdF"; */
-"6Fk-qY-fdF.text" = "1";
+/* Class = "IBUILabel"; text = "1 本"; ObjectID = "6Fk-qY-fdF"; */
+"6Fk-qY-fdF.text" = "1 本";
 
 /* Class = "IBUILabel"; text = "上传照片"; ObjectID = "7kv-Ka-dbs"; */
 "7kv-Ka-dbs.text" = "上传照片";
@@ -83,6 +83,9 @@
 /* Class = "IBUIBarButtonItem"; title = "返回"; ObjectID = "jfq-AH-gC7"; */
 "jfq-AH-gC7.title" = "返回";
 
+/* Class = "IBUILabel"; text = "总价（免邮费）"; ObjectID = "lWl-GY-sVs"; */
+"lWl-GY-sVs.text" = "总价（免邮费）";
+
 /* Class = "IBUITextField"; placeholder = "详细收件地址"; ObjectID = "mns-e7-ejw"; */
 "mns-e7-ejw.placeholder" = "详细收件地址";
 
@@ -92,11 +95,14 @@
 /* Class = "IBUILabel"; text = "未命名画册"; ObjectID = "o9a-WM-sa3"; */
 "o9a-WM-sa3.text" = "未命名画册";
 
-/* Class = "IBUILabel"; text = "去付款"; ObjectID = "qGP-qA-AsM"; */
-"qGP-qA-AsM.text" = "去付款";
+/* Class = "IBUILabel"; text = "用支付宝付款"; ObjectID = "qGP-qA-AsM"; */
+"qGP-qA-AsM.text" = "用支付宝付款";
 
 /* Class = "IBUILabel"; text = "相机胶卷"; ObjectID = "wF1-pO-QQx"; */
 "wF1-pO-QQx.text" = "相机胶卷";
+
+/* Class = "IBUILabel"; text = "118 元"; ObjectID = "wnT-fV-9Rc"; */
+"wnT-fV-9Rc.text" = "118 元";
 
 /* Class = "IBUITextField"; placeholder = "1234567890"; ObjectID = "zZ5-ad-Ver"; */
 "zZ5-ad-Ver.placeholder" = "1234567890";
