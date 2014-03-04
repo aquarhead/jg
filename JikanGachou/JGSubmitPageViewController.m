@@ -13,6 +13,7 @@
 #import <NyaruDB.h>
 #import <MBProgressHUD.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "AFHTTPRequestOperationManager+timeout.h"
 
 @interface JGSubmitPageViewController () <UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UITextViewDelegate>
 
@@ -110,22 +111,19 @@
         } else {
             self.book[@"status"] = responseObject[@"status"];
         }
-        static NSDateFormatter *updatedFormatter;
-        if (!updatedFormatter) {
-            updatedFormatter = [NSDateFormatter new];
-            updatedFormatter.dateFormat = @"yyyy年MM月dd日";
-        }
-        self.book[@"statusUpdated"] = [updatedFormatter stringFromDate:[NSDate date]];
-        NyaruDB *db = [NyaruDB instance];
-        NyaruCollection *collection = [db collection:@"books"];
-        [collection put:[self.book copy]];
-        [collection waitForWriting];
         NSDictionary *statusDescription = @{@"topay": @"待付款",
                                             @"toupload": @"待上传",
                                             @"toprint": @"印刷中",
                                             @"shipping": @"已发货",
                                             @"recved": @"已收货"};
         self.statusItem.title = statusDescription[self.book[@"status"]];
+        static NSDateFormatter *updatedFormatter;
+        if (!updatedFormatter) {
+            updatedFormatter = [NSDateFormatter new];
+            updatedFormatter.dateFormat = @"yyyy年MM月dd日";
+        }
+        self.book[@"statusUpdated"] = [updatedFormatter stringFromDate:[NSDate date]];
+        [self saveBook];
         if ([self.book[@"status"] isEqualToString:@"topay"]) {
             self.price = [responseObject[@"price"] unsignedLongValue];
             [self cells:self.payCells setHidden:NO];
@@ -144,6 +142,20 @@
         self.view.userInteractionEnabled = YES;
         [self.navigationController popViewControllerAnimated:YES];
     }];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self saveBook];
+    [super viewWillDisappear:animated];
+}
+
+- (void)saveBook
+{
+    NyaruDB *db = [NyaruDB instance];
+    NyaruCollection *collection = [db collection:@"books"];
+    [collection put:[self.book copy]];
+    [collection waitForWriting];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -289,7 +301,9 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.operationQueue.maxConcurrentOperationCount = 1;
+
     self.finished = 0;
+
     self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.hud.mode = MBProgressHUDModeDeterminate;
     self.hud.labelText = @"上传中...";
@@ -300,25 +314,39 @@
     for (ALAsset *p in self.photos) {
         ALAssetRepresentation *rep = p.defaultRepresentation;
         NSURL *data_url = rep.url;
-        Byte *buffer = (Byte*)malloc((unsigned)rep.size);
-        NSUInteger buffered = [rep getBytes:buffer fromOffset:0.0 length:(unsigned)rep.size error:nil];
-        NSData *data = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
-        NSMutableDictionary *options = [NSMutableDictionary new];
-        options[@"bucket"] = @"jikangachou";
-        options[@"expiration"] = [NSString stringWithFormat:@"%.0f",[[NSDate date] timeIntervalSince1970] + 600];
-        options[@"save-key"] = [NSString stringWithFormat:@"/%@/%@.JPG", self.book[@"key"], [data_url query]];
-        options[@"x-gmkerl-rotate"] = @"auto";
-        NSString *policy = [[NSJSONSerialization dataWithJSONObject:[options copy] options:0 error:nil] base64EncodedStringWithOptions:0];
-        NSString *sig = [[NSString stringWithFormat:@"%@&DWAPWXDv2cLI7MuZmJRWq63r0T8=", policy] MD5Digest];
-        NSDictionary *parameters = @{@"policy": policy, @"signature": sig};
-        [manager POST:@"http://v0.api.upyun.com/jikangachou" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-            [formData appendPartWithFileData:data name:@"file" fileName:@"file.JPG" mimeType:@"image/jpeg"];
-        } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            [self finishOne];
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"Error: %@", error);
-            self.uploadCell.userInteractionEnabled = YES;
-        }];
+        if (![self.book[@"uploadFinished"] containsObject:data_url]) {
+            Byte *buffer = (Byte*)malloc((unsigned)rep.size);
+            NSUInteger buffered = [rep getBytes:buffer fromOffset:0.0 length:(unsigned)rep.size error:nil];
+            NSData *data = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
+            NSMutableDictionary *options = [NSMutableDictionary new];
+            options[@"bucket"] = @"jikangachou";
+            options[@"expiration"] = [NSString stringWithFormat:@"%.0f",[[NSDate date] timeIntervalSince1970] + 600];
+            options[@"save-key"] = [NSString stringWithFormat:@"/%@/%@.JPG", self.book[@"key"], [data_url query]];
+            options[@"x-gmkerl-rotate"] = @"auto";
+            NSString *policy = [[NSJSONSerialization dataWithJSONObject:[options copy] options:0 error:nil] base64EncodedStringWithOptions:0];
+            NSString *sig = [[NSString stringWithFormat:@"%@&DWAPWXDv2cLI7MuZmJRWq63r0T8=", policy] MD5Digest];
+            NSDictionary *parameters = @{@"policy": policy, @"signature": sig};
+            [manager POST:@"http://v0.api.upyun.com/jikangachou"
+               parameters:parameters
+          timeoutInterval:90
+constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                [formData appendPartWithFileData:data name:@"file" fileName:@"file.JPG" mimeType:@"image/jpeg"];
+            } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                // don't know if the below is thread-safe
+                NSMutableArray *finished = [self.book[@"uploadFinished"] mutableCopy];
+                if (!finished) {
+                    finished = [NSMutableArray new];
+                }
+                [finished addObject:data_url];
+                self.book[@"uploadFinished"] = [finished copy];
+                [self saveBook];
+                [self finishOne];
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                NSLog(@"Error: %@", error);
+                [self finishOne];
+                self.uploadCell.userInteractionEnabled = YES;
+            }];
+        }
     }
 }
 
@@ -327,26 +355,30 @@
     self.finished += 1;
     [self.hud setProgress:(1.0 * self.finished / self.photos.count)];
     if (self.finished == self.photos.count) {
-        NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/uploaded/", self.book[@"key"]];
-        [self.jgServerManager GET:addr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            if ([responseObject[@"status"] isEqualToString:@"toprint"]) {
-                NyaruDB *db = [NyaruDB instance];
-                NyaruCollection *collection = [db collection:@"books"];
-                self.book[@"status"] = @"toprint";
-                [collection put:[self.book copy]];
-                [collection waitForWriting];
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"照片上传完成" message:@"我们会立刻付印您的画册" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                [alertView show];
-                self.navigationController.view.userInteractionEnabled = YES;
-                self.view.userInteractionEnabled = YES;
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"Error: %@", error);
-            self.uploadCell.userInteractionEnabled = YES;
-            self.navigationController.view.userInteractionEnabled = YES;
-            self.view.userInteractionEnabled = YES;
-        }];
+        self.navigationController.view.userInteractionEnabled = YES;
+        self.view.userInteractionEnabled = YES;
+        if (self.book[@"uploadFinished"] && [self.book[@"uploadFinished"] count] == self.finished) {
+            NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/uploaded/", self.book[@"key"]];
+            [self.jgServerManager GET:addr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                if ([responseObject[@"status"] isEqualToString:@"toprint"]) {
+                    NyaruDB *db = [NyaruDB instance];
+                    NyaruCollection *collection = [db collection:@"books"];
+                    self.book[@"status"] = @"toprint";
+                    [collection put:[self.book copy]];
+                    [collection waitForWriting];
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"照片上传完成" message:@"我们会立刻付印您的画册" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    [alertView show];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                NSLog(@"Error: %@", error);
+                self.uploadCell.userInteractionEnabled = YES;
+            }];
+        } else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"部分照片没有上传成功" message:@"请重试上传，只会重试上传失败的照片" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alertView show];
+            [self.hud hide:YES];
+        }
     }
 }
 
