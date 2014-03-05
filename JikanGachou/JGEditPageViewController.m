@@ -544,7 +544,7 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
 
         if ([page[@"type"] hasPrefix:@"EditPageTypeOne"]) {
             if (page[@"photo"] && ![page[@"photo"] isEqualToString:@""]) {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"这一页放不下更多照片了" message:@"试试点击书中的照片来撤销" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"这一页放不下更多照片了" message:@"试试点击书中的照片来撤销，或者换成双图模板" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [alertView show];
             } else {
                 [self.poolViewController usePhoto:p];
