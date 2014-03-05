@@ -577,6 +577,9 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
         }
         self.book[pageKey] = [page copy];
         [self.pagesCollectionView reloadData];
+    } else if (pageIndex < kJGIndexPhotoPageStart) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"封面照片是随机生成的" message:@"试试点击上面的按钮换一组照片" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alertView show];
     }
 }
 
