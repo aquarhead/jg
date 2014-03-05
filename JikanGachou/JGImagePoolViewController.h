@@ -23,10 +23,11 @@
 
 @interface JGImagePoolViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIView *barView;
+
 @property (nonatomic) ALAssetsLibrary *lib;
 @property (nonatomic, weak) id<JGImagePoolDelegate> delegate;
 @property (nonatomic, weak) JGStartPageViewController *homeVC;
-
 @property (nonatomic) NSMutableDictionary *book;
 
 - (NSArray *)shuffledPhotos;

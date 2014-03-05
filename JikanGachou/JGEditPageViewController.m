@@ -61,38 +61,12 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
     self.tapRecogs = @[tapRecog, tapRecog2];
 
     [self shufflePressed:nil];
-
-    NSArray *coachMarks = @[
-                            @{
-                                @"rect": [NSValue valueWithCGRect:(CGRect){{10, 110}, {300, 300}}],
-                                @"caption": @"左右滑动切换页面"
-                                },
-                            @{
-                                @"rect": [NSValue valueWithCGRect:(CGRect){{85, 22}, {150, 40}}],
-                                @"caption": @"选择页面布局"
-                                },
-                            @{
-                                @"rect": [NSValue valueWithCGRect:(CGRect){{0, 456}, {320, 112}}],
-                                @"caption": @"点击照片填充页面"
-                                },
-                            @{
-                                @"rect": [NSValue valueWithCGRect:(CGRect){{20, 350}, {120, 42}}],
-                                @"caption": @"点击添加描述（可选）"
-                                },
-                            @{
-                                @"rect": [NSValue valueWithCGRect:(CGRect){{250, 20}, {70, 44}}],
-                                @"caption": @"全部完成后，点击提交"
-                                },
-                            ];
-    WSCoachMarksView *coachMarksView = [[WSCoachMarksView alloc] initWithFrame:self.poolViewController.view.bounds coachMarks:coachMarks];
-    coachMarksView.maskColor = [UIColor colorWithWhite:0 alpha:0.84];
-    coachMarksView.delegate = self;
-    [self.poolViewController.view addSubview:coachMarksView];
-    [coachMarksView start];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+
     self.pageTypeControl = [[UISegmentedControl alloc] initWithItems:@[@"单图", @"双图"]];
     self.pageTypeControl.frame = CGRectMake(0, 0, 130, 30);
     [self.pageTypeControl addTarget:self action:@selector(pageTypeChanged:) forControlEvents:UIControlEventValueChanged];
@@ -107,12 +81,46 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
     [self reloadSegmentedControl];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    NSArray *coachMarks = @[
+                            @{
+                                @"rect": [NSValue valueWithCGRect:CGRectMake(10, 64 + self.pagesCollectionView.frame.origin.y, 300, 300)],
+                                @"caption": @"左右滑动切换页面"
+                                },
+                            @{
+                                @"rect": [NSValue valueWithCGRect:CGRectMake(85, 22, 150, 40)],
+                                @"caption": @"选择页面布局"
+                                },
+                            @{
+                                @"rect": [NSValue valueWithCGRect:CGRectMake(0, self.poolViewController.barView.frame.origin.y, 320, 112)],
+                                @"caption": @"点击照片填充页面"
+                                },
+                            @{
+                                @"rect": [NSValue valueWithCGRect:CGRectMake(20, self.pagesCollectionView.frame.origin.y + 303, 120, 42)],
+                                @"caption": @"点击添加描述（可选）"
+                                },
+                            @{
+                                @"rect": [NSValue valueWithCGRect:CGRectMake(250, 20, 70, 44)],
+                                @"caption": @"全部完成后，点击提交"
+                                },
+                            ];
+    WSCoachMarksView *coachMarksView = [[WSCoachMarksView alloc] initWithFrame:self.poolViewController.view.bounds coachMarks:coachMarks];
+    coachMarksView.maskColor = [UIColor colorWithWhite:0 alpha:0.84];
+    coachMarksView.delegate = self;
+    [self.poolViewController.view addSubview:coachMarksView];
+    [coachMarksView start];
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
+
     for (int i = 1; i < 10; ++i) {
         [self.book removeObjectForKey:[NSString stringWithFormat:@"cover%d", i]];
     }
-    [super viewWillDisappear:animated];
 }
 
 - (void)shufflePressed:(id)sender
