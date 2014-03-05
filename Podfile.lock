@@ -57,6 +57,7 @@ PODS:
   - NyaruDB (1.4.1)
   - StaticDataTableViewController (2.0.3)
   - TestFlightSDK (3.0.0)
+  - WSCoachMarksView (0.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
@@ -68,12 +69,15 @@ DEPENDENCIES:
   - NyaruDB
   - StaticDataTableViewController (from `git@github.com:xelvenone/StaticDataTableViewController.git`)
   - TestFlightSDK
+  - WSCoachMarksView (from `git@github.com:TeaWhen/WSCoachMarksView.git`)
 
 EXTERNAL SOURCES:
   KIImagePager:
     :git: git@github.com:xhacker/KIImagePager.git
   StaticDataTableViewController:
     :git: git@github.com:xelvenone/StaticDataTableViewController.git
+  WSCoachMarksView:
+    :git: git@github.com:TeaWhen/WSCoachMarksView.git
 
 SPEC CHECKSUMS:
   AFNetworking: e8cfd8f3fe3bfe19124a0cc63f4d45752d892a56
@@ -85,5 +89,6 @@ SPEC CHECKSUMS:
   NyaruDB: 294a1316faeae429c1c76743dd5369fcd1e8b42c
   StaticDataTableViewController: 90fb91b63b9efbe988f21116be109c454ef297de
   TestFlightSDK: 71e3e78d3a46144dbad975a4bf80a14dae6a818a
+  WSCoachMarksView: 93657355c87e88d0fea622ee45e9733d2242b080
 
 COCOAPODS: 0.29.0

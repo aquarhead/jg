@@ -10,6 +10,7 @@
 #import "JGImagePoolViewController.h"
 #import "JGEditPageCell.h"
 #import <MRProgress.h>
+#import <WSCoachMarksView.h>
 
 static const NSInteger kJGIndexCoverPage = 0;
 static const NSInteger kJGIndexFlyleafPage = kJGIndexCoverPage + 1;
@@ -18,7 +19,7 @@ static const NSInteger kJGIndexPhotoPageEnd = kJGIndexPhotoPageStart + 20 - 1;
 static const NSInteger kJGIndexBackcoverPage = kJGIndexPhotoPageEnd + 1;
 static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
 
-@interface JGEditPageViewController () <UIAlertViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, JGImagePoolDelegate, JGEditPageDelegate>
+@interface JGEditPageViewController () <UIAlertViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, JGImagePoolDelegate, JGEditPageDelegate, WSCoachMarksViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *pagesCollectionView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *collectionViewYConstraint;
@@ -60,6 +61,34 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
     self.tapRecogs = @[tapRecog, tapRecog2];
 
     [self shufflePressed:nil];
+
+    NSArray *coachMarks = @[
+                            @{
+                                @"rect": [NSValue valueWithCGRect:(CGRect){{10, 110}, {300, 300}}],
+                                @"caption": @"左右滑动切换页面"
+                                },
+                            @{
+                                @"rect": [NSValue valueWithCGRect:(CGRect){{85, 22}, {150, 40}}],
+                                @"caption": @"选择页面布局"
+                                },
+                            @{
+                                @"rect": [NSValue valueWithCGRect:(CGRect){{0, 456}, {320, 112}}],
+                                @"caption": @"点击照片填充页面"
+                                },
+                            @{
+                                @"rect": [NSValue valueWithCGRect:(CGRect){{20, 350}, {120, 42}}],
+                                @"caption": @"点击添加描述（可选）"
+                                },
+                            @{
+                                @"rect": [NSValue valueWithCGRect:(CGRect){{250, 20}, {70, 44}}],
+                                @"caption": @"全部完成后，点击提交"
+                                },
+                            ];
+    WSCoachMarksView *coachMarksView = [[WSCoachMarksView alloc] initWithFrame:self.poolViewController.view.bounds coachMarks:coachMarks];
+    coachMarksView.maskColor = [UIColor colorWithWhite:0 alpha:0.84];
+    coachMarksView.delegate = self;
+    [self.poolViewController.view addSubview:coachMarksView];
+    [coachMarksView start];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -134,6 +163,18 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
     else {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"确认提交" message:@"提交之后不能再次修改，确认提交画册吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"提交", nil];
         [alertView show];
+    }
+}
+
+#pragma mark - Coach view delegate
+
+- (void)coachMarksView:(WSCoachMarksView*)coachMarksView willNavigateToIndex:(NSUInteger)index
+{
+    if (index == 1) {
+        [self.pagesCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:kJGIndexPhotoPageStart inSection:0] atScrollPosition:0 animated:YES];
+    }
+    else if (index == 4) {
+        [self.pagesCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:kJGIndexCoverPage inSection:0] atScrollPosition:0 animated:YES];
     }
 }
 
