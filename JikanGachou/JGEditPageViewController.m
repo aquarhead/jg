@@ -84,34 +84,27 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-
-    NSArray *coachMarks = @[
-                            @{
-                                @"rect": [NSValue valueWithCGRect:CGRectMake(10, 64 + self.pagesCollectionView.frame.origin.y, 300, 300)],
-                                @"caption": @"左右滑动切换页面"
-                                },
-                            @{
-                                @"rect": [NSValue valueWithCGRect:CGRectMake(85, 22, 150, 40)],
-                                @"caption": @"选择页面布局"
-                                },
-                            @{
-                                @"rect": [NSValue valueWithCGRect:CGRectMake(0, self.poolViewController.barView.frame.origin.y, 320, 112)],
-                                @"caption": @"点击照片填充页面"
-                                },
-                            @{
-                                @"rect": [NSValue valueWithCGRect:CGRectMake(20, self.pagesCollectionView.frame.origin.y + 303, 120, 42)],
-                                @"caption": @"点击添加描述（可选）"
-                                },
-                            @{
-                                @"rect": [NSValue valueWithCGRect:CGRectMake(250, 20, 70, 44)],
-                                @"caption": @"全部完成后，点击提交"
-                                },
-                            ];
-    WSCoachMarksView *coachMarksView = [[WSCoachMarksView alloc] initWithFrame:self.poolViewController.view.bounds coachMarks:coachMarks];
-    coachMarksView.maskColor = [UIColor colorWithWhite:0 alpha:0.84];
-    coachMarksView.delegate = self;
-    [self.poolViewController.view addSubview:coachMarksView];
-    [coachMarksView start];
+    if (!self.poolViewController.coached) {
+        NSArray *coachMarks = @[
+                                @{@"rect": [NSValue valueWithCGRect:CGRectMake(10, 64 + self.pagesCollectionView.frame.origin.y, 300, 300)],
+                                  @"caption": @"左右滑动切换页面"},
+                                @{@"rect": [NSValue valueWithCGRect:CGRectMake(85, 22, 150, 40)],
+                                  @"caption": @"编辑封面和扉页时，点这里更换封面"},
+                                @{@"rect": [NSValue valueWithCGRect:CGRectMake(85, 22, 150, 40)],
+                                  @"caption": @"编辑内页时，在这里更改模板"},
+                                @{@"rect": [NSValue valueWithCGRect:CGRectMake(0, self.poolViewController.barView.frame.origin.y, 320, 112)],
+                                  @"caption": @"点击照片放入画册"},
+                                @{@"rect": [NSValue valueWithCGRect:CGRectMake(20, self.pagesCollectionView.frame.origin.y + 303, 120, 42)],
+                                  @"caption": @"每张照片都可以添加描述（可空）"},
+                                @{@"rect": [NSValue valueWithCGRect:CGRectMake(250, 20, 70, 44)],
+                                  @"caption": @"全部完成后，点击提交"},
+                                ];
+        WSCoachMarksView *coachMarksView = [[WSCoachMarksView alloc] initWithFrame:self.poolViewController.view.bounds coachMarks:coachMarks];
+        coachMarksView.maskColor = [UIColor colorWithWhite:0 alpha:0.84];
+        coachMarksView.delegate = self;
+        [self.poolViewController.view addSubview:coachMarksView];
+        [coachMarksView start];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -178,11 +171,12 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
 
 - (void)coachMarksView:(WSCoachMarksView*)coachMarksView willNavigateToIndex:(NSUInteger)index
 {
-    if (index == 1) {
+    if (index == 2) {
         [self.pagesCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:kJGIndexPhotoPageStart inSection:0] atScrollPosition:0 animated:YES];
     }
-    else if (index == 4) {
+    else if (index == 5) {
         [self.pagesCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:kJGIndexCoverPage inSection:0] atScrollPosition:0 animated:YES];
+        self.poolViewController.coached = YES;
     }
 }
 

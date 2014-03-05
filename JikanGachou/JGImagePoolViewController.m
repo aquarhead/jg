@@ -39,6 +39,7 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     self.lib = [ALAssetsLibrary new];
     self.book = [NSMutableDictionary new];
     self.book[@"key"] = [[NSUUID UUID] UUIDString];
+    self.coached = NO;
 }
 
 #pragma mark - Collection View

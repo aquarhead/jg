@@ -29,6 +29,7 @@
 @property (nonatomic, weak) id<JGImagePoolDelegate> delegate;
 @property (nonatomic, weak) JGStartPageViewController *homeVC;
 @property (nonatomic) NSMutableDictionary *book;
+@property (nonatomic, assign) BOOL coached;
 
 - (NSArray *)shuffledPhotos;
 
