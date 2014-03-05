@@ -40,19 +40,18 @@
     [super viewDidAppear:animated];
 
     self.imagePager.pageControlCenter = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height - 16);
+    self.imagePager.pageControl.hidden = YES;
     self.imagePager.scrollView.bounces = NO;
 }
 
 - (NSArray *)arrayWithImages
 {
-    return @[[UIImage imageNamed:@"start1.jpg"],
-             [UIImage imageNamed:@"start2.jpg"],
-             [UIImage imageNamed:@"start3.jpg"]];
+    return @[[UIImage imageNamed:@"StartImage"]];
 }
 
 - (UIViewContentMode)contentModeForImage:(NSUInteger)image
 {
-    return UIViewContentModeScaleAspectFill;
+    return UIViewContentModeBottom;
 }
 
 - (void)openWithBookUUID:(NSString *)uuid

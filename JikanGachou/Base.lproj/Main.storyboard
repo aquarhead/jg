@@ -21,7 +21,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
                             <button opaque="NO" alpha="0.82999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jG7-kT-SOD">
-                                <rect key="frame" x="68" y="379" width="184" height="30"/>
+                                <rect key="frame" x="68" y="369" width="184" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.74901960779999999" green="0.5568627451" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -38,7 +38,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.82999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZL-BK-ORG">
-                                <rect key="frame" x="68" y="419" width="184" height="30"/>
+                                <rect key="frame" x="68" y="414" width="184" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.74901960784313726" green="0.55686274509803924" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -56,11 +56,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="cZL-BK-ORG" firstAttribute="top" secondItem="jG7-kT-SOD" secondAttribute="bottom" constant="10" id="EIw-hu-Vgf"/>
+                            <constraint firstItem="cZL-BK-ORG" firstAttribute="top" secondItem="jG7-kT-SOD" secondAttribute="bottom" constant="15" id="EIw-hu-Vgf"/>
                             <constraint firstItem="jG7-kT-SOD" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="68" id="G8S-5Q-wle"/>
                             <constraint firstItem="KIj-62-2Co" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Lwu-FV-GU0"/>
                             <constraint firstAttribute="trailing" secondItem="KIj-62-2Co" secondAttribute="trailing" id="NeH-Kc-fat"/>
-                            <constraint firstItem="8UU-TN-jES" firstAttribute="top" secondItem="cZL-BK-ORG" secondAttribute="bottom" constant="31" id="PE9-8R-ttS"/>
+                            <constraint firstItem="8UU-TN-jES" firstAttribute="top" secondItem="cZL-BK-ORG" secondAttribute="bottom" constant="36" id="PE9-8R-ttS"/>
                             <constraint firstItem="KIj-62-2Co" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="a2E-6N-Lb9"/>
                             <constraint firstItem="cZL-BK-ORG" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="68" id="bjp-xu-nMq"/>
                             <constraint firstAttribute="trailing" secondItem="cZL-BK-ORG" secondAttribute="trailing" constant="68" id="ryu-Vx-IOg"/>
