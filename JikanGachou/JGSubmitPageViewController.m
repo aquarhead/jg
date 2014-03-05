@@ -314,7 +314,10 @@
     for (ALAsset *p in self.photos) {
         ALAssetRepresentation *rep = p.defaultRepresentation;
         NSURL *data_url = rep.url;
-        if (![self.book[@"uploadFinished"] containsObject:data_url]) {
+        NSString *uploaded_key = [NSString stringWithFormat:@"%@_uploaded", [data_url query]];
+        if ([self.book[uploaded_key] isEqualToString:@"YES"]) {
+            [self finishOne];
+        } else {
             Byte *buffer = (Byte*)malloc((unsigned)rep.size);
             NSUInteger buffered = [rep getBytes:buffer fromOffset:0.0 length:(unsigned)rep.size error:nil];
             NSData *data = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
@@ -326,23 +329,13 @@
             NSString *policy = [[NSJSONSerialization dataWithJSONObject:[options copy] options:0 error:nil] base64EncodedStringWithOptions:0];
             NSString *sig = [[NSString stringWithFormat:@"%@&DWAPWXDv2cLI7MuZmJRWq63r0T8=", policy] MD5Digest];
             NSDictionary *parameters = @{@"policy": policy, @"signature": sig};
-            [manager POST:@"http://v0.api.upyun.com/jikangachou"
-               parameters:parameters
-          timeoutInterval:90
-constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            [manager POST:@"http://v0.api.upyun.com/jikangachou" parameters:parameters timeoutInterval:90 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                 [formData appendPartWithFileData:data name:@"file" fileName:@"file.JPG" mimeType:@"image/jpeg"];
             } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                // don't know if the below is thread-safe
-                NSMutableArray *finished = [self.book[@"uploadFinished"] mutableCopy];
-                if (!finished) {
-                    finished = [NSMutableArray new];
-                }
-                [finished addObject:data_url];
-                self.book[@"uploadFinished"] = [finished copy];
+                self.book[uploaded_key] = @"YES";
                 [self saveBook];
                 [self finishOne];
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                NSLog(@"Error: %@", error);
                 [self finishOne];
                 self.uploadCell.userInteractionEnabled = YES;
             }];
