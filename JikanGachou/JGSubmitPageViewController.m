@@ -318,6 +318,7 @@
         if ([self.book[uploaded_key] isEqualToString:@"YES"]) {
             [self finishOne];
         } else {
+            NSLog(@"%@", data_url);
             Byte *buffer = (Byte*)malloc((unsigned)rep.size);
             NSUInteger buffered = [rep getBytes:buffer fromOffset:0.0 length:(unsigned)rep.size error:nil];
             NSData *data = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
@@ -350,7 +351,7 @@
     if (self.finished == self.photos.count) {
         self.navigationController.view.userInteractionEnabled = YES;
         self.view.userInteractionEnabled = YES;
-        if (self.book[@"uploadFinished"] && [self.book[@"uploadFinished"] count] == self.finished) {
+        if ([self checkUploadResult]) {
             NSString *addr = [NSString stringWithFormat:@"http://jg.aquarhead.me/book/%@/uploaded/", self.book[@"key"]];
             [self.jgServerManager GET:addr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 if ([responseObject[@"status"] isEqualToString:@"toprint"]) {
@@ -367,12 +368,26 @@
                 NSLog(@"Error: %@", error);
                 self.uploadCell.userInteractionEnabled = YES;
             }];
-        } else {
+        }
+        else {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"部分照片没有上传成功" message:@"请重试上传，只会重试上传失败的照片" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alertView show];
             [self.hud hide:YES];
         }
     }
+}
+
+- (BOOL)checkUploadResult
+{
+    for (ALAsset *p in self.photos) {
+        ALAssetRepresentation *rep = p.defaultRepresentation;
+        NSURL *data_url = rep.url;
+        NSString *uploaded_key = [NSString stringWithFormat:@"%@_uploaded", [data_url query]];
+        if (![self.book[uploaded_key] isEqualToString:@"YES"]) {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
