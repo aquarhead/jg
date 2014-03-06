@@ -317,8 +317,8 @@
         NSString *uploaded_key = [NSString stringWithFormat:@"%@_uploaded", [data_url query]];
         if ([self.book[uploaded_key] isEqualToString:@"YES"]) {
             [self finishOne];
-        } else {
-            NSLog(@"%@", data_url);
+        }
+        else {
             Byte *buffer = (Byte*)malloc((unsigned)rep.size);
             NSUInteger buffered = [rep getBytes:buffer fromOffset:0.0 length:(unsigned)rep.size error:nil];
             NSData *data = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
