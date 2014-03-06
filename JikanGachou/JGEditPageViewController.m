@@ -87,19 +87,20 @@ static const NSInteger kJGTotalPages = kJGIndexBackcoverPage + 1;
     if (!self.poolViewController.coached) {
         NSArray *coachMarks = @[
                                 @{@"rect": [NSValue valueWithCGRect:CGRectMake(10, 64 + self.pagesCollectionView.frame.origin.y, 300, 300)],
-                                  @"caption": @"左右滑动切换页面"},
+                                  @"caption": @"左右滑动切换页面（共 20 页）"},
                                 @{@"rect": [NSValue valueWithCGRect:CGRectMake(85, 22, 150, 40)],
-                                  @"caption": @"编辑封面和扉页时，点这里更换封面"},
+                                  @"caption": @"　编辑封面和扉页时，\n点这里更换封面"},
                                 @{@"rect": [NSValue valueWithCGRect:CGRectMake(85, 22, 150, 40)],
-                                  @"caption": @"编辑内页时，在这里更改模板"},
+                                  @"caption": @"　编辑内页时，\n在这里更改模板"},
                                 @{@"rect": [NSValue valueWithCGRect:CGRectMake(0, self.poolViewController.barView.frame.origin.y, 320, 112)],
                                   @"caption": @"点击照片放入画册"},
                                 @{@"rect": [NSValue valueWithCGRect:CGRectMake(20, self.pagesCollectionView.frame.origin.y + 303, 120, 42)],
-                                  @"caption": @"每张照片都可以添加描述（可空）"},
+                                  @"caption": @"每张照片都可以添加描述\n（可空）"},
                                 @{@"rect": [NSValue valueWithCGRect:CGRectMake(250, 20, 70, 44)],
                                   @"caption": @"全部完成后，点击提交"},
                                 ];
         WSCoachMarksView *coachMarksView = [[WSCoachMarksView alloc] initWithFrame:self.poolViewController.view.bounds coachMarks:coachMarks];
+        coachMarksView.maxLblWidth = 280;
         coachMarksView.maskColor = [UIColor colorWithWhite:0 alpha:0.84];
         coachMarksView.delegate = self;
         [self.poolViewController.view addSubview:coachMarksView];
