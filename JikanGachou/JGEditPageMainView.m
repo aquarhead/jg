@@ -127,15 +127,18 @@
         textView.text = @"点击添加描述…";
         textView.textColor = [UIColor lightGrayColor];
     }
-    if (textView.text.length > 10) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"描述太长了" message:@"描述最多为10个字" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alertView show];
-        textView.text = [textView.text substringWithRange:NSMakeRange(0, 10)];
-    }
-    if ([textView isEqual:self.descriptionTextView1]) {
-        [self.delegate saveDescriptionText:textView.text];
-    } else {
-        [self.delegate saveDescriptionText2:textView.text];
+    else {
+        if (textView.text.length > 10) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"描述太长了" message:@"描述最多为10个字" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alertView show];
+            textView.text = [textView.text substringWithRange:NSMakeRange(0, 10)];
+        }
+
+        if ([textView isEqual:self.descriptionTextView1]) {
+            [self.delegate saveDescriptionText:textView.text];
+        } else {
+            [self.delegate saveDescriptionText2:textView.text];
+        }
     }
 }
 
