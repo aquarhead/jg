@@ -1,27 +1,27 @@
 PODS:
-  - AFNetworking (2.2.0):
+  - AFNetworking (2.2.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
     - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.2.0):
+  - AFNetworking/NSURLConnection (2.2.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.2.0):
+  - AFNetworking/NSURLSession (2.2.3):
     - AFNetworking/NSURLConnection
-  - AFNetworking/Reachability (2.2.0)
-  - AFNetworking/Security (2.2.0)
-  - AFNetworking/Serialization (2.2.0)
-  - AFNetworking/UIKit (2.2.0):
+  - AFNetworking/Reachability (2.2.3)
+  - AFNetworking/Security (2.2.3)
+  - AFNetworking/Serialization (2.2.3)
+  - AFNetworking/UIKit (2.2.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - KIImagePager (1.4.1)
+  - KIImagePager (1.5.2)
   - MBProgressHUD (0.8)
   - MD5Digest (0.1.0)
-  - MRProgress (0.4.1):
+  - MRProgress (0.4.3):
     - MRProgress/ActivityIndicator
     - MRProgress/Blur
     - MRProgress/Circular
@@ -32,27 +32,26 @@ PODS:
     - MRProgress/Overlay
     - MRProgress/Stopable
     - MRProgress/WeakProxy
-  - MRProgress/ActivityIndicator (0.4.1):
+  - MRProgress/ActivityIndicator (0.4.3):
     - MRProgress/Stopable
-  - MRProgress/Blur (0.4.1):
+  - MRProgress/Blur (0.4.3):
     - MRProgress/Helper
-  - MRProgress/Circular (0.4.1):
+  - MRProgress/Circular (0.4.3):
     - MRProgress/Helper
     - MRProgress/Stopable
-  - MRProgress/Helper (0.4.1)
-  - MRProgress/Icons (0.4.1)
-  - MRProgress/MessageInterceptor (0.4.1)
-  - MRProgress/NavigationBarProgress (0.4.1):
-    - MRProgress/MessageInterceptor
-  - MRProgress/Overlay (0.4.1):
+  - MRProgress/Helper (0.4.3)
+  - MRProgress/Icons (0.4.3)
+  - MRProgress/MessageInterceptor (0.4.3)
+  - MRProgress/NavigationBarProgress (0.4.3)
+  - MRProgress/Overlay (0.4.3):
     - MRProgress/ActivityIndicator
     - MRProgress/Blur
     - MRProgress/Circular
     - MRProgress/Helper
     - MRProgress/Icons
-  - MRProgress/Stopable (0.4.1):
+  - MRProgress/Stopable (0.4.3):
     - MRProgress/Helper
-  - MRProgress/WeakProxy (0.4.1)
+  - MRProgress/WeakProxy (0.4.3)
   - NSMutableArray-Shuffle (0.4)
   - NyaruDB (1.4.1)
   - StaticDataTableViewController (2.0.3)
@@ -80,15 +79,15 @@ EXTERNAL SOURCES:
     :git: git@github.com:TeaWhen/WSCoachMarksView.git
 
 SPEC CHECKSUMS:
-  AFNetworking: e8cfd8f3fe3bfe19124a0cc63f4d45752d892a56
-  KIImagePager: 6ab95f68c885cfb65fefc697ac641f75839adba5
+  AFNetworking: ae513199cca79e9d7af2708ccabe2ed075550c42
+  KIImagePager: 7b7074ddebcfd578f3f48355f3bfc5f428ddb281
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   MD5Digest: 355c8733ab522cc516a4047e2d93e2b842947b18
-  MRProgress: 6530ce71278dd7ecfb5e3c3e37df03a323690936
-  NSMutableArray-Shuffle: 79e96f2bbd1400a72bc0ead9168768693ba0bcf0
+  MRProgress: c04ecd74ba9ad5a32f9188014db20554dd74eba9
+  NSMutableArray-Shuffle: 3abacc42685e632ecaa367652907bc4356104d26
   NyaruDB: 294a1316faeae429c1c76743dd5369fcd1e8b42c
-  StaticDataTableViewController: 90fb91b63b9efbe988f21116be109c454ef297de
-  TestFlightSDK: 71e3e78d3a46144dbad975a4bf80a14dae6a818a
+  StaticDataTableViewController: 5c46c12bd116e7a8bab4e3b6de5255ae4fa97e5b
+  TestFlightSDK: fe0567a897456b6f65b180541892ef0154986e01
   WSCoachMarksView: 93657355c87e88d0fea622ee45e9733d2242b080
 
-COCOAPODS: 0.29.0
+COCOAPODS: 0.32.1

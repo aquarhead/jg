@@ -22,6 +22,7 @@
 		4F1FB98D1872A8B0000FCFDB /* EditPageTypeMixedLeftPortrait.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB98C1872A8B0000FCFDB /* EditPageTypeMixedLeftPortrait.xib */; };
 		4F1FB98F1872A980000FCFDB /* EditPageBackCover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB98E1872A980000FCFDB /* EditPageBackCover.xib */; };
 		4F1FB9911872A992000FCFDB /* EditPageTitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB9901872A992000FCFDB /* EditPageTitle.xib */; };
+		4F2D8F6D1926246100965738 /* JGShowPagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2D8F6C1926246100965738 /* JGShowPagesViewController.m */; };
 		4F2FEEF6184B1A4A001A7AFE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2FEEF5184B1A4A001A7AFE /* Foundation.framework */; };
 		4F2FEEF8184B1A4A001A7AFE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2FEEF7184B1A4A001A7AFE /* CoreGraphics.framework */; };
 		4F2FEEFA184B1A4A001A7AFE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2FEEF9184B1A4A001A7AFE /* UIKit.framework */; };
@@ -35,6 +36,8 @@
 		4F2FEF17184B1A4B001A7AFE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2FEEF9184B1A4A001A7AFE /* UIKit.framework */; };
 		4F2FEF1F184B1A4B001A7AFE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F2FEF1D184B1A4B001A7AFE /* InfoPlist.strings */; };
 		4F2FEF21184B1A4B001A7AFE /* JikanGachouTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FEF20184B1A4B001A7AFE /* JikanGachouTests.m */; };
+		4F3103B119278FCE002ADF59 /* JGPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3103AF19278FCE002ADF59 /* JGPageViewController.m */; };
+		4F3103B219278FCE002ADF59 /* JGPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F3103B019278FCE002ADF59 /* JGPageViewController.xib */; };
 		4F38B3CD18C5B70A0058545E /* AFHTTPRequestOperationManager+timeout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F38B3CC18C5B70A0058545E /* AFHTTPRequestOperationManager+timeout.m */; };
 		4F3CF06C184ED10B00B43634 /* JGStartPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3CF06B184ED10B00B43634 /* JGStartPageViewController.m */; };
 		4FBB080F189E25340094B1E4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4FBB080E189E25340094B1E4 /* README.md */; };
@@ -79,6 +82,8 @@
 		4F1FB98C1872A8B0000FCFDB /* EditPageTypeMixedLeftPortrait.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPageTypeMixedLeftPortrait.xib; sourceTree = "<group>"; };
 		4F1FB98E1872A980000FCFDB /* EditPageBackCover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPageBackCover.xib; sourceTree = "<group>"; };
 		4F1FB9901872A992000FCFDB /* EditPageTitle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPageTitle.xib; sourceTree = "<group>"; };
+		4F2D8F6B1926246100965738 /* JGShowPagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGShowPagesViewController.h; sourceTree = "<group>"; };
+		4F2D8F6C1926246100965738 /* JGShowPagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGShowPagesViewController.m; sourceTree = "<group>"; };
 		4F2FEEF2184B1A4A001A7AFE /* JikanGachou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JikanGachou.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F2FEEF5184B1A4A001A7AFE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4F2FEEF7184B1A4A001A7AFE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -96,6 +101,9 @@
 		4F2FEF1C184B1A4B001A7AFE /* JikanGachouTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JikanGachouTests-Info.plist"; sourceTree = "<group>"; };
 		4F2FEF1E184B1A4B001A7AFE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4F2FEF20184B1A4B001A7AFE /* JikanGachouTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JikanGachouTests.m; sourceTree = "<group>"; };
+		4F3103AE19278FCE002ADF59 /* JGPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGPageViewController.h; sourceTree = "<group>"; };
+		4F3103AF19278FCE002ADF59 /* JGPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGPageViewController.m; sourceTree = "<group>"; };
+		4F3103B019278FCE002ADF59 /* JGPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JGPageViewController.xib; sourceTree = "<group>"; };
 		4F38B3CA18C58B340058545E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		4F38B3CB18C5B70A0058545E /* AFHTTPRequestOperationManager+timeout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AFHTTPRequestOperationManager+timeout.h"; sourceTree = "<group>"; };
 		4F38B3CC18C5B70A0058545E /* AFHTTPRequestOperationManager+timeout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AFHTTPRequestOperationManager+timeout.m"; sourceTree = "<group>"; };
@@ -203,6 +211,18 @@
 			name = Back;
 			sourceTree = "<group>";
 		};
+		4F2D8F6A1926242100965738 /* Show Pages */ = {
+			isa = PBXGroup;
+			children = (
+				4F2D8F6B1926246100965738 /* JGShowPagesViewController.h */,
+				4F2D8F6C1926246100965738 /* JGShowPagesViewController.m */,
+				4F3103AE19278FCE002ADF59 /* JGPageViewController.h */,
+				4F3103AF19278FCE002ADF59 /* JGPageViewController.m */,
+				4F3103B019278FCE002ADF59 /* JGPageViewController.xib */,
+			);
+			name = "Show Pages";
+			sourceTree = "<group>";
+		};
 		4F2FEEE9184B1A4A001A7AFE = {
 			isa = PBXGroup;
 			children = (
@@ -245,6 +265,7 @@
 				1AFCDC5C18BD225D00BE8461 /* Books */,
 				4FD73EE4185189F000C9F568 /* Image Picker */,
 				1AD436EA185DFE82003B5D19 /* Edit Page */,
+				4F2D8F6A1926242100965738 /* Show Pages */,
 				4F2FEEFC184B1A4A001A7AFE /* Supporting Files */,
 			);
 			path = JikanGachou;
@@ -391,6 +412,7 @@
 			files = (
 				4F1FB98B1872A8A3000FCFDB /* EditPageTypeMixedLeftLandscape.xib in Resources */,
 				4F1FB9851872A7BB000FCFDB /* EditPageTypeOnePortrait.xib in Resources */,
+				4F3103B219278FCE002ADF59 /* JGPageViewController.xib in Resources */,
 				4F1FB9911872A992000FCFDB /* EditPageTitle.xib in Resources */,
 				4F1FB98F1872A980000FCFDB /* EditPageBackCover.xib in Resources */,
 				4F1FB9831872A7A1000FCFDB /* EditPageTypeOneLandscape.xib in Resources */,
@@ -461,8 +483,10 @@
 				4FF482381893655500E26003 /* JGSubmitPageViewController.m in Sources */,
 				4F2FEF06184B1A4A001A7AFE /* JGAppDelegate.m in Sources */,
 				1AD436E9185DFE7F003B5D19 /* JGEditPageViewController.m in Sources */,
+				4F3103B119278FCE002ADF59 /* JGPageViewController.m in Sources */,
 				4F38B3CD18C5B70A0058545E /* AFHTTPRequestOperationManager+timeout.m in Sources */,
 				1A7E24FF1851FD9500113959 /* JGImagePoolViewController.m in Sources */,
+				4F2D8F6D1926246100965738 /* JGShowPagesViewController.m in Sources */,
 				1A2F6459187F63AA00BC4D06 /* JGEditPageMainView.m in Sources */,
 				1A2F6456187F634400BC4D06 /* JGEditPageCell.m in Sources */,
 			);

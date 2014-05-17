@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5051" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Upe-oG-jdC">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -308,6 +308,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eJU-s8-Pt0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1547" y="-696"/>
+        </scene>
+        <!--Show Pages View Controller-->
+        <scene sceneID="7p9-C1-LmJ">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="mid" doubleSided="YES" id="Upe-oG-jdC" customClass="JGShowPagesViewController" sceneMemberID="viewController">
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lMP-cM-kkE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="612" y="-209"/>
         </scene>
         <!--Image Grid View Controller-->
         <scene sceneID="WTw-Sw-0q5">
