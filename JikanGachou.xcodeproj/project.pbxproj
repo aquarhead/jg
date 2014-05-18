@@ -66,8 +66,6 @@
 		1A7E24FE1851FD9500113959 /* JGImagePoolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGImagePoolViewController.m; sourceTree = "<group>"; };
 		1A7E25001851FDCF00113959 /* JGImageGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGImageGridViewController.h; sourceTree = "<group>"; };
 		1A7E25011851FDCF00113959 /* JGImageGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGImageGridViewController.m; sourceTree = "<group>"; };
-		1AA9C7AF18C587310038F661 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = Resources/iTunesArtwork; sourceTree = "<group>"; };
-		1AA9C7B018C587310038F661 /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; name = "iTunesArtwork@2x"; path = "Resources/iTunesArtwork@2x"; sourceTree = "<group>"; };
 		1AD436E7185DFE7F003B5D19 /* JGEditPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGEditPageViewController.h; sourceTree = "<group>"; };
 		1AD436E8185DFE7F003B5D19 /* JGEditPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGEditPageViewController.m; sourceTree = "<group>"; };
 		1AFCDC5918BD225800BE8461 /* JGBookTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGBookTableViewController.h; sourceTree = "<group>"; };
@@ -274,8 +272,6 @@
 		4F2FEEFC184B1A4A001A7AFE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				1AA9C7AF18C587310038F661 /* iTunesArtwork */,
-				1AA9C7B018C587310038F661 /* iTunesArtwork@2x */,
 				4FBB080E189E25340094B1E4 /* README.md */,
 				4F2FEF04184B1A4A001A7AFE /* JGAppDelegate.h */,
 				4F2FEF05184B1A4A001A7AFE /* JGAppDelegate.m */,

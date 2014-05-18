@@ -1,21 +1,21 @@
 PODS:
-  - AFNetworking (2.2.3):
+  - AFNetworking (2.2.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
     - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.2.3):
+  - AFNetworking/NSURLConnection (2.2.4):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.2.3):
+  - AFNetworking/NSURLSession (2.2.4):
     - AFNetworking/NSURLConnection
-  - AFNetworking/Reachability (2.2.3)
-  - AFNetworking/Security (2.2.3)
-  - AFNetworking/Serialization (2.2.3)
-  - AFNetworking/UIKit (2.2.3):
+  - AFNetworking/Reachability (2.2.4)
+  - AFNetworking/Security (2.2.4)
+  - AFNetworking/Serialization (2.2.4)
+  - AFNetworking/UIKit (2.2.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - KIImagePager (1.5.2)
@@ -53,9 +53,9 @@ PODS:
     - MRProgress/Helper
   - MRProgress/WeakProxy (0.4.3)
   - NSMutableArray-Shuffle (0.4)
-  - NyaruDB (1.4.1)
+  - NyaruDB (1.4.2)
   - StaticDataTableViewController (2.0.3)
-  - TestFlightSDK (3.0.0)
+  - TestFlightSDK (3.0.2)
   - WSCoachMarksView (0.2)
 
 DEPENDENCIES:
@@ -79,15 +79,15 @@ EXTERNAL SOURCES:
     :git: git@github.com:TeaWhen/WSCoachMarksView.git
 
 SPEC CHECKSUMS:
-  AFNetworking: ae513199cca79e9d7af2708ccabe2ed075550c42
+  AFNetworking: 01aa7c3aa9a200b94943e54072a4373f14b3d219
   KIImagePager: 7b7074ddebcfd578f3f48355f3bfc5f428ddb281
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   MD5Digest: 355c8733ab522cc516a4047e2d93e2b842947b18
   MRProgress: c04ecd74ba9ad5a32f9188014db20554dd74eba9
   NSMutableArray-Shuffle: 3abacc42685e632ecaa367652907bc4356104d26
-  NyaruDB: 294a1316faeae429c1c76743dd5369fcd1e8b42c
+  NyaruDB: 285a29183327bf0d67c59c36d44863c085187119
   StaticDataTableViewController: 5c46c12bd116e7a8bab4e3b6de5255ae4fa97e5b
-  TestFlightSDK: fe0567a897456b6f65b180541892ef0154986e01
+  TestFlightSDK: 7e16443981ab25642b68d323e1745b567de9cf15
   WSCoachMarksView: 93657355c87e88d0fea622ee45e9733d2242b080
 
 COCOAPODS: 0.32.1
