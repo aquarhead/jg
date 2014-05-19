@@ -16,6 +16,8 @@
 		1AFCDC5B18BD225800BE8461 /* JGBookTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFCDC5A18BD225800BE8461 /* JGBookTableViewController.m */; };
 		4F18FE971929FF2000895108 /* JGTransparentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F18FE951929FF2000895108 /* JGTransparentViewController.m */; };
 		4F18FE981929FF2000895108 /* JGTransparentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F18FE961929FF2000895108 /* JGTransparentViewController.xib */; };
+		4F18FE9A192A5BDF00895108 /* Powerup2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4F18FE99192A5BDF00895108 /* Powerup2.wav */; };
+		4F18FE9C192A5CE900895108 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F18FE9B192A5CE900895108 /* AudioToolbox.framework */; };
 		4F1FB97B1872A049000FCFDB /* EditPageCover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB97A1872A049000FCFDB /* EditPageCover.xib */; };
 		4F1FB9831872A7A1000FCFDB /* EditPageTypeOneLandscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB9821872A7A1000FCFDB /* EditPageTypeOneLandscape.xib */; };
 		4F1FB9851872A7BB000FCFDB /* EditPageTypeOnePortrait.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB9841872A7BB000FCFDB /* EditPageTypeOnePortrait.xib */; };
@@ -79,6 +81,8 @@
 		4F18FE941929FF2000895108 /* JGTransparentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGTransparentViewController.h; sourceTree = "<group>"; };
 		4F18FE951929FF2000895108 /* JGTransparentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGTransparentViewController.m; sourceTree = "<group>"; };
 		4F18FE961929FF2000895108 /* JGTransparentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JGTransparentViewController.xib; sourceTree = "<group>"; };
+		4F18FE99192A5BDF00895108 /* Powerup2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Powerup2.wav; sourceTree = "<group>"; };
+		4F18FE9B192A5CE900895108 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		4F1FB97A1872A049000FCFDB /* EditPageCover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPageCover.xib; sourceTree = "<group>"; };
 		4F1FB9821872A7A1000FCFDB /* EditPageTypeOneLandscape.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPageTypeOneLandscape.xib; sourceTree = "<group>"; };
 		4F1FB9841872A7BB000FCFDB /* EditPageTypeOnePortrait.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPageTypeOnePortrait.xib; sourceTree = "<group>"; };
@@ -129,6 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F18FE9C192A5CE900895108 /* AudioToolbox.framework in Frameworks */,
 				4FD73EE91851AEA700C9F568 /* AssetsLibrary.framework in Frameworks */,
 				4F2FEEF8184B1A4A001A7AFE /* CoreGraphics.framework in Frameworks */,
 				4F2FEEFA184B1A4A001A7AFE /* UIKit.framework in Frameworks */,
@@ -257,6 +262,7 @@
 		4F2FEEF4184B1A4A001A7AFE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4F18FE9B192A5CE900895108 /* AudioToolbox.framework */,
 				4FD73EE81851AEA700C9F568 /* AssetsLibrary.framework */,
 				4F2FEEF5184B1A4A001A7AFE /* Foundation.framework */,
 				4F2FEEF7184B1A4A001A7AFE /* CoreGraphics.framework */,
@@ -285,6 +291,7 @@
 		4F2FEEFC184B1A4A001A7AFE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4F18FE99192A5BDF00895108 /* Powerup2.wav */,
 				4FBB080E189E25340094B1E4 /* README.md */,
 				4F2FEF04184B1A4A001A7AFE /* JGAppDelegate.h */,
 				4F2FEF05184B1A4A001A7AFE /* JGAppDelegate.m */,
@@ -431,6 +438,7 @@
 				4F2FEF00184B1A4A001A7AFE /* InfoPlist.strings in Resources */,
 				4F1FB9891872A872000FCFDB /* EditPageTypeTwoPortrait.xib in Resources */,
 				4FBB080F189E25340094B1E4 /* README.md in Resources */,
+				4F18FE9A192A5BDF00895108 /* Powerup2.wav in Resources */,
 				4F2FEF09184B1A4A001A7AFE /* Main.storyboard in Resources */,
 				4F1FB9871872A85B000FCFDB /* EditPageTypeTwoLandscape.xib in Resources */,
 				4F1FB97B1872A049000FCFDB /* EditPageCover.xib in Resources */,

@@ -8,6 +8,7 @@
 
 #import "JGImageGridViewController.h"
 #import "JGImagePoolViewController.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface JGImageGridViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -73,6 +74,13 @@ typedef NS_ENUM(NSUInteger, JGImageGridCellTag) {
             [alertView show];
         }
     } else {
+        // play sound
+        NSURL *fileURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"Powerup2" ofType:@"wav"]];
+        CFURLRef url = (__bridge CFURLRef)fileURL;
+        SystemSoundID soundID;
+        AudioServicesCreateSystemSoundID(url, &soundID);
+        AudioServicesPlaySystemSound(soundID);
+
         if (![self.poolViewController poolFull]) {
             [self.poolViewController addPhoto:photo];
         } else {
