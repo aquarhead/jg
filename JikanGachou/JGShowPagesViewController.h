@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol JGShowPagesContent <NSObject>
+
+- (NSUInteger)idx;
+
+@end
+
 @interface JGShowPagesViewController : UIPageViewController
 
 @end

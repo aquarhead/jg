@@ -1,15 +1,15 @@
 //
-//  JGPageViewController.h
+//  JGTransparentViewController.h
 //  JikanGachou
 //
-//  Created by AquarHEAD L. on 5/17/14.
+//  Created by AquarHEAD L. on 5/19/14.
 //  Copyright (c) 2014 TeaWhen. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "JGShowPagesViewController.h"
 
-@interface JGPageViewController : UIViewController <JGShowPagesContent>
+@interface JGTransparentViewController : UIViewController <JGShowPagesContent>
 
 @property (nonatomic, strong) NSString *pageIndex;
 

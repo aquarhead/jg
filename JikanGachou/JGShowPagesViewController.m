@@ -8,6 +8,7 @@
 
 #import "JGShowPagesViewController.h"
 #import "JGPageViewController.h"
+#import "JGTransparentViewController.h"
 
 @interface JGShowPagesViewController () <UIPageViewControllerDataSource>
 
@@ -25,11 +26,21 @@
 
     self.vcs = [NSMutableArray new];
 
+    JGTransparentViewController *vc = [JGTransparentViewController new];
+    vc.pageIndex = @"0";
+
+    [self.vcs addObject:vc];
+
     for (int i=0; i<20; i++) {
         JGPageViewController *vc = [JGPageViewController new];
-        vc.pageIndex = [NSString stringWithFormat:@"%d", i];
+        vc.pageIndex = [NSString stringWithFormat:@"%d", i+1];
         [self.vcs addObject:vc];
     }
+
+    JGTransparentViewController *vc2 = [JGTransparentViewController new];
+    vc2.pageIndex = @"21";
+
+    [self.vcs addObject:vc2];
 
     self.dataSource = self;
     [self setViewControllers:@[self.vcs[0], self.vcs[1]]
@@ -42,8 +53,8 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
-    JGPageViewController *vc = (JGPageViewController *)viewController;
-    NSUInteger idx = [vc.pageIndex integerValue];
+    id<JGShowPagesContent> vc = viewController;
+    NSUInteger idx = [vc idx];
     if (idx == 0) {
         return nil;
     }
@@ -52,8 +63,8 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
-    JGPageViewController *vc = (JGPageViewController *)viewController;
-    NSUInteger idx = [vc.pageIndex integerValue];
+    id<JGShowPagesContent> vc = viewController;
+    NSUInteger idx = [vc idx];
     if (idx == [self.vcs count] - 1) {
         return nil;
     }

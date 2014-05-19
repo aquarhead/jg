@@ -22,4 +22,9 @@
     self.testLabel.text = self.pageIndex;
 }
 
+- (NSUInteger)idx
+{
+    return [self.pageIndex intValue];
+}
+
 @end
