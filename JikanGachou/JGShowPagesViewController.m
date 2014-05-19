@@ -9,6 +9,7 @@
 #import "JGShowPagesViewController.h"
 #import "JGPageViewController.h"
 #import "JGTransparentViewController.h"
+#import "JGAdvancedTransparentViewController.h"
 
 @interface JGShowPagesViewController () <UIPageViewControllerDataSource>
 
@@ -31,14 +32,24 @@
 
     [self.vcs addObject:vc];
 
+    JGAdvancedTransparentViewController *vc3 = [JGAdvancedTransparentViewController new];
+    vc3.pageIndex = @"1";
+
+    [self.vcs addObject:vc3];
+
+    JGAdvancedTransparentViewController *vc4 = [JGAdvancedTransparentViewController new];
+    vc4.pageIndex = @"2";
+
+    [self.vcs addObject:vc4];
+
     for (int i=0; i<20; i++) {
         JGPageViewController *vc = [JGPageViewController new];
-        vc.pageIndex = [NSString stringWithFormat:@"%d", i+1];
+        vc.pageIndex = [NSString stringWithFormat:@"%d", i+3];
         [self.vcs addObject:vc];
     }
 
     JGTransparentViewController *vc2 = [JGTransparentViewController new];
-    vc2.pageIndex = @"21";
+    vc2.pageIndex = @"23";
 
     [self.vcs addObject:vc2];
 

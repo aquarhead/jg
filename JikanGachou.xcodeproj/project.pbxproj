@@ -18,6 +18,8 @@
 		4F18FE981929FF2000895108 /* JGTransparentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F18FE961929FF2000895108 /* JGTransparentViewController.xib */; };
 		4F18FE9A192A5BDF00895108 /* Powerup2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4F18FE99192A5BDF00895108 /* Powerup2.wav */; };
 		4F18FE9C192A5CE900895108 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F18FE9B192A5CE900895108 /* AudioToolbox.framework */; };
+		4F18FEA0192A63ED00895108 /* JGAdvancedTransparentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F18FE9E192A63ED00895108 /* JGAdvancedTransparentViewController.m */; };
+		4F18FEA1192A63ED00895108 /* JGAdvancedTransparentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F18FE9F192A63ED00895108 /* JGAdvancedTransparentViewController.xib */; };
 		4F1FB97B1872A049000FCFDB /* EditPageCover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB97A1872A049000FCFDB /* EditPageCover.xib */; };
 		4F1FB9831872A7A1000FCFDB /* EditPageTypeOneLandscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB9821872A7A1000FCFDB /* EditPageTypeOneLandscape.xib */; };
 		4F1FB9851872A7BB000FCFDB /* EditPageTypeOnePortrait.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB9841872A7BB000FCFDB /* EditPageTypeOnePortrait.xib */; };
@@ -83,6 +85,9 @@
 		4F18FE961929FF2000895108 /* JGTransparentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JGTransparentViewController.xib; sourceTree = "<group>"; };
 		4F18FE99192A5BDF00895108 /* Powerup2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Powerup2.wav; sourceTree = "<group>"; };
 		4F18FE9B192A5CE900895108 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		4F18FE9D192A63ED00895108 /* JGAdvancedTransparentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGAdvancedTransparentViewController.h; sourceTree = "<group>"; };
+		4F18FE9E192A63ED00895108 /* JGAdvancedTransparentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGAdvancedTransparentViewController.m; sourceTree = "<group>"; };
+		4F18FE9F192A63ED00895108 /* JGAdvancedTransparentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JGAdvancedTransparentViewController.xib; sourceTree = "<group>"; };
 		4F1FB97A1872A049000FCFDB /* EditPageCover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPageCover.xib; sourceTree = "<group>"; };
 		4F1FB9821872A7A1000FCFDB /* EditPageTypeOneLandscape.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPageTypeOneLandscape.xib; sourceTree = "<group>"; };
 		4F1FB9841872A7BB000FCFDB /* EditPageTypeOnePortrait.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPageTypeOnePortrait.xib; sourceTree = "<group>"; };
@@ -235,6 +240,9 @@
 				4F3103AE19278FCE002ADF59 /* JGPageViewController.h */,
 				4F3103AF19278FCE002ADF59 /* JGPageViewController.m */,
 				4F3103B019278FCE002ADF59 /* JGPageViewController.xib */,
+				4F18FE9D192A63ED00895108 /* JGAdvancedTransparentViewController.h */,
+				4F18FE9E192A63ED00895108 /* JGAdvancedTransparentViewController.m */,
+				4F18FE9F192A63ED00895108 /* JGAdvancedTransparentViewController.xib */,
 			);
 			name = "Show Pages";
 			sourceTree = "<group>";
@@ -429,6 +437,7 @@
 				4F18FE981929FF2000895108 /* JGTransparentViewController.xib in Resources */,
 				4F1FB98B1872A8A3000FCFDB /* EditPageTypeMixedLeftLandscape.xib in Resources */,
 				4F1FB9851872A7BB000FCFDB /* EditPageTypeOnePortrait.xib in Resources */,
+				4F18FEA1192A63ED00895108 /* JGAdvancedTransparentViewController.xib in Resources */,
 				4F3103B219278FCE002ADF59 /* JGPageViewController.xib in Resources */,
 				4F1FB9911872A992000FCFDB /* EditPageTitle.xib in Resources */,
 				4F1FB98F1872A980000FCFDB /* EditPageBackCover.xib in Resources */,
@@ -493,6 +502,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F18FEA0192A63ED00895108 /* JGAdvancedTransparentViewController.m in Sources */,
 				4F2FEF02184B1A4A001A7AFE /* main.m in Sources */,
 				1AFCDC5B18BD225800BE8461 /* JGBookTableViewController.m in Sources */,
 				4FD73EE718518A3C00C9F568 /* JGImageAlbumViewController.m in Sources */,
