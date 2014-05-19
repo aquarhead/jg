@@ -60,16 +60,4 @@
     return [self.vcs objectAtIndex:idx + 1];
 }
 
-#pragma mark - Set Orientation
-
-- (NSUInteger)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskLandscapeRight;
-}
-
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
-{
-    return UIInterfaceOrientationLandscapeRight;
-}
-
 @end

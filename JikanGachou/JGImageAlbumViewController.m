@@ -103,8 +103,14 @@ typedef NS_ENUM(NSUInteger, JGImagePickerCellTag) {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (IBAction)cancel:(id)sender {
+- (IBAction)cancel:(UIBarButtonItem *)sender
+{
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)next:(UIBarButtonItem *)sender
+{
+    [self.poolViewController startCreateBook];
 }
 
 @end

@@ -197,6 +197,11 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     return (count == kJGPoolMostPhotos);
 }
 
+- (void)startCreateBook
+{
+    [self performSegueWithIdentifier:@"createBook" sender:self];
+}
+
 - (void)saveBookAndExit
 {
     static NSDateFormatter *formatter;
@@ -204,7 +209,7 @@ const NSUInteger kJGPoolMostPhotos  = 40;
         formatter = [NSDateFormatter new];
         formatter.dateFormat = @"yyyy MM dd";
     }
-    for (int i=0; i<20; i++) {
+    for (int i = 0; i < 20; i++) {
         NSString *pageKey = [NSString stringWithFormat:@"page%d", i];
         NSMutableDictionary *page = [self.book[pageKey] mutableCopy];
         NSDictionary *pageTypeMapping = @{@"EditPageTypeOneLandscape": @"h",

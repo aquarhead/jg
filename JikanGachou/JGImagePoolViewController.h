@@ -46,6 +46,7 @@
 - (BOOL)isValidNumberOfPhotos;
 - (BOOL)poolFull;
 
+- (void)startCreateBook;
 - (void)saveBookAndExit;
 
 @end

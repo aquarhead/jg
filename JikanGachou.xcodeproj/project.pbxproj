@@ -11,6 +11,7 @@
 		1A2F6459187F63AA00BC4D06 /* JGEditPageMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F6458187F63AA00BC4D06 /* JGEditPageMainView.m */; };
 		1A7E24FF1851FD9500113959 /* JGImagePoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E24FE1851FD9500113959 /* JGImagePoolViewController.m */; };
 		1A7E25021851FDCF00113959 /* JGImageGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E25011851FDCF00113959 /* JGImageGridViewController.m */; };
+		1A879D6C1929DD4B00137A04 /* JGBookContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A879D6B1929DD4B00137A04 /* JGBookContainerViewController.m */; };
 		1AD436E9185DFE7F003B5D19 /* JGEditPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD436E8185DFE7F003B5D19 /* JGEditPageViewController.m */; };
 		1AFCDC5B18BD225800BE8461 /* JGBookTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFCDC5A18BD225800BE8461 /* JGBookTableViewController.m */; };
 		4F1FB97B1872A049000FCFDB /* EditPageCover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1FB97A1872A049000FCFDB /* EditPageCover.xib */; };
@@ -66,6 +67,8 @@
 		1A7E24FE1851FD9500113959 /* JGImagePoolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGImagePoolViewController.m; sourceTree = "<group>"; };
 		1A7E25001851FDCF00113959 /* JGImageGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGImageGridViewController.h; sourceTree = "<group>"; };
 		1A7E25011851FDCF00113959 /* JGImageGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGImageGridViewController.m; sourceTree = "<group>"; };
+		1A879D6A1929DD4B00137A04 /* JGBookContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGBookContainerViewController.h; sourceTree = "<group>"; };
+		1A879D6B1929DD4B00137A04 /* JGBookContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGBookContainerViewController.m; sourceTree = "<group>"; };
 		1AD436E7185DFE7F003B5D19 /* JGEditPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGEditPageViewController.h; sourceTree = "<group>"; };
 		1AD436E8185DFE7F003B5D19 /* JGEditPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGEditPageViewController.m; sourceTree = "<group>"; };
 		1AFCDC5918BD225800BE8461 /* JGBookTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGBookTableViewController.h; sourceTree = "<group>"; };
@@ -212,6 +215,8 @@
 		4F2D8F6A1926242100965738 /* Show Pages */ = {
 			isa = PBXGroup;
 			children = (
+				1A879D6A1929DD4B00137A04 /* JGBookContainerViewController.h */,
+				1A879D6B1929DD4B00137A04 /* JGBookContainerViewController.m */,
 				4F2D8F6B1926246100965738 /* JGShowPagesViewController.h */,
 				4F2D8F6C1926246100965738 /* JGShowPagesViewController.m */,
 				4F3103AE19278FCE002ADF59 /* JGPageViewController.h */,
@@ -485,6 +490,7 @@
 				4F2D8F6D1926246100965738 /* JGShowPagesViewController.m in Sources */,
 				1A2F6459187F63AA00BC4D06 /* JGEditPageMainView.m in Sources */,
 				1A2F6456187F634400BC4D06 /* JGEditPageCell.m in Sources */,
+				1A879D6C1929DD4B00137A04 /* JGBookContainerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

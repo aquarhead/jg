@@ -100,4 +100,9 @@ typedef NS_ENUM(NSUInteger, JGImageGridCellTag) {
     }
 }
 
+- (IBAction)next:(UIBarButtonItem *)sender
+{
+    [self.poolViewController startCreateBook];
+}
+
 @end
