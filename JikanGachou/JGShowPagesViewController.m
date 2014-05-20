@@ -8,8 +8,7 @@
 
 #import "JGShowPagesViewController.h"
 #import "JGPageViewController.h"
-#import "JGTransparentViewController.h"
-#import "JGAdvancedTransparentViewController.h"
+#import "JGEditPageViewController.h"
 
 @interface JGShowPagesViewController () <UIPageViewControllerDataSource>
 
@@ -27,30 +26,34 @@
 
     self.vcs = [NSMutableArray new];
 
-    JGTransparentViewController *vc = [JGTransparentViewController new];
+    JGPageViewController *vc = [JGPageViewController new];
     vc.pageIndex = @"0";
-
     [self.vcs addObject:vc];
 
-    JGAdvancedTransparentViewController *vc3 = [JGAdvancedTransparentViewController new];
+    JGPageViewController *vc3 = [JGPageViewController new];
     vc3.pageIndex = @"1";
-
+    [vc3 switchType:kJGEditPageCover];
     [self.vcs addObject:vc3];
 
-    JGAdvancedTransparentViewController *vc4 = [JGAdvancedTransparentViewController new];
-    vc4.pageIndex = @"2";
+    JGPageViewController *vc33 = [JGPageViewController new];
+    vc33.pageIndex = @"2";
+    [self.vcs addObject:vc33];
 
+    JGPageViewController *vc4 = [JGPageViewController new];
+    vc4.pageIndex = @"3";
+    [vc4 switchType:kJGEditPageTitle];
     [self.vcs addObject:vc4];
 
-    for (int i=0; i<20; i++) {
+    for (int i = 0; i < 20; i++) {
         JGPageViewController *vc = [JGPageViewController new];
-        vc.pageIndex = [NSString stringWithFormat:@"%d", i+3];
+        vc.pageIndex = [NSString stringWithFormat:@"%d", i + 4];
+        [vc switchType:kJGEditPageTypeOneLandscape];
         [self.vcs addObject:vc];
     }
 
-    JGTransparentViewController *vc2 = [JGTransparentViewController new];
-    vc2.pageIndex = @"23";
-
+    JGPageViewController *vc2 = [JGPageViewController new];
+    vc2.pageIndex = @"24";
+    [vc2 switchType:kJGEditPageBackCover];
     [self.vcs addObject:vc2];
 
     self.dataSource = self;
@@ -64,7 +67,7 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
-    id<JGShowPagesContent> vc = viewController;
+    id<JGShowPagesContent> vc = (id<JGShowPagesContent>)viewController;
     NSUInteger idx = [vc idx];
     if (idx == 0) {
         return nil;
@@ -74,7 +77,7 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
-    id<JGShowPagesContent> vc = viewController;
+    id<JGShowPagesContent> vc = (id<JGShowPagesContent>)viewController;
     NSUInteger idx = [vc idx];
     if (idx == [self.vcs count] - 1) {
         return nil;

@@ -9,8 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "JGShowPagesViewController.h"
 
+static NSString * const kJGEditPageCover                  = @"EditPageCover";
+static NSString * const kJGEditPageTitle                  = @"EditPageTitle";
+static NSString * const kJGEditPageTypeOneLandscape       = @"EditPageTypeOneLandscape";
+static NSString * const kJGEditPageTypeOnePortrait        = @"EditPageTypeOnePortrait";
+static NSString * const kJGEditPageTypeMixedLeftLandscape = @"EditPageTypeMixedLeftLandscape";
+static NSString * const kJGEditPageTypeMixedLeftPortrait  = @"EditPageTypeMixedLeftPortrait";
+static NSString * const kJGEditPageTypeTwoLandscape       = @"EditPageTypeTwoLandscape";
+static NSString * const kJGEditPageTypeTwoPortrait        = @"EditPageTypeTwoPortrait";
+static NSString * const kJGEditPageBackCover              = @"EditPageBackCover";
+
 @interface JGPageViewController : UIViewController <JGShowPagesContent>
 
 @property (nonatomic, strong) NSString *pageIndex;
+
+- (void)switchType:(NSString *)type;
 
 @end

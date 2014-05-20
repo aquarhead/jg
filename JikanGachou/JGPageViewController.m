@@ -10,8 +10,6 @@
 
 @interface JGPageViewController ()
 
-@property (weak, nonatomic) IBOutlet UILabel *testLabel;
-
 @end
 
 @implementation JGPageViewController
@@ -19,12 +17,21 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.testLabel.text = self.pageIndex;
 }
 
 - (NSUInteger)idx
 {
     return [self.pageIndex intValue];
+}
+
+- (void)switchType:(NSString *)type
+{
+    for (UIView *subview in self.view.subviews) {
+        [subview removeFromSuperview];
+    }
+
+    UIView *mainView = [[[NSBundle mainBundle] loadNibNamed:type owner:self options:nil] firstObject];
+    [self.view addSubview:mainView];
 }
 
 @end
