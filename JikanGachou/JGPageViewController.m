@@ -14,6 +14,16 @@
 
 @implementation JGPageViewController
 
++ (JGPageViewController *)pageViewControllerWithIndex:(NSNumber *)idx andType:(NSString *)type
+{
+    JGPageViewController *vc = [JGPageViewController new];
+    vc.pageIndex = idx;
+    if (type) {
+        [vc switchType:type];
+    }
+    return vc;
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
