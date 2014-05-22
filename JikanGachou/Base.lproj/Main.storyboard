@@ -323,11 +323,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <containerView clearsContextBeforeDrawing="NO" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="o7E-BD-fja">
-                                <rect key="frame" x="0.0" y="50" width="480" height="270"/>
+                                <rect key="frame" x="20" y="68" width="440" height="220"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="480" id="I2s-7H-cYT"/>
+                                    <constraint firstAttribute="width" constant="440" id="I2s-7H-cYT"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="Upe-oG-jdC" kind="embed" id="d1n-az-bo3"/>
@@ -346,9 +346,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="o7E-BD-fja" firstAttribute="top" secondItem="6wi-Gd-YFt" secondAttribute="bottom" constant="10" id="FH5-JO-q7f"/>
+                            <constraint firstItem="o7E-BD-fja" firstAttribute="top" secondItem="6wi-Gd-YFt" secondAttribute="bottom" constant="28" id="FH5-JO-q7f"/>
                             <constraint firstAttribute="centerX" secondItem="o7E-BD-fja" secondAttribute="centerX" id="K5B-uq-6CK"/>
-                            <constraint firstItem="Bji-FN-8Ct" firstAttribute="top" secondItem="o7E-BD-fja" secondAttribute="bottom" id="jFA-jZ-5lI"/>
+                            <constraint firstItem="Bji-FN-8Ct" firstAttribute="top" secondItem="o7E-BD-fja" secondAttribute="bottom" constant="32" id="jFA-jZ-5lI"/>
                             <constraint firstItem="6wi-Gd-YFt" firstAttribute="leading" secondItem="ixv-tb-vLA" secondAttribute="leading" constant="20" symbolic="YES" id="jLn-hY-VjA"/>
                             <constraint firstItem="6wi-Gd-YFt" firstAttribute="top" secondItem="ixv-tb-vLA" secondAttribute="top" constant="10" id="w2S-kM-oUv"/>
                         </constraints>
@@ -477,79 +477,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bJD-MR-BkW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2001" y="-752"/>
-        </scene>
-        <!--Edit Page View Controller - 选择图片-->
-        <scene sceneID="oqw-0w-B0B">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="3dW-pO-oxH" customClass="JGEditPageViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="m2y-Qp-uj4"/>
-                        <viewControllerLayoutGuide type="bottom" id="J3v-9t-aew"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="1Vl-jK-mKx">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rUN-Vc-etx">
-                                <rect key="frame" x="0.0" y="90" width="320" height="300"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="0.93660101880000002" blue="0.87186263580000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="guy-MW-Xrq"/>
-                                    <constraint firstAttribute="height" constant="300" id="zBr-uY-Rnj"/>
-                                </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Mb7-9d-hA8">
-                                    <size key="itemSize" width="320" height="300"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="HNt-Qc-Pp9" customClass="JGEditPageCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <gestureRecognizers/>
-                                    </collectionViewCell>
-                                </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="3dW-pO-oxH" id="wPI-hp-5Wv"/>
-                                    <outlet property="delegate" destination="3dW-pO-oxH" id="1se-8T-TqJ"/>
-                                    <outletCollection property="gestureRecognizers" destination="Cza-wV-zny" appends="YES" id="Hab-OI-3W9"/>
-                                </connections>
-                            </collectionView>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="0.93660101878241642" blue="0.87186263577942547" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="centerY" secondItem="rUN-Vc-etx" secondAttribute="centerY" id="A27-SE-C7L"/>
-                            <constraint firstAttribute="centerX" secondItem="rUN-Vc-etx" secondAttribute="centerX" id="h8Y-m9-PYr"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="选择图片" id="dFy-Ak-WmE">
-                        <barButtonItem key="rightBarButtonItem" title="提交" id="IKU-61-Ccm">
-                            <connections>
-                                <action selector="submitClicked:" destination="3dW-pO-oxH" id="M7U-qo-MRx"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="collectionViewYConstraint" destination="A27-SE-C7L" id="Uun-4V-5WU"/>
-                        <outlet property="pagesCollectionView" destination="rUN-Vc-etx" id="wP3-Sa-VQ7"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Y9-ci-xTS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Cza-wV-zny">
-                    <connections>
-                        <action selector="collectionViewTouched:" destination="3dW-pO-oxH" id="69w-Sj-z3M"/>
-                    </connections>
-                </tapGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="2001" y="-1430"/>
         </scene>
         <!--Submit Page View Controller - 更新状态-->
         <scene sceneID="Fhz-Za-WBF">
