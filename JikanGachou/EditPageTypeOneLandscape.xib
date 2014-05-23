@@ -10,34 +10,58 @@
             <rect key="frame" x="0.0" y="0.0" width="220" height="220"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="2Nb-WY-WzJ">
-                    <rect key="frame" x="20" y="15" width="180" height="86"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="2Nb-WY-WzJ">
+                    <rect key="frame" x="20" y="27" width="180" height="115"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="115" id="eQy-rJ-vSa"/>
+                    </constraints>
                 </imageView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="点击添加描述…" translatesAutoresizingMaskIntoConstraints="NO" id="eou-CB-zsf">
-                    <rect key="frame" x="56" y="119" width="144" height="52"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="点击添加描述…" translatesAutoresizingMaskIntoConstraints="NO" id="eou-CB-zsf">
+                    <rect key="frame" x="14" y="169" width="192" height="36"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" 1 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcQ-5q-dgs">
-                    <rect key="frame" x="20" y="119" width="20" height="23"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 1 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcQ-5q-dgs">
+                    <rect key="frame" x="20" y="152" width="16" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.61820392219999998" green="0.61820392219999998" blue="0.61820392219999998" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" name="Baskerville-SemiBoldItalic" family="Baskerville" pointSize="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" priority="250" constant="19" id="CH1-Wg-XhL"/>
+                        <constraint firstAttribute="width" priority="250" constant="16" id="lOA-LP-kDo"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Baskerville-SemiBoldItalic" family="Baskerville" pointSize="16"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" July 2011" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPt-A3-QgJ">
-                    <rect key="frame" x="20" y="141" width="133" height="59"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" July 2011" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPt-A3-QgJ">
+                    <rect key="frame" x="41" y="148" width="133" height="27"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="18"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="133" id="XxV-FQ-4FZ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="15"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="eou-CB-zsf" secondAttribute="trailing" constant="14" id="6Yi-mL-yJY"/>
+                <constraint firstItem="2Nb-WY-WzJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="8o6-wa-ISM"/>
+                <constraint firstAttribute="bottom" secondItem="eou-CB-zsf" secondAttribute="bottom" constant="15" id="Gz0-Lw-O4O"/>
+                <constraint firstItem="eou-CB-zsf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="14" id="Lg1-fg-yqe"/>
+                <constraint firstAttribute="trailing" secondItem="2Nb-WY-WzJ" secondAttribute="trailing" constant="20" id="Mz0-x9-Dq2"/>
+                <constraint firstItem="2Nb-WY-WzJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="27" id="aGA-0P-OU7"/>
+                <constraint firstItem="MPt-A3-QgJ" firstAttribute="leading" secondItem="lcQ-5q-dgs" secondAttribute="trailing" constant="5" id="bGX-5i-xtC"/>
+                <constraint firstAttribute="bottom" secondItem="MPt-A3-QgJ" secondAttribute="bottom" constant="45" id="jL3-TE-t6c"/>
+                <constraint firstItem="MPt-A3-QgJ" firstAttribute="top" secondItem="2Nb-WY-WzJ" secondAttribute="bottom" constant="6" id="lKP-Vm-LWR"/>
+                <constraint firstItem="eou-CB-zsf" firstAttribute="top" secondItem="2Nb-WY-WzJ" secondAttribute="bottom" constant="27" id="pcO-aU-Qbc"/>
+                <constraint firstAttribute="trailing" secondItem="MPt-A3-QgJ" secondAttribute="trailing" constant="46" id="qph-5U-sbS"/>
+                <constraint firstItem="MPt-A3-QgJ" firstAttribute="centerY" secondItem="lcQ-5q-dgs" secondAttribute="centerY" id="tjH-bu-CxI"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="dayLabel1" destination="lcQ-5q-dgs" id="5BZ-ES-ciL"/>
