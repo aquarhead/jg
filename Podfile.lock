@@ -79,15 +79,15 @@ EXTERNAL SOURCES:
     :git: git@github.com:TeaWhen/WSCoachMarksView.git
 
 SPEC CHECKSUMS:
-  AFNetworking: 01aa7c3aa9a200b94943e54072a4373f14b3d219
+  AFNetworking: ab63e259fe91eef4519b371ef0a4955af0e73e64
   KIImagePager: 7b7074ddebcfd578f3f48355f3bfc5f428ddb281
-  MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
-  MD5Digest: 355c8733ab522cc516a4047e2d93e2b842947b18
-  MRProgress: c04ecd74ba9ad5a32f9188014db20554dd74eba9
-  NSMutableArray-Shuffle: 3abacc42685e632ecaa367652907bc4356104d26
-  NyaruDB: 285a29183327bf0d67c59c36d44863c085187119
+  MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
+  MD5Digest: 058b7162b1fc8c30feddf10bfe66e0565797c45f
+  MRProgress: e588fb8d0fba293715eaf0e485dd8402f4ce1de6
+  NSMutableArray-Shuffle: fc5dc21933a5b868331eecc866409177477a37ce
+  NyaruDB: 188fc7e865cf14c93258a80c20413ab0c734555c
   StaticDataTableViewController: 5c46c12bd116e7a8bab4e3b6de5255ae4fa97e5b
-  TestFlightSDK: 7e16443981ab25642b68d323e1745b567de9cf15
+  TestFlightSDK: 0c24c533748d0d84bfe7a3cb6036fa79124d84ee
   WSCoachMarksView: 93657355c87e88d0fea622ee45e9733d2242b080
 
-COCOAPODS: 0.32.1
+COCOAPODS: 0.33.1
