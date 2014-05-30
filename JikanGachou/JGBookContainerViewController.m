@@ -24,6 +24,11 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)editDescription:(UIButton *)sender
+{
+    [self performSegueWithIdentifier:@"editDescription" sender:self];
+}
+
 #pragma mark - Set Orientation
 
 - (NSUInteger)supportedInterfaceOrientations
