@@ -40,8 +40,8 @@
         [subview removeFromSuperview];
     }
 
-    UIView *mainView = [[[NSBundle mainBundle] loadNibNamed:type owner:self options:nil] firstObject];
-    [self.view addSubview:mainView];
+    self.mainView = [[[NSBundle mainBundle] loadNibNamed:type owner:self options:nil] firstObject];
+    [self.view addSubview:self.mainView];
 }
 
 @end

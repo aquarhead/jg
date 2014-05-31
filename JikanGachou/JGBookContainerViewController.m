@@ -7,6 +7,7 @@
 //
 
 #import "JGBookContainerViewController.h"
+#import "JGShowPagesViewController.h"
 
 @interface JGBookContainerViewController ()
 
@@ -39,6 +40,15 @@
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
 {
     return UIInterfaceOrientationLandscapeRight;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"embedShowPages"]) {
+        JGShowPagesViewController *vc = segue.destinationViewController;
+        vc.photos = [self.photos copy];
+        vc.poolViewController = self.poolViewController;
+    }
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JGImagePoolViewController.h"
 
 @protocol JGShowPagesContent <NSObject>
 
@@ -15,5 +16,8 @@
 @end
 
 @interface JGShowPagesViewController : UIPageViewController
+
+@property (strong) NSArray *photos;
+@property (weak, nonatomic) JGImagePoolViewController *poolViewController;
 
 @end

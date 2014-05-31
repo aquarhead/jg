@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "JGShowPagesViewController.h"
+#import "JGEditPageMainView.h"
 
 static NSString * const kJGEditPageCover                  = @"EditPageCover";
 static NSString * const kJGEditPageTitle                  = @"EditPageTitle";
@@ -21,6 +22,7 @@ static NSString * const kJGEditPageBackCover              = @"EditPageBackCover"
 
 @interface JGPageViewController : UIViewController <JGShowPagesContent>
 
+@property (nonatomic) JGEditPageMainView *mainView;
 @property (nonatomic, strong) NSNumber *pageIndex;
 
 + (JGPageViewController *)pageViewControllerWithIndex:(NSNumber *)idx andType:(NSString *)type;

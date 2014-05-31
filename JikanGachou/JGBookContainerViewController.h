@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JGImagePoolViewController.h"
 
 @interface JGBookContainerViewController : UIViewController
+
+@property (strong) NSArray *photos;
+@property (weak, nonatomic) JGImagePoolViewController *poolViewController;
 
 @end

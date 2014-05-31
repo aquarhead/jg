@@ -8,14 +8,12 @@
 
 #import "JGImagePoolViewController.h"
 #import "JGSubmitPageViewController.h"
+#import "JGShowPagesViewController.h"
+#import "JGPhotoObject.h"
 #import <NyaruDB.h>
 #import <NSMutableArray+Shuffle.h>
 
-#ifdef DEBUG
-const NSUInteger kJGPoolLeastPhotos = 1;
-#else
 const NSUInteger kJGPoolLeastPhotos = 20;
-#endif
 const NSUInteger kJGPoolMostPhotos  = 40;
 
 @interface JGImagePoolViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
@@ -253,6 +251,23 @@ const NSUInteger kJGPoolMostPhotos  = 40;
     [self dismissViewControllerAnimated:YES completion:^{
         [self.homeVC openWithBookUUID:self.book[@"key"]];
     }];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"createBook"]) {
+        JGShowPagesViewController *vc = segue.destinationViewController;
+        NSMutableArray *photosArray = [NSMutableArray new];
+        for (ALAsset *p in self.selectedPhotos) {
+            JGPhotoObject *photoObj = [JGPhotoObject new];
+            photoObj.url = [p.defaultRepresentation.url absoluteString];
+            photoObj.date = [p valueForProperty:ALAssetPropertyDate];
+            photoObj.text = @"";
+            [photosArray addObject:photoObj];
+        }
+        vc.photos = [photosArray copy];
+        vc.poolViewController = self;
+    }
 }
 
 @end

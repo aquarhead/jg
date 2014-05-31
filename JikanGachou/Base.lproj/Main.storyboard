@@ -330,7 +330,7 @@
                                     <constraint firstAttribute="width" constant="440" id="I2s-7H-cYT"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="Upe-oG-jdC" kind="embed" id="d1n-az-bo3"/>
+                                    <segue destination="Upe-oG-jdC" kind="embed" identifier="embedShowPages" id="d1n-az-bo3"/>
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6wi-Gd-YFt">
