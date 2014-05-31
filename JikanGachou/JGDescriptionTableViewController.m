@@ -32,8 +32,8 @@
 
 - (IBAction)donePressed:(UIBarButtonItem *)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
     self.photoObj.text = self.textField.text;
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

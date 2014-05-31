@@ -33,8 +33,18 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
 
     self.book = [self.poolViewController.book mutableCopy];
+
+    self.pages = [NSMutableArray new];
+    [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@0 andType:kJGEditPageCover]];
+    [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@1 andType:kJGEditPageTitle]];
+    for (int i = 0; i < 20; i++) {
+        [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@(i+2) andType:kJGEditPageTypeOneLandscape]];
+    }
+    [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@22 andType:nil]];
+    [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@23 andType:kJGEditPageBackCover]];
+
     [self generatePhotosForPage];
-    [self createBookPages];
+    [self updateBookPages];
 
     self.dataSource = self;
 
@@ -42,6 +52,14 @@
                    direction:UIPageViewControllerNavigationDirectionForward
                     animated:YES
                   completion:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.photosForPage) {
+        [self updateBookPages];
+    }
 }
 
 - (void)generatePhotosForPage
@@ -57,20 +75,17 @@
     }
 }
 
-- (void)createBookPages
+- (void)updateBookPages
 {
     self.tapRecogs = [NSMutableArray new];
 
-    self.pages = [NSMutableArray new];
-    [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@0 andType:kJGEditPageCover]];
-    [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@1 andType:kJGEditPageTitle]];
     for (int i = 0; i < 20; i++) {
         NSMutableDictionary *page = [NSMutableDictionary new];
         NSMutableArray *photos = self.photosForPage[i];
-        JGPageViewController *thisPageVC = [JGPageViewController new];
-        thisPageVC.pageIndex = @(i+2);
+        JGPageViewController *thisPageVC = [self.pages objectAtIndex:i+2];
+        JGPhotoObject *po1 = photos[0];
         if ([photos count] == 1) {
-            ALAsset *p = [self.poolViewController photoWithURLString:((JGPhotoObject *)photos[0]).url];
+            ALAsset *p = [self.poolViewController photoWithURLString:po1.url];
             UIImage *img = [UIImage imageWithCGImage:p.aspectRatioThumbnail];
             CGSize size = img.size;
             if (size.width >= size.height) {
@@ -81,15 +96,16 @@
                 page[@"type"] = @"EditPageTypeOnePortrait";
             }
             [thisPageVC.mainView fillNth:1 withPhoto:p];
-            ((JGPhotoObject *)photos[0]).imageView = thisPageVC.mainView.imageView1;
+            po1.imageView = thisPageVC.mainView.imageView1;
             UITapGestureRecognizer *tr = [self makeRecog];
             [self.tapRecogs addObject:tr];
             [thisPageVC setupRecogs:@[tr]];
         }
         else {
+            JGPhotoObject *po2 = photos[1];
             // two photos
-            ALAsset *p1 = [self.poolViewController photoWithURLString:((JGPhotoObject *)photos[0]).url];
-            ALAsset *p2 = [self.poolViewController photoWithURLString:((JGPhotoObject *)photos[1]).url];
+            ALAsset *p1 = [self.poolViewController photoWithURLString:po1.url];
+            ALAsset *p2 = [self.poolViewController photoWithURLString:po2.url];
             bool p1_landscape = NO, p2_landscape = NO;
 
             // check orientation
@@ -128,8 +144,8 @@
             // fill mainView
             [thisPageVC.mainView fillNth:1 withPhoto:p1];
             [thisPageVC.mainView fillNth:2 withPhoto:p2];
-            ((JGPhotoObject *)photos[0]).imageView = thisPageVC.mainView.imageView1;
-            ((JGPhotoObject *)photos[1]).imageView = thisPageVC.mainView.imageView2;
+            po1.imageView = thisPageVC.mainView.imageView1;
+            po2.imageView = thisPageVC.mainView.imageView2;
 
             UITapGestureRecognizer *tr1 = [self makeRecog];
             [self.tapRecogs addObject:tr1];
@@ -137,20 +153,18 @@
             [self.tapRecogs addObject:tr2];
             [thisPageVC setupRecogs:@[tr1, tr2]];
 
-            //            if (page[@"text2"] && ![page[@"text2"] isEqualToString:@""]) {
-            //                [cell.mainView fillNth:2 withText:page[@"text2"]];
-            //            }
+            if (![po2.text isEqualToString:@""]) {
+                [thisPageVC.mainView fillNth:2 withText:po2.text];
+            }
+        }
+        if (![po1.text isEqualToString:@""]) {
+            [thisPageVC.mainView fillNth:1 withText:po1.text];
         }
         [self.pages addObject:thisPageVC];
         NSString *pageKey = [NSString stringWithFormat:@"page%d", i];
         self.book[pageKey] = [page copy];
     }
-    //    cell.mainView.delegate = self;
-    //    if (page[@"text"] && ![page[@"text"] isEqualToString:@""]) {
-    //        [cell.mainView fillNth:1 withText:page[@"text"]];
-    //    }
-    [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@22 andType:nil]];
-    [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@23 andType:kJGEditPageBackCover]];
+    [self reloadInputViews];
 }
 
 - (UITapGestureRecognizer *)makeRecog
