@@ -26,18 +26,16 @@
 
     self.pages = [NSMutableArray new];
 
-    [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@0 andType:nil]];
-    [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@1 andType:kJGEditPageCover]];
-    [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@2 andType:nil]];
-    [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@3 andType:kJGEditPageTitle]];
+    [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@0 andType:kJGEditPageCover]];
+    [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@1 andType:kJGEditPageTitle]];
 
     for (int i = 0; i < 20; i++) {
-        [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@(i+4) andType:kJGEditPageTypeOneLandscape]];
+        [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@(i+2) andType:kJGEditPageTypeOneLandscape]];
     }
 
-    [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@24 andType:kJGEditPageBackCover]];
+    [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@22 andType:nil]];
 
-    [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@25 andType:nil]];
+    [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@23 andType:kJGEditPageBackCover]];
 
     self.dataSource = self;
     [self setViewControllers:@[self.pages[0], self.pages[1]]
