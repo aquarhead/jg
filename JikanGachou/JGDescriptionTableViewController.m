@@ -36,4 +36,12 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        [self.textField becomeFirstResponder];
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 @end
