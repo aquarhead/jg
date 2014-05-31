@@ -14,4 +14,6 @@
 @property (strong) NSString *text;
 @property (strong) NSDate *date;
 
+@property UIImageView *imageView;
+
 @end

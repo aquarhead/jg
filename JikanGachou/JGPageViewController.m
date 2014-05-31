@@ -10,6 +10,8 @@
 
 @interface JGPageViewController ()
 
+@property (strong) NSString *type;
+
 @end
 
 @implementation JGPageViewController
@@ -40,8 +42,20 @@
         [subview removeFromSuperview];
     }
 
+    self.type = type;
     self.mainView = [[[NSBundle mainBundle] loadNibNamed:type owner:self options:nil] firstObject];
     [self.view addSubview:self.mainView];
+}
+
+- (void)setupRecogs:(NSArray *)recogs
+{
+    if ([self.type hasPrefix:@"EditPageTypeOne"]) {
+        [self.mainView.imageView1 addGestureRecognizer:recogs[0]];
+    }
+    else {
+        [self.mainView.imageView1 addGestureRecognizer:recogs[0]];
+        [self.mainView.imageView2 addGestureRecognizer:recogs[1]];
+    }
 }
 
 @end

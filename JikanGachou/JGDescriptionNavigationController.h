@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JGPhotoObject.h"
 
 @interface JGDescriptionNavigationController : UINavigationController
+
+@property JGPhotoObject *photoObj;
 
 @end

@@ -22,11 +22,12 @@ static NSString * const kJGEditPageBackCover              = @"EditPageBackCover"
 
 @interface JGPageViewController : UIViewController <JGShowPagesContent>
 
-@property (nonatomic) JGEditPageMainView *mainView;
-@property (nonatomic, strong) NSNumber *pageIndex;
+@property JGEditPageMainView *mainView;
+@property (strong) NSNumber *pageIndex;
 
 + (JGPageViewController *)pageViewControllerWithIndex:(NSNumber *)idx andType:(NSString *)type;
 
 - (void)switchType:(NSString *)type;
+- (void)setupRecogs:(NSArray *)recogs;
 
 @end

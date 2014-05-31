@@ -7,8 +7,13 @@
 //
 
 #import "JGDescriptionTableViewController.h"
+#import "JGPhotoObject.h"
+#import "JGDescriptionNavigationController.h"
 
 @interface JGDescriptionTableViewController ()
+
+@property JGPhotoObject *photoObj;
+@property (weak, nonatomic) IBOutlet UITextField *textField;
 
 @end
 
@@ -17,23 +22,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    JGDescriptionNavigationController *navi = (JGDescriptionNavigationController *)self.navigationController;
+    self.photoObj = navi.photoObj;
+    if (![self.photoObj.text isEqualToString:@""]) {
+        self.textField.text = self.photoObj.text;
+    }
 }
 
 - (IBAction)donePressed:(UIBarButtonItem *)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    self.photoObj.text = self.textField.text;
 }
 
 @end
