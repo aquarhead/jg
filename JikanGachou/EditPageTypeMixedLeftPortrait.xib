@@ -7,124 +7,63 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="JGEditPageMainView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
+            <rect key="frame" x="0.0" y="0.0" width="220" height="220"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DuJ-L8-56A">
-                    <rect key="frame" x="10" y="0.0" width="300" height="300"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="pFg-St-ulH">
+                    <rect key="frame" x="112" y="138" width="91" height="46"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="754-RO-eej">
+                    <rect key="frame" x="15" y="45" width="89" height="139"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                </imageView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" 1 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="feE-GK-3gG">
+                    <rect key="frame" x="112" y="96" width="14" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="pFg-St-ulH">
-                            <rect key="frame" x="153" y="163" width="129" height="83"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="83" id="zf7-cq-zZZ"/>
-                            </constraints>
-                        </imageView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="754-RO-eej">
-                            <rect key="frame" x="18" y="58" width="122" height="188"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="122" id="goa-TZ-WGt"/>
-                            </constraints>
-                        </imageView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 1 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="feE-GK-3gG">
-                            <rect key="frame" x="153" y="58" width="22" height="19"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="width" priority="249" constant="22" id="4hZ-JR-s9u"/>
-                                <constraint firstAttribute="height" priority="250" constant="23" id="Dj5-Hu-bhx"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="Baskerville-SemiBoldItalic" family="Baskerville" pointSize="16"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="点击添加描述…" translatesAutoresizingMaskIntoConstraints="NO" id="woS-Uu-SsG">
-                            <rect key="frame" x="148" y="73" width="159" height="38"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                        </textView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" July 2011" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0mz-Oc-TKN">
-                            <rect key="frame" x="178" y="42" width="122" height="51"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="51" id="4Bf-vq-7um"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="15"/>
-                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 1 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7yc-CU-xPq">
-                            <rect key="frame" x="153" y="121" width="22" height="19"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" priority="250" constant="23" id="5GF-QU-Eg6"/>
-                                <constraint firstAttribute="width" priority="250" constant="22" id="OYh-zW-n1Q"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="Baskerville-SemiBoldItalic" family="Baskerville" pointSize="16"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="点击添加描述…" translatesAutoresizingMaskIntoConstraints="NO" id="BGI-q4-eSz">
-                            <rect key="frame" x="148" y="135" width="159" height="36"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="36" id="E7D-eD-crK"/>
-                            </constraints>
-                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                        </textView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" July 2011" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFT-Wp-Jzg">
-                            <rect key="frame" x="178" y="105" width="122" height="51"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="51" id="lq5-vJ-27Z"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="15"/>
-                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="bottom" secondItem="754-RO-eej" secondAttribute="bottom" constant="54" id="16b-9N-uZW"/>
-                        <constraint firstItem="pFg-St-ulH" firstAttribute="leading" secondItem="feE-GK-3gG" secondAttribute="leading" id="1Oc-ZT-BS3"/>
-                        <constraint firstAttribute="trailing" secondItem="eFT-Wp-Jzg" secondAttribute="trailing" id="3kV-Y9-3aI"/>
-                        <constraint firstAttribute="trailing" secondItem="woS-Uu-SsG" secondAttribute="trailing" constant="-7" id="7La-67-2OH"/>
-                        <constraint firstItem="754-RO-eej" firstAttribute="top" secondItem="DuJ-L8-56A" secondAttribute="top" constant="58" id="CDx-On-FTW"/>
-                        <constraint firstItem="BGI-q4-eSz" firstAttribute="leading" secondItem="754-RO-eej" secondAttribute="trailing" constant="8" symbolic="YES" id="GGN-MO-Rv5"/>
-                        <constraint firstItem="BGI-q4-eSz" firstAttribute="trailing" secondItem="woS-Uu-SsG" secondAttribute="trailing" id="Jvp-HH-TP6"/>
-                        <constraint firstItem="754-RO-eej" firstAttribute="leading" secondItem="DuJ-L8-56A" secondAttribute="leading" constant="18" id="MFM-du-3Q3"/>
-                        <constraint firstItem="eFT-Wp-Jzg" firstAttribute="leading" secondItem="7yc-CU-xPq" secondAttribute="trailing" constant="3" id="MIe-CE-gGP"/>
-                        <constraint firstItem="BGI-q4-eSz" firstAttribute="top" secondItem="DuJ-L8-56A" secondAttribute="top" constant="135" id="PDI-2t-amW"/>
-                        <constraint firstItem="pFg-St-ulH" firstAttribute="top" secondItem="eFT-Wp-Jzg" secondAttribute="bottom" constant="7" id="Pyg-iL-pZh"/>
-                        <constraint firstAttribute="trailing" secondItem="pFg-St-ulH" secondAttribute="trailing" constant="18" id="SP3-zU-7RD"/>
-                        <constraint firstItem="0mz-Oc-TKN" firstAttribute="top" secondItem="DuJ-L8-56A" secondAttribute="top" constant="42" id="ZIc-7i-RFU"/>
-                        <constraint firstItem="0mz-Oc-TKN" firstAttribute="leading" secondItem="feE-GK-3gG" secondAttribute="trailing" constant="3" id="Zoz-DJ-dFN"/>
-                        <constraint firstItem="woS-Uu-SsG" firstAttribute="top" secondItem="DuJ-L8-56A" secondAttribute="top" constant="73" id="aDW-sV-4OQ"/>
-                        <constraint firstItem="pFg-St-ulH" firstAttribute="leading" secondItem="754-RO-eej" secondAttribute="trailing" constant="13" id="cYJ-FX-OKX"/>
-                        <constraint firstItem="pFg-St-ulH" firstAttribute="bottom" secondItem="754-RO-eej" secondAttribute="bottom" id="lch-Ug-AHn"/>
-                        <constraint firstItem="BGI-q4-eSz" firstAttribute="top" secondItem="7yc-CU-xPq" secondAttribute="bottom" constant="-5" id="mYb-lB-kgb"/>
-                        <constraint firstItem="woS-Uu-SsG" firstAttribute="leading" secondItem="754-RO-eej" secondAttribute="trailing" constant="8" symbolic="YES" id="qBC-Xr-mcg"/>
-                        <constraint firstAttribute="trailing" secondItem="0mz-Oc-TKN" secondAttribute="trailing" id="qhn-Ij-nio"/>
-                        <constraint firstItem="7yc-CU-xPq" firstAttribute="top" secondItem="woS-Uu-SsG" secondAttribute="bottom" constant="10" id="t4Y-NE-sMb"/>
-                        <constraint firstItem="pFg-St-ulH" firstAttribute="leading" secondItem="7yc-CU-xPq" secondAttribute="leading" id="yR5-hP-pzO"/>
-                        <constraint firstItem="754-RO-eej" firstAttribute="top" secondItem="feE-GK-3gG" secondAttribute="top" id="z1S-Oh-tfd"/>
-                    </constraints>
-                </view>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" name="Baskerville-SemiBoldItalic" family="Baskerville" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="点击添加描述…" translatesAutoresizingMaskIntoConstraints="NO" id="woS-Uu-SsG">
+                    <rect key="frame" x="107" y="112" width="159" height="38"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" July 2011" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0mz-Oc-TKN">
+                    <rect key="frame" x="130" y="80" width="96" height="51"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="13"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" 1 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7yc-CU-xPq">
+                    <rect key="frame" x="112" y="45" width="14" height="19"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" name="Baskerville-SemiBoldItalic" family="Baskerville" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="点击添加描述…" translatesAutoresizingMaskIntoConstraints="NO" id="BGI-q4-eSz">
+                    <rect key="frame" x="107" y="59" width="120" height="36"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" July 2011" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFT-Wp-Jzg">
+                    <rect key="frame" x="130" y="29" width="122" height="51"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="13"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstAttribute="bottom" secondItem="DuJ-L8-56A" secondAttribute="bottom" id="CzN-UP-L6e"/>
-                <constraint firstItem="DuJ-L8-56A" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Jdm-Cq-65t"/>
-                <constraint firstItem="DuJ-L8-56A" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="LPV-oO-t0t"/>
-                <constraint firstItem="DuJ-L8-56A" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="iwo-Mb-dvP"/>
-            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="dayLabel1" destination="feE-GK-3gG" id="vbW-hO-kOv"/>
