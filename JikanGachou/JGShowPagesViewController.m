@@ -160,7 +160,6 @@
         if (![po1.text isEqualToString:@""]) {
             [thisPageVC.mainView fillNth:1 withText:po1.text];
         }
-        [self.pages addObject:thisPageVC];
         NSString *pageKey = [NSString stringWithFormat:@"page%d", i];
         self.book[pageKey] = [page copy];
     }
@@ -205,7 +204,7 @@
 {
     id<JGShowPagesContent> vc = (id<JGShowPagesContent>)viewController;
     NSUInteger idx = [vc idx];
-    if (idx == [self.pages count] - 1) {
+    if (idx == ([self.pages count] - 1)) {
         return nil;
     }
     return [self.pages objectAtIndex:idx + 1];
