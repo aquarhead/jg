@@ -263,6 +263,7 @@ const NSUInteger kJGPoolMostPhotos  = 40;
             photoObj.url = [p.defaultRepresentation.url absoluteString];
             photoObj.date = [p valueForProperty:ALAssetPropertyDate];
             photoObj.text = @"";
+            photoObj.asset = p;
             [photosArray addObject:photoObj];
         }
         vc.photos = [photosArray copy];

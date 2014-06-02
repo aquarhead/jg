@@ -37,6 +37,6 @@
 - (void)fillCoverNth:(NSUInteger)n withPhoto:(ALAsset *)p;
 - (void)fillNth:(NSUInteger)n withText:(NSString *)text;
 
-- (void)fillNth:(NSUInteger)n withPhotoAsset:(ALAsset *)pa text:(NSString *)text andDate:(NSDate *)date;
+- (void)fillNth:(NSUInteger)n withPhotoObject:(JGPhotoObject *)pobj;
 
 @end

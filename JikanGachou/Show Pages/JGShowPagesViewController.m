@@ -85,7 +85,7 @@
         JGPageViewController *thisPageVC = [self.pages objectAtIndex:i+2];
         JGPhotoObject *po1 = photos[0];
         if ([photos count] == 1) {
-            ALAsset *p = [self.poolViewController photoWithURLString:po1.url];
+            ALAsset *p = po1.asset;
             UIImage *img = [UIImage imageWithCGImage:p.aspectRatioThumbnail];
             CGSize size = img.size;
             if (size.width >= size.height) {
@@ -95,7 +95,7 @@
                 [thisPageVC switchType:kJGEditPageTypeOnePortrait];
                 page[@"type"] = @"EditPageTypeOnePortrait";
             }
-            [thisPageVC.mainView fillNth:1 withPhotoAsset:p text:po1.text andDate:po1.date];
+            [thisPageVC.mainView fillNth:1 withPhotoObject:po1];
             po1.imageView = thisPageVC.mainView.imageView1;
             UITapGestureRecognizer *tr = [self makeRecog];
             [self.tapRecogs addObject:tr];
@@ -104,8 +104,8 @@
         else {
             JGPhotoObject *po2 = photos[1];
             // two photos
-            ALAsset *p1 = [self.poolViewController photoWithURLString:po1.url];
-            ALAsset *p2 = [self.poolViewController photoWithURLString:po2.url];
+            ALAsset *p1 = po1.asset;
+            ALAsset *p2 = po2.asset;
             bool p1_landscape = NO, p2_landscape = NO;
 
             // check orientation
@@ -142,8 +142,8 @@
             }
 
             // fill mainView
-            [thisPageVC.mainView fillNth:1 withPhotoAsset:p1 text:po1.text andDate:po1.date];
-            [thisPageVC.mainView fillNth:2 withPhotoAsset:p2 text:po2.text andDate:po2.date];
+            [thisPageVC.mainView fillNth:1 withPhotoObject:po1];
+            [thisPageVC.mainView fillNth:2 withPhotoObject:po2];
             po1.imageView = thisPageVC.mainView.imageView1;
             po2.imageView = thisPageVC.mainView.imageView2;
 
