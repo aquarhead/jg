@@ -54,6 +54,41 @@
     return model;
 }
 
+- (void)fillNth:(NSUInteger)n withPhotoAsset:(ALAsset *)pa text:(NSString *)text andDate:(NSDate *)date
+{
+    UIImageView *imageView = [self valueForKey:[NSString stringWithFormat:@"imageView%lu", (unsigned long)n]];
+    UITextView *textView = [self valueForKey:[NSString stringWithFormat:@"descriptionTextView%lu", (unsigned long)n]];
+    UILabel *yearLabel = [self valueForKey:[NSString stringWithFormat:@"yearLabel%lu", (unsigned long)n]];
+    UILabel *dayLabel = [self valueForKey:[NSString stringWithFormat:@"dayLabel%lu", (unsigned long)n]];
+
+    UIImage *image;
+    if ([[self modelString] hasPrefix:@"iPhone3"]) {
+        // iPhone3 is iPhone 4, the only A4 device runs iOS 7
+        image = [UIImage imageWithCGImage:pa.aspectRatioThumbnail];
+    }
+    else {
+        image = [UIImage imageWithCGImage:pa.defaultRepresentation.fullScreenImage];
+    }
+    imageView.image = image;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+
+    textView.text = text;
+
+    static NSDateFormatter *yearFormatter, *dayFormatter;
+    if (!yearFormatter) {
+        yearFormatter = [NSDateFormatter new];
+        [yearFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+        yearFormatter.dateFormat = @" MMMM YYYY";
+        dayFormatter = [NSDateFormatter new];
+        dayFormatter.dateFormat = @" d ";
+    }
+    yearLabel.text = [yearFormatter stringFromDate:date];
+    dayLabel.text = [dayFormatter stringFromDate:date];
+
+    yearLabel.textColor = [UIColor colorWithWhite:0.35 alpha:1];
+    dayLabel.backgroundColor = [UIColor colorWithWhite:0.35 alpha:1];
+}
+
 - (void)fillNth:(NSUInteger)n withPhoto:(ALAsset *)p
 {
     UIImageView *imageView = [self valueForKey:[NSString stringWithFormat:@"imageView%lu", (unsigned long)n]];

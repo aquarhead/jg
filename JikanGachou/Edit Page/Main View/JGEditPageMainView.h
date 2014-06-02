@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AssetsLibrary/AssetsLibrary.h>
+#import "JGPhotoObject.h"
+@import AssetsLibrary;
 
 @protocol JGEditPageDelegate <NSObject>
 
@@ -35,5 +36,7 @@
 - (void)fillNth:(NSUInteger)n withPhoto:(ALAsset *)p;
 - (void)fillCoverNth:(NSUInteger)n withPhoto:(ALAsset *)p;
 - (void)fillNth:(NSUInteger)n withText:(NSString *)text;
+
+- (void)fillNth:(NSUInteger)n withPhotoAsset:(ALAsset *)pa text:(NSString *)text andDate:(NSDate *)date;
 
 @end

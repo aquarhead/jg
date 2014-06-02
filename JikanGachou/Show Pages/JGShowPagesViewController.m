@@ -95,7 +95,7 @@
                 [thisPageVC switchType:kJGEditPageTypeOnePortrait];
                 page[@"type"] = @"EditPageTypeOnePortrait";
             }
-            [thisPageVC.mainView fillNth:1 withPhoto:p];
+            [thisPageVC.mainView fillNth:1 withPhotoAsset:p text:po1.text andDate:po1.date];
             po1.imageView = thisPageVC.mainView.imageView1;
             UITapGestureRecognizer *tr = [self makeRecog];
             [self.tapRecogs addObject:tr];
@@ -142,8 +142,8 @@
             }
 
             // fill mainView
-            [thisPageVC.mainView fillNth:1 withPhoto:p1];
-            [thisPageVC.mainView fillNth:2 withPhoto:p2];
+            [thisPageVC.mainView fillNth:1 withPhotoAsset:p1 text:po1.text andDate:po1.date];
+            [thisPageVC.mainView fillNth:2 withPhotoAsset:p2 text:po2.text andDate:po2.date];
             po1.imageView = thisPageVC.mainView.imageView1;
             po2.imageView = thisPageVC.mainView.imageView2;
 
@@ -152,13 +152,6 @@
             UITapGestureRecognizer *tr2 = [self makeRecog];
             [self.tapRecogs addObject:tr2];
             [thisPageVC setupRecogs:@[tr1, tr2]];
-
-            if (![po2.text isEqualToString:@""]) {
-                [thisPageVC.mainView fillNth:2 withText:po2.text];
-            }
-        }
-        if (![po1.text isEqualToString:@""]) {
-            [thisPageVC.mainView fillNth:1 withText:po1.text];
         }
         NSString *pageKey = [NSString stringWithFormat:@"page%d", i];
         self.book[pageKey] = [page copy];
