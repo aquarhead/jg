@@ -31,9 +31,7 @@
 {
     [super viewDidLoad];
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
-
-    self.book = [self.poolViewController.book mutableCopy];
-
+    
     self.pages = [NSMutableArray new];
     [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@0 andType:kJGEditPageCover]];
     [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@1 andType:kJGEditPageTitle]];
@@ -80,7 +78,6 @@
     self.tapRecogs = [NSMutableArray new];
 
     for (int i = 0; i < 20; i++) {
-        NSMutableDictionary *page = [NSMutableDictionary new];
         NSMutableArray *photos = self.photosForPage[i];
         JGPageViewController *thisPageVC = [self.pages objectAtIndex:i+2];
         JGPhotoObject *po1 = photos[0];
@@ -90,10 +87,8 @@
             CGSize size = img.size;
             if (size.width >= size.height) {
                 [thisPageVC switchType:kJGEditPageTypeOneLandscape];
-                page[@"type"] = @"EditPageTypeOneLandscape";
             } else {
                 [thisPageVC switchType:kJGEditPageTypeOnePortrait];
-                page[@"type"] = @"EditPageTypeOnePortrait";
             }
             [thisPageVC.mainView fillNth:1 withPhotoObject:po1];
             po1.imageView = thisPageVC.mainView.imageView1;
@@ -121,23 +116,15 @@
             // setup mainView
             if (p1_landscape) {
                 if (p2_landscape) {
-                    // two landscape
                     [thisPageVC switchType:kJGEditPageTypeTwoLandscape];
-                    page[@"type"] = @"EditPageTypeTwoLandscape";
                 } else {
-                    // mixed left landscape
                     [thisPageVC switchType:kJGEditPageTypeMixedLeftLandscape];
-                    page[@"type"] = @"EditPageTypeMixedLeftLandscape";
                 }
             } else {
                 if (p2_landscape) {
-                    // mixed left portrait
                     [thisPageVC switchType:kJGEditPageTypeMixedLeftPortrait];
-                    page[@"type"] = @"EditPageTypeMixedLeftPortrait";
                 } else {
-                    // two portrait
                     [thisPageVC switchType:kJGEditPageTypeTwoPortrait];
-                    page[@"type"] = @"EditPageTypeTwoPortrait";
                 }
             }
 
@@ -153,8 +140,6 @@
             [self.tapRecogs addObject:tr2];
             [thisPageVC setupRecogs:@[tr1, tr2]];
         }
-        NSString *pageKey = [NSString stringWithFormat:@"page%d", i];
-        self.book[pageKey] = [page copy];
     }
     [self reloadInputViews];
 }
