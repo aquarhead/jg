@@ -22,13 +22,6 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="点击添加描述…" translatesAutoresizingMaskIntoConstraints="NO" id="GIR-06-AyX">
-                    <rect key="frame" x="44" y="174" width="132" height="38"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="09z-WD-1Pe">
                     <rect key="frame" x="50" y="15" width="120" height="136"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -45,17 +38,17 @@
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TextPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="Nsv-z8-8ab">
+                    <rect key="frame" x="50" y="182" width="120" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="09z-WD-1Pe" firstAttribute="centerX" secondItem="GIR-06-AyX" secondAttribute="centerX" id="Bcz-sC-1WF"/>
                 <constraint firstItem="KfI-G8-VGn" firstAttribute="leading" secondItem="09z-WD-1Pe" secondAttribute="leading" id="FSM-sd-fdF"/>
                 <constraint firstItem="KfI-G8-VGn" firstAttribute="top" secondItem="09z-WD-1Pe" secondAttribute="bottom" constant="6" id="GF7-pj-IEf"/>
                 <constraint firstItem="09z-WD-1Pe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="RTl-IT-SEZ"/>
-                <constraint firstAttribute="bottom" secondItem="GIR-06-AyX" secondAttribute="bottom" constant="8" id="U4O-99-CAv"/>
-                <constraint firstItem="GIR-06-AyX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="44" id="YpX-zP-tKg"/>
                 <constraint firstAttribute="bottom" secondItem="81V-BN-0PW" secondAttribute="bottom" constant="39" id="Z7Q-pk-yfa"/>
-                <constraint firstItem="GIR-06-AyX" firstAttribute="top" secondItem="09z-WD-1Pe" secondAttribute="bottom" constant="23" id="fFQ-aO-VYT"/>
                 <constraint firstItem="81V-BN-0PW" firstAttribute="top" secondItem="09z-WD-1Pe" secondAttribute="bottom" constant="2" id="s8f-So-Xf2"/>
                 <constraint firstItem="81V-BN-0PW" firstAttribute="leading" secondItem="KfI-G8-VGn" secondAttribute="trailing" constant="6" id="sjy-6M-82Q"/>
                 <constraint firstItem="09z-WD-1Pe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="50" id="uqo-xG-YOH"/>
@@ -64,7 +57,6 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="dayLabel1" destination="KfI-G8-VGn" id="46C-Xa-QzP"/>
-                <outlet property="descriptionTextView1" destination="GIR-06-AyX" id="w7b-gg-UvE"/>
                 <outlet property="imageView1" destination="09z-WD-1Pe" id="Maz-Sn-NQI"/>
                 <outlet property="yearLabel1" destination="81V-BN-0PW" id="wyh-Th-SvM"/>
             </connections>
@@ -72,5 +64,6 @@
     </objects>
     <resources>
         <image name="Placeholder" width="200" height="200"/>
+        <image name="TextPlaceholder" width="142" height="22"/>
     </resources>
 </document>

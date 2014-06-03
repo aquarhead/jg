@@ -20,13 +20,6 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </imageView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="点击添加描述…" translatesAutoresizingMaskIntoConstraints="NO" id="Hpi-Ad-dT0">
-                    <rect key="frame" x="123" y="33" width="99" height="66"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" 1 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G34-Cp-nnk">
                     <rect key="frame" x="16" y="119" width="15" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -42,13 +35,6 @@
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="点击添加描述…" translatesAutoresizingMaskIntoConstraints="NO" id="CMU-fR-zDe">
-                    <rect key="frame" x="10" y="136" width="90" height="62"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" 1 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GW2-l0-44E">
                     <rect key="frame" x="129" y="17" width="15" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -64,14 +50,20 @@
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TextPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="5jo-4W-Roy">
+                    <rect key="frame" x="16" y="142" width="78" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TextPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="9Eq-dw-Snx">
+                    <rect key="frame" x="129" y="40" width="78" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="dayLabel1" destination="G34-Cp-nnk" id="A1P-6c-IGD"/>
                 <outlet property="dayLabel2" destination="GW2-l0-44E" id="qfe-ba-UsR"/>
-                <outlet property="descriptionTextView1" destination="Hpi-Ad-dT0" id="e2B-ak-anU"/>
-                <outlet property="descriptionTextView2" destination="CMU-fR-zDe" id="HCU-aX-EBM"/>
                 <outlet property="imageView1" destination="09z-WD-1Pe" id="QPI-uh-MH8"/>
                 <outlet property="imageView2" destination="gro-Bc-9aa" id="WCT-sL-5yQ"/>
                 <outlet property="yearLabel1" destination="bDH-0D-iUT" id="hVe-Mb-r2a"/>
@@ -81,5 +73,6 @@
     </objects>
     <resources>
         <image name="Placeholder" width="200" height="200"/>
+        <image name="TextPlaceholder" width="142" height="22"/>
     </resources>
 </document>

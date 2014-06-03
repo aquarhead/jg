@@ -10,6 +10,10 @@
             <rect key="frame" x="0.0" y="0.0" width="220" height="220"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TextPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="KSb-21-exl">
+                    <rect key="frame" x="112" y="125" width="78" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="pFg-St-ulH">
                     <rect key="frame" x="112" y="138" width="91" height="46"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -19,22 +23,15 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" 1 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="feE-GK-3gG">
-                    <rect key="frame" x="112" y="96" width="14" height="19"/>
+                    <rect key="frame" x="112" y="103" width="14" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="Baskerville-SemiBoldItalic" family="Baskerville" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="点击添加描述…" translatesAutoresizingMaskIntoConstraints="NO" id="woS-Uu-SsG">
-                    <rect key="frame" x="107" y="112" width="159" height="38"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" July 2011" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0mz-Oc-TKN">
-                    <rect key="frame" x="130" y="80" width="96" height="51"/>
+                    <rect key="frame" x="130" y="87" width="96" height="51"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="13"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -48,13 +45,6 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="点击添加描述…" translatesAutoresizingMaskIntoConstraints="NO" id="BGI-q4-eSz">
-                    <rect key="frame" x="107" y="59" width="120" height="36"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" July 2011" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFT-Wp-Jzg">
                     <rect key="frame" x="130" y="29" width="122" height="51"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -62,14 +52,16 @@
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TextPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="EqD-F4-tbV">
+                    <rect key="frame" x="112" y="67" width="78" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="dayLabel1" destination="feE-GK-3gG" id="vbW-hO-kOv"/>
                 <outlet property="dayLabel2" destination="7yc-CU-xPq" id="jzh-6S-ozv"/>
-                <outlet property="descriptionTextView1" destination="woS-Uu-SsG" id="H6F-C3-L1w"/>
-                <outlet property="descriptionTextView2" destination="BGI-q4-eSz" id="lOf-YK-cze"/>
                 <outlet property="imageView1" destination="754-RO-eej" id="Vit-Lv-P92"/>
                 <outlet property="imageView2" destination="pFg-St-ulH" id="rq9-Oy-uHv"/>
                 <outlet property="yearLabel1" destination="0mz-Oc-TKN" id="EjP-7G-x5c"/>
@@ -79,5 +71,6 @@
     </objects>
     <resources>
         <image name="Placeholder" width="200" height="200"/>
+        <image name="TextPlaceholder" width="142" height="22"/>
     </resources>
 </document>
