@@ -35,7 +35,7 @@
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" 1 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uCE-bN-lbk">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" 2 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uCE-bN-lbk">
                     <rect key="frame" x="118" y="44" width="17" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.61820392219999998" green="0.61820392219999998" blue="0.61820392219999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -43,7 +43,7 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" Julu 2011" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04N-Vl-cpE">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" Julu 2012" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04N-Vl-cpE">
                     <rect key="frame" x="136" y="24" width="116" height="59"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="14"/>
@@ -62,12 +62,12 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="dayLabel1" destination="uCE-bN-lbk" id="kLg-DH-52Y"/>
-                <outlet property="dayLabel2" destination="rfT-Bd-u8M" id="WNt-uq-QAU"/>
+                <outlet property="dayLabel1" destination="rfT-Bd-u8M" id="AKu-vu-scC"/>
+                <outlet property="dayLabel2" destination="uCE-bN-lbk" id="2k9-mU-CtI"/>
                 <outlet property="imageView1" destination="09z-WD-1Pe" id="Dba-AY-jN7"/>
                 <outlet property="imageView2" destination="k6B-fJ-4Qf" id="nfT-KA-2dL"/>
-                <outlet property="yearLabel1" destination="04N-Vl-cpE" id="Jh8-Th-JuY"/>
-                <outlet property="yearLabel2" destination="9G6-rK-MMs" id="HeP-Sw-fYW"/>
+                <outlet property="yearLabel1" destination="9G6-rK-MMs" id="JWe-OR-ZVp"/>
+                <outlet property="yearLabel2" destination="04N-Vl-cpE" id="0CN-Pg-02B"/>
             </connections>
         </view>
     </objects>
