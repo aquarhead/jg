@@ -10,49 +10,76 @@
             <rect key="frame" x="0.0" y="0.0" width="220" height="220"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="gro-Bc-9aa">
-                    <rect key="frame" x="98" y="119" width="108" height="82"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="gro-Bc-9aa">
+                    <rect key="frame" x="101" y="119" width="108" height="82"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="82" id="72v-oo-LPS"/>
+                        <constraint firstAttribute="width" constant="108" id="lha-5Z-bcY"/>
+                    </constraints>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="09z-WD-1Pe">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="09z-WD-1Pe">
                     <rect key="frame" x="14" y="17" width="108" height="83"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="108" id="2Yb-tG-2WH"/>
+                        <constraint firstAttribute="height" constant="83" id="5rN-dk-3Jn"/>
+                    </constraints>
                 </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" 1 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GW2-l0-44E">
-                    <rect key="frame" x="129" y="17" width="15" height="18"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 1 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GW2-l0-44E">
+                    <rect key="frame" x="129" y="17" width="14" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.61820392219999998" green="0.61820392219999998" blue="0.61820392219999998" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" name="Baskerville-SemiBoldItalic" family="Baskerville" pointSize="15"/>
+                    <constraints>
+                        <constraint firstAttribute="height" priority="250" constant="18" id="XoD-Kl-H8i"/>
+                        <constraint firstAttribute="width" priority="250" constant="15" id="eFq-dw-iGe"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Baskerville-SemiBoldItalic" family="Baskerville" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" July 2011" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKo-2p-pWu">
-                    <rect key="frame" x="146" y="-4" width="61" height="59"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" July 2011" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKo-2p-pWu">
+                    <rect key="frame" x="144" y="-4" width="75" height="59"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="14"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="75" id="AbZ-Ud-aSD"/>
+                        <constraint firstAttribute="height" constant="59" id="h3F-ok-s20"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="13"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" 2 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G34-Cp-nnk">
-                    <rect key="frame" x="16" y="119" width="15" height="18"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 2 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G34-Cp-nnk">
+                    <rect key="frame" x="25" y="119" width="14" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.61820392219999998" green="0.61820392219999998" blue="0.61820392219999998" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" name="Baskerville-SemiBoldItalic" family="Baskerville" pointSize="15"/>
+                    <constraints>
+                        <constraint firstAttribute="width" priority="250" constant="14" id="c3M-aD-Lp1"/>
+                        <constraint firstAttribute="height" constant="17" id="mxc-od-NSs"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Baskerville-SemiBoldItalic" family="Baskerville" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" July 2012" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDH-0D-iUT">
-                    <rect key="frame" x="33" y="98" width="84" height="59"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" July 2012" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDH-0D-iUT">
+                    <rect key="frame" x="40" y="98" width="58" height="59"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="14"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="59" id="CxP-RT-4Js"/>
+                        <constraint firstAttribute="width" priority="250" constant="84" id="bwy-Ec-itr"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="13"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TextPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="5jo-4W-Roy">
-                    <rect key="frame" x="16" y="142" width="78" height="22"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="249" image="TextPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="5jo-4W-Roy">
+                    <rect key="frame" x="25" y="142" width="73" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="7Lc-er-0p8"/>
+                    </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TextPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="9Eq-dw-Snx">
                     <rect key="frame" x="129" y="40" width="78" height="22"/>
@@ -60,6 +87,23 @@
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="5jo-4W-Roy" firstAttribute="top" secondItem="G34-Cp-nnk" secondAttribute="bottom" constant="6" id="55P-VH-xKG"/>
+                <constraint firstItem="gro-Bc-9aa" firstAttribute="leading" secondItem="bDH-0D-iUT" secondAttribute="trailing" constant="3" id="AOu-8o-Csh"/>
+                <constraint firstItem="bDH-0D-iUT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="98" id="BLl-8n-PtV"/>
+                <constraint firstItem="GW2-l0-44E" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="BM5-7C-unR"/>
+                <constraint firstItem="bDH-0D-iUT" firstAttribute="leading" secondItem="G34-Cp-nnk" secondAttribute="trailing" constant="1" id="Gb1-5t-76I"/>
+                <constraint firstItem="SKo-2p-pWu" firstAttribute="leading" secondItem="GW2-l0-44E" secondAttribute="trailing" constant="1" id="IZG-Oh-OMX"/>
+                <constraint firstItem="5jo-4W-Roy" firstAttribute="leading" secondItem="G34-Cp-nnk" secondAttribute="leading" id="J9A-dh-OPg"/>
+                <constraint firstItem="SKo-2p-pWu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-4" id="Jnd-jE-Q4G"/>
+                <constraint firstAttribute="trailing" secondItem="gro-Bc-9aa" secondAttribute="trailing" constant="11" id="LkX-Wb-pbp"/>
+                <constraint firstItem="GW2-l0-44E" firstAttribute="leading" secondItem="09z-WD-1Pe" secondAttribute="trailing" constant="7" id="Ntq-Jj-HF2"/>
+                <constraint firstItem="09z-WD-1Pe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="14" id="Q3H-Q8-PUt"/>
+                <constraint firstAttribute="bottom" secondItem="gro-Bc-9aa" secondAttribute="bottom" constant="19" id="cZ3-Nv-PSr"/>
+                <constraint firstItem="5jo-4W-Roy" firstAttribute="trailing" secondItem="bDH-0D-iUT" secondAttribute="trailing" id="eJL-3q-6iW"/>
+                <constraint firstItem="G34-Cp-nnk" firstAttribute="top" secondItem="09z-WD-1Pe" secondAttribute="bottom" constant="19" id="xJR-wY-QUp"/>
+                <constraint firstItem="09z-WD-1Pe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="y2H-GN-woZ"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="dayLabel1" destination="GW2-l0-44E" id="t23-dL-UAZ"/>
