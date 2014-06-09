@@ -10,7 +10,7 @@
             <rect key="frame" x="0.0" y="0.0" width="220" height="220"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TextPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="KSb-21-exl">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="TextPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="KSb-21-exl">
                     <rect key="frame" x="112" y="125" width="78" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -112,6 +112,8 @@
                 <outlet property="dayLabel2" destination="feE-GK-3gG" id="nJ7-Th-8GH"/>
                 <outlet property="imageView1" destination="754-RO-eej" id="Vit-Lv-P92"/>
                 <outlet property="imageView2" destination="pFg-St-ulH" id="rq9-Oy-uHv"/>
+                <outlet property="textPlaceholder1" destination="EqD-F4-tbV" id="EjH-ms-bET"/>
+                <outlet property="textPlaceholder2" destination="KSb-21-exl" id="ajt-OO-v9b"/>
                 <outlet property="yearLabel1" destination="eFT-Wp-Jzg" id="KSA-QF-pHE"/>
                 <outlet property="yearLabel2" destination="0mz-Oc-TKN" id="ohL-3m-aen"/>
             </connections>

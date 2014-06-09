@@ -58,6 +58,7 @@
             <connections>
                 <outlet property="dayLabel1" destination="KfI-G8-VGn" id="46C-Xa-QzP"/>
                 <outlet property="imageView1" destination="09z-WD-1Pe" id="Maz-Sn-NQI"/>
+                <outlet property="textPlaceholder1" destination="Nsv-z8-8ab" id="dcz-I4-dtV"/>
                 <outlet property="yearLabel1" destination="81V-BN-0PW" id="wyh-Th-SvM"/>
             </connections>
         </view>

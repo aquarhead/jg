@@ -18,6 +18,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *yearLabel2;
 @property (weak, nonatomic) IBOutlet UILabel *dayLabel2;
 
+@property (weak, nonatomic) IBOutlet UIImageView *textPlaceholder1;
+@property (weak, nonatomic) IBOutlet UIImageView *textPlaceholder2;
+
 // for cover only
 @property (weak, nonatomic) IBOutlet UIImageView *imageView3;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView4;
@@ -56,7 +59,7 @@
 - (void)fillNth:(NSUInteger)n withPhotoObject:(JGPhotoObject *)pobj
 {
     UIImageView *imageView = [self valueForKey:[NSString stringWithFormat:@"imageView%lu", (unsigned long)n]];
-//    UITextView *textView = [self valueForKey:[NSString stringWithFormat:@"descriptionTextView%lu", (unsigned long)n]];
+    UIImageView *textPlaceholder = [self valueForKey:[NSString stringWithFormat:@"textPlaceholder%lu", (unsigned long)n]];
     UILabel *yearLabel = [self valueForKey:[NSString stringWithFormat:@"yearLabel%lu", (unsigned long)n]];
     UILabel *dayLabel = [self valueForKey:[NSString stringWithFormat:@"dayLabel%lu", (unsigned long)n]];
 
@@ -70,6 +73,8 @@
     }
     imageView.image = image;
     imageView.contentMode = UIViewContentModeScaleAspectFill;
+
+    textPlaceholder.hidden = !pobj.text || [pobj.text isEqualToString:@""];
 
     static NSDateFormatter *yearFormatter, *dayFormatter;
     if (!yearFormatter) {

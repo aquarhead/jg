@@ -111,6 +111,8 @@
                 <outlet property="dayLabel2" destination="uCE-bN-lbk" id="2k9-mU-CtI"/>
                 <outlet property="imageView1" destination="09z-WD-1Pe" id="Dba-AY-jN7"/>
                 <outlet property="imageView2" destination="k6B-fJ-4Qf" id="nfT-KA-2dL"/>
+                <outlet property="textPlaceholder1" destination="9R2-je-Uci" id="Yf0-XK-XvN"/>
+                <outlet property="textPlaceholder2" destination="nlk-Id-XDn" id="1lA-1e-Fto"/>
                 <outlet property="yearLabel1" destination="9G6-rK-MMs" id="JWe-OR-ZVp"/>
                 <outlet property="yearLabel2" destination="04N-Vl-cpE" id="0CN-Pg-02B"/>
             </connections>
