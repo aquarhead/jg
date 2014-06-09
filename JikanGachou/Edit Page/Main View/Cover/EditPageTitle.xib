@@ -10,78 +10,63 @@
             <rect key="frame" x="0.0" y="0.0" width="220" height="220"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Flyleaf" translatesAutoresizingMaskIntoConstraints="NO" id="tMd-ck-MDI">
-                    <rect key="frame" x="0.0" y="0.0" width="220" height="220"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cye-2E-083" userLabel="Image View 1">
-                    <rect key="frame" x="151" y="154" width="0.0" height="0.0"/>
+                    <rect key="frame" x="49" y="49" width="38" height="38"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.87930484693877553" green="0.87930484693877553" blue="0.87930484693877553" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sbX-zz-wX5" userLabel="Image View 2">
-                    <rect key="frame" x="151" y="154" width="0.0" height="0.0"/>
+                    <rect key="frame" x="92" y="49" width="38" height="38"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.87930484693877553" green="0.87930484693877553" blue="0.87930484693877553" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="54M-ta-iiO" userLabel="Image View 3">
-                    <rect key="frame" x="151" y="154" width="0.0" height="0.0"/>
+                    <rect key="frame" x="134" y="49" width="38" height="38"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.87930484693877553" green="0.87930484693877553" blue="0.87930484693877553" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="efd-xc-LGu" userLabel="Image View 4">
-                    <rect key="frame" x="151" y="154" width="0.0" height="0.0"/>
+                    <rect key="frame" x="49" y="92" width="38" height="38"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.87930484693877553" green="0.87930484693877553" blue="0.87930484693877553" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qZD-WT-eio" userLabel="Image View 5">
-                    <rect key="frame" x="151" y="154" width="0.0" height="0.0"/>
+                    <rect key="frame" x="92" y="92" width="38" height="38"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.87930484693877553" green="0.87930484693877553" blue="0.87930484693877553" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O1a-iJ-Sft" userLabel="Image View 6">
-                    <rect key="frame" x="151" y="154" width="0.0" height="0.0"/>
+                    <rect key="frame" x="134" y="92" width="38" height="38"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.87930484693877553" green="0.87930484693877553" blue="0.87930484693877553" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qed-sH-mvJ" userLabel="Image View 7">
-                    <rect key="frame" x="151" y="154" width="0.0" height="0.0"/>
+                    <rect key="frame" x="49" y="134" width="38" height="38"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.87930484693877553" green="0.87930484693877553" blue="0.87930484693877553" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Gx-C9-kpo" userLabel="Image View 8">
-                    <rect key="frame" x="151" y="154" width="0.0" height="0.0"/>
+                    <rect key="frame" x="92" y="134" width="38" height="38"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.87930484693877553" green="0.87930484693877553" blue="0.87930484693877553" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RLY-fC-cwa" userLabel="Image View 9">
-                    <rect key="frame" x="151" y="154" width="0.0" height="0.0"/>
+                    <rect key="frame" x="134" y="134" width="38" height="38"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.87930484693877553" green="0.87930484693877553" blue="0.87930484693877553" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="点击添加画册名" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TjB-rL-iYd">
-                    <rect key="frame" x="20" y="148" width="188" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
-                </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="点击添加作者" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FMW-hd-rwf">
-                    <rect key="frame" x="67" y="102" width="131" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
-                </textField>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SmallIcon" translatesAutoresizingMaskIntoConstraints="NO" id="09z-WD-1Pe">
-                    <rect key="frame" x="119" y="125" width="0.0" height="0.0"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Flyleaf" translatesAutoresizingMaskIntoConstraints="NO" id="tMd-ck-MDI">
+                    <rect key="frame" x="0.0" y="0.0" width="220" height="220"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="FlyleafText" translatesAutoresizingMaskIntoConstraints="NO" id="YQ1-t4-K6N">
+                    <rect key="frame" x="39" y="184" width="142" height="19"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="authorTextField" destination="FMW-hd-rwf" id="vQo-oH-JU5"/>
                 <outlet property="imageView1" destination="Cye-2E-083" id="vL1-Kl-th5"/>
                 <outlet property="imageView2" destination="sbX-zz-wX5" id="ihi-eR-xnP"/>
                 <outlet property="imageView3" destination="54M-ta-iiO" id="LfJ-n9-cMh"/>
@@ -91,12 +76,11 @@
                 <outlet property="imageView7" destination="qed-sH-mvJ" id="FdP-jh-Sn8"/>
                 <outlet property="imageView8" destination="2Gx-C9-kpo" id="g3n-pW-Lyf"/>
                 <outlet property="imageView9" destination="RLY-fC-cwa" id="CIJ-DY-Vr4"/>
-                <outlet property="titleTextField" destination="TjB-rL-iYd" id="uTH-hH-eYh"/>
             </connections>
         </view>
     </objects>
     <resources>
-        <image name="Flyleaf" width="300" height="300"/>
-        <image name="SmallIcon" width="48" height="48"/>
+        <image name="Flyleaf" width="220" height="220"/>
+        <image name="FlyleafText" width="284" height="38"/>
     </resources>
 </document>

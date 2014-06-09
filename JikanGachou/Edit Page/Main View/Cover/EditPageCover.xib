@@ -10,51 +10,6 @@
             <rect key="frame" x="0.0" y="0.0" width="220" height="220"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bWB-b6-UcU" userLabel="Image View 1">
-                    <rect key="frame" x="76" y="66" width="0.0" height="0.0"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OJJ-UN-eDZ" userLabel="Image View 2">
-                    <rect key="frame" x="134" y="66" width="0.0" height="0.0"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5lf-uh-KCp" userLabel="Image View 3">
-                    <rect key="frame" x="192" y="66" width="0.0" height="0.0"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8SS-Qm-lwv" userLabel="Image View 4">
-                    <rect key="frame" x="76" y="124" width="0.0" height="0.0"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XB0-lz-pjp" userLabel="Image View 5">
-                    <rect key="frame" x="134" y="124" width="0.0" height="0.0"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lX0-31-OPG" userLabel="Image View 6">
-                    <rect key="frame" x="192" y="124" width="0.0" height="0.0"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x7i-4F-TOj" userLabel="Image View 7">
-                    <rect key="frame" x="76" y="182" width="0.0" height="0.0"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Z4-2G-hjC" userLabel="Image View 8">
-                    <rect key="frame" x="134" y="182" width="0.0" height="0.0"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="urV-nj-LE2" userLabel="Image View 9">
-                    <rect key="frame" x="192" y="182" width="0.0" height="0.0"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cover" translatesAutoresizingMaskIntoConstraints="NO" id="09z-WD-1Pe">
                     <rect key="frame" x="0.0" y="0.0" width="220" height="220"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -70,20 +25,9 @@
                 <constraint firstItem="09z-WD-1Pe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="llB-cM-cSm"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <connections>
-                <outlet property="imageView1" destination="bWB-b6-UcU" id="oox-tC-spN"/>
-                <outlet property="imageView2" destination="OJJ-UN-eDZ" id="feb-Fn-VM7"/>
-                <outlet property="imageView3" destination="5lf-uh-KCp" id="m8r-30-Vtd"/>
-                <outlet property="imageView4" destination="8SS-Qm-lwv" id="3WX-Vo-BZ7"/>
-                <outlet property="imageView5" destination="XB0-lz-pjp" id="vHJ-47-dDn"/>
-                <outlet property="imageView6" destination="lX0-31-OPG" id="LLb-wi-2hq"/>
-                <outlet property="imageView7" destination="x7i-4F-TOj" id="lxG-Lm-czF"/>
-                <outlet property="imageView8" destination="2Z4-2G-hjC" id="vWE-Ja-2ns"/>
-                <outlet property="imageView9" destination="urV-nj-LE2" id="KJg-c3-zFs"/>
-            </connections>
         </view>
     </objects>
     <resources>
-        <image name="Cover" width="300" height="300"/>
+        <image name="Cover" width="224" height="224"/>
     </resources>
 </document>
