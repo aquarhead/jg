@@ -8,9 +8,8 @@
 
 #import "JGShowPagesViewController.h"
 #import "JGPageViewController.h"
-#import "JGEditPageViewController.h"
 #import "JGPhotoObject.h"
-#import "JGDescriptionNavigationController.h"
+#import "JGDescriptionTableViewController.h"
 
 #import <NSMutableArray+Shuffle.h>
 
@@ -191,9 +190,21 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"editDescription"]) {
-        JGDescriptionNavigationController *vc = segue.destinationViewController;
+        JGDescriptionTableViewController *vc = segue.destinationViewController;
         vc.photoObj = self.selectedPhotoObj;
     }
+}
+
+#pragma mark - Set Orientation
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscapeRight;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationLandscapeRight;
 }
 
 @end

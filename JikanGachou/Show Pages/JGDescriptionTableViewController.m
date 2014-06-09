@@ -7,16 +7,14 @@
 //
 
 #import "JGDescriptionTableViewController.h"
-#import "JGPhotoObject.h"
-#import "JGDescriptionNavigationController.h"
 
 @interface JGDescriptionTableViewController ()
 
 @property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (weak, nonatomic) IBOutlet UITextField *dateField;
-
-@property JGPhotoObject *photoObj;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
+
+@property (weak, nonatomic) IBOutlet UITableViewCell *confirmCell;
 
 @end
 
@@ -28,8 +26,6 @@
 
     self.dateField.inputView = self.datePicker;
 
-    JGDescriptionNavigationController *navi = (JGDescriptionNavigationController *)self.navigationController;
-    self.photoObj = navi.photoObj;
     if (![self.photoObj.text isEqualToString:@""]) {
         self.textField.text = self.photoObj.text;
     }
@@ -51,19 +47,29 @@
     self.dateField.text = [formatter stringFromDate:self.datePicker.date];
 }
 
-- (IBAction)donePressed:(UIBarButtonItem *)sender
-{
-    self.photoObj.text = self.textField.text;
-    self.photoObj.date = self.datePicker.date;
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
+    if ([tableView cellForRowAtIndexPath:indexPath] == self.confirmCell) {
+        self.photoObj.text = self.textField.text;
+        self.photoObj.date = self.datePicker.date;
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    else if (indexPath.row == 0) {
         [self.textField becomeFirstResponder];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - Set Orientation
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscapeRight;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationLandscapeRight;
 }
 
 @end

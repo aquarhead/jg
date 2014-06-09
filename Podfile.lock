@@ -21,7 +21,7 @@ PODS:
   - KIImagePager (1.5.2)
   - MBProgressHUD (0.8)
   - MD5Digest (0.1.0)
-  - MRProgress (0.4.3):
+  - MRProgress (0.5.0):
     - MRProgress/ActivityIndicator
     - MRProgress/Blur
     - MRProgress/Circular
@@ -32,30 +32,29 @@ PODS:
     - MRProgress/Overlay
     - MRProgress/Stopable
     - MRProgress/WeakProxy
-  - MRProgress/ActivityIndicator (0.4.3):
+  - MRProgress/ActivityIndicator (0.5.0):
     - MRProgress/Stopable
-  - MRProgress/Blur (0.4.3):
+  - MRProgress/Blur (0.5.0):
     - MRProgress/Helper
-  - MRProgress/Circular (0.4.3):
+  - MRProgress/Circular (0.5.0):
     - MRProgress/Helper
     - MRProgress/Stopable
-  - MRProgress/Helper (0.4.3)
-  - MRProgress/Icons (0.4.3)
-  - MRProgress/MessageInterceptor (0.4.3)
-  - MRProgress/NavigationBarProgress (0.4.3)
-  - MRProgress/Overlay (0.4.3):
+  - MRProgress/Helper (0.5.0)
+  - MRProgress/Icons (0.5.0)
+  - MRProgress/MessageInterceptor (0.5.0)
+  - MRProgress/NavigationBarProgress (0.5.0)
+  - MRProgress/Overlay (0.5.0):
     - MRProgress/ActivityIndicator
     - MRProgress/Blur
     - MRProgress/Circular
     - MRProgress/Helper
     - MRProgress/Icons
-  - MRProgress/Stopable (0.4.3):
+  - MRProgress/Stopable (0.5.0):
     - MRProgress/Helper
-  - MRProgress/WeakProxy (0.4.3)
+  - MRProgress/WeakProxy (0.5.0)
   - NSMutableArray-Shuffle (0.4)
   - NyaruDB (1.4.2)
   - StaticDataTableViewController (2.0.3)
-  - TestFlightSDK (3.0.2)
   - WSCoachMarksView (0.2)
 
 DEPENDENCIES:
@@ -67,7 +66,6 @@ DEPENDENCIES:
   - NSMutableArray-Shuffle
   - NyaruDB
   - StaticDataTableViewController (from `git@github.com:xelvenone/StaticDataTableViewController.git`)
-  - TestFlightSDK
   - WSCoachMarksView (from `git@github.com:TeaWhen/WSCoachMarksView.git`)
 
 EXTERNAL SOURCES:
@@ -83,11 +81,10 @@ SPEC CHECKSUMS:
   KIImagePager: 7b7074ddebcfd578f3f48355f3bfc5f428ddb281
   MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
   MD5Digest: 058b7162b1fc8c30feddf10bfe66e0565797c45f
-  MRProgress: e588fb8d0fba293715eaf0e485dd8402f4ce1de6
+  MRProgress: 0f0a200c2c211d2dfb83ac31aa2c117dca07db57
   NSMutableArray-Shuffle: fc5dc21933a5b868331eecc866409177477a37ce
   NyaruDB: 188fc7e865cf14c93258a80c20413ab0c734555c
   StaticDataTableViewController: 5c46c12bd116e7a8bab4e3b6de5255ae4fa97e5b
-  TestFlightSDK: 0c24c533748d0d84bfe7a3cb6036fa79124d84ee
   WSCoachMarksView: 93657355c87e88d0fea622ee45e9733d2242b080
 
 COCOAPODS: 0.33.1

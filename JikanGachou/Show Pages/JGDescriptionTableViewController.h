@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JGPhotoObject.h"
 
 @interface JGDescriptionTableViewController : UITableViewController
+
+@property JGPhotoObject *photoObj;
 
 @end

@@ -366,7 +366,7 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="mid" doubleSided="YES" id="Upe-oG-jdC" customClass="JGShowPagesViewController" sceneMemberID="viewController">
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <segue destination="OHv-JG-e3y" kind="modal" identifier="editDescription" id="c4J-Rc-eyY"/>
+                        <segue destination="Q7Y-YN-T2I" kind="modal" identifier="editDescription" id="qkm-KL-NrW"/>
                     </connections>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lMP-cM-kkE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -386,7 +386,7 @@
                             <tableViewSection footerTitle="日期默认从照片信息中获得" id="MJR-Fa-Z6l">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="sBQ-2c-PJ4">
-                                        <rect key="frame" x="0.0" y="79" width="440" height="44"/>
+                                        <rect key="frame" x="0.0" y="35" width="440" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sBQ-2c-PJ4" id="eO1-tg-Ww0">
                                             <rect key="frame" x="0.0" y="0.0" width="440" height="43"/>
@@ -415,7 +415,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="8Xu-fR-Vay">
-                                        <rect key="frame" x="0.0" y="123" width="440" height="44"/>
+                                        <rect key="frame" x="0.0" y="79" width="440" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Xu-fR-Vay" id="WNv-m5-nq0">
                                             <rect key="frame" x="0.0" y="0.0" width="440" height="43"/>
@@ -445,6 +445,27 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="vEm-4p-yNE">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="InI-I0-S34">
+                                        <rect key="frame" x="0.0" y="163" width="440" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="InI-I0-S34" id="wrR-v7-HId">
+                                            <rect key="frame" x="0.0" y="0.0" width="440" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="完成" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ylL-x7-QDK">
+                                                    <rect key="frame" x="203" y="11" width="34" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="Q7Y-YN-T2I" id="Em0-Dw-oUi"/>
@@ -459,6 +480,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="confirmCell" destination="InI-I0-S34" id="pAB-Yz-GVW"/>
                         <outlet property="dateField" destination="vNr-az-5Fv" id="AkI-z3-fNS"/>
                         <outlet property="datePicker" destination="gNr-W0-uG0" id="L8m-B0-8J1"/>
                         <outlet property="textField" destination="aEN-Pq-PEy" id="ju5-Di-dWp"/>
@@ -472,7 +494,7 @@
                         <!--2014-06-02 03:12:50 +0000-->
                     </date>
                     <timeZone key="timeZone" name="America/Los_Angeles">
-                        <mutableData key="data">
+                        <data key="data">
 VFppZgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAC5AAAABAAAABCepkign7sVkKCGKqChmveQ
 y4kaoNIj9HDSYSYQ1v50INiArZDa/tGg28CQENzes6DdqayQ3r6VoN+JjpDgnneg4WlwkOJ+WaDjSVKQ
 5F47oOUpNJDmR1gg5xJREOgnOiDo8jMQ6gccIOrSFRDr5v4g7LH3EO3G4CDukdkQ76/8oPBxuxDxj96g
@@ -490,29 +512,14 @@ f5gqkAABAAECAwEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
-</mutableData>
+</data>
                     </timeZone>
                     <connections>
                         <action selector="dateChanged:" destination="Q7Y-YN-T2I" eventType="valueChanged" id="t41-rj-TVT"/>
                     </connections>
                 </datePicker>
             </objects>
-            <point key="canvasLocation" x="2813" y="-181"/>
-        </scene>
-        <!--Description Navigation Controller-->
-        <scene sceneID="glW-9W-oJf">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="OHv-JG-e3y" customClass="JGDescriptionNavigationController" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="75d-LD-7bd">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Q7Y-YN-T2I" kind="relationship" relationship="rootViewController" id="H6s-Ac-Ff4"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jje-il-ffd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2215" y="-181"/>
+            <point key="canvasLocation" x="2231" y="-181"/>
         </scene>
         <!--Image Grid View Controller-->
         <scene sceneID="WTw-Sw-0q5">
