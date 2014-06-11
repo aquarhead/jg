@@ -37,9 +37,10 @@
     for (int i = 0; i < 20; i++) {
         [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@(i+2) andType:kJGEditPageTypeOneLandscape]];
     }
-    [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@22 andType:nil]];
-    [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@23 andType:kJGEditPageBackCover]];
+    [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@22 andType:kJGEditPageBackCover]];
+    [self.pages addObject:[JGPageViewController pageViewControllerWithIndex:@23 andType:nil]];
 
+    [self randomCover];
     [self generatePhotosForPage];
     [self updateBookPages];
 
@@ -59,15 +60,25 @@
     }
 }
 
+- (void)randomCover
+{
+    JGPageViewController *coverVC = [self.pages objectAtIndex:1];
+    NSMutableArray *photos = [self.photos mutableCopy];
+    [photos shuffle];
+    for (int i=1; i<=8; i++) {
+        [coverVC.mainView fillCoverNth:i withPhotoObject:photos[i]];
+    }
+}
+
 - (void)generatePhotosForPage
 {
     NSMutableArray *nums = [NSMutableArray arrayWithArray:@[@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15, @16, @17, @18, @19]];
     [nums shuffle];
     self.photosForPage = [NSMutableArray new];
-    for (int i = 0; i < 20; i++) {
+    for (int i=0; i<20; i++) {
         self.photosForPage[i] = [NSMutableArray arrayWithObject:self.photos[i]];
     }
-    for (int i = 0; i < [self.photos count] - 20; i++) {
+    for (int i=0; i<[self.photos count] - 20; i++) {
         [self.photosForPage[[nums[i] integerValue]] addObject:self.photos[20+i]];
     }
 }

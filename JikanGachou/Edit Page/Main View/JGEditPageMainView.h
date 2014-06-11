@@ -18,5 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView2;
 
 - (void)fillNth:(NSUInteger)n withPhotoObject:(JGPhotoObject *)pobj;
+- (void)fillCoverNth:(NSUInteger)n withPhotoObject:(JGPhotoObject *)pobj;
 
 @end

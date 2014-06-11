@@ -30,27 +30,27 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.87930484693877553" green="0.87930484693877553" blue="0.87930484693877553" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qZD-WT-eio" userLabel="Image View 5">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qZD-WT-eio" userLabel="Cover Logo">
                     <rect key="frame" x="92" y="92" width="38" height="38"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.87930484693877553" green="0.87930484693877553" blue="0.87930484693877553" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O1a-iJ-Sft" userLabel="Image View 6">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O1a-iJ-Sft" userLabel="Image View 5">
                     <rect key="frame" x="134" y="92" width="38" height="38"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.87930484693877553" green="0.87930484693877553" blue="0.87930484693877553" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qed-sH-mvJ" userLabel="Image View 7">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qed-sH-mvJ" userLabel="Image View 6">
                     <rect key="frame" x="49" y="134" width="38" height="38"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.87930484693877553" green="0.87930484693877553" blue="0.87930484693877553" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Gx-C9-kpo" userLabel="Image View 8">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Gx-C9-kpo" userLabel="Image View 7">
                     <rect key="frame" x="92" y="134" width="38" height="38"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.87930484693877553" green="0.87930484693877553" blue="0.87930484693877553" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RLY-fC-cwa" userLabel="Image View 9">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RLY-fC-cwa" userLabel="Image View 8">
                     <rect key="frame" x="134" y="134" width="38" height="38"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.87930484693877553" green="0.87930484693877553" blue="0.87930484693877553" alpha="1" colorSpace="calibratedRGB"/>
@@ -71,11 +71,10 @@
                 <outlet property="imageView2" destination="sbX-zz-wX5" id="ihi-eR-xnP"/>
                 <outlet property="imageView3" destination="54M-ta-iiO" id="LfJ-n9-cMh"/>
                 <outlet property="imageView4" destination="efd-xc-LGu" id="JOe-Ar-UEi"/>
-                <outlet property="imageView5" destination="qZD-WT-eio" id="ODh-O3-urk"/>
-                <outlet property="imageView6" destination="O1a-iJ-Sft" id="9aa-7E-N0f"/>
-                <outlet property="imageView7" destination="qed-sH-mvJ" id="FdP-jh-Sn8"/>
-                <outlet property="imageView8" destination="2Gx-C9-kpo" id="g3n-pW-Lyf"/>
-                <outlet property="imageView9" destination="RLY-fC-cwa" id="CIJ-DY-Vr4"/>
+                <outlet property="imageView5" destination="O1a-iJ-Sft" id="WMQ-fX-Qyn"/>
+                <outlet property="imageView6" destination="qed-sH-mvJ" id="pg3-JA-k4f"/>
+                <outlet property="imageView7" destination="2Gx-C9-kpo" id="o8f-zk-7C8"/>
+                <outlet property="imageView8" destination="RLY-fC-cwa" id="gzq-w1-wLb"/>
             </connections>
         </view>
     </objects>

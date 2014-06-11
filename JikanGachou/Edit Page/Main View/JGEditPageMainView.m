@@ -28,7 +28,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView6;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView7;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView8;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView9;
 
 @end
 
@@ -59,10 +58,6 @@
 - (void)fillNth:(NSUInteger)n withPhotoObject:(JGPhotoObject *)pobj
 {
     UIImageView *imageView = [self valueForKey:[NSString stringWithFormat:@"imageView%lu", (unsigned long)n]];
-    UIImageView *textPlaceholder = [self valueForKey:[NSString stringWithFormat:@"textPlaceholder%lu", (unsigned long)n]];
-    UILabel *yearLabel = [self valueForKey:[NSString stringWithFormat:@"yearLabel%lu", (unsigned long)n]];
-    UILabel *dayLabel = [self valueForKey:[NSString stringWithFormat:@"dayLabel%lu", (unsigned long)n]];
-
     UIImage *image;
     if ([[self modelString] hasPrefix:@"iPhone3"]) {
         // iPhone3 is iPhone 4, the only A4 device runs iOS 7
@@ -74,8 +69,11 @@
     imageView.image = image;
     imageView.contentMode = UIViewContentModeScaleAspectFill;
 
+    UIImageView *textPlaceholder = [self valueForKey:[NSString stringWithFormat:@"textPlaceholder%lu", (unsigned long)n]];
     textPlaceholder.hidden = !pobj.text || [pobj.text isEqualToString:@""];
 
+    UILabel *yearLabel = [self valueForKey:[NSString stringWithFormat:@"yearLabel%lu", (unsigned long)n]];
+    UILabel *dayLabel = [self valueForKey:[NSString stringWithFormat:@"dayLabel%lu", (unsigned long)n]];
     static NSDateFormatter *yearFormatter, *dayFormatter;
     if (!yearFormatter) {
         yearFormatter = [NSDateFormatter new];
@@ -86,9 +84,23 @@
     }
     yearLabel.text = [yearFormatter stringFromDate:pobj.date];
     dayLabel.text = [dayFormatter stringFromDate:pobj.date];
-
     yearLabel.textColor = [UIColor colorWithWhite:0.35 alpha:1];
     dayLabel.backgroundColor = [UIColor colorWithWhite:0.35 alpha:1];
+}
+
+- (void)fillCoverNth:(NSUInteger)n withPhotoObject:(JGPhotoObject *)pobj
+{
+    UIImageView *imageView = [self valueForKey:[NSString stringWithFormat:@"imageView%lu", (unsigned long)n]];
+    UIImage *image;
+    if ([[self modelString] hasPrefix:@"iPhone3"]) {
+        // iPhone3 is iPhone 4, the only A4 device runs iOS 7
+        image = [UIImage imageWithCGImage:pobj.asset.aspectRatioThumbnail];
+    }
+    else {
+        image = [UIImage imageWithCGImage:pobj.asset.defaultRepresentation.fullScreenImage];
+    }
+    imageView.image = image;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
 }
 
 @end
