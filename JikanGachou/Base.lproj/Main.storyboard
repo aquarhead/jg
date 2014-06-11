@@ -322,10 +322,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WoodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="dVf-xk-bul">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <containerView autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="o7E-BD-fja">
                                 <rect key="frame" x="20" y="68" width="440" height="220"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="440" id="I2s-7H-cYT"/>
                                 </constraints>
@@ -344,10 +347,13 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Bji-FN-8Ct" firstAttribute="top" secondItem="dVf-xk-bul" secondAttribute="bottom" id="5Lz-a0-abI"/>
                             <constraint firstItem="o7E-BD-fja" firstAttribute="top" secondItem="6wi-Gd-YFt" secondAttribute="bottom" constant="28" id="FH5-JO-q7f"/>
                             <constraint firstAttribute="centerX" secondItem="o7E-BD-fja" secondAttribute="centerX" id="K5B-uq-6CK"/>
+                            <constraint firstAttribute="trailing" secondItem="dVf-xk-bul" secondAttribute="trailing" id="boT-ym-8jq"/>
+                            <constraint firstItem="dVf-xk-bul" firstAttribute="leading" secondItem="ixv-tb-vLA" secondAttribute="leading" id="duM-RL-JMP"/>
+                            <constraint firstItem="dVf-xk-bul" firstAttribute="top" secondItem="ixv-tb-vLA" secondAttribute="top" id="eNj-IC-saa"/>
                             <constraint firstItem="Bji-FN-8Ct" firstAttribute="top" secondItem="o7E-BD-fja" secondAttribute="bottom" constant="32" id="jFA-jZ-5lI"/>
                             <constraint firstItem="6wi-Gd-YFt" firstAttribute="leading" secondItem="ixv-tb-vLA" secondAttribute="leading" constant="20" symbolic="YES" id="jLn-hY-VjA"/>
                             <constraint firstItem="6wi-Gd-YFt" firstAttribute="top" secondItem="ixv-tb-vLA" secondAttribute="top" constant="10" id="w2S-kM-oUv"/>
@@ -986,6 +992,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         </scene>
     </scenes>
     <resources>
+        <image name="WoodBackground" width="512" height="512"/>
         <image name="check" width="22" height="22"/>
         <image name="no-photo" width="127" height="70"/>
     </resources>

@@ -55,7 +55,6 @@ PODS:
   - NSMutableArray-Shuffle (0.4)
   - NyaruDB (1.4.2)
   - StaticDataTableViewController (2.0.3)
-  - WSCoachMarksView (0.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
@@ -66,15 +65,12 @@ DEPENDENCIES:
   - NSMutableArray-Shuffle
   - NyaruDB
   - StaticDataTableViewController (from `git@github.com:xelvenone/StaticDataTableViewController.git`)
-  - WSCoachMarksView (from `git@github.com:TeaWhen/WSCoachMarksView.git`)
 
 EXTERNAL SOURCES:
   KIImagePager:
     :git: git@github.com:xhacker/KIImagePager.git
   StaticDataTableViewController:
     :git: git@github.com:xelvenone/StaticDataTableViewController.git
-  WSCoachMarksView:
-    :git: git@github.com:TeaWhen/WSCoachMarksView.git
 
 SPEC CHECKSUMS:
   AFNetworking: ab63e259fe91eef4519b371ef0a4955af0e73e64
@@ -85,6 +81,5 @@ SPEC CHECKSUMS:
   NSMutableArray-Shuffle: fc5dc21933a5b868331eecc866409177477a37ce
   NyaruDB: 188fc7e865cf14c93258a80c20413ab0c734555c
   StaticDataTableViewController: 5c46c12bd116e7a8bab4e3b6de5255ae4fa97e5b
-  WSCoachMarksView: 93657355c87e88d0fea622ee45e9733d2242b080
 
 COCOAPODS: 0.33.1
