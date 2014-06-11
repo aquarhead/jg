@@ -11,6 +11,8 @@
 
 @interface JGBookContainerViewController ()
 
+@property (weak, nonatomic) IBOutlet UIView *container;
+
 @end
 
 @implementation JGBookContainerViewController
@@ -18,16 +20,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.container.layer.masksToBounds = NO;
+    self.container.layer.shadowOffset = CGSizeMake(0, 0.5);
+    self.container.layer.shadowRadius = 1.5;
+    self.container.layer.shadowOpacity = 0.3;
 }
 
 - (IBAction)backPressed:(UIButton *)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (IBAction)editDescription:(UIButton *)sender
-{
-    [self performSegueWithIdentifier:@"editDescription" sender:self];
 }
 
 #pragma mark - Set Orientation
